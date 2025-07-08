@@ -110,16 +110,18 @@ public class Astro {
         });
     }
 
+    public static void linkageCharacter() {
+        OpenThreadCollector.collect().to(thread -> {
+            thread.linkageCharacter();
+        });
+    }
+
     /**
      * Main entry point. Builds the topics database.
      *
      * @param args Command line arguments (not used)
      */
     public static void main(String[] args) {
-        // buildTopics();
-
-        OpenThreadCollector.collect().to(thread -> {
-            thread.analyzeUnit();
-        });
+        buildTopics();
     }
 }

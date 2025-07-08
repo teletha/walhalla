@@ -151,4 +151,12 @@ public class Database extends ArrayList<Unit> implements Storable<Database> {
 
         return stream().filter(u -> rarities.contains(u.rarity)).toList();
     }
+
+    public Set<String> uniqueSubNames() {
+        Set<String> names = new HashSet<>();
+        for (Unit unit : this) {
+            names.add(unit.subNameJ);
+        }
+        return names;
+    }
 }

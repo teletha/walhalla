@@ -13,9 +13,15 @@ import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 import java.util.stream.Collectors;
+
+import org.ahocorasick.trie.Token;
+import org.ahocorasick.trie.Trie;
+import org.ahocorasick.trie.Trie.TrieBuilder;
 
 import kiss.I;
 import kiss.JSON;
@@ -24,6 +30,7 @@ import kiss.XML;
 import psychopath.Directory;
 import psychopath.File;
 import walhalla.Astro;
+import walhalla.data.Database;
 import walhalla.image.Gyazo;
 import walhalla.image.Image;
 import walhalla.image.Imgur;
@@ -195,7 +202,7 @@ public class OpenThread implements Storable<OpenThread> {
     public void analyze() {
         if (topicJSON.isAbsent() || topicJSON.size() == 0) {
             I.info("Analyzing topics in thread " + num + " by Gemini.");
-            topics = I.json(Editor.topics(buildThreadText()), Topics.class);
+            topics = I.json(Editor.topics(composeThreadText()), Topics.class);
             topics.normalize();
 
             topicJSON.text(I.write(topics)).creationTime(0);
@@ -203,21 +210,7 @@ public class OpenThread implements Storable<OpenThread> {
         }
     }
 
-    /**
-     * 
-     */
-    public void analyzeUnit() {
-        for (Topic topic : getTopics()) {
-            if (topic.units == null) {
-                System.out.println(topic.title);
-                JSON json = I.json(Editor.unit(buildThreadText()));
-                System.out.println(title + "   " + num);
-                System.out.println(json);
-            }
-        }
-    }
-
-    private String buildThreadText() {
+    private String composeThreadText() {
         StringBuilder text = new StringBuilder();
         for (Res res : comments) {
             text.append("#").append(res.num).append(EOL);
@@ -255,6 +248,44 @@ public class OpenThread implements Storable<OpenThread> {
         if (needUpdate) {
             store();
         }
+    }
+
+    public void linkageCharacter() {
+        System.out.println(num);
+        Database db = I.make(Database.class);
+        Set<String> names = db.uniqueSubNames();
+
+        TrieBuilder builder = Trie.builder().ignoreOverlaps();
+        for (String name : names) {
+            builder.addKeyword(name);
+        }
+        Trie trie = builder.build();
+
+        for (Res res : comments) {
+            res.body = link(unlink(res.body), trie);
+        }
+
+        store();
+    }
+
+    private String link(String text, Trie trie) {
+        Collection<Token> tokens = trie.tokenize(text);
+        StringBuilder html = new StringBuilder();
+
+        for (Token token : tokens) {
+            if (token.isMatch()) {
+                html.append("<a href='/type/" + token.getFragment() + "/'>");
+            }
+            html.append(token.getFragment());
+            if (token.isMatch()) {
+                html.append("</a>");
+            }
+        }
+        return html.toString();
+    }
+
+    private String unlink(String text) {
+        return text.replaceAll("<a\\b[^>]*>(.*?)</a>", "$1");
     }
 
     /**
