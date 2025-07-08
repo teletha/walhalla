@@ -9,8 +9,20 @@
  */
 package walhalla.data;
 
+/**
+ * Utility class for parsing text related to artist names and extracting clean artist names from various formats.
+ */
 public class TextParser {
 
+    /**
+     * Extracts a clean artist name from a given text string.
+     * <p>
+     * Handles various formats such as [URL name], comments, special prefixes, and removes unnecessary parts like links, comments, and extra symbols.
+     * </p>
+     *
+     * @param text The input text containing the artist name and possibly extra information
+     * @return The extracted artist name, or an empty string if not available
+     */
     public static String extractArtistName(String text) {
         if (text == null || text.isEmpty()) return "";
         // コメント(<!-- -->)を削除

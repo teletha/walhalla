@@ -23,11 +23,12 @@ import walhalla.data.Database;
 import walhalla.data.Rarity;
 import walhalla.data.Unit;
 import walhalla.image.EditableImage;
+import walhalla.open2ch.OpenThreadCollector;
 
 /**
  * Provides utilities and entry point for the Astro project.
  * <p>
- * Handles directory management, unit database generation, and unit icon sprite creation.
+ * Handles directory management, unit database generation, unit icon sprite creation, and topic analysis.
  * </p>
  */
 public class Astro {
@@ -99,11 +100,21 @@ public class Astro {
     }
 
     /**
-     * Main entry point. Builds the unit database.
+     * Collects and analyzes topics from open threads using OpenThreadCollector.
+     * This method processes each thread and performs analysis.
+     */
+    public static void buildTopics() {
+        OpenThreadCollector.collect().to(thread -> {
+            thread.analyze();
+        });
+    }
+
+    /**
+     * Main entry point. Builds the topics database.
      *
      * @param args Command line arguments (not used)
      */
     public static void main(String[] args) {
-        buildUnitJSON();
+        buildTopics();
     }
 }

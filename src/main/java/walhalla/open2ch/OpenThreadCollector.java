@@ -45,7 +45,7 @@ import walhalla.Astro;
  * <li>Saves the updated HTML source to local storage.</li>
  * </ul>
  */
-public class OpenThreads {
+public class OpenThreadCollector {
 
     /** Ensures that threads are only updated once per session. */
     private static boolean initialized;
@@ -56,7 +56,7 @@ public class OpenThreads {
      * 
      * @return a Signal containing {@link OpenThread} objects
      */
-    public static synchronized Signal<OpenThread> findAll() {
+    public static synchronized Signal<OpenThread> collect() {
         if (initialized == false) {
             initialized = true;
             crawl();
@@ -70,7 +70,7 @@ public class OpenThreads {
      * updated HTML source if needed.
      * 
      * <p>
-     * This method is automatically invoked once before the first call to {@link #findAll()}.
+     * This method is automatically invoked once before the first call to {@link #collect()}.
      */
     private static void crawl() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");

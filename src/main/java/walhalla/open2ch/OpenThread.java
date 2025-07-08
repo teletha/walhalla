@@ -61,7 +61,7 @@ public class OpenThread implements Storable<OpenThread> {
 
     final File parsedJSON;
 
-    final File topicJSON;
+    private final File topicJSON;
 
     /**
      * Private constructor to prevent direct instantiation.
@@ -192,10 +192,8 @@ public class OpenThread implements Storable<OpenThread> {
      * This method constructs a single prompt string by concatenating all comment bodies
      * and media links, then sends it to a language model to extract high-level discussion topics.
      */
-    void analyze() {
+    public void analyze() {
         if (topicJSON.isAbsent() || topicJSON.size() == 0) {
-            restore();
-
             StringBuilder text = new StringBuilder();
             for (Res res : comments) {
                 text.append("#").append(res.num).append(EOL);
@@ -298,11 +296,5 @@ public class OpenThread implements Storable<OpenThread> {
             }
             return sb.toString();
         }
-    }
-
-    public static void main(String[] args) {
-        OpenThreads.findAll().to(thread -> {
-            thread.analyze();
-        });
     }
 }
