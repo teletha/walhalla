@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta content="width=device-width, initial-scale=1" name="viewport"/>
+		<meta content="Explains how to use Walhalla and its API. " name="description"/>
+		<link href="https://cdn.jsdelivr.net" rel="preconnect"/>
+		<link href="https://fonts.googleapis.com" rel="preconnect"/>
+		<link crossorigin="null" href="https://fonts.gstatic.com" rel="preconnect"/>
+		<link as="style" fetchpriority="high" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Inter" rel="preload"/>
+		<link href="https://fonts.googleapis.com/css2?display=swap&amp;family=Inter" media="print" onload="this.media=&apos;all&apos;" rel="stylesheet"/>
+		<link as="style" fetchpriority="high" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Material+Icons" rel="preload"/>
+		<link href="https://fonts.googleapis.com/css2?display=swap&amp;family=Material+Icons" media="print" onload="this.media=&apos;all&apos;" rel="stylesheet"/>
+		<link as="style" fetchpriority="high" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Vollkorn" rel="preload"/>
+		<link href="https://fonts.googleapis.com/css2?display=swap&amp;family=Vollkorn" media="print" onload="this.media=&apos;all&apos;" rel="stylesheet"/>
+		<title>Walhalla API</title>
+		<base href="../"/>
+		<script src="mimic.js" type="module"></script>
+		<link href="https://cdn.jsdelivr.net/npm/ress@4.0.0/dist/ress.min.css" rel="stylesheet"/>
+		<link href="main.css" rel="stylesheet"/>
+	</head>
+	<body class="Y">
+		<header class="Z" date="2025-07-08">
+			<h1 class="e"><a href="index.html"><code>Walhalla</code></a></h1>
+			<nav class="R"><a href="api/main.html" id="API"><svg class="package">
+						<use href="main.svg#package"/>
+					</svg>
+				</a><a href="doc/changelog.html" id="Activity"><svg class="activity">
+						<use href="main.svg#activity"/>
+					</svg>
+				</a><a href="https://github.com/teletha/walhalla/discussions" id="Community" target="_blank"><svg class="user">
+						<use href="main.svg#user"/>
+					</svg>
+				</a><a href="https://github.com/teletha/walhalla" id="Repository" target="_blank"><svg class="github">
+						<use href="main.svg#github"/>
+					</svg>
+				</a></nav>
+			<div class="U"><a aria-label="Change color scheme" id="theme"><svg class="sun">
+						<use href="main.svg#sun"/>
+					</svg><svg class="moon">
+						<use href="main.svg#moon"/>
+					</svg>
+				</a></div>
+		</header>
+		<nav class="X"></nav>
+		<article class="a" id="Article">
+			<section class="BB"><code class="w">walhalla.data</code>
+				<h2 class="Class f"><code class="t">Stats</code></h2>
+				<div class="n"></div><span class="A"><p>Represents the statistics of a character or unit in the game. This class provides fields for
+various attributes such as health points, attack, defense, and other abilities. It also includes
+methods to parse these statistics from a wiki text format.</p></span></section>
+			<section class="BB" id="profession">
+				<h2 class="i"><i class="PUBLIC"></i><code class="t">profession</code><i class="r"><code class="return"><a aria-label="walhalla.data.Profession" href="api/walhalla.data.Profession.html">Profession</a></code></i></h2><span class="A"><p>The class or type of the unit.</p></span></section>
+			<section class="BB" id="icon">
+				<h2 class="i"><i class="PUBLIC"></i><code class="t">icon</code><i class="r"><code class="return"><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></i></h2>
+			</section>
+			<section class="BB" id="image">
+				<h2 class="i"><i class="PUBLIC"></i><code class="t">image</code><i class="r"><code class="return"><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></i></h2>
+			</section>
+			<section class="BB" id="hp">
+				<h2 class="i"><i class="PUBLIC"></i><code class="t">hp</code><i class="r"><code class="return">int</code></i></h2><span class="A"><p>The maximum health points of the unit.</p></span></section>
+			<section class="BB" id="atk">
+				<h2 class="i"><i class="PUBLIC"></i><code class="t">atk</code><i class="r"><code class="return">int</code></i></h2><span class="A"><p>The maximum attack value of the unit.</p></span></section>
+			<section class="BB" id="def">
+				<h2 class="i"><i class="PUBLIC"></i><code class="t">def</code><i class="r"><code class="return">int</code></i></h2><span class="A"><p>The maximum defense value of the unit.</p></span></section>
+			<section class="BB" id="mr">
+				<h2 class="i"><i class="PUBLIC"></i><code class="t">mr</code><i class="r"><code class="return">int</code></i></h2><span class="A"><p>The magic resistance value of the unit.</p></span></section>
+			<section class="BB" id="range">
+				<h2 class="i"><i class="PUBLIC"></i><code class="t">range</code><i class="r"><code class="return">int</code></i></h2><span class="A"><p>The range of the unit&apos;s attacks or abilities.</p></span></section>
+			<section class="BB" id="block">
+				<h2 class="i"><i class="PUBLIC"></i><code class="t">block</code><i class="r"><code class="return">int</code></i></h2><span class="A"><p>The number of enemies the unit can block simultaneously.</p></span></section>
+			<section class="BB" id="cost">
+				<h2 class="i"><i class="PUBLIC"></i><code class="t">cost</code><i class="r"><code class="return">int</code></i></h2><span class="A"><p>The maximum cost of deploying the unit.</p></span></section>
+			<section class="BB" id="costMin">
+				<h2 class="i"><i class="PUBLIC"></i><code class="t">costMin</code><i class="r"><code class="return">int</code></i></h2><span class="A"><p>The minimum cost of deploying the unit.</p></span></section>
+			<section class="BB" id="rangeSkill">
+				<h2 class="i"><i class="PUBLIC"></i><code class="t">rangeSkill</code><i class="r"><code class="return">int</code></i></h2><span class="A"><p>The range of the unit&apos;s skill.</p></span></section>
+			<section class="BB" id="rangeSkillAW">
+				<h2 class="i"><i class="PUBLIC"></i><code class="t">rangeSkillAW</code><i class="r"><code class="return">int</code></i></h2><span class="A"><p>The range of the unit&apos;s skill after awakening.</p></span></section>
+			<section class="BB" id="abilityCostMod">
+				<h2 class="i"><i class="PUBLIC"></i><code class="t">abilityCostMod</code><i class="r"><code class="return">int</code></i></h2><span class="A"><p>The cost modifier for the unit&apos;s abilities.</p></span></section>
+			<section class="BB" id="abilityAtkMod">
+				<h2 class="i"><i class="PUBLIC"></i><code class="t">abilityAtkMod</code><i class="r"><code class="return">float</code></i></h2><span class="A"><p>The attack modifier for the unit&apos;s abilities.</p></span></section>
+			<section class="BB" id="abilityDefMod">
+				<h2 class="i"><i class="PUBLIC"></i><code class="t">abilityDefMod</code><i class="r"><code class="return">float</code></i></h2>
+			</section>
+			<section class="BB" id="Stats()">
+				<h2 class="i"><i class="PUBLIC"></i><code class="t">Stats</code><code class="T">()</code></h2>
+			</section>
+			<section class="BB" id="toString()">
+				<h2 class="i"><i class="OVERRIDE PUBLIC"></i><code class="t">toString</code><code class="T">()</code><i class="r"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></i></h2>
+				<table class="Q">
+					<tr class="P">
+						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></td>
+						<td></td>
+					</tr>
+				</table>
+			</section>
+		</article>
+		<aside class="O">
+			<div class="EB">
+				<h5 class="LB">Constructors</h5>
+				<ul>
+					<li class="q"><i class="PUBLIC"></i><code><a href="api/walhalla.data.Stats.html#Stats()">Stats</a></code><code class="T">()</code></li>
+				</ul>
+				<h5 class="LB">Fields</h5>
+				<ul>
+					<li class="q"><i class="PUBLIC"></i><code><a href="api/walhalla.data.Stats.html#profession">profession</a></code><i class="J"><code class="return"><a aria-label="walhalla.data.Profession" href="api/walhalla.data.Profession.html">Profession</a></code></i></li>
+					<li class="q"><i class="PUBLIC"></i><code><a href="api/walhalla.data.Stats.html#icon">icon</a></code><i class="J"><code class="return"><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></i></li>
+					<li class="q"><i class="PUBLIC"></i><code><a href="api/walhalla.data.Stats.html#image">image</a></code><i class="J"><code class="return"><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></i></li>
+					<li class="q"><i class="PUBLIC"></i><code><a href="api/walhalla.data.Stats.html#hp">hp</a></code><i class="J"><code class="return">int</code></i></li>
+					<li class="q"><i class="PUBLIC"></i><code><a href="api/walhalla.data.Stats.html#atk">atk</a></code><i class="J"><code class="return">int</code></i></li>
+					<li class="q"><i class="PUBLIC"></i><code><a href="api/walhalla.data.Stats.html#def">def</a></code><i class="J"><code class="return">int</code></i></li>
+					<li class="q"><i class="PUBLIC"></i><code><a href="api/walhalla.data.Stats.html#mr">mr</a></code><i class="J"><code class="return">int</code></i></li>
+					<li class="q"><i class="PUBLIC"></i><code><a href="api/walhalla.data.Stats.html#range">range</a></code><i class="J"><code class="return">int</code></i></li>
+					<li class="q"><i class="PUBLIC"></i><code><a href="api/walhalla.data.Stats.html#block">block</a></code><i class="J"><code class="return">int</code></i></li>
+					<li class="q"><i class="PUBLIC"></i><code><a href="api/walhalla.data.Stats.html#cost">cost</a></code><i class="J"><code class="return">int</code></i></li>
+					<li class="q"><i class="PUBLIC"></i><code><a href="api/walhalla.data.Stats.html#costMin">costMin</a></code><i class="J"><code class="return">int</code></i></li>
+					<li class="q"><i class="PUBLIC"></i><code><a href="api/walhalla.data.Stats.html#rangeSkill">rangeSkill</a></code><i class="J"><code class="return">int</code></i></li>
+					<li class="q"><i class="PUBLIC"></i><code><a href="api/walhalla.data.Stats.html#rangeSkillAW">rangeSkillAW</a></code><i class="J"><code class="return">int</code></i></li>
+					<li class="q"><i class="PUBLIC"></i><code><a href="api/walhalla.data.Stats.html#abilityCostMod">abilityCostMod</a></code><i class="J"><code class="return">int</code></i></li>
+					<li class="q"><i class="PUBLIC"></i><code><a href="api/walhalla.data.Stats.html#abilityAtkMod">abilityAtkMod</a></code><i class="J"><code class="return">float</code></i></li>
+					<li class="q"><i class="PUBLIC"></i><code><a href="api/walhalla.data.Stats.html#abilityDefMod">abilityDefMod</a></code><i class="J"><code class="return">float</code></i></li>
+				</ul>
+				<h5 class="LB">Methods</h5>
+				<ul>
+					<li class="q"><i class="OVERRIDE PUBLIC"></i><code><a href="api/walhalla.data.Stats.html#toString()">toString</a></code><code class="T">()</code><i class="J"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></i></li>
+				</ul>
+			</div>
+		</aside>
+		<footer class="b">
+			<p>Powered by <a href="https://github.com/teletha/evergarden" target="_">Evergarden</a></p>
+		</footer>
+	</body>
+	<script src="root.js"></script>
+	<script src="main.js" type="module"></script>
+</html>

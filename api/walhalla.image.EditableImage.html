@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta content="width=device-width, initial-scale=1" name="viewport"/>
+		<meta content="Explains how to use Walhalla and its API. " name="description"/>
+		<link href="https://cdn.jsdelivr.net" rel="preconnect"/>
+		<link href="https://fonts.googleapis.com" rel="preconnect"/>
+		<link crossorigin="null" href="https://fonts.gstatic.com" rel="preconnect"/>
+		<link as="style" fetchpriority="high" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Inter" rel="preload"/>
+		<link href="https://fonts.googleapis.com/css2?display=swap&amp;family=Inter" media="print" onload="this.media=&apos;all&apos;" rel="stylesheet"/>
+		<link as="style" fetchpriority="high" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Material+Icons" rel="preload"/>
+		<link href="https://fonts.googleapis.com/css2?display=swap&amp;family=Material+Icons" media="print" onload="this.media=&apos;all&apos;" rel="stylesheet"/>
+		<link as="style" fetchpriority="high" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Vollkorn" rel="preload"/>
+		<link href="https://fonts.googleapis.com/css2?display=swap&amp;family=Vollkorn" media="print" onload="this.media=&apos;all&apos;" rel="stylesheet"/>
+		<title>Walhalla API</title>
+		<base href="../"/>
+		<script src="mimic.js" type="module"></script>
+		<link href="https://cdn.jsdelivr.net/npm/ress@4.0.0/dist/ress.min.css" rel="stylesheet"/>
+		<link href="main.css" rel="stylesheet"/>
+	</head>
+	<body class="Y">
+		<header class="Z" date="2025-07-08">
+			<h1 class="e"><a href="index.html"><code>Walhalla</code></a></h1>
+			<nav class="R"><a href="api/main.html" id="API"><svg class="package">
+						<use href="main.svg#package"/>
+					</svg>
+				</a><a href="doc/changelog.html" id="Activity"><svg class="activity">
+						<use href="main.svg#activity"/>
+					</svg>
+				</a><a href="https://github.com/teletha/walhalla/discussions" id="Community" target="_blank"><svg class="user">
+						<use href="main.svg#user"/>
+					</svg>
+				</a><a href="https://github.com/teletha/walhalla" id="Repository" target="_blank"><svg class="github">
+						<use href="main.svg#github"/>
+					</svg>
+				</a></nav>
+			<div class="U"><a aria-label="Change color scheme" id="theme"><svg class="sun">
+						<use href="main.svg#sun"/>
+					</svg><svg class="moon">
+						<use href="main.svg#moon"/>
+					</svg>
+				</a></div>
+		</header>
+		<nav class="X"></nav>
+		<article class="a" id="Article">
+			<section class="BB"><code class="w">walhalla.image</code>
+				<h2 class="Class f"><code class="t">EditableImage</code></h2>
+				<div class="n"></div>
+			</section>
+			<section class="BB" id="EditableImage()">
+				<h2 class="i"><i class="PUBLIC"></i><code class="t">EditableImage</code><code class="T">()</code></h2>
+			</section>
+			<section class="BB" id="EditableImage(java.nio.file.Path)">
+				<h2 class="i"><i class="PUBLIC"></i><code class="t">EditableImage</code><code class="T">(<code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code><code class="parameterName">file</code>)</code></h2>
+				<table class="Q">
+					<tr class="HB">
+						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code><code class="parameterName">file</code></td>
+						<td></td>
+					</tr>
+				</table>
+			</section>
+			<section class="BB" id="trim(int)">
+				<h2 class="i"><i class="PUBLIC"></i><code class="t">trim</code><code class="T">(<code>int</code><code class="parameterName">size</code>)</code><i class="r"><code><a aria-label="walhalla.image.EditableImage" href="api/walhalla.image.EditableImage.html">EditableImage</a></code></i></h2>
+				<table class="Q">
+					<tr class="HB">
+						<td><code>int</code><code class="parameterName">size</code></td>
+						<td></td>
+					</tr>
+					<tr class="P">
+						<td><code><a aria-label="walhalla.image.EditableImage" href="api/walhalla.image.EditableImage.html">EditableImage</a></code></td>
+						<td></td>
+					</tr>
+				</table><span class="A"><p>
+ Triming.
+ </p>
+				</span></section>
+			<section class="BB" id="trim(int,int,int,int)">
+				<h2 class="i"><i class="PUBLIC"></i><code class="t">trim</code><code class="T">(<code>int</code><code class="parameterName">top</code>, <code>int</code><code class="parameterName">right</code>, <code>int</code><code class="parameterName">bottom</code>, <code>int</code><code class="parameterName">left</code>)</code><i class="r"><code><a aria-label="walhalla.image.EditableImage" href="api/walhalla.image.EditableImage.html">EditableImage</a></code></i></h2>
+				<table class="Q">
+					<tr class="HB">
+						<td><code>int</code><code class="parameterName">top</code></td>
+						<td><span><p>A triming pixel size of top side.</p></span></td>
+					</tr>
+					<tr class="HB">
+						<td><code>int</code><code class="parameterName">right</code></td>
+						<td><span><p>A triming pixel size of right side.</p></span></td>
+					</tr>
+					<tr class="HB">
+						<td><code>int</code><code class="parameterName">bottom</code></td>
+						<td><span><p>A triming pixel size of bottom side.</p></span></td>
+					</tr>
+					<tr class="HB">
+						<td><code>int</code><code class="parameterName">left</code></td>
+						<td><span><p>A triming pixel size of left side.</p></span></td>
+					</tr>
+					<tr class="P">
+						<td><code><a aria-label="walhalla.image.EditableImage" href="api/walhalla.image.EditableImage.html">EditableImage</a></code></td>
+						<td></td>
+					</tr>
+				</table><span class="A"><p>
+ Trim image.
+ </p>
+				</span></section>
+			<section class="BB" id="resize(int)">
+				<h2 class="i"><i class="PUBLIC"></i><code class="t">resize</code><code class="T">(<code>int</code><code class="parameterName">size</code>)</code><i class="r"><code><a aria-label="walhalla.image.EditableImage" href="api/walhalla.image.EditableImage.html">EditableImage</a></code></i></h2>
+				<table class="Q">
+					<tr class="HB">
+						<td><code>int</code><code class="parameterName">size</code></td>
+						<td><span><p>The target size for resizing.</p></span></td>
+					</tr>
+					<tr class="P">
+						<td><code><a aria-label="walhalla.image.EditableImage" href="api/walhalla.image.EditableImage.html">EditableImage</a></code></td>
+						<td></td>
+					</tr>
+				</table><span class="A"><p>
+ Resize image by horizontal length with keeping aspect ratio using Scalr for better quality.
+ </p>
+				</span></section>
+			<section class="BB" id="concat(walhalla.image.EditableImage)">
+				<h2 class="i"><i class="PUBLIC"></i><code class="t">concat</code><code class="T">(<code><a aria-label="walhalla.image.EditableImage" href="api/walhalla.image.EditableImage.html">EditableImage</a></code><code class="parameterName">target</code>)</code><i class="r"><code><a aria-label="walhalla.image.EditableImage" href="api/walhalla.image.EditableImage.html">EditableImage</a></code></i></h2>
+				<table class="Q">
+					<tr class="HB">
+						<td><code><a aria-label="walhalla.image.EditableImage" href="api/walhalla.image.EditableImage.html">EditableImage</a></code><code class="parameterName">target</code></td>
+						<td></td>
+					</tr>
+					<tr class="P">
+						<td><code><a aria-label="walhalla.image.EditableImage" href="api/walhalla.image.EditableImage.html">EditableImage</a></code></td>
+						<td></td>
+					</tr>
+				</table><span class="A"><p>
+ Concatenate horizontaly.
+ </p>
+				</span></section>
+			<section class="BB" id="tile(int,java.util.List)">
+				<h2 class="i"><i class="PUBLIC"></i><code class="t">tile</code><code class="T">(<code>int</code><code class="parameterName">horizontalCount</code>, <code><a aria-label="java.util.List 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/List.html">List</a><code class="parameters"><code><a aria-label="walhalla.image.EditableImage" href="api/walhalla.image.EditableImage.html">EditableImage</a></code></code></code><code class="parameterName">images</code>)</code><i class="r"><code><a aria-label="walhalla.image.EditableImage" href="api/walhalla.image.EditableImage.html">EditableImage</a></code></i></h2>
+				<table class="Q">
+					<tr class="HB">
+						<td><code>int</code><code class="parameterName">horizontalCount</code></td>
+						<td><span><p>The number of images per row.</p></span></td>
+					</tr>
+					<tr class="HB">
+						<td><code><a aria-label="java.util.List 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/List.html">List</a><code class="parameters"><code><a aria-label="walhalla.image.EditableImage" href="api/walhalla.image.EditableImage.html">EditableImage</a></code></code></code><code class="parameterName">images</code></td>
+						<td><span><p>The list of images to arrange in a tile layout.</p></span></td>
+					</tr>
+					<tr class="P">
+						<td><code><a aria-label="walhalla.image.EditableImage" href="api/walhalla.image.EditableImage.html">EditableImage</a></code></td>
+						<td></td>
+					</tr>
+				</table><span class="A"><p>
+ Arrange images in a tile layout with the specified number of horizontal images per row.
+ </p>
+				</span></section>
+			<section class="BB" id="write(java.nio.file.Path)">
+				<h2 class="i"><i class="PUBLIC"></i><code class="t">write</code><code class="T">(<code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code><code class="parameterName">output</code>)</code><i class="r"><code>void</code></i></h2>
+				<table class="Q">
+					<tr class="HB">
+						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code><code class="parameterName">output</code></td>
+						<td></td>
+					</tr>
+				</table><span class="A"><p>
+ Write current image.
+ </p>
+				</span></section>
+			<section class="BB" id="write(java.nio.file.Path,walhalla.image.ImageType)">
+				<h2 class="i"><i class="PUBLIC"></i><code class="t">write</code><code class="T">(<code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code><code class="parameterName">directory</code>, <code><a aria-label="walhalla.image.ImageType" href="api/walhalla.image.ImageType.html">ImageType</a></code><code class="parameterName">type</code>)</code><i class="r"><code>void</code></i></h2>
+				<table class="Q">
+					<tr class="HB">
+						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code><code class="parameterName">directory</code></td>
+						<td></td>
+					</tr>
+					<tr class="HB">
+						<td><code><a aria-label="walhalla.image.ImageType" href="api/walhalla.image.ImageType.html">ImageType</a></code><code class="parameterName">type</code></td>
+						<td></td>
+					</tr>
+				</table><span class="A"><p>
+ Write current image.
+ </p>
+				</span></section>
+		</article>
+		<aside class="O">
+			<div class="EB">
+				<h5 class="LB">Constructors</h5>
+				<ul>
+					<li class="q"><i class="PUBLIC"></i><code><a href="api/walhalla.image.EditableImage.html#EditableImage()">EditableImage</a></code><code class="T">()</code></li>
+					<li class="q"><i class="PUBLIC"></i><code><a href="api/walhalla.image.EditableImage.html#EditableImage(java.nio.file.Path)">EditableImage</a></code><code class="T">(<code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code><code class="parameterName">file</code>)</code></li>
+				</ul>
+				<h5 class="LB">Methods</h5>
+				<ul>
+					<li class="q"><i class="PUBLIC"></i><code><a href="api/walhalla.image.EditableImage.html#trim(int)">trim</a></code><code class="T">(<code>int</code><code class="parameterName">size</code>)</code><i class="J"><code><a aria-label="walhalla.image.EditableImage" href="api/walhalla.image.EditableImage.html">EditableImage</a></code></i></li>
+					<li class="q"><i class="PUBLIC"></i><code><a href="api/walhalla.image.EditableImage.html#trim(int,int,int,int)">trim</a></code><code class="T">(<code>int</code><code class="parameterName">top</code>, <code>int</code><code class="parameterName">right</code>, <code>int</code><code class="parameterName">bottom</code>, <code>int</code><code class="parameterName">left</code>)</code><i class="J"><code><a aria-label="walhalla.image.EditableImage" href="api/walhalla.image.EditableImage.html">EditableImage</a></code></i></li>
+					<li class="q"><i class="PUBLIC"></i><code><a href="api/walhalla.image.EditableImage.html#resize(int)">resize</a></code><code class="T">(<code>int</code><code class="parameterName">size</code>)</code><i class="J"><code><a aria-label="walhalla.image.EditableImage" href="api/walhalla.image.EditableImage.html">EditableImage</a></code></i></li>
+					<li class="q"><i class="PUBLIC"></i><code><a href="api/walhalla.image.EditableImage.html#concat(walhalla.image.EditableImage)">concat</a></code><code class="T">(<code><a aria-label="walhalla.image.EditableImage" href="api/walhalla.image.EditableImage.html">EditableImage</a></code><code class="parameterName">target</code>)</code><i class="J"><code><a aria-label="walhalla.image.EditableImage" href="api/walhalla.image.EditableImage.html">EditableImage</a></code></i></li>
+					<li class="q"><i class="PUBLIC"></i><code><a href="api/walhalla.image.EditableImage.html#tile(int,java.util.List)">tile</a></code><code class="T">(<code>int</code><code class="parameterName">horizontalCount</code>, <code><a aria-label="java.util.List 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/List.html">List</a><code class="parameters"><code><a aria-label="walhalla.image.EditableImage" href="api/walhalla.image.EditableImage.html">EditableImage</a></code></code></code><code class="parameterName">images</code>)</code><i class="J"><code><a aria-label="walhalla.image.EditableImage" href="api/walhalla.image.EditableImage.html">EditableImage</a></code></i></li>
+					<li class="q"><i class="PUBLIC"></i><code><a href="api/walhalla.image.EditableImage.html#write(java.nio.file.Path)">write</a></code><code class="T">(<code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code><code class="parameterName">output</code>)</code><i class="J"><code>void</code></i></li>
+					<li class="q"><i class="PUBLIC"></i><code><a href="api/walhalla.image.EditableImage.html#write(java.nio.file.Path,walhalla.image.ImageType)">write</a></code><code class="T">(<code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code><code class="parameterName">directory</code>, <code><a aria-label="walhalla.image.ImageType" href="api/walhalla.image.ImageType.html">ImageType</a></code><code class="parameterName">type</code>)</code><i class="J"><code>void</code></i></li>
+				</ul>
+			</div>
+		</aside>
+		<footer class="b">
+			<p>Powered by <a href="https://github.com/teletha/evergarden" target="_">Evergarden</a></p>
+		</footer>
+	</body>
+	<script src="root.js"></script>
+	<script src="main.js" type="module"></script>
+</html>

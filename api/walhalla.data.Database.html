@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta content="width=device-width, initial-scale=1" name="viewport"/>
+		<meta content="Explains how to use Walhalla and its API. " name="description"/>
+		<link href="https://cdn.jsdelivr.net" rel="preconnect"/>
+		<link href="https://fonts.googleapis.com" rel="preconnect"/>
+		<link crossorigin="null" href="https://fonts.gstatic.com" rel="preconnect"/>
+		<link as="style" fetchpriority="high" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Inter" rel="preload"/>
+		<link href="https://fonts.googleapis.com/css2?display=swap&amp;family=Inter" media="print" onload="this.media=&apos;all&apos;" rel="stylesheet"/>
+		<link as="style" fetchpriority="high" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Material+Icons" rel="preload"/>
+		<link href="https://fonts.googleapis.com/css2?display=swap&amp;family=Material+Icons" media="print" onload="this.media=&apos;all&apos;" rel="stylesheet"/>
+		<link as="style" fetchpriority="high" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Vollkorn" rel="preload"/>
+		<link href="https://fonts.googleapis.com/css2?display=swap&amp;family=Vollkorn" media="print" onload="this.media=&apos;all&apos;" rel="stylesheet"/>
+		<title>Walhalla API</title>
+		<base href="../"/>
+		<script src="mimic.js" type="module"></script>
+		<link href="https://cdn.jsdelivr.net/npm/ress@4.0.0/dist/ress.min.css" rel="stylesheet"/>
+		<link href="main.css" rel="stylesheet"/>
+	</head>
+	<body class="Y">
+		<header class="Z" date="2025-07-08">
+			<h1 class="e"><a href="index.html"><code>Walhalla</code></a></h1>
+			<nav class="R"><a href="api/main.html" id="API"><svg class="package">
+						<use href="main.svg#package"/>
+					</svg>
+				</a><a href="doc/changelog.html" id="Activity"><svg class="activity">
+						<use href="main.svg#activity"/>
+					</svg>
+				</a><a href="https://github.com/teletha/walhalla/discussions" id="Community" target="_blank"><svg class="user">
+						<use href="main.svg#user"/>
+					</svg>
+				</a><a href="https://github.com/teletha/walhalla" id="Repository" target="_blank"><svg class="github">
+						<use href="main.svg#github"/>
+					</svg>
+				</a></nav>
+			<div class="U"><a aria-label="Change color scheme" id="theme"><svg class="sun">
+						<use href="main.svg#sun"/>
+					</svg><svg class="moon">
+						<use href="main.svg#moon"/>
+					</svg>
+				</a></div>
+		</header>
+		<nav class="X"></nav>
+		<article class="a" id="Article">
+			<section class="BB"><code class="w">walhalla.data</code>
+				<h2 class="Class f"><code class="t">Database</code></h2>
+				<div class="n">
+					<ul class="E G">
+						<li><code><a aria-label="java.util.ArrayList 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/ArrayList.html">ArrayList</a><code class="parameters"><code><a aria-label="walhalla.data.Unit" href="api/walhalla.data.Unit.html">Unit</a></code></code></code></li>
+						<li><code><a aria-label="java.util.AbstractList 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/AbstractList.html">AbstractList</a><code class="parameters"><code><a aria-label="walhalla.data.Unit" href="api/walhalla.data.Unit.html">Unit</a></code></code></code></li>
+						<li><code><a aria-label="java.util.AbstractCollection 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/AbstractCollection.html">AbstractCollection</a><code class="parameters"><code><a aria-label="walhalla.data.Unit" href="api/walhalla.data.Unit.html">Unit</a></code></code></code></li>
+					</ul>
+					<ul class="E H">
+						<li><code><a aria-label="java.lang.Cloneable 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/Cloneable.html">Cloneable</a></code></li>
+						<li><code><a aria-label="java.util.Collection 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/Collection.html">Collection</a><code class="parameters"><code><a aria-label="walhalla.data.Unit" href="api/walhalla.data.Unit.html">Unit</a></code></code></code></li>
+						<li><code><a aria-label="java.lang.Iterable 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/Iterable.html">Iterable</a><code class="parameters"><code><a aria-label="walhalla.data.Unit" href="api/walhalla.data.Unit.html">Unit</a></code></code></code></li>
+						<li><code><a aria-label="java.util.List 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/List.html">List</a><code class="parameters"><code><a aria-label="walhalla.data.Unit" href="api/walhalla.data.Unit.html">Unit</a></code></code></code></li>
+						<li><code><a aria-label="java.util.RandomAccess 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/RandomAccess.html">RandomAccess</a></code></li>
+						<li><code><a aria-label="java.util.SequencedCollection 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/SequencedCollection.html">SequencedCollection</a><code class="parameters"><code><a aria-label="walhalla.data.Unit" href="api/walhalla.data.Unit.html">Unit</a></code></code></code></li>
+						<li><code><a aria-label="java.io.Serializable 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/io/Serializable.html">Serializable</a></code></li>
+						<li><code>kiss.Storable<code class="parameters"><code><a aria-label="walhalla.data.Database" href="api/walhalla.data.Database.html">Database</a></code></code></code></li>
+					</ul>
+				</div><span class="A"><p>Manages the collection and storage of <code><a aria-label="walhalla.data.Unit" href="api/walhalla.data.Unit.html">Unit</a></code> data.</p><p>
+ This class loads, builds, and stores unit data from external sources such as the Aigis Wiki.
+ It provides methods to retrieve units by name or rarity, and ensures the unit database is
+ up-to-date.
+ </p></span></section>
+			<section class="BB" id="build()">
+				<h2 class="i"><i class="PUBLIC"></i><code class="t">build</code><code class="T">()</code><i class="r"><code>void</code></i></h2><span class="A"><p>Builds the unit list by parsing data from the Aigis Wiki and other sources.
+Updates the internal list and sorts units by ID.</p></span></section>
+			<section class="BB" id="locate()">
+				<h2 class="i"><i class="OVERRIDE PUBLIC"></i><code class="t">locate</code><code class="T">()</code><i class="r"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></h2>
+				<table class="Q">
+					<tr class="P">
+						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></td>
+						<td></td>
+					</tr>
+				</table><span class="A"><p>Returns the path to the unit database file.</p></span></section>
+			<section class="BB" id="byName(java.lang.String)">
+				<h2 class="i"><i class="PUBLIC"></i><code class="t">byName</code><code class="T">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>)</code><i class="r"><code><a aria-label="java.util.List 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/List.html">List</a><code class="parameters"><code><a aria-label="walhalla.data.Unit" href="api/walhalla.data.Unit.html">Unit</a></code></code></code></i></h2>
+				<table class="Q">
+					<tr class="HB">
+						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code></td>
+						<td><span><p>The Japanese sub-name to search for</p></span></td>
+					</tr>
+					<tr class="P">
+						<td><code><a aria-label="java.util.List 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/List.html">List</a><code class="parameters"><code><a aria-label="walhalla.data.Unit" href="api/walhalla.data.Unit.html">Unit</a></code></code></code></td>
+						<td><span><p>A list of units with the given sub-name</p></span></td>
+					</tr>
+				</table><span class="A"><p>Retrieves all units with the specified Japanese sub-name.</p></span></section>
+			<section class="BB" id="by(walhalla.data.Rarity...)">
+				<h2 class="i"><i class="PUBLIC"></i><code class="t">by</code><code class="T">(<code array="var"><a aria-label="walhalla.data.Rarity" href="api/walhalla.data.Rarity.html">Rarity</a></code><code class="parameterName">rare</code>)</code><i class="r"><code><a aria-label="java.util.List 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/List.html">List</a><code class="parameters"><code><a aria-label="walhalla.data.Unit" href="api/walhalla.data.Unit.html">Unit</a></code></code></code></i></h2>
+				<table class="Q">
+					<tr class="HB">
+						<td><code array="var"><a aria-label="walhalla.data.Rarity" href="api/walhalla.data.Rarity.html">Rarity</a></code><code class="parameterName">rare</code></td>
+						<td><span><p>One or more rarities to filter by</p></span></td>
+					</tr>
+					<tr class="P">
+						<td><code><a aria-label="java.util.List 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/List.html">List</a><code class="parameters"><code><a aria-label="walhalla.data.Unit" href="api/walhalla.data.Unit.html">Unit</a></code></code></code></td>
+						<td><span><p>A list of units matching the given rarities</p></span></td>
+					</tr>
+				</table><span class="A"><p>Retrieves all units with the specified rarities.</p></span></section>
+		</article>
+		<aside class="O">
+			<div class="EB">
+				<h5 class="LB">Methods</h5>
+				<ul>
+					<li class="q"><i class="PUBLIC"></i><code><a href="api/walhalla.data.Database.html#build()">build</a></code><code class="T">()</code><i class="J"><code>void</code></i></li>
+					<li class="q"><i class="OVERRIDE PUBLIC"></i><code><a href="api/walhalla.data.Database.html#locate()">locate</a></code><code class="T">()</code><i class="J"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></li>
+					<li class="q"><i class="PUBLIC"></i><code><a href="api/walhalla.data.Database.html#byName(java.lang.String)">byName</a></code><code class="T">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>)</code><i class="J"><code><a aria-label="java.util.List 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/List.html">List</a><code class="parameters"><code><a aria-label="walhalla.data.Unit" href="api/walhalla.data.Unit.html">Unit</a></code></code></code></i></li>
+					<li class="q"><i class="PUBLIC"></i><code><a href="api/walhalla.data.Database.html#by(walhalla.data.Rarity...)">by</a></code><code class="T">(<code array="var"><a aria-label="walhalla.data.Rarity" href="api/walhalla.data.Rarity.html">Rarity</a></code><code class="parameterName">rare</code>)</code><i class="J"><code><a aria-label="java.util.List 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/List.html">List</a><code class="parameters"><code><a aria-label="walhalla.data.Unit" href="api/walhalla.data.Unit.html">Unit</a></code></code></code></i></li>
+				</ul>
+			</div>
+		</aside>
+		<footer class="b">
+			<p>Powered by <a href="https://github.com/teletha/evergarden" target="_">Evergarden</a></p>
+		</footer>
+	</body>
+	<script src="root.js"></script>
+	<script src="main.js" type="module"></script>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta content="width=device-width, initial-scale=1" name="viewport"/>
+		<meta content="Explains how to use Walhalla and its API. " name="description"/>
+		<link href="https://cdn.jsdelivr.net" rel="preconnect"/>
+		<link href="https://fonts.googleapis.com" rel="preconnect"/>
+		<link crossorigin="null" href="https://fonts.gstatic.com" rel="preconnect"/>
+		<link as="style" fetchpriority="high" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Inter" rel="preload"/>
+		<link href="https://fonts.googleapis.com/css2?display=swap&amp;family=Inter" media="print" onload="this.media=&apos;all&apos;" rel="stylesheet"/>
+		<link as="style" fetchpriority="high" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Material+Icons" rel="preload"/>
+		<link href="https://fonts.googleapis.com/css2?display=swap&amp;family=Material+Icons" media="print" onload="this.media=&apos;all&apos;" rel="stylesheet"/>
+		<link as="style" fetchpriority="high" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Vollkorn" rel="preload"/>
+		<link href="https://fonts.googleapis.com/css2?display=swap&amp;family=Vollkorn" media="print" onload="this.media=&apos;all&apos;" rel="stylesheet"/>
+		<title>Walhalla API</title>
+		<base href="../"/>
+		<script src="mimic.js" type="module"></script>
+		<link href="https://cdn.jsdelivr.net/npm/ress@4.0.0/dist/ress.min.css" rel="stylesheet"/>
+		<link href="main.css" rel="stylesheet"/>
+	</head>
+	<body class="Y">
+		<header class="Z" date="2025-07-08">
+			<h1 class="e"><a href="index.html"><code>Walhalla</code></a></h1>
+			<nav class="R"><a href="api/main.html" id="API"><svg class="package">
+						<use href="main.svg#package"/>
+					</svg>
+				</a><a href="doc/changelog.html" id="Activity"><svg class="activity">
+						<use href="main.svg#activity"/>
+					</svg>
+				</a><a href="https://github.com/teletha/walhalla/discussions" id="Community" target="_blank"><svg class="user">
+						<use href="main.svg#user"/>
+					</svg>
+				</a><a href="https://github.com/teletha/walhalla" id="Repository" target="_blank"><svg class="github">
+						<use href="main.svg#github"/>
+					</svg>
+				</a></nav>
+			<div class="U"><a aria-label="Change color scheme" id="theme"><svg class="sun">
+						<use href="main.svg#sun"/>
+					</svg><svg class="moon">
+						<use href="main.svg#moon"/>
+					</svg>
+				</a></div>
+		</header>
+		<nav class="X"></nav>
+		<article class="a" id="Article">
+			<div class="BB">
+				<section class="A">
+					<h2>Walhalla API Overview</h2>
+					<p>This page provides a concise overview of the available APIs, including their purpose, key functionalities, and usage patterns. It serves as a starting point for developers to understand how to integrate and interact with the system effectively.</p>
+					<section class="A">
+						<h4>🛠️ Functional Interface</h4>
+						<table>
+							<tr>
+								<td><code><a href="api/walhalla.open2ch.Editor.html">Editor</a></code></td>
+								<td>no description</td>
+							</tr>
+						</table>
+					</section>
+					<section class="A">
+						<h4>🛠️ Class</h4>
+						<table>
+							<tr>
+								<td><code><a href="api/walhalla.Astro.html">Astro</a></code></td>
+								<td>Provides utilities and entry point for the Astro project.</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.data.Profession.html">Profession</a></code></td>
+								<td>no description</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.data.TextParser.html">TextParser</a></code></td>
+								<td>no description</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.data.Wiki.html">Wiki</a></code></td>
+								<td>A utility class for caching data retrieved from a server. The cache is stored in a local
+directory and is valid for up to 7 days. If the cache is expired or does not exist, the data is
+fetched from the server and saved to the cache.</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.data.WikiText.html">WikiText</a></code></td>
+								<td>A utility class for parsing and manipulating wiki text. This class provides methods to extract
+key-value pairs, sections, and other structured data from a wiki text format.</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.data.Unit.html">Unit</a></code></td>
+								<td>no description</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.data.Database.html">Database</a></code></td>
+								<td>Manages the collection and storage of Unit data.</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.data.Proofreader.html">Proofreader</a></code></td>
+								<td>no description</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.data.Stats.html">Stats</a></code></td>
+								<td>Represents the statistics of a character or unit in the game. This class provides fields for
+various attributes such as health points, attack, defense, and other abilities. It also includes
+methods to parse these statistics from a wiki text format.</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.image.Gyazo.html">Gyazo</a></code></td>
+								<td>no description</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.image.Scalr.html">Scalr</a></code></td>
+								<td>Class used to implement performant, high-quality and intelligent image
+scaling and manipulation algorithms in native Java 2D.</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.image.EditableImage.html">EditableImage</a></code></td>
+								<td>no description</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.image.Imgur.html">Imgur</a></code></td>
+								<td>no description</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.open2ch.OpenThread.html">OpenThread</a></code></td>
+								<td>Represents a discussion thread on open2ch, including its metadata and all comments.
+This class is responsible for parsing the cached thread HTML file and converting it
+into structured data. It also handles storage and retrieval of the parsed content
+as a JSON file for later use.</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.open2ch.OpenThreads.html">OpenThreads</a></code></td>
+								<td>A utility class for managing and updating open2ch threads related to &quot;Aigis&quot;.</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.open2ch.Topic.html">Topic</a></code></td>
+								<td>Represents a semantically grouped topic extracted from a thread&apos;s comments.
+Each topic contains a title, associated comment numbers, metadata such as category and tags,
+and logic to render/publish it as a Markdown article.</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.open2ch.Res.html">Res</a></code></td>
+								<td>Represents a single response (res) in an open2ch thread.
+A response includes metadata such as poster name, posting time,
+identifier, message body, and optionally attached media.</td>
+							</tr>
+						</table>
+					</section>
+					<section class="A">
+						<h4>🛠️ Enum</h4>
+						<table>
+							<tr>
+								<td><code><a href="api/walhalla.data.Gender.html">Gender</a></code></td>
+								<td>no description</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.data.Attribute.html">Attribute</a></code></td>
+								<td>no description</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.data.PlaceType.html">PlaceType</a></code></td>
+								<td>no description</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.data.Rarity.html">Rarity</a></code></td>
+								<td>no description</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.image.Scalr.Rotation.html">Scalr.Rotation</a></code></td>
+								<td>Used to define the different types of rotations that can be applied to an
+image during a resize operation.</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.image.Scalr.Mode.html">Scalr.Mode</a></code></td>
+								<td>Used to define the different modes of resizing that the algorithm can
+use.</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.image.Scalr.Method.html">Scalr.Method</a></code></td>
+								<td>Used to define the different scaling hints that the algorithm can use.</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.image.ImageType.html">ImageType</a></code></td>
+								<td>no description</td>
+							</tr>
+						</table>
+					</section>
+					<section class="A">
+						<h4>🛠️ Record</h4>
+						<table>
+							<tr>
+								<td><code><a href="api/walhalla.image.Image.html">Image</a></code></td>
+								<td>no description</td>
+							</tr>
+						</table>
+					</section>
+				</section>
+			</div>
+		</article>
+		<aside class="O"></aside>
+		<footer class="b">
+			<p>Powered by <a href="https://github.com/teletha/evergarden" target="_">Evergarden</a></p>
+		</footer>
+	</body>
+	<script src="root.js"></script>
+	<script src="main.js" type="module"></script>
+</html>
