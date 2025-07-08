@@ -32,7 +32,7 @@ Add it into in the dependencies element like so:
 <dependency>
     <groupId>com.github.teletha</groupId>
     <artifactId>walhalla</artifactId>
-    <version>0.1</version>
+    <version></version>
 </dependency>
 ```
 #### [Gradle](https://gradle.org/)
@@ -45,7 +45,7 @@ repositories {
 Add it into the dependencies section like so:
 ```gradle
 dependencies {
-    implementation 'com.github.teletha:walhalla:0.1'
+    implementation 'com.github.teletha:walhalla:'
 }
 ```
 #### [SBT](https://www.scala-sbt.org/)
@@ -55,7 +55,7 @@ resolvers += "jitpack" at "https://jitpack.io"
 ```
 Add it into the libraryDependencies section like so:
 ```scala
-libraryDependencies += "com.github.teletha" % "walhalla" % "0.1"
+libraryDependencies += "com.github.teletha" % "walhalla" % ""
 ```
 #### [Leiningen](https://leiningen.org/)
 Add JitPack repository at the end of repositories in your project().clj:
@@ -64,12 +64,12 @@ Add JitPack repository at the end of repositories in your project().clj:
 ```
 Add it into the dependencies section like so:
 ```clj
-:dependencies [[com.github.teletha/walhalla "0.1"]]
+:dependencies [[com.github.teletha/walhalla ""]]
 ```
 #### [Bee](https://teletha.github.io/bee)
 Add it into your project definition class like so:
 ```java
-require("com.github.teletha", "walhalla", "0.1");
+require("com.github.teletha", "walhalla", "");
 ```
 <p align="right"><a href="#top">back to top</a></p>
 
@@ -116,7 +116,7 @@ Walhalla depends on the following products on runtime.
 * [lycoris-1.1.0](https://mvnrepository.com/artifact/com.github.teletha/lycoris/1.1.0)
 * [opennlp-tools-2.5.4](https://mvnrepository.com/artifact/org.apache.opennlp/opennlp-tools/2.5.4)
 * [psychopath-2.2.1](https://mvnrepository.com/artifact/com.github.teletha/psychopath/2.2.1)
-* [sinobu-4.12.0](https://mvnrepository.com/artifact/com.github.teletha/sinobu/4.12.0)
+* [sinobu-4.13.0](https://mvnrepository.com/artifact/com.github.teletha/sinobu/4.13.0)
 * [slf4j-api-2.0.17](https://mvnrepository.com/artifact/org.slf4j/slf4j-api/2.0.17)
 * [stylist-1.16.0](https://mvnrepository.com/artifact/com.github.teletha/stylist/1.16.0)
 <p align="right"><a href="#top">back to top</a></p>
