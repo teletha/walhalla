@@ -129,12 +129,12 @@ const root = {
 			"type": "Class"
 		},
 		{
-			"name": "OpenThreads",
+			"name": "Topic",
 			"packageName": "walhalla.open2ch",
 			"type": "Class"
 		},
 		{
-			"name": "Topic",
+			"name": "OpenThreadCollector",
 			"packageName": "walhalla.open2ch",
 			"type": "Class"
 		},
