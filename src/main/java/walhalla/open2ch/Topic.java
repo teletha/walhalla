@@ -33,7 +33,7 @@ public class Topic {
 
     public String description;
 
-    public List<String> units = new ArrayList();
+    public List<String> units;
 
     public int priority;
 }

@@ -45,6 +45,20 @@ public interface Editor {
                 .selectTopics(input.toString());
     }
 
+    static String unit(CharSequence input) {
+        Database manager = I.make(Database.class);
+        String names = manager.stream().map(x -> x.nameJ).collect(Collectors.joining("\n", "\n", "\n"));
+
+        return AiServices.builder(Editor.class)
+                .chatModel(MODEL)
+                .chatMemory(MessageWindowChatMemory.withMaxMessages(10))
+                .systemMessageProvider(id -> {
+                    return prompt("unit") + "\nユニット名一覧\n" + names;
+                })
+                .build()
+                .selectTopics(input.toString());
+    }
+
     private static String prompt(String name) {
         InputStream input = ClassLoader.getSystemResourceAsStream("walhalla/prompt/" + name + ".md");
         try (input) {

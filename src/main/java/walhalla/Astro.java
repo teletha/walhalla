@@ -28,7 +28,8 @@ import walhalla.open2ch.OpenThreadCollector;
 /**
  * Provides utilities and entry point for the Astro project.
  * <p>
- * Handles directory management, unit database generation, unit icon sprite creation, and topic analysis.
+ * Handles directory management, unit database generation, unit icon sprite creation, and topic
+ * analysis.
  * </p>
  */
 public class Astro {
@@ -115,6 +116,10 @@ public class Astro {
      * @param args Command line arguments (not used)
      */
     public static void main(String[] args) {
-        buildTopics();
+        // buildTopics();
+
+        OpenThreadCollector.collect().to(thread -> {
+            thread.analyzeUnit();
+        });
     }
 }

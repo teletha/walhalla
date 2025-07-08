@@ -194,23 +194,40 @@ public class OpenThread implements Storable<OpenThread> {
      */
     public void analyze() {
         if (topicJSON.isAbsent() || topicJSON.size() == 0) {
-            StringBuilder text = new StringBuilder();
-            for (Res res : comments) {
-                text.append("#").append(res.num).append(EOL);
-                text.append(res.date.format(FORMATTER)).append(EOL);
-                text.append(res.body).append("\n");
-                text.append(res.sources.stream().map(s -> s.origin).collect(Collectors.joining(EOL)));
-                text.append(res.embeds.stream().collect(Collectors.joining(EOL)));
-                text.append("\n\n");
-            }
-
             I.info("Analyzing topics in thread " + num + " by Gemini.");
-            topics = I.json(Editor.topics(text), Topics.class);
+            topics = I.json(Editor.topics(buildThreadText()), Topics.class);
             topics.normalize();
 
             topicJSON.text(I.write(topics)).creationTime(0);
             I.info("Finish analyzing topics and cache it to [" + topicJSON + "].");
         }
+    }
+
+    /**
+     * 
+     */
+    public void analyzeUnit() {
+        for (Topic topic : getTopics()) {
+            if (topic.units == null) {
+                System.out.println(topic.title);
+                JSON json = I.json(Editor.unit(buildThreadText()));
+                System.out.println(title + "   " + num);
+                System.out.println(json);
+            }
+        }
+    }
+
+    private String buildThreadText() {
+        StringBuilder text = new StringBuilder();
+        for (Res res : comments) {
+            text.append("#").append(res.num).append(EOL);
+            text.append(res.date.format(FORMATTER)).append(EOL);
+            text.append(res.body).append("\n");
+            text.append(res.sources.stream().map(s -> s.origin).collect(Collectors.joining(EOL)));
+            text.append(res.embeds.stream().collect(Collectors.joining(EOL)));
+            text.append("\n\n");
+        }
+        return text.toString();
     }
 
     void backupImages() {
