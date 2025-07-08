@@ -97,6 +97,7 @@ If you think something might be a bug, but you're not sure, ask on StackOverflow
 
 ## Dependency
 Walhalla depends on the following products on runtime.
+* [ahocorasick-0.6.3](https://mvnrepository.com/artifact/org.ahocorasick/ahocorasick/0.6.3)
 * [commonmark-0.24.0](https://mvnrepository.com/artifact/org.commonmark/commonmark/0.24.0)
 * [commonmark-ext-gfm-tables-0.24.0](https://mvnrepository.com/artifact/org.commonmark/commonmark-ext-gfm-tables/0.24.0)
 * [conjure-1.2.1](https://mvnrepository.com/artifact/com.github.teletha/conjure/1.2.1)
