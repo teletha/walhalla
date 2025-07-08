@@ -19,10 +19,10 @@
 		<link href="https://cdn.jsdelivr.net/npm/ress@4.0.0/dist/ress.min.css" rel="stylesheet"/>
 		<link href="main.css" rel="stylesheet"/>
 	</head>
-	<body class="FB">
-		<header class="v" date="2025-07-08">
-			<h1 class="V"><a href="index.html"><code>Walhalla</code></a></h1>
-			<nav class="w"><a href="api/main.html" id="API"><svg class="package">
+	<body class="e">
+		<header class="O" date="2025-07-08">
+			<h1 class="P"><a href="index.html"><code>Walhalla</code></a></h1>
+			<nav class="Q"><a href="api/main.html" id="API"><svg class="package">
 						<use href="main.svg#package"/>
 					</svg>
 				</a><a href="doc/changelog.html" id="Activity"><svg class="activity">
@@ -35,18 +35,18 @@
 						<use href="main.svg#github"/>
 					</svg>
 				</a></nav>
-			<div class="f"><a aria-label="Change color scheme" id="theme"><svg class="sun">
+			<div class="R"><a aria-label="Change color scheme" id="theme"><svg class="sun">
 						<use href="main.svg#sun"/>
 					</svg><svg class="moon">
 						<use href="main.svg#moon"/>
 					</svg>
 				</a></div>
 		</header>
-		<nav class="P"></nav>
+		<nav class="f"></nav>
 		<article class="T" id="Article">
-			<section class="t"><code class="i">walhalla.image</code>
-				<h2 class="Enum k"><code class="Z">Scalr.Method</code></h2>
-				<div class="KB">
+			<section class="q"><code class="GB">walhalla.image</code>
+				<h2 class="Enum m"><code class="i">Scalr.Method</code></h2>
+				<div class="k">
 					<ul class="E G">
 						<li><code><a aria-label="java.lang.Enum 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/Enum.html">Enum</a><code class="parameters"><code><a aria-label="walhalla.image.Scalr.Method" href="api/walhalla.image.Scalr.Method.html">Method</a></code></code></code></li>
 					</ul>
@@ -56,8 +56,8 @@
 						<li><code><a aria-label="java.io.Serializable 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/io/Serializable.html">Serializable</a></code></li>
 					</ul>
 				</div><span class="A"><p>Used to define the different scaling hints that the algorithm can use.</p></span></section>
-			<section class="t" id="AUTOMATIC">
-				<h2 class="l"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code class="Z">AUTOMATIC</code><i class="b"><code class="return"><a aria-label="walhalla.image.Scalr.Method" href="api/walhalla.image.Scalr.Method.html">Method</a></code></i></h2><span class="A"><p>Used to indicate that the scaling implementation should decide which
+			<section class="q" id="AUTOMATIC">
+				<h2 class="p"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code class="i">AUTOMATIC</code><i class="LB"><code class="return"><a aria-label="walhalla.image.Scalr.Method" href="api/walhalla.image.Scalr.Method.html">Method</a></code></i></h2><span class="A"><p>Used to indicate that the scaling implementation should decide which
 method to use in order to get the best looking scaled image in the
 least amount of time.</p><p/>
  The scaling algorithm will use the
@@ -71,20 +71,20 @@ least amount of time.</p><p/>
  for 80% of people looking to scale an image quickly and get a good
  looking result.
 </span></section>
-			<section class="t" id="SPEED">
-				<h2 class="l"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code class="Z">SPEED</code><i class="b"><code class="return"><a aria-label="walhalla.image.Scalr.Method" href="api/walhalla.image.Scalr.Method.html">Method</a></code></i></h2><span class="A"><p>Used to indicate that the scaling implementation should scale as fast
+			<section class="q" id="SPEED">
+				<h2 class="p"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code class="i">SPEED</code><i class="LB"><code class="return"><a aria-label="walhalla.image.Scalr.Method" href="api/walhalla.image.Scalr.Method.html">Method</a></code></i></h2><span class="A"><p>Used to indicate that the scaling implementation should scale as fast
 as possible and return a result. For smaller images (800px in size)
 this can result in noticeable aliasing but it can be a few magnitudes
 times faster than using the QUALITY method.</p></span></section>
-			<section class="t" id="BALANCED">
-				<h2 class="l"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code class="Z">BALANCED</code><i class="b"><code class="return"><a aria-label="walhalla.image.Scalr.Method" href="api/walhalla.image.Scalr.Method.html">Method</a></code></i></h2><span class="A"><p>Used to indicate that the scaling implementation should use a scaling
+			<section class="q" id="BALANCED">
+				<h2 class="p"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code class="i">BALANCED</code><i class="LB"><code class="return"><a aria-label="walhalla.image.Scalr.Method" href="api/walhalla.image.Scalr.Method.html">Method</a></code></i></h2><span class="A"><p>Used to indicate that the scaling implementation should use a scaling
 operation balanced between SPEED and QUALITY. Sometimes SPEED looks
 too low quality to be useful (e.g. text can become unreadable when
 scaled using SPEED) but using QUALITY mode will increase the
 processing time too much. This mode provides a &quot;better than SPEED&quot;
 quality in a &quot;less than QUALITY&quot; amount of time.</p></span></section>
-			<section class="t" id="QUALITY">
-				<h2 class="l"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code class="Z">QUALITY</code><i class="b"><code class="return"><a aria-label="walhalla.image.Scalr.Method" href="api/walhalla.image.Scalr.Method.html">Method</a></code></i></h2><span class="A"><p>Used to indicate that the scaling implementation should do everything
+			<section class="q" id="QUALITY">
+				<h2 class="p"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code class="i">QUALITY</code><i class="LB"><code class="return"><a aria-label="walhalla.image.Scalr.Method" href="api/walhalla.image.Scalr.Method.html">Method</a></code></i></h2><span class="A"><p>Used to indicate that the scaling implementation should do everything
 it can to create as nice of a result as possible. This approach is
 most important for smaller pictures (800px or smaller) and less
 important for larger pictures as the difference between this method
@@ -92,54 +92,54 @@ and the SPEED method become less and less noticeable as the
 source-image size increases. Using the AUTOMATIC method will
 automatically prefer the QUALITY method when scaling an image down
 below 800px in size.</p></span></section>
-			<section class="t" id="ULTRA_QUALITY">
-				<h2 class="l"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code class="Z">ULTRA_QUALITY</code><i class="b"><code class="return"><a aria-label="walhalla.image.Scalr.Method" href="api/walhalla.image.Scalr.Method.html">Method</a></code></i></h2><span class="A"><p>Used to indicate that the scaling implementation should go above and
+			<section class="q" id="ULTRA_QUALITY">
+				<h2 class="p"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code class="i">ULTRA_QUALITY</code><i class="LB"><code class="return"><a aria-label="walhalla.image.Scalr.Method" href="api/walhalla.image.Scalr.Method.html">Method</a></code></i></h2><span class="A"><p>Used to indicate that the scaling implementation should go above and
 beyond the work done by <code><a aria-label="walhalla.image.Scalr.Method" href="api/walhalla.image.Scalr.Method.html#QUALITY">Method#QUALITY</a></code> to make the image look
 exceptionally good at the cost of more processing time. This is
 especially evident when generating thumbnails of images that look
 jagged with some of the other <code><a aria-label="walhalla.image.Scalr.Method" href="api/walhalla.image.Scalr.Method.html">Method</a></code>s (even
 <code><a aria-label="walhalla.image.Scalr.Method" href="api/walhalla.image.Scalr.Method.html#QUALITY">Method#QUALITY</a></code>).</p></span></section>
-			<section class="t" id="values()">
-				<h2 class="l"><i class="PUBLIC STATIC"></i><code class="Z">values</code><code class="r">()</code><i class="b"><code array="fix"><a aria-label="walhalla.image.Scalr.Method" href="api/walhalla.image.Scalr.Method.html">Method</a></code></i></h2>
-				<table class="a">
-					<tr class="d">
+			<section class="q" id="values()">
+				<h2 class="p"><i class="PUBLIC STATIC"></i><code class="i">values</code><code class="FB">()</code><i class="LB"><code array="fix"><a aria-label="walhalla.image.Scalr.Method" href="api/walhalla.image.Scalr.Method.html">Method</a></code></i></h2>
+				<table class="s">
+					<tr class="X">
 						<td><code array="fix"><a aria-label="walhalla.image.Scalr.Method" href="api/walhalla.image.Scalr.Method.html">Method</a></code></td>
 						<td></td>
 					</tr>
 				</table>
 			</section>
-			<section class="t" id="valueOf(java.lang.String)">
-				<h2 class="l"><i class="PUBLIC STATIC"></i><code class="Z">valueOf</code><code class="r">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>)</code><i class="b"><code><a aria-label="walhalla.image.Scalr.Method" href="api/walhalla.image.Scalr.Method.html">Method</a></code></i></h2>
-				<table class="a">
-					<tr class="CB">
+			<section class="q" id="valueOf(java.lang.String)">
+				<h2 class="p"><i class="PUBLIC STATIC"></i><code class="i">valueOf</code><code class="FB">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>)</code><i class="LB"><code><a aria-label="walhalla.image.Scalr.Method" href="api/walhalla.image.Scalr.Method.html">Method</a></code></i></h2>
+				<table class="s">
+					<tr class="S">
 						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code></td>
 						<td></td>
 					</tr>
-					<tr class="d">
+					<tr class="X">
 						<td><code><a aria-label="walhalla.image.Scalr.Method" href="api/walhalla.image.Scalr.Method.html">Method</a></code></td>
 						<td></td>
 					</tr>
 				</table>
 			</section>
 		</article>
-		<aside class="x">
-			<div class="q">
-				<h5 class="X">Static Fields</h5>
+		<aside class="K">
+			<div class="l">
+				<h5 class="w">Static Fields</h5>
 				<ul>
-					<li class="z"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code><a href="api/walhalla.image.Scalr.Method.html#AUTOMATIC">AUTOMATIC</a></code><i class="O"><code class="return"><a aria-label="walhalla.image.Scalr.Method" href="api/walhalla.image.Scalr.Method.html">Method</a></code></i></li>
-					<li class="z"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code><a href="api/walhalla.image.Scalr.Method.html#SPEED">SPEED</a></code><i class="O"><code class="return"><a aria-label="walhalla.image.Scalr.Method" href="api/walhalla.image.Scalr.Method.html">Method</a></code></i></li>
-					<li class="z"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code><a href="api/walhalla.image.Scalr.Method.html#BALANCED">BALANCED</a></code><i class="O"><code class="return"><a aria-label="walhalla.image.Scalr.Method" href="api/walhalla.image.Scalr.Method.html">Method</a></code></i></li>
-					<li class="z"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code><a href="api/walhalla.image.Scalr.Method.html#QUALITY">QUALITY</a></code><i class="O"><code class="return"><a aria-label="walhalla.image.Scalr.Method" href="api/walhalla.image.Scalr.Method.html">Method</a></code></i></li>
-					<li class="z"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code><a href="api/walhalla.image.Scalr.Method.html#ULTRA_QUALITY">ULTRA_QUALITY</a></code><i class="O"><code class="return"><a aria-label="walhalla.image.Scalr.Method" href="api/walhalla.image.Scalr.Method.html">Method</a></code></i></li>
+					<li class="U"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code><a href="api/walhalla.image.Scalr.Method.html#AUTOMATIC">AUTOMATIC</a></code><i class="HB"><code class="return"><a aria-label="walhalla.image.Scalr.Method" href="api/walhalla.image.Scalr.Method.html">Method</a></code></i></li>
+					<li class="U"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code><a href="api/walhalla.image.Scalr.Method.html#SPEED">SPEED</a></code><i class="HB"><code class="return"><a aria-label="walhalla.image.Scalr.Method" href="api/walhalla.image.Scalr.Method.html">Method</a></code></i></li>
+					<li class="U"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code><a href="api/walhalla.image.Scalr.Method.html#BALANCED">BALANCED</a></code><i class="HB"><code class="return"><a aria-label="walhalla.image.Scalr.Method" href="api/walhalla.image.Scalr.Method.html">Method</a></code></i></li>
+					<li class="U"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code><a href="api/walhalla.image.Scalr.Method.html#QUALITY">QUALITY</a></code><i class="HB"><code class="return"><a aria-label="walhalla.image.Scalr.Method" href="api/walhalla.image.Scalr.Method.html">Method</a></code></i></li>
+					<li class="U"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code><a href="api/walhalla.image.Scalr.Method.html#ULTRA_QUALITY">ULTRA_QUALITY</a></code><i class="HB"><code class="return"><a aria-label="walhalla.image.Scalr.Method" href="api/walhalla.image.Scalr.Method.html">Method</a></code></i></li>
 				</ul>
-				<h5 class="X">Static Methods</h5>
+				<h5 class="w">Static Methods</h5>
 				<ul>
-					<li class="z"><i class="PUBLIC STATIC"></i><code><a href="api/walhalla.image.Scalr.Method.html#values()">values</a></code><code class="r">()</code><i class="O"><code array="fix"><a aria-label="walhalla.image.Scalr.Method" href="api/walhalla.image.Scalr.Method.html">Method</a></code></i></li>
-					<li class="z"><i class="PUBLIC STATIC"></i><code><a href="api/walhalla.image.Scalr.Method.html#valueOf(java.lang.String)">valueOf</a></code><code class="r">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>)</code><i class="O"><code><a aria-label="walhalla.image.Scalr.Method" href="api/walhalla.image.Scalr.Method.html">Method</a></code></i></li>
+					<li class="U"><i class="PUBLIC STATIC"></i><code><a href="api/walhalla.image.Scalr.Method.html#values()">values</a></code><code class="FB">()</code><i class="HB"><code array="fix"><a aria-label="walhalla.image.Scalr.Method" href="api/walhalla.image.Scalr.Method.html">Method</a></code></i></li>
+					<li class="U"><i class="PUBLIC STATIC"></i><code><a href="api/walhalla.image.Scalr.Method.html#valueOf(java.lang.String)">valueOf</a></code><code class="FB">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>)</code><i class="HB"><code><a aria-label="walhalla.image.Scalr.Method" href="api/walhalla.image.Scalr.Method.html">Method</a></code></i></li>
 				</ul>
 			</div>
 		</aside>
-		<footer class="L">
+		<footer class="a">
 			<p>Powered by <a href="https://github.com/teletha/evergarden" target="_">Evergarden</a></p>
 		</footer>
 	</body>
