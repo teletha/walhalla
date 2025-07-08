@@ -19,10 +19,10 @@
 		<link href="https://cdn.jsdelivr.net/npm/ress@4.0.0/dist/ress.min.css" rel="stylesheet"/>
 		<link href="main.css" rel="stylesheet"/>
 	</head>
-	<body class="T">
-		<header class="U" date="2025-07-08">
-			<h1 class="BB"><a href="index.html"><code>Walhalla</code></a></h1>
-			<nav class="S"><a href="api/main.html" id="API"><svg class="package">
+	<body class="u">
+		<header class="v" date="2025-07-08">
+			<h1 class="GB"><a href="index.html"><code>Walhalla</code></a></h1>
+			<nav class="K"><a href="api/main.html" id="API"><svg class="package">
 						<use href="main.svg#package"/>
 					</svg>
 				</a><a href="doc/changelog.html" id="Activity"><svg class="activity">
@@ -35,79 +35,62 @@
 						<use href="main.svg#github"/>
 					</svg>
 				</a></nav>
-			<div class="DB"><a aria-label="Change color scheme" id="theme"><svg class="sun">
+			<div class="CB"><a aria-label="Change color scheme" id="theme"><svg class="sun">
 						<use href="main.svg#sun"/>
 					</svg><svg class="moon">
 						<use href="main.svg#moon"/>
 					</svg>
 				</a></div>
 		</header>
-		<nav class="W"></nav>
-		<article class="V" id="Article">
-			<section class="HB"><code class="a">walhalla.open2ch</code>
-				<h2 class="Class b"><code class="g">Res</code></h2>
-				<div class="CB"></div><span class="A"><p>Represents a single response (res) in an open2ch thread.
+		<nav class="k"></nav>
+		<article class="w" id="Article">
+			<section class="BB"><code class="l">walhalla.open2ch</code>
+				<h2 class="Class a"><code class="d">Res</code></h2>
+				<div class="S"></div><span class="A"><p>Represents a single response (res) in an open2ch thread.
 A response includes metadata such as poster name, posting time,
 identifier, message body, and optionally attached media.</p></span></section>
-			<section class="HB" id="num">
-				<h2 class="P"><i class="PUBLIC"></i><code class="g">num</code><i class="AB"><code class="return">int</code></i></h2><span class="A"><p>The sequential number of this response in the thread.
+			<section class="BB" id="num">
+				<h2 class="Q"><i class="PUBLIC"></i><code class="d">num</code><i class="b"><code class="return">int</code></i></h2><span class="A"><p>The sequential number of this response in the thread.
 Starts from 1 for the first post.</p></span></section>
-			<section class="HB" id="name">
-				<h2 class="P"><i class="PUBLIC"></i><code class="g">name</code><i class="AB"><code class="return"><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></i></h2><span class="A"><p>The name of the poster.
+			<section class="BB" id="name">
+				<h2 class="Q"><i class="PUBLIC"></i><code class="d">name</code><i class="b"><code class="return"><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></i></h2><span class="A"><p>The name of the poster.
 This may be a username, a default name, or a tripcode.</p></span></section>
-			<section class="HB" id="date">
-				<h2 class="P"><i class="PUBLIC"></i><code class="g">date</code><i class="AB"><code class="return"><a aria-label="java.time.LocalDateTime 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/time/LocalDateTime.html">LocalDateTime</a></code></i></h2><span class="A"><p>The timestamp indicating when this response was posted.</p></span></section>
-			<section class="HB" id="id">
-				<h2 class="P"><i class="PUBLIC"></i><code class="g">id</code><i class="AB"><code class="return"><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></i></h2><span class="A"><p>The unique ID of the poster, as assigned by the forum system.
+			<section class="BB" id="date">
+				<h2 class="Q"><i class="PUBLIC"></i><code class="d">date</code><i class="b"><code class="return"><a aria-label="java.time.LocalDateTime 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/time/LocalDateTime.html">LocalDateTime</a></code></i></h2><span class="A"><p>The timestamp indicating when this response was posted.</p></span></section>
+			<section class="BB" id="id">
+				<h2 class="Q"><i class="PUBLIC"></i><code class="d">id</code><i class="b"><code class="return"><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></i></h2><span class="A"><p>The unique ID of the poster, as assigned by the forum system.
 This is often used for tracking posts by the same user.</p></span></section>
-			<section class="HB" id="body">
-				<h2 class="P"><i class="PUBLIC"></i><code class="g">body</code><i class="AB"><code class="return"><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></i></h2><span class="A"><p>The main body text of the response.</p></span></section>
-			<section class="HB" id="images">
-				<h2 class="P"><i class="PUBLIC"></i><code class="g">images</code><i class="AB"><code class="return"><a aria-label="java.util.List 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/List.html">List</a><code class="parameters"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></code></code></i></h2><span class="A"><p>A list of image URLs attached to this response.
+			<section class="BB" id="body">
+				<h2 class="Q"><i class="PUBLIC"></i><code class="d">body</code><i class="b"><code class="return"><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></i></h2><span class="A"><p>The main body text of the response.</p></span></section>
+			<section class="BB" id="sources">
+				<h2 class="Q"><i class="PUBLIC"></i><code class="d">sources</code><i class="b"><code class="return"><a aria-label="java.util.List 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/List.html">List</a><code class="parameters"><code><a aria-label="walhalla.open2ch.ImageSource" href="api/walhalla.open2ch.ImageSource.html">ImageSource</a></code></code></code></i></h2><span class="A"><p>A list of image URLs attached to this response.
 These are usually external links to image hosting services.</p></span></section>
-			<section class="HB" id="gyazo">
-				<h2 class="P"><i class="PUBLIC"></i><code class="g">gyazo</code><i class="AB"><code class="return"><a aria-label="java.util.List 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/List.html">List</a><code class="parameters"><code><a aria-label="java.util.List 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/List.html">List</a><code class="parameters"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></code></code></code></code></i></h2>
-			</section>
-			<section class="HB" id="embeds">
-				<h2 class="P"><i class="PUBLIC"></i><code class="g">embeds</code><i class="AB"><code class="return"><a aria-label="java.util.List 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/List.html">List</a><code class="parameters"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></code></code></i></h2><span class="A"><p>A list of embedded media links (e.g., YouTube, X/Twitter) in the response.
+			<section class="BB" id="embeds">
+				<h2 class="Q"><i class="PUBLIC"></i><code class="d">embeds</code><i class="b"><code class="return"><a aria-label="java.util.List 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/List.html">List</a><code class="parameters"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></code></code></i></h2><span class="A"><p>A list of embedded media links (e.g., YouTube, X/Twitter) in the response.
 These are typically identified and parsed separately from the text body.</p></span></section>
-			<section class="HB" id="Res()">
-				<h2 class="P"><i class="PUBLIC"></i><code class="g">Res</code><code class="LB">()</code></h2>
-			</section>
-			<section class="HB" id="loadHugeImages()">
-				<h2 class="P"><i class="PUBLIC"></i><code class="g">loadHugeImages</code><code class="LB">()</code><i class="AB"><code><a aria-label="java.util.List 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/List.html">List</a><code class="parameters"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></code></code></i></h2>
-				<table class="z">
-					<tr class="Q">
-						<td><code><a aria-label="java.util.List 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/List.html">List</a><code class="parameters"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></code></code></td>
-						<td></td>
-					</tr>
-				</table>
+			<section class="BB" id="Res()">
+				<h2 class="Q"><i class="PUBLIC"></i><code class="d">Res</code><code class="m">()</code></h2>
 			</section>
 		</article>
-		<aside class="X">
-			<div class="e">
-				<h5 class="L">Constructors</h5>
+		<aside class="Z">
+			<div class="J">
+				<h5 class="FB">Constructors</h5>
 				<ul>
-					<li class="c"><i class="PUBLIC"></i><code><a href="api/walhalla.open2ch.Res.html#Res()">Res</a></code><code class="LB">()</code></li>
+					<li class="KB"><i class="PUBLIC"></i><code><a href="api/walhalla.open2ch.Res.html#Res()">Res</a></code><code class="m">()</code></li>
 				</ul>
-				<h5 class="L">Fields</h5>
+				<h5 class="FB">Fields</h5>
 				<ul>
-					<li class="c"><i class="PUBLIC"></i><code><a href="api/walhalla.open2ch.Res.html#num">num</a></code><i class="n"><code class="return">int</code></i></li>
-					<li class="c"><i class="PUBLIC"></i><code><a href="api/walhalla.open2ch.Res.html#name">name</a></code><i class="n"><code class="return"><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></i></li>
-					<li class="c"><i class="PUBLIC"></i><code><a href="api/walhalla.open2ch.Res.html#date">date</a></code><i class="n"><code class="return"><a aria-label="java.time.LocalDateTime 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/time/LocalDateTime.html">LocalDateTime</a></code></i></li>
-					<li class="c"><i class="PUBLIC"></i><code><a href="api/walhalla.open2ch.Res.html#id">id</a></code><i class="n"><code class="return"><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></i></li>
-					<li class="c"><i class="PUBLIC"></i><code><a href="api/walhalla.open2ch.Res.html#body">body</a></code><i class="n"><code class="return"><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></i></li>
-					<li class="c"><i class="PUBLIC"></i><code><a href="api/walhalla.open2ch.Res.html#images">images</a></code><i class="n"><code class="return"><a aria-label="java.util.List 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/List.html">List</a><code class="parameters"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></code></code></i></li>
-					<li class="c"><i class="PUBLIC"></i><code><a href="api/walhalla.open2ch.Res.html#gyazo">gyazo</a></code><i class="n"><code class="return"><a aria-label="java.util.List 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/List.html">List</a><code class="parameters"><code><a aria-label="java.util.List 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/List.html">List</a><code class="parameters"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></code></code></code></code></i></li>
-					<li class="c"><i class="PUBLIC"></i><code><a href="api/walhalla.open2ch.Res.html#embeds">embeds</a></code><i class="n"><code class="return"><a aria-label="java.util.List 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/List.html">List</a><code class="parameters"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></code></code></i></li>
-				</ul>
-				<h5 class="L">Methods</h5>
-				<ul>
-					<li class="c"><i class="PUBLIC"></i><code><a href="api/walhalla.open2ch.Res.html#loadHugeImages()">loadHugeImages</a></code><code class="LB">()</code><i class="n"><code><a aria-label="java.util.List 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/List.html">List</a><code class="parameters"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></code></code></i></li>
+					<li class="KB"><i class="PUBLIC"></i><code><a href="api/walhalla.open2ch.Res.html#num">num</a></code><i class="e"><code class="return">int</code></i></li>
+					<li class="KB"><i class="PUBLIC"></i><code><a href="api/walhalla.open2ch.Res.html#name">name</a></code><i class="e"><code class="return"><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></i></li>
+					<li class="KB"><i class="PUBLIC"></i><code><a href="api/walhalla.open2ch.Res.html#date">date</a></code><i class="e"><code class="return"><a aria-label="java.time.LocalDateTime 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/time/LocalDateTime.html">LocalDateTime</a></code></i></li>
+					<li class="KB"><i class="PUBLIC"></i><code><a href="api/walhalla.open2ch.Res.html#id">id</a></code><i class="e"><code class="return"><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></i></li>
+					<li class="KB"><i class="PUBLIC"></i><code><a href="api/walhalla.open2ch.Res.html#body">body</a></code><i class="e"><code class="return"><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></i></li>
+					<li class="KB"><i class="PUBLIC"></i><code><a href="api/walhalla.open2ch.Res.html#sources">sources</a></code><i class="e"><code class="return"><a aria-label="java.util.List 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/List.html">List</a><code class="parameters"><code><a aria-label="walhalla.open2ch.ImageSource" href="api/walhalla.open2ch.ImageSource.html">ImageSource</a></code></code></code></i></li>
+					<li class="KB"><i class="PUBLIC"></i><code><a href="api/walhalla.open2ch.Res.html#embeds">embeds</a></code><i class="e"><code class="return"><a aria-label="java.util.List 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/List.html">List</a><code class="parameters"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></code></code></i></li>
 				</ul>
 			</div>
 		</aside>
-		<footer class="N">
+		<footer class="n">
 			<p>Powered by <a href="https://github.com/teletha/evergarden" target="_">Evergarden</a></p>
 		</footer>
 	</body>

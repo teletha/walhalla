@@ -124,6 +124,11 @@ const root = {
 			"type": "Class"
 		},
 		{
+			"name": "ImageSource",
+			"packageName": "walhalla.open2ch",
+			"type": "Class"
+		},
+		{
 			"name": "OpenThreads",
 			"packageName": "walhalla.open2ch",
 			"type": "Class"
