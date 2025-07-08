@@ -147,7 +147,7 @@ public enum Attribute {
         name = name.replaceAll("[ '\\-]", "");
 
         for (Attribute affiliation : values()) {
-            if (affiliation.name().equals(name)) {
+            if (affiliation.name().equals(name) || affiliation.nameJ.equals(name)) {
                 return affiliation;
             }
         }

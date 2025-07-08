@@ -59,6 +59,7 @@ public class Astro {
     public static void buildUnitJSON() {
         DB db = new DB();
         Database manager = I.make(Database.class);
+        manager.build();
         manager.by(Rarity.黒, Rarity.白, Rarity.金, Rarity.銀).forEach(unit -> {
             db.put(unit.nameJ, unit);
         });

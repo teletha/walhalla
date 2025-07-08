@@ -57,6 +57,8 @@ public class Database extends ArrayList<Unit> implements Storable<Database> {
      * Updates the internal list and sorts units by ID.
      */
     public void build() {
+        clear();
+
         Set<String> recorder = new HashSet();
 
         for (String name : names()) {
