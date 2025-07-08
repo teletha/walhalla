@@ -13,12 +13,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import kiss.I;
-import kiss.JSON;
-import walhalla.image.Gyazo;
-import walhalla.image.Image;
-import walhalla.image.Imgur;
-
 /**
  * Represents a single response (res) in an open2ch thread.
  * A response includes metadata such as poster name, posting time,
@@ -58,35 +52,11 @@ public class Res {
      * A list of image URLs attached to this response.
      * These are usually external links to image hosting services.
      */
-    public List<String> images;
-
-    public List<List<String>> gyazo;
+    public List<ImageSource> sources = new ArrayList();
 
     /**
      * A list of embedded media links (e.g., YouTube, X/Twitter) in the response.
      * These are typically identified and parsed separately from the text body.
      */
     public List<String> embeds;
-
-    public List<String> loadHugeImages() {
-        if (images == null || images.isEmpty()) {
-            return List.of();
-        }
-
-        if (gyazo == null) {
-            gyazo = new ArrayList();
-
-            for (String url : images) {
-                if (url.startsWith("https://i.imgur.com/")) {
-                    Image image = Imgur.download(url);
-                    JSON huge = Gyazo.upload(image.hugeName(), image.huge());
-                    JSON large = Gyazo.upload(image.largeName(), image.large());
-                    gyazo.add(I.list(huge.text("url"), large.text("url")));
-                } else {
-                    gyazo.add(I.list(url, url));
-                }
-            }
-        }
-        return gyazo.stream().map(image -> image.get(0)).toList();
-    }
 }

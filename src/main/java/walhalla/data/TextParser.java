@@ -46,8 +46,8 @@ public class TextParser {
                 }
             }
         }
-        // <br>や(や（で区切られている場合
-        String[] splitters = {"<br>", "<br/>", "（", "(", "　", " (", "（"};
+        // <br>や(や（や[で区切られている場合
+        String[] splitters = {"<br>", "<br/>", "（", "(", "　", " (", "（", "["};
         String candidate = text;
         for (String splitter : splitters) {
             int idx = candidate.indexOf(splitter);

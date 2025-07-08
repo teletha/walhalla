@@ -73,6 +73,8 @@ public class OpenThread implements Storable<OpenThread> {
         this.id = Integer.parseInt(name.substring(index + 3));
         this.parsedJSON = root.file("thread.json");
         this.topicJSON = root.file("topic.json");
+
+        restore();
     }
 
     OpenThread(String num, int id) {
@@ -96,6 +98,13 @@ public class OpenThread implements Storable<OpenThread> {
      * @return A list of extracted {@link Topic} objects.
      */
     public List<Topic> getTopics() {
+        if (topics == null) {
+            if (topicJSON.isPresent()) {
+                topics = I.json(topicJSON.text(), Topics.class);
+            } else {
+                analyze();
+            }
+        }
         return topics;
     }
 
@@ -142,11 +151,13 @@ public class OpenThread implements Storable<OpenThread> {
             dd.element("br").text("  \r\n");
             String body = dd.text().trim();
 
-            List<String> images = new ArrayList<>();
+            List<ImageSource> images = new ArrayList<>();
             I.signal(dd.element("a")).take(e -> !e.attr("data-lightbox").isEmpty()).to(e -> {
                 String href = e.attr("href");
                 if (href.startsWith("//")) href = "https:" + href;
-                images.add(href);
+                ImageSource source = new ImageSource();
+                source.origin = href;
+                images.add(source);
             });
 
             List<String> embeds = new ArrayList<>();
@@ -165,8 +176,8 @@ public class OpenThread implements Storable<OpenThread> {
             res.date = date;
             res.name = name.text().replace("↓", "");
             res.body = body;
-            res.images = images;
             res.embeds = embeds;
+            res.sources = images;
 
             this.comments.add(res);
         });
@@ -190,7 +201,7 @@ public class OpenThread implements Storable<OpenThread> {
                 text.append("#").append(res.num).append(EOL);
                 text.append(res.date.format(FORMATTER)).append(EOL);
                 text.append(res.body).append("\n");
-                text.append(res.images.stream().collect(Collectors.joining(EOL)));
+                text.append(res.sources.stream().map(s -> s.origin).collect(Collectors.joining(EOL)));
                 text.append(res.embeds.stream().collect(Collectors.joining(EOL)));
                 text.append("\n\n");
             }
@@ -201,28 +212,34 @@ public class OpenThread implements Storable<OpenThread> {
 
             topicJSON.text(I.write(topics)).creationTime(0);
             I.info("Finish analyzing topics and cache it to [" + topicJSON + "].");
-
-            storeImages();
         }
     }
 
-    private void storeImages() {
+    void backupImages() {
+        boolean needUpdate = false;
+
         for (Topic topic : getTopics()) {
             for (int num : topic.comments) {
                 Res res = getCommentBy(num);
-                for (String url : res.images) {
-                    if (url.startsWith("https://i.imgur.com/")) {
-                        Image image = Imgur.download(url);
+                for (ImageSource source : res.sources) {
+                    if (!source.hasBackup() && source.origin.startsWith("https://i.imgur.com/")) {
+                        Image image = Imgur.download(source.origin);
+
                         JSON huge = Gyazo.upload(image.hugeName(), image.huge());
+                        source.backupL = huge.text("url");
+
                         JSON large = Gyazo.upload(image.largeName(), image.large());
-                        res.gyazo.add(I.list(huge.text("url"), large.text("url")));
-                    } else {
-                        res.gyazo.add(I.list(url, url));
+                        source.backupH = large.text("url");
+
+                        needUpdate = true;
                     }
                 }
             }
         }
-        store();
+
+        if (needUpdate) {
+            store();
+        }
     }
 
     /**
