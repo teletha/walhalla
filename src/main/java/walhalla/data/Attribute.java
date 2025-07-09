@@ -11,6 +11,7 @@ package walhalla.data;
 
 import kiss.Decoder;
 import kiss.Encoder;
+import kiss.I;
 
 public enum Attribute {
     Angel("天使"),
@@ -29,7 +30,7 @@ public enum Attribute {
 
     Chibi("ちび"),
 
-    Christmas("クリスマス"),
+    Christmas("クリスマス", new String[] {"クリ"}),
 
     Clergy("聖職者"),
 
@@ -49,7 +50,7 @@ public enum Attribute {
 
     EasternCountry("東の国"),
 
-    EggHunt("エッグハント"),
+    EggHunt("エッグハント", new String[] {"エッグ", "バニー", "バニ"}),
 
     Elf("エルフ"),
 
@@ -73,7 +74,7 @@ public enum Attribute {
 
     HalfGod("半神"),
 
-    Halloween("ハロウィン"),
+    Halloween("ハロウィン", new String[] {"ハロ"}),
 
     Heavy("重装"),
 
@@ -81,11 +82,11 @@ public enum Attribute {
 
     Hero("英傑"),
 
-    HotSprings("温泉"),
+    HotSprings("温泉", new String[] {"湯"}),
 
     Human("人間"),
 
-    JuneBride("花嫁"),
+    JuneBride("花嫁", new String[] {"嫁"}),
 
     Kingdom("王国"),
 
@@ -101,7 +102,7 @@ public enum Attribute {
 
     Nendoroid("ねんどろいど"),
 
-    NewYears("お正月"),
+    NewYears("お正月", new String[] {"晴", "晴着", "着物", "新年", "正月"}),
 
     Noble("高貴"),
 
@@ -109,30 +110,45 @@ public enum Attribute {
 
     Orc("オーク"),
 
-    School("学園"),
+    School("学園", new String[] {"学"}),
 
     SevenDeadlySins("七つの大罪"),
 
     Spirit("精霊"),
 
-    Summer("サマー"),
+    Summer("サマー", new String[] {"夏"}),
+
+    Swimsuit("水着", new String[] {"水", "ミズ"}),
 
     Undead("アンデッド"),
 
     Underworld("冥界人"),
 
-    ValentinesDay("バレンタイン"),
+    ValentinesDay("バレンタイン", new String[] {"バレ", "ヴァレ", "チョコ"}),
 
     Vampire("ヴァンパイア"),
 
     WhiteEmpire("白の帝国"),
 
-    Youkai("妖怪");
+    Youkai("妖怪"),
 
-    public String nameJ;
+    Yukata("浴衣", new String[] {"ゆかた"});
+
+    public final String nameJ;
+
+    public final String[] seasonPrefix;
 
     private Attribute(String nameJ) {
+        this(nameJ, new String[0]);
+    }
+
+    private Attribute(String nameJ, String[] seasonalKeyword) {
         this.nameJ = nameJ;
+        this.seasonPrefix = I.array(seasonalKeyword, nameJ);
+    }
+
+    public boolean isSeasonal() {
+        return seasonPrefix.length > 1;
     }
 
     /**

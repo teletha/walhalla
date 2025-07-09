@@ -98,6 +98,8 @@ public class Unit {
 
     public List<Attribute> attributes = new ArrayList();
 
+    public Attribute season;
+
     public List<String> bounus100 = new ArrayList();
 
     public List<String> bounus150 = new ArrayList();
@@ -283,6 +285,10 @@ public class Unit {
         wiki.peekKV("cat4", value -> attributes.add(Attribute.of(value)));
         wiki.peekKV("cat5", value -> attributes.add(Attribute.of(value)));
 
+        // 水着と浴衣属性は実際にはないので特別扱い
+        if (name.endsWith("(Swimsuit)")) attributes.add(Attribute.Swimsuit);
+        if (name.endsWith("(Yukata)")) attributes.add(Attribute.Yukata);
+
         wiki.peekKV("hero", value -> hero = value.equals("y"));
         // heroプロパティの記載がない場合は、属性から判定する
         if (attributes.contains(Attribute.Hero)) hero = true;
@@ -365,6 +371,7 @@ public class Unit {
 
     static {
         fixName(DB);
+        fixStatus(DB);
     }
 
     private static void fixName(Map<String, JSON> DB) {
@@ -383,6 +390,29 @@ public class Unit {
         json = DB.get("聖なる技工兵ドリー");
         json.set("name", "聖なる技巧兵ドリー");
         DB.put("聖なる技巧兵ドリー", json);
+    }
+
+    private static void fixStatus(Map<String, JSON> CARD) {
+        // =========================================
+        // DBが提供するステータスにはいくつかの問題があるため、修正を行う。
+        // =========================================
+        JSON json = CARD.get("秩序の亜神ラビリス");
+        json.set("skill", json.text("skill").replace("<DEF>", "2.5"));
+
+        json = CARD.get("帝国掘削教官ミュレ");
+        json.set("skill_aw", json.text("skill_aw").replace("<DEF>", "2.5"));
+
+        json = CARD.get("ぬりかべカゴメ");
+        json.set("skill_aw", json.text("skill_aw").replace("<DEF>", "2"));
+
+        json = CARD.get("上杉謙信");
+        json.set("skill", json.text("skill").replace("<ATK>", "2.5"));
+
+        json = CARD.get("初代帝国騎士団長ヘイズル");
+        json.set("skill", json.text("skill").replace("<ATK>", "2"));
+
+        json = CARD.get("帝国剣闘士アグナ");
+        json.set("skill", json.text("skill").replace("<ATK>", "1.8"));
     }
 
     void parseAigisLoader() {
@@ -456,6 +486,14 @@ public class Unit {
             place = PlaceType.values()[json.get(int.class, "placeType")];
             year = json.get(int.class, "year");
         }
+    }
+
+    public List<Attribute> season() {
+        return attributes.stream().filter(Attribute::isSeasonal).toList();
+    }
+
+    public boolean isSeasonal() {
+        return season().size() != 0;
     }
 
     /**

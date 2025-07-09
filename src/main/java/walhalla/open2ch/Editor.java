@@ -11,14 +11,12 @@ package walhalla.open2ch;
 
 import java.io.InputStream;
 import java.time.Duration;
-import java.util.stream.Collectors;
 
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
 import dev.langchain4j.model.chat.request.ResponseFormat;
 import dev.langchain4j.model.googleai.GoogleAiGeminiChatModel;
 import dev.langchain4j.service.AiServices;
 import kiss.I;
-import walhalla.data.Database;
 
 public interface Editor {
 
@@ -32,29 +30,10 @@ public interface Editor {
     String selectTopics(String text);
 
     static String topics(CharSequence input) {
-        Database manager = I.make(Database.class);
-        String names = manager.stream().map(x -> x.nameJ).collect(Collectors.joining("\n", "\n", "\n"));
-
         return AiServices.builder(Editor.class)
                 .chatModel(MODEL)
                 .chatMemory(MessageWindowChatMemory.withMaxMessages(10))
-                .systemMessageProvider(id -> {
-                    return prompt("topic") + "\nユニット名一覧\n" + names;
-                })
-                .build()
-                .selectTopics(input.toString());
-    }
-
-    static String unit(CharSequence input) {
-        Database manager = I.make(Database.class);
-        String names = manager.stream().map(x -> x.nameJ).collect(Collectors.joining("\n", "\n", "\n"));
-
-        return AiServices.builder(Editor.class)
-                .chatModel(MODEL)
-                .chatMemory(MessageWindowChatMemory.withMaxMessages(10))
-                .systemMessageProvider(id -> {
-                    return prompt("unit") + "\nユニット名一覧\n" + names;
-                })
+                .systemMessageProvider(id -> prompt("topic"))
                 .build()
                 .selectTopics(input.toString());
     }

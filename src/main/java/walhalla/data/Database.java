@@ -48,8 +48,10 @@ public class Database extends ArrayList<Unit> implements Storable<Database> {
             build();
             store();
         } else {
+            I.info("Loading unit data from storage...");
             restore();
         }
+        I.info("Loaded unit data.");
     }
 
     /**
@@ -136,7 +138,7 @@ public class Database extends ArrayList<Unit> implements Storable<Database> {
      * @param name The Japanese sub-name to search for
      * @return A list of units with the given sub-name
      */
-    public List<Unit> byName(String name) {
+    public List<Unit> searchByName(String name) {
         return stream().filter(u -> u.subNameJ.equals(name)).toList();
     }
 

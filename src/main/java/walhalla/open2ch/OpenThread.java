@@ -13,15 +13,9 @@ import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
-import java.util.Set;
 import java.util.stream.Collectors;
-
-import org.ahocorasick.trie.Token;
-import org.ahocorasick.trie.Trie;
-import org.ahocorasick.trie.Trie.TrieBuilder;
 
 import kiss.I;
 import kiss.JSON;
@@ -30,7 +24,7 @@ import kiss.XML;
 import psychopath.Directory;
 import psychopath.File;
 import walhalla.Astro;
-import walhalla.data.Database;
+import walhalla.data.NickLinkage;
 import walhalla.image.Gyazo;
 import walhalla.image.Image;
 import walhalla.image.Imgur;
@@ -145,6 +139,8 @@ public class OpenThread implements Storable<OpenThread> {
         this.title = html.element("title").text();
         this.url = html.find("head meta[property='og:url']").attr("content");
 
+        NickLinkage nick = I.make(NickLinkage.class);
+
         html.find("div.thread > dl").forEach(dl -> {
             int num = Integer.parseInt(dl.attr("val"));
             XML dt = dl.firstChild();
@@ -157,6 +153,8 @@ public class OpenThread implements Storable<OpenThread> {
             XML dd = dt.next();
             dd.element("br").text("  \r\n");
             String body = dd.text().trim();
+            body = body.replaceAll("(?i)\\bhttps?://[\\w\\-._~:/?#\\[\\]@!$&'()*+,;=%]+", "<a href=\"$0\">$0</a>");
+            body = nick.link(body);
 
             List<ImageSource> images = new ArrayList<>();
             I.signal(dd.element("a")).take(e -> !e.attr("data-lightbox").isEmpty()).to(e -> {
@@ -251,37 +249,12 @@ public class OpenThread implements Storable<OpenThread> {
     }
 
     public void linkageCharacter() {
-        System.out.println(num);
-        Database db = I.make(Database.class);
-        Set<String> names = db.uniqueSubNames();
-
-        TrieBuilder builder = Trie.builder().ignoreOverlaps();
-        for (String name : names) {
-            builder.addKeyword(name);
-        }
-        Trie trie = builder.build();
+        NickLinkage nick = I.make(NickLinkage.class);
 
         for (Res res : comments) {
-            res.body = link(unlink(res.body), trie);
+            res.body = nick.link(unlink(res.body));
         }
-
         store();
-    }
-
-    private String link(String text, Trie trie) {
-        Collection<Token> tokens = trie.tokenize(text);
-        StringBuilder html = new StringBuilder();
-
-        for (Token token : tokens) {
-            if (token.isMatch()) {
-                html.append("<a href='/type/" + token.getFragment() + "/'>");
-            }
-            html.append(token.getFragment());
-            if (token.isMatch()) {
-                html.append("</a>");
-            }
-        }
-        return html.toString();
     }
 
     private String unlink(String text) {
