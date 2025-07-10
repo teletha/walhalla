@@ -11,6 +11,7 @@ package walhalla.data;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
@@ -37,6 +38,8 @@ import psychopath.Locator;
 @Managed(Singleton.class)
 public class Database extends ArrayList<Unit> implements Storable<Database> {
 
+    private static final Set<String> NOT_IMPLEMENTED = Set.of("真夏の奇譚ペルセナス");
+
     /**
      * Constructs a UnitManager instance. Loads unit data from storage or rebuilds it if outdated.
      */
@@ -51,6 +54,7 @@ public class Database extends ArrayList<Unit> implements Storable<Database> {
             I.info("Loading unit data from storage...");
             restore();
         }
+        fixNotImplementedUnits();
         I.info("Loaded unit data.");
     }
 
@@ -96,7 +100,33 @@ public class Database extends ArrayList<Unit> implements Storable<Database> {
         for (Unit unit : this) {
             unit.seq = sequence++;
         }
+
         store();
+        fixNotImplementedUnits();
+    }
+
+    private void fixNotImplementedUnits() {
+        for (Unit unit : this) {
+            if (NOT_IMPLEMENTED.contains(unit.nameJ)) {
+                unit.image = null;
+                unit.imageAW = null;
+                unit.image2A = null;
+                unit.image2B = null;
+                unit.bounus100 = Collections.EMPTY_LIST;
+                unit.bounus150 = Collections.EMPTY_LIST;
+                for (Stats stats : List.of(unit.stats, unit.stats1, unit.stats2A, unit.stats2B)) {
+                    stats.atk = 0;
+                    stats.def = 0;
+                    stats.mr = 0;
+                    stats.hp = 0;
+                    stats.cost = 0;
+                    stats.costMin = 0;
+                    stats.range = 0;
+                    stats.block = 0;
+                    stats.image = null;
+                }
+            }
+        }
     }
 
     private static List<String> names() {

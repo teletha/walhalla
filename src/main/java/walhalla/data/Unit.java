@@ -104,6 +104,8 @@ public class Unit {
 
     public List<String> bounus150 = new ArrayList();
 
+    public boolean hide;
+
     void parseWikiCharacterDataByName(String name) {
         JSON json = I.json(Wiki.sourceByName(name)).find("query", "pages", "*", "revisions", "*", "slots", "main").getFirst();
 
@@ -286,9 +288,11 @@ public class Unit {
         wiki.peekKV("cat5", value -> attributes.add(Attribute.of(value)));
 
         // 追加属性は実際にはないので特別扱い
-        if (name.endsWith("(Swimsuit)")) attributes.add(Attribute.Swimsuit);
-        if (name.endsWith("(Yukata)")) attributes.add(Attribute.Yukata);
-        if (name.endsWith("(Festival)")) attributes.add(Attribute.Festival);
+        if (name != null) {
+            if (name.endsWith("(Swimsuit)")) attributes.add(Attribute.Swimsuit);
+            if (name.endsWith("(Yukata)")) attributes.add(Attribute.Yukata);
+            if (name.endsWith("(Festival)")) attributes.add(Attribute.Festival);
+        }
 
         wiki.peekKV("hero", value -> hero = value.equals("y"));
         // heroプロパティの記載がない場合は、属性から判定する
