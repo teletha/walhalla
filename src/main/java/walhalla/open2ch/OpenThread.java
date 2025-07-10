@@ -57,6 +57,8 @@ public class OpenThread implements Storable<OpenThread> {
     /** The list of comments (res) contained in this thread. */
     public List<Res> comments = new ArrayList<>();
 
+    public LocalDateTime lastImageBackuped;
+
     /** The list of topics extracted from this thread's comments via LLM analysis. */
     private Topics topics;
 
@@ -152,6 +154,7 @@ public class OpenThread implements Storable<OpenThread> {
 
             XML dd = dt.next();
             dd.element("br").text("  \r\n");
+            dd.element("b").forEach(b -> b.text("<b>" + b.text() + "</b>"));
             String body = dd.text().trim();
             body = body.replaceAll("(?i)\\bhttps?://[\\w\\-._~:/?#\\[\\]@!$&'()*+,;=%]+", "<a href=\"$0\">$0</a>");
             body = nick.link(body);
@@ -221,7 +224,7 @@ public class OpenThread implements Storable<OpenThread> {
         return text.toString();
     }
 
-    void backupImages() {
+    public void backupImages() {
         boolean needUpdate = false;
 
         for (Topic topic : getTopics()) {
