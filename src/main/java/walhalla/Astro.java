@@ -123,6 +123,6 @@ public class Astro {
      */
     public static void main(String[] args) {
         // buildTopics();
-        buildUnitJSON();
+        linkageCharacter();
     }
 }

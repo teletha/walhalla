@@ -70,6 +70,7 @@ public class NickLinkage {
         NICKS.put("伏綺", List.of("伏犠"));
         NICKS.put("金糸雀姉妹", List.of("金糸雀"));
         NICKS.put("太上老君", List.of("老君", "老くん", "ろーくん"));
+        NICKS.put("ホルミース", List.of("詩人"));
 
         // 特殊略称
         // 名前の語尾をだけを取って季節接頭辞と合わせるために使用
