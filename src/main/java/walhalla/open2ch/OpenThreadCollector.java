@@ -94,8 +94,6 @@ public class OpenThreadCollector {
                     if (975 <= size && thread.parsedJSON.lastModifiedDateTime().toLocalDateTime().plusHours(1).isBefore(date)) {
                         server.pending = new CompletableFuture();
                         Desktop.getDesktop().browse(new URI(uri + "#audit"));
-                        System.out.println(thread.parsedJSON);
-                        System.out.println(thread.parsedJSON.lastModifiedDateTime() + "   " + date);
                         thread.parse(server.pending.get(30, TimeUnit.SECONDS));
 
                         Thread.sleep(1000);

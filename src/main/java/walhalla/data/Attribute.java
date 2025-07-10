@@ -54,6 +54,8 @@ public enum Attribute {
 
     Elf("エルフ"),
 
+    Festival("大祭"),
+
     FlowerCountry("華の国"),
 
     Flying("飛行"),

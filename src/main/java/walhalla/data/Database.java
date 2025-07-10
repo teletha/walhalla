@@ -96,6 +96,7 @@ public class Database extends ArrayList<Unit> implements Storable<Database> {
         for (Unit unit : this) {
             unit.seq = sequence++;
         }
+        store();
     }
 
     private static List<String> names() {

@@ -285,9 +285,10 @@ public class Unit {
         wiki.peekKV("cat4", value -> attributes.add(Attribute.of(value)));
         wiki.peekKV("cat5", value -> attributes.add(Attribute.of(value)));
 
-        // 水着と浴衣属性は実際にはないので特別扱い
+        // 追加属性は実際にはないので特別扱い
         if (name.endsWith("(Swimsuit)")) attributes.add(Attribute.Swimsuit);
         if (name.endsWith("(Yukata)")) attributes.add(Attribute.Yukata);
+        if (name.endsWith("(Festival)")) attributes.add(Attribute.Festival);
 
         wiki.peekKV("hero", value -> hero = value.equals("y"));
         // heroプロパティの記載がない場合は、属性から判定する
