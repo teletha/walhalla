@@ -39,6 +39,11 @@ const root = {
 			"type": "Class"
 		},
 		{
+			"name": "NickLinkage",
+			"packageName": "walhalla.data",
+			"type": "Class"
+		},
+		{
 			"name": "WikiText",
 			"packageName": "walhalla.data",
 			"type": "Class"
