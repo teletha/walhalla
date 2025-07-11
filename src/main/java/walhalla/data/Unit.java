@@ -104,7 +104,7 @@ public class Unit {
 
     public List<String> bounus150 = new ArrayList();
 
-    public boolean hide;
+    private boolean disableAW;
 
     void parseWikiCharacterDataByName(String name) {
         JSON json = I.json(Wiki.sourceByName(name)).find("query", "pages", "*", "revisions", "*", "slots", "main").getFirst();
@@ -132,6 +132,7 @@ public class Unit {
             });
             if (rarity == null) rarity = Rarity.王子;
 
+            wiki.peekKV("disableaw", value -> disableAW = value.equals("y") || value.equals("yes") || value.equals("1"));
             wiki.peekKV("jpname", value -> {
                 int start = value.indexOf("<br"); // support <br> and <br />
                 if (start == -1) {
@@ -139,7 +140,16 @@ public class Unit {
                 } else {
                     nameJ = value.substring(0, start).strip();
                 }
-                nameJEUC = URLEncoder.encode(nameJ, Charset.forName("EUC-JP"));
+                String resoleved = nameJ;
+                if (disableAW) {
+                    // Ephtra (Final Battle Black)があるので(Black)ではダメ
+                    if (name.endsWith("Black)")) {
+                        resoleved += "【黒英傑】";
+                    } else if (name.endsWith("Platinum)")) {
+                        resoleved += "【白金英傑】";
+                    }
+                }
+                nameJEUC = URLEncoder.encode(resoleved, Charset.forName("EUC-JP")).replace("+", "%20");
             });
             wiki.peekKV("artist", value -> {
                 artist = TextParser.extractArtistName(value);
