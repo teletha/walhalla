@@ -45,7 +45,7 @@ public class NickLinkage {
         NICKS.put("アナトリア", List.of("チャンプ"));
         NICKS.put("リヴン", List.of("村娘"));
         NICKS.put("アスバール", List.of("お嬢", "総帥"));
-        NICKS.put("アンナ", List.of("ンナ", "ンナァ"));
+        NICKS.put("アンナ", List.of("ンナァ"));
         NICKS.put("聞忠", List.of("んちゅ", "聞仲"));
         NICKS.put("ズィズィー", List.of("ZZ", "ズィズィ", "ズィ"));
         NICKS.put("ラシュマシュ", List.of("ラシュ", "マシュ"));
@@ -69,6 +69,7 @@ public class NickLinkage {
         NICKS.put("アリシア", List.of("アリス"));
         NICKS.put("伏綺", List.of("伏犠"));
         NICKS.put("金糸雀姉妹", List.of("金糸雀"));
+        NICKS.put("金光聖菩", List.of("金ちゃん"));
         NICKS.put("太上老君", List.of("老君", "老くん", "ろーくん"));
         NICKS.put("ホルミース", List.of("詩人"));
 
@@ -97,6 +98,15 @@ public class NickLinkage {
             }
         }
         builder.addKeyword("もりたん", "https://kuromojiya.sakura.ne.jp/aigis.htm");
+
+        // 一般名詞の一部にキャラ名が含まれている場合にリンクを無効にするために
+        // 名詞自体を登録しておく防衛戦略
+        builder.addKeyword("バッファー", "");
+        builder.addKeyword("レンジ", "");
+        builder.addKeyword("ジレンマ", "");
+        builder.addKeyword("ゴブリン", "");
+        builder.addKeyword("リンゴ", "");
+        builder.addKeyword("セーラー", "");
 
         this.trie = builder.build();
     }
@@ -141,7 +151,12 @@ public class NickLinkage {
 
         for (PayloadToken<String> token : tokens) {
             if (token.isMatch() && recoder.add(token.getFragment())) {
-                result.append("<a href='").append(token.getEmit().getPayload()).append("'>").append(token.getFragment()).append("</a>");
+                String payload = token.getEmit().getPayload();
+                if (payload.isEmpty()) {
+                    result.append(token.getFragment());
+                } else {
+                    result.append("<a href='").append(token.getEmit().getPayload()).append("'>").append(token.getFragment()).append("</a>");
+                }
             } else {
                 result.append(token.getFragment());
             }
