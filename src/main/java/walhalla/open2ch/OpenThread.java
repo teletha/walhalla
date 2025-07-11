@@ -235,10 +235,10 @@ public class OpenThread implements Storable<OpenThread> {
                         Image image = Imgur.download(source.origin);
 
                         JSON huge = Gyazo.upload(image.hugeName(), image.huge());
-                        source.backupL = huge.text("url");
+                        source.backupH = huge.text("url");
 
                         JSON large = Gyazo.upload(image.largeName(), image.large());
-                        source.backupH = large.text("url");
+                        source.backupL = large.text("url");
 
                         needUpdate = true;
                     }
