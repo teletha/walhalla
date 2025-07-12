@@ -2,86 +2,51 @@ const root = {
 	"docs": [],
 	"modules": [],
 	"packages": [
-		"walhalla",
-		"walhalla.data",
+		"walhalla.open2ch",
 		"walhalla.image",
-		"walhalla.open2ch"
+		"walhalla",
+		"walhalla.data"
 	],
 	"types": [
 		{
-			"name": "Astro",
-			"packageName": "walhalla",
+			"name": "Res",
+			"packageName": "walhalla.open2ch",
 			"type": "Class"
 		},
 		{
-			"name": "Profession",
-			"packageName": "walhalla.data",
+			"name": "Editor",
+			"packageName": "walhalla.open2ch",
+			"type": "Functional"
+		},
+		{
+			"name": "Topic",
+			"packageName": "walhalla.open2ch",
 			"type": "Class"
 		},
 		{
-			"name": "TextParser",
-			"packageName": "walhalla.data",
+			"name": "OpenThread",
+			"packageName": "walhalla.open2ch",
 			"type": "Class"
 		},
 		{
-			"name": "Gender",
-			"packageName": "walhalla.data",
-			"type": "Enum"
-		},
-		{
-			"name": "Attribute",
-			"packageName": "walhalla.data",
-			"type": "Enum"
-		},
-		{
-			"name": "Wiki",
-			"packageName": "walhalla.data",
+			"name": "ImageSource",
+			"packageName": "walhalla.open2ch",
 			"type": "Class"
 		},
 		{
-			"name": "NickLinkage",
-			"packageName": "walhalla.data",
+			"name": "OpenThreadCollector",
+			"packageName": "walhalla.open2ch",
 			"type": "Class"
 		},
 		{
-			"name": "WikiText",
-			"packageName": "walhalla.data",
-			"type": "Class"
-		},
-		{
-			"name": "PlaceType",
-			"packageName": "walhalla.data",
-			"type": "Enum"
-		},
-		{
-			"name": "Unit",
-			"packageName": "walhalla.data",
-			"type": "Class"
-		},
-		{
-			"name": "Database",
-			"packageName": "walhalla.data",
-			"type": "Class"
-		},
-		{
-			"name": "Proofreader",
-			"packageName": "walhalla.data",
-			"type": "Class"
-		},
-		{
-			"name": "Stats",
-			"packageName": "walhalla.data",
-			"type": "Class"
-		},
-		{
-			"name": "Rarity",
-			"packageName": "walhalla.data",
-			"type": "Enum"
-		},
-		{
-			"name": "Gyazo",
+			"name": "EditableImage",
 			"packageName": "walhalla.image",
 			"type": "Class"
+		},
+		{
+			"name": "Image",
+			"packageName": "walhalla.image",
+			"type": "Record"
 		},
 		{
 			"name": "Scalr",
@@ -104,7 +69,7 @@ const root = {
 			"type": "Enum"
 		},
 		{
-			"name": "EditableImage",
+			"name": "Imgur",
 			"packageName": "walhalla.image",
 			"type": "Class"
 		},
@@ -114,44 +79,104 @@ const root = {
 			"type": "Enum"
 		},
 		{
-			"name": "Imgur",
+			"name": "Gyazo",
 			"packageName": "walhalla.image",
 			"type": "Class"
 		},
 		{
-			"name": "Image",
-			"packageName": "walhalla.image",
+			"name": "Astro",
+			"packageName": "walhalla",
+			"type": "Class"
+		},
+		{
+			"name": "WikiText",
+			"packageName": "walhalla.data",
+			"type": "Class"
+		},
+		{
+			"name": "PlaceType",
+			"packageName": "walhalla.data",
+			"type": "Enum"
+		},
+		{
+			"name": "NickLinkage",
+			"packageName": "walhalla.data",
+			"type": "Class"
+		},
+		{
+			"name": "Wiki",
+			"packageName": "walhalla.data",
+			"type": "Class"
+		},
+		{
+			"name": "Database",
+			"packageName": "walhalla.data",
+			"type": "Class"
+		},
+		{
+			"name": "TextParser",
+			"packageName": "walhalla.data",
+			"type": "Class"
+		},
+		{
+			"name": "Gender",
+			"packageName": "walhalla.data",
+			"type": "Enum"
+		},
+		{
+			"name": "Unit",
+			"packageName": "walhalla.data",
+			"type": "Class"
+		},
+		{
+			"name": "StepEffect",
+			"packageName": "walhalla.data",
 			"type": "Record"
 		},
 		{
-			"name": "OpenThread",
-			"packageName": "walhalla.open2ch",
+			"name": "Stats",
+			"packageName": "walhalla.data",
 			"type": "Class"
 		},
 		{
-			"name": "ImageSource",
-			"packageName": "walhalla.open2ch",
+			"name": "AffectionType",
+			"packageName": "walhalla.data",
+			"type": "Enum"
+		},
+		{
+			"name": "BattleEffect",
+			"packageName": "walhalla.data",
+			"type": "Enum"
+		},
+		{
+			"name": "BattleEffectParser",
+			"packageName": "walhalla.data",
 			"type": "Class"
 		},
 		{
-			"name": "Topic",
-			"packageName": "walhalla.open2ch",
+			"name": "Effect",
+			"packageName": "walhalla.data",
 			"type": "Class"
 		},
 		{
-			"name": "OpenThreadCollector",
-			"packageName": "walhalla.open2ch",
+			"name": "Attribute",
+			"packageName": "walhalla.data",
+			"type": "Enum"
+		},
+		{
+			"name": "Proofreader",
+			"packageName": "walhalla.data",
 			"type": "Class"
 		},
 		{
-			"name": "Res",
-			"packageName": "walhalla.open2ch",
-			"type": "Class"
+			"name": "Rarity",
+			"packageName": "walhalla.data",
+			"type": "Enum"
 		},
 		{
-			"name": "Editor",
-			"packageName": "walhalla.open2ch",
-			"type": "Functional"
+			"name": "Profession",
+			"packageName": "walhalla.data",
+			"type": "Class"
 		}
 	]
 }

@@ -19,9 +19,9 @@
 		<link href="https://cdn.jsdelivr.net/npm/ress@4.0.0/dist/ress.min.css" rel="stylesheet"/>
 		<link href="main.css" rel="stylesheet"/>
 	</head>
-	<body class="K">
-		<header class="L" date="2025-07-11">
-			<h1 class="p"><a href="index.html"><code>Walhalla</code></a></h1>
+	<body class="e">
+		<header class="f" date="2025-07-12">
+			<h1 class="l"><a href="index.html"><code>Walhalla</code></a></h1>
 			<nav class="k"><a href="api/main.html" id="API"><svg class="package">
 						<use href="main.svg#package"/>
 					</svg>
@@ -35,16 +35,16 @@
 						<use href="main.svg#github"/>
 					</svg>
 				</a></nav>
-			<div class="v"><a aria-label="Change color scheme" id="theme"><svg class="sun">
+			<div class="m"><a aria-label="Change color scheme" id="theme"><svg class="sun">
 						<use href="main.svg#sun"/>
 					</svg><svg class="moon">
 						<use href="main.svg#moon"/>
 					</svg>
 				</a></div>
 		</header>
-		<nav class="O"></nav>
-		<article class="M" id="Article">
-			<div class="s">
+		<nav class="a"></nav>
+		<article class="b" id="Article">
+			<div class="BB">
 				<section class="A">
 					<h2>Walhalla API Overview</h2>
 					<p>This page provides a concise overview of the available APIs, including their purpose, key functionalities, and usage patterns. It serves as a starting point for developers to understand how to integrate and interact with the system effectively.</p>
@@ -61,66 +61,16 @@
 						<h4>🛠️ Class</h4>
 						<table>
 							<tr>
-								<td><code><a href="api/walhalla.Astro.html">Astro</a></code></td>
-								<td>Provides utilities and entry point for the Astro project.</td>
+								<td><code><a href="api/walhalla.open2ch.Res.html">Res</a></code></td>
+								<td>Represents a single response (res) in an open2ch thread.
+A response includes metadata such as poster name, posting time,
+identifier, message body, and optionally attached media.</td>
 							</tr>
 							<tr>
-								<td><code><a href="api/walhalla.data.Profession.html">Profession</a></code></td>
-								<td>no description</td>
-							</tr>
-							<tr>
-								<td><code><a href="api/walhalla.data.TextParser.html">TextParser</a></code></td>
-								<td>Utility class for parsing text related to artist names and extracting clean artist names from various formats.</td>
-							</tr>
-							<tr>
-								<td><code><a href="api/walhalla.data.Wiki.html">Wiki</a></code></td>
-								<td>A utility class for caching data retrieved from a server. The cache is stored in a local
-directory and is valid for up to 7 days. If the cache is expired or does not exist, the data is
-fetched from the server and saved to the cache.</td>
-							</tr>
-							<tr>
-								<td><code><a href="api/walhalla.data.NickLinkage.html">NickLinkage</a></code></td>
-								<td>no description</td>
-							</tr>
-							<tr>
-								<td><code><a href="api/walhalla.data.WikiText.html">WikiText</a></code></td>
-								<td>A utility class for parsing and manipulating wiki text. This class provides methods to extract
-key-value pairs, sections, and other structured data from a wiki text format.</td>
-							</tr>
-							<tr>
-								<td><code><a href="api/walhalla.data.Unit.html">Unit</a></code></td>
-								<td>no description</td>
-							</tr>
-							<tr>
-								<td><code><a href="api/walhalla.data.Database.html">Database</a></code></td>
-								<td>Manages the collection and storage of Unit data.</td>
-							</tr>
-							<tr>
-								<td><code><a href="api/walhalla.data.Proofreader.html">Proofreader</a></code></td>
-								<td>no description</td>
-							</tr>
-							<tr>
-								<td><code><a href="api/walhalla.data.Stats.html">Stats</a></code></td>
-								<td>Represents the statistics of a character or unit in the game. This class provides fields for
-various attributes such as health points, attack, defense, and other abilities. It also includes
-methods to parse these statistics from a wiki text format.</td>
-							</tr>
-							<tr>
-								<td><code><a href="api/walhalla.image.Gyazo.html">Gyazo</a></code></td>
-								<td>no description</td>
-							</tr>
-							<tr>
-								<td><code><a href="api/walhalla.image.Scalr.html">Scalr</a></code></td>
-								<td>Class used to implement performant, high-quality and intelligent image
-scaling and manipulation algorithms in native Java 2D.</td>
-							</tr>
-							<tr>
-								<td><code><a href="api/walhalla.image.EditableImage.html">EditableImage</a></code></td>
-								<td>no description</td>
-							</tr>
-							<tr>
-								<td><code><a href="api/walhalla.image.Imgur.html">Imgur</a></code></td>
-								<td>no description</td>
+								<td><code><a href="api/walhalla.open2ch.Topic.html">Topic</a></code></td>
+								<td>Represents a semantically grouped topic extracted from a thread&apos;s comments.
+Each topic contains a title, associated comment numbers, metadata such as category and tags,
+and logic to render/publish it as a Markdown article.</td>
 							</tr>
 							<tr>
 								<td><code><a href="api/walhalla.open2ch.OpenThread.html">OpenThread</a></code></td>
@@ -134,42 +84,84 @@ as a JSON file for later use.</td>
 								<td>no description</td>
 							</tr>
 							<tr>
-								<td><code><a href="api/walhalla.open2ch.Topic.html">Topic</a></code></td>
-								<td>Represents a semantically grouped topic extracted from a thread&apos;s comments.
-Each topic contains a title, associated comment numbers, metadata such as category and tags,
-and logic to render/publish it as a Markdown article.</td>
-							</tr>
-							<tr>
 								<td><code><a href="api/walhalla.open2ch.OpenThreadCollector.html">OpenThreadCollector</a></code></td>
 								<td>A utility class for managing and updating open2ch threads related to &quot;Aigis&quot;.</td>
 							</tr>
 							<tr>
-								<td><code><a href="api/walhalla.open2ch.Res.html">Res</a></code></td>
-								<td>Represents a single response (res) in an open2ch thread.
-A response includes metadata such as poster name, posting time,
-identifier, message body, and optionally attached media.</td>
+								<td><code><a href="api/walhalla.image.EditableImage.html">EditableImage</a></code></td>
+								<td>no description</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.image.Scalr.html">Scalr</a></code></td>
+								<td>Class used to implement performant, high-quality and intelligent image
+scaling and manipulation algorithms in native Java 2D.</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.image.Imgur.html">Imgur</a></code></td>
+								<td>no description</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.image.Gyazo.html">Gyazo</a></code></td>
+								<td>no description</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.Astro.html">Astro</a></code></td>
+								<td>Provides utilities and entry point for the Astro project.</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.data.WikiText.html">WikiText</a></code></td>
+								<td>A utility class for parsing and manipulating wiki text. This class provides methods to extract
+key-value pairs, sections, and other structured data from a wiki text format.</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.data.NickLinkage.html">NickLinkage</a></code></td>
+								<td>no description</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.data.Wiki.html">Wiki</a></code></td>
+								<td>A utility class for caching data retrieved from a server. The cache is stored in a local
+directory and is valid for up to 7 days. If the cache is expired or does not exist, the data is
+fetched from the server and saved to the cache.</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.data.Database.html">Database</a></code></td>
+								<td>Manages the collection and storage of Unit data.</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.data.TextParser.html">TextParser</a></code></td>
+								<td>Utility class for parsing text related to artist names and extracting clean artist names from various formats.</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.data.Unit.html">Unit</a></code></td>
+								<td>no description</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.data.Stats.html">Stats</a></code></td>
+								<td>Represents the statistics of a character or unit in the game. This class provides fields for
+various attributes such as health points, attack, defense, and other abilities. It also includes
+methods to parse these statistics from a wiki text format.</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.data.BattleEffectParser.html">BattleEffectParser</a></code></td>
+								<td>no description</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.data.Effect.html">Effect</a></code></td>
+								<td>no description</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.data.Proofreader.html">Proofreader</a></code></td>
+								<td>no description</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.data.Profession.html">Profession</a></code></td>
+								<td>no description</td>
 							</tr>
 						</table>
 					</section>
 					<section class="A">
 						<h4>🛠️ Enum</h4>
 						<table>
-							<tr>
-								<td><code><a href="api/walhalla.data.Gender.html">Gender</a></code></td>
-								<td>no description</td>
-							</tr>
-							<tr>
-								<td><code><a href="api/walhalla.data.Attribute.html">Attribute</a></code></td>
-								<td>no description</td>
-							</tr>
-							<tr>
-								<td><code><a href="api/walhalla.data.PlaceType.html">PlaceType</a></code></td>
-								<td>no description</td>
-							</tr>
-							<tr>
-								<td><code><a href="api/walhalla.data.Rarity.html">Rarity</a></code></td>
-								<td>no description</td>
-							</tr>
 							<tr>
 								<td><code><a href="api/walhalla.image.Scalr.Rotation.html">Scalr.Rotation</a></code></td>
 								<td>Used to define the different types of rotations that can be applied to an
@@ -188,6 +180,30 @@ use.</td>
 								<td><code><a href="api/walhalla.image.ImageType.html">ImageType</a></code></td>
 								<td>no description</td>
 							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.data.PlaceType.html">PlaceType</a></code></td>
+								<td>no description</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.data.Gender.html">Gender</a></code></td>
+								<td>no description</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.data.AffectionType.html">AffectionType</a></code></td>
+								<td>no description</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.data.BattleEffect.html">BattleEffect</a></code></td>
+								<td>no description</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.data.Attribute.html">Attribute</a></code></td>
+								<td>no description</td>
+							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.data.Rarity.html">Rarity</a></code></td>
+								<td>no description</td>
+							</tr>
 						</table>
 					</section>
 					<section class="A">
@@ -197,13 +213,17 @@ use.</td>
 								<td><code><a href="api/walhalla.image.Image.html">Image</a></code></td>
 								<td>no description</td>
 							</tr>
+							<tr>
+								<td><code><a href="api/walhalla.data.StepEffect.html">StepEffect</a></code></td>
+								<td>no description</td>
+							</tr>
 						</table>
 					</section>
 				</section>
 			</div>
 		</article>
-		<aside class="P"></aside>
-		<footer class="N">
+		<aside class="R"></aside>
+		<footer class="T">
 			<p>Powered by <a href="https://github.com/teletha/evergarden" target="_">Evergarden</a></p>
 		</footer>
 	</body>
