@@ -38,7 +38,7 @@ import psychopath.Locator;
 @Managed(Singleton.class)
 public class Database extends ArrayList<Unit> implements Storable<Database> {
 
-    private static final Set<String> NOT_IMPLEMENTED = Set.of("真夏の奇譚ペルセナス");
+    private static final Set<String> NOT_IMPLEMENTED = Set.of();
 
     /**
      * Constructs a UnitManager instance. Loads unit data from storage or rebuilds it if outdated.
@@ -78,6 +78,7 @@ public class Database extends ArrayList<Unit> implements Storable<Database> {
                 unit.parseWikiStatsByName(name);
                 unit.parseAigisLoader();
                 unit.parseAigisTool();
+                unit.analyzeEffect();
 
                 if (unit.name == null) {
                     throw new Error("Failed to parse unit data for: " + name);

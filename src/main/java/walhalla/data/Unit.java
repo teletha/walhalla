@@ -98,6 +98,8 @@ public class Unit {
 
     public List<Attribute> attributes = new ArrayList();
 
+    public List<Effect> effects = new ArrayList();
+
     public Attribute season;
 
     public List<String> bounus100 = new ArrayList();
@@ -558,4 +560,30 @@ public class Unit {
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * Analyzes the additional attributes of the unit.
+     */
+    void analyzeEffect() {
+        for (int i = 1; i < skill.size(); i += 2) {
+            skill.set(i, BattleEffect.parse(skill.get(i), effects));
+        }
+        for (int i = 1; i < skillAW.size(); i += 2) {
+            skillAW.set(i, BattleEffect.parse(skillAW.get(i), effects));
+        }
+
+        for (int i = 1; i < ability.size(); i += 2) {
+            ability.set(i, BattleEffect.parse(ability.get(i), effects));
+        }
+        for (int i = 1; i < abilityAW.size(); i += 2) {
+            abilityAW.set(i, BattleEffect.parse(abilityAW.get(i), effects));
+        }
+
+        for (Stats stats : I.list(stats, stats1, stats2A, stats2B)) {
+            if (stats != null) {
+                stats.profession.description = BattleEffect.parse(stats.profession.description, effects);
+            }
+        }
+    }
+
 }

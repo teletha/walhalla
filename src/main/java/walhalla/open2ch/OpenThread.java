@@ -153,6 +153,28 @@ public class OpenThread implements Storable<OpenThread> {
             String id = name.next().attr("val");
 
             XML dd = dt.next();
+
+            // ======================================================
+            // Collect embedded content links (YouTube, X, etc.)
+            // ======================================================
+            List<String> embeds = new ArrayList<>();
+            I.signal(dd.element("a")).take(e -> {
+                String href = e.attr("href");
+                if (href.startsWith("//")) href = "https:" + href;
+                return href.startsWith("https://youtu.be/") || href.startsWith("https://x.com/");
+            }).to(link -> {
+                embeds.add(link.attr("href"));
+                link.remove();
+            });
+            I.signal(dd.element("div")).take(div -> div.hasClass("nico")).to(div -> {
+                String link = div.text();
+                embeds.add(link.substring(6, link.length() - 1)); // Remove surrounding quotes
+                div.remove();
+            });
+
+            // ======================================================
+            // Extract and format the comment body
+            // =====================================================
             dd.element("br").text("  \r\n");
             dd.element("b").forEach(b -> b.text("<b>" + b.text() + "</b>"));
             String body = dd.text().trim();
@@ -166,16 +188,6 @@ public class OpenThread implements Storable<OpenThread> {
                 ImageSource source = new ImageSource();
                 source.origin = href;
                 images.add(source);
-            });
-
-            List<String> embeds = new ArrayList<>();
-            I.signal(dd.element("a")).take(e -> {
-                String href = e.attr("href");
-                if (href.startsWith("//")) href = "https:" + href;
-                return href.startsWith("https://youtu.be/") || href.startsWith("https://x.com/");
-            }).to(link -> {
-                embeds.add(link.attr("href"));
-                link.remove();
             });
 
             Res res = new Res();

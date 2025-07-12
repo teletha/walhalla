@@ -69,6 +69,8 @@ public class NickLinkage {
         NICKS.put("アリシア", List.of("アリス"));
         NICKS.put("伏綺", List.of("伏犠"));
         NICKS.put("金糸雀姉妹", List.of("金糸雀"));
+        NICKS.put("紫苑姉妹", List.of("紫苑"));
+        NICKS.put("群青姉妹", List.of("みけいたち", "群青"));
         NICKS.put("金光聖菩", List.of("金ちゃん"));
         NICKS.put("太上老君", List.of("老君", "老くん", "ろーくん"));
         NICKS.put("ホルミース", List.of("詩人"));
