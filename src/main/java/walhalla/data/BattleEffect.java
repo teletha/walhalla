@@ -10,7 +10,7 @@
 package walhalla.data;
 
 import java.util.Collection;
-import java.util.List;
+import java.util.Map;
 
 import org.ahocorasick.trie.PayloadEmit;
 import org.ahocorasick.trie.PayloadToken;
@@ -26,21 +26,23 @@ public enum BattleEffect {
 
     敵の遠距離攻撃の対象にならない,
 
+    自身に対する敵からの遠距離攻撃の優先度を下げる,
+
     自動発動,
 
     自動発動スキルの対象外,
 
     出撃中の全員がスキルを自動使用,
 
-    手動でスキルを終了できる,
+    手動でスキル終了("手動でスキルを終了"),
 
     効果時間無限,
 
     スキル発動時にコストを消費,
 
-    出撃コストが徐々に回復("出撃コストが徐々に増加"),
+    出撃コストが徐々に増加("出撃コストが徐々に回復", "出撃コストを徐々に増加"),
 
-    魔法攻撃,
+    魔法攻撃("攻撃魔法"),
 
     遠距離魔法攻撃("遠距離の魔法攻撃"),
 
@@ -50,15 +52,21 @@ public enum BattleEffect {
 
     貫通攻撃("貫通属性"),
 
+    遠距離貫通攻撃("遠距離の貫通攻撃"),
+
     範囲貫通攻撃,
 
     物理攻撃,
 
-    遠距離攻撃,
+    遠距離攻撃("遠距離物理攻撃", "遠距離の物理攻撃"),
 
     継続ダメージ,
 
     徐々にＨＰ回復,
+
+    状態異常を回復,
+
+    回復対象にならない("HP回復を受けられない"),
 
     攻撃後の待ち時間を短縮("攻撃後の待ち時間をやや短縮"),
 
@@ -74,13 +82,15 @@ public enum BattleEffect {
 
     発動中はダメージを受けない,
 
-    その場で復活,
+    その場で復活("その場に復活"),
+
+    再出撃可能,
 
     ブロックした敵全員を攻撃,
 
     出撃人数に含まれない("出撃人数に含まれず", "出撃数に含まれず"),
 
-    毒状態異常を無効("毒、状態異常を無効化"),
+    毒及び状態異常を無効("毒、状態異常を無効化", "毒、状態異常を完全に無効化"),
 
     天界の悪影響を受けない,
 
@@ -88,7 +98,9 @@ public enum BattleEffect {
 
     深海の影響を受けない("深海の悪影響を受けず", "深海の影響を受けない", "深海の影響を受けず"),
 
-    悪天候による射程の影響を受けない,
+    悪天候の影響を無効化("悪天候による射程の影響を受けない"),
+
+    吹雪の影響を受けない("吹雪の悪影響を受けない"),
 
     出撃メンバーにいるだけで,
 
@@ -99,6 +111,8 @@ public enum BattleEffect {
     味方遠距離ユニットが優先的に攻撃,
 
     撤退時にコストが回復("撤退時にコストが[10-100/5]%回復"),
+
+    出撃コストを下げる("出撃コストを[1-10/1]下げる"),
 
     麻痺;
 
@@ -119,7 +133,7 @@ public enum BattleEffect {
         }
     }
 
-    public static String parse(String input, List<Effect> effects) {
+    public static String parse(String input, Map<String, Effect> effects) {
         input = input.replaceAll("<a\\b[^>]*>(.*?)</a>", "$1");
 
         if (trie == null) {
@@ -133,9 +147,7 @@ public enum BattleEffect {
             PayloadEmit<Effect> emit = token.getEmit();
             if (emit != null) {
                 Effect effect = emit.getPayload();
-                if (!effects.contains(effect)) {
-                    effects.add(effect);
-                }
+                effects.put(effect.type.name(), effect);
                 result.append("<a href='").append("/type/" + effect.type + "/").append("'>").append(token.getFragment()).append("</a>");
             } else {
                 result.append(token.getFragment());

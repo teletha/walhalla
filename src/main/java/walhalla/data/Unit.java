@@ -98,7 +98,7 @@ public class Unit {
 
     public List<Attribute> attributes = new ArrayList();
 
-    public List<Effect> effects = new ArrayList();
+    public Map<String, Effect> effects = new HashMap();
 
     public Attribute season;
 
