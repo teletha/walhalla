@@ -157,7 +157,7 @@ public class NickLinkage {
                 if (payload.isEmpty()) {
                     result.append(token.getFragment());
                 } else {
-                    result.append("<a href='").append(token.getEmit().getPayload()).append("'>").append(token.getFragment()).append("</a>");
+                    result.append("<a href='").append(payload).append("'>").append(token.getFragment()).append("</a>");
                 }
             } else {
                 result.append(token.getFragment());

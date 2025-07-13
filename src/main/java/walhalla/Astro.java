@@ -107,6 +107,7 @@ public class Astro {
     public static void buildTopics() {
         OpenThreadCollector.collect().to(thread -> {
             thread.analyze();
+            thread.linkageCharacter();
             // thread.backupImages();
         });
     }
@@ -123,6 +124,6 @@ public class Astro {
      * @param args Command line arguments (not used)
      */
     public static void main(String[] args) {
-        buildUnitJSON();
+        buildTopics();
     }
 }

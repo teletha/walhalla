@@ -10,9 +10,9 @@
 package walhalla.data;
 
 public class Effect {
-    public BattleEffect type;
+    public String type;
 
-    public Effect(BattleEffect type) {
+    public Effect(String type) {
         this.type = type;
     }
 }

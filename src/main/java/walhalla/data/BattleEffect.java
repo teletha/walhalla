@@ -127,9 +127,9 @@ public enum BattleEffect {
     }
 
     private BattleEffect(String... alias) {
-        BattleEffectParser.builder.addKeyword(name(), new Effect(this));
+        BattleEffectParser.builder.addKeyword(name(), new Effect(name()));
         for (String a : alias) {
-            BattleEffectParser.builder.addKeyword(a, new Effect(this));
+            BattleEffectParser.builder.addKeyword(a, new Effect(name()));
         }
     }
 
@@ -147,7 +147,7 @@ public enum BattleEffect {
             PayloadEmit<Effect> emit = token.getEmit();
             if (emit != null) {
                 Effect effect = emit.getPayload();
-                effects.put(effect.type.name(), effect);
+                effects.put(effect.type, effect);
                 result.append("<a href='").append("/type/" + effect.type + "/").append("'>").append(token.getFragment()).append("</a>");
             } else {
                 result.append(token.getFragment());
