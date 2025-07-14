@@ -25,6 +25,7 @@ import java.util.stream.Collectors;
 
 import kiss.I;
 import kiss.JSON;
+import walhalla.data.lint.Proofreader;
 
 public class Unit {
 
@@ -453,28 +454,28 @@ public class Unit {
         JSON json = DB.get(name);
         if (json != null) {
             subNameJ = json.text("subName").replace("ちび", "");
-            ability = parseSkill(json.text("ability"), "▹");
-            abilityAW = parseSkill(json.text("ability_aw"), "▸");
+            ability = parseSkill(json.text("ability"), "▹", nameJ + "のアビリティ");
+            abilityAW = parseSkill(json.text("ability_aw"), "▸", nameJ + "の覚醒アビリティ");
 
             if (abilityAW.isEmpty() && rarity.isRare() && !ability.isEmpty()) {
                 abilityAW.addAll(ability);
             }
 
-            skill = parseSkill(json.text("skill"), "▹");
-            skillAW = parseSkill(json.text("skill_aw"), "▸");
+            skill = parseSkill(json.text("skill"), "▹", nameJ + "のスキル");
+            skillAW = parseSkill(json.text("skill_aw"), "▸", nameJ + "の覚醒スキル");
         } else {
             throw new IllegalStateException("Cannot find unit data for " + nameJ + ". Please check the name or update the database.");
         }
     }
 
-    private static List<String> parseSkill(String text, String separator) {
+    private static List<String> parseSkill(String text, String separator, String desc) {
         List<String> skills = new ArrayList();
         for (String description : text.split(separator)) {
             if (!description.isBlank()) {
                 String[] skill = description.split("\n");
                 if (2 <= skill.length) {
                     skills.add(skill[0]);
-                    skills.add(Proofreader.fix(skill[1]));
+                    skills.add(Proofreader.fix(skill[1], desc));
                 }
             }
         }

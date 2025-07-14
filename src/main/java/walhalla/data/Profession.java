@@ -16,6 +16,7 @@ import java.util.Map;
 
 import kiss.I;
 import kiss.XML;
+import walhalla.data.lint.Proofreader;
 
 public class Profession {
 
@@ -124,7 +125,7 @@ public class Profession {
 
             stats.profession.type = type;
             stats.profession.nameJ = name;
-            stats.profession.description = Proofreader.fix(description.text().trim());
+            stats.profession.description = Proofreader.fix(description.text().trim(), "クラス " + name);
         }
     }
 }
