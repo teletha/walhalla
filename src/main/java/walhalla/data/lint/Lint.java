@@ -11,7 +11,5 @@ package walhalla.data.lint;
 
 public interface Lint {
 
-    default LintResult fix(String input) {
-        return new LintResult(false, input);
-    }
+    LintResult fix(String input);
 }

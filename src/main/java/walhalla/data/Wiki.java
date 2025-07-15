@@ -50,7 +50,7 @@ public class Wiki {
      * @return The data as a string.
      */
     public static String source(String name) {
-        return source(name, 7 * 24 * 60 * 60 * 1000);
+        return source(name, 14 * 24 * 60 * 60 * 1000);
     }
 
     /**

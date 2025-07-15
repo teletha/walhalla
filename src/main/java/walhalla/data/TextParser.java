@@ -96,5 +96,4 @@ public class TextParser {
         candidate = candidate.replace("**", "＊＊");
         return candidate;
     }
-
 }

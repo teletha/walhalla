@@ -12,7 +12,11 @@ package walhalla.data.lint;
 import java.util.ArrayList;
 import java.util.List;
 
+import kiss.WiseTriConsumer;
+
 public class Linter {
+
+    public static WiseTriConsumer<String, String, String> INTERCEPTOR;
 
     private final List<Lint> lints = new ArrayList<>();
 
@@ -49,18 +53,18 @@ public class Linter {
     }
 
     public String fix(String input, String description) {
+        String output = input;
+
         for (Lint lint : lints) {
-            LintResult result = lint.fix(input);
+            LintResult result = lint.fix(output);
             if (result.fixed()) {
-                if (description != null) {
-                    System.out.println(description);
-                    System.out.println(input);
-                    System.out.println(result.result());
-                    System.out.println("");
-                }
-                input = result.result();
+                output = result.result();
             }
         }
-        return input;
+
+        if (description != null && INTERCEPTOR != null) {
+            INTERCEPTOR.accept(description, input, output);
+        }
+        return output;
     }
 }

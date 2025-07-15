@@ -28,11 +28,14 @@ public class RegexLint implements Lint {
      */
     @Override
     public LintResult fix(String input) {
+        boolean fixed = false;
+        StringBuffer result = new StringBuffer();
         Matcher matcher = pattern.matcher(input);
-        if (matcher.matches()) {
-            return new LintResult(true, matcher.replaceAll(replacement));
-        } else {
-            return Lint.super.fix(input);
+        while (matcher.find()) {
+            fixed = true;
+            matcher.appendReplacement(result, replacement);
         }
+        matcher.appendTail(result);
+        return new LintResult(fixed, result.toString());
     }
 }

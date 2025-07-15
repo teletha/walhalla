@@ -67,7 +67,7 @@ public class Profession {
         }
 
         String source = Wiki.source("https://wikiwiki.jp/aigiszuki/" + unitName.replace("婚礼つむじ風 ", "婚礼つむじ風")
-                .replace(" ", "%20"), 21 * 24 * 60 * 60 * 1000);
+                .replace(" ", "%20"), 28L * 24 * 60 * 60 * 1000);
         XML xml = I.xml(source);
 
         XML columns = xml.find("h3:contains('クラス特性')");
@@ -125,7 +125,7 @@ public class Profession {
 
             stats.profession.type = type;
             stats.profession.nameJ = name;
-            stats.profession.description = Proofreader.fix(description.text().trim(), "クラス " + name);
+            stats.profession.description = Proofreader.fix(description.text().trim(), name + "のクラス特性");
         }
     }
 }

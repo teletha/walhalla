@@ -19,18 +19,20 @@ public class Proofreader {
             .normalize("毒、状態異常", "毒・状態異常")
 
             // Fixing rules
+            .addRule("使役、", "使役\n")
             .addRule("配置し、た瞬間", "配置した瞬間")
-            .addRule("HPが0になっても", "\nHPが0になっても")
             .addRule("、HPが0になっても", "\nHPが0になっても")
             .addRule("攻撃する毎に", "\n攻撃する毎に")
             .addRule("攻撃毎に", "\n攻撃毎に")
             .addRule("遠距離攻撃に専念", "遠距離攻撃に専念\n")
-            .addRule("行う", "行う\n")
-            .addRule("行う\nトークンを", "行うトークンを")
             .addRule("自動発動+効果時間無限", "\n自動発動+効果時間無限")
+            .addRule("遠近両配置マスに配置可能", "\n遠近両配置マスに配置可能")
             .addRule("【所持効果】", "\n所持効果：")
+            .addRule("魔法耐性が上昇", "\n魔法耐性が上昇\n")
+            .addRule("敵を倒すとまれにゴールドを入手", "\n敵を倒すとまれにゴールドを入手\n")
             .addRule("地上に降りる", "地上に降りる\n")
             .addRule("飛行ユニットを優先して攻撃", "\n飛行ユニットを優先して攻撃\n")
+            .addRule("スキル未使用時、遠距離攻撃対象外", "\nスキル未使用時、遠距離攻撃対象外\n")
             .addRule("自身か味方が", "\n自身か味方が")
             .addRule("HP回復を受けられない", "HP回復を受けられない\n")
             .addRule("同名のユニットは", "\n同名のユニットは")
@@ -55,7 +57,9 @@ public class Proofreader {
             .addRule("ブロックした敵全員を攻撃", "ブロックした敵全員を攻撃\n")
             .addRule("ブロックした全敵を攻撃", "\nブロックした敵全員を攻撃\n")
             .addRule("トークンは出撃数に含まれない", "\nトークンは出撃数に含まれない\n")
+            .addRule("トークンを設置したマスに移動し", "\nトークンを設置したマスに移動し")
             .addRule("攻撃後の待ち時間を少し短縮", "\n攻撃後の待ち時間を少し短縮\n")
+            .addRule("攻撃の後の待ち時間を少し短縮", "\n攻撃後の待ち時間を少し短縮\n")
             .addRule("他者からHP回復を受けられない", "\n他者からHP回復を受けられない\n")
             .addRule("自身が死亡した時撤退として扱う", "\n自身が死亡した時撤退として扱う\n")
             .addRule("自身に対する敵からの遠距離攻撃の優先度を下げる", "\n自身に対する敵からの遠距離攻撃の優先度を下げる\n")
@@ -64,6 +68,8 @@ public class Proofreader {
             .addRule("　", "\n")
 
             // Fixing rules for specific patterns
+            .addRegex("行う[^ト]", "行う\n")
+            .addRegex("ブロック数\\+(\\d)+、([^H攻防魔])", "ブロック数+$1\n$2")
             .addRegex("編成([中|時])", "\n編成$1")
             .addRegex("配置([中|時])", "\n配置$1")
             .addRegex("(非?)スキル(発動)?(中|時)", "\n$1スキル$2$3")
@@ -71,14 +77,12 @@ public class Proofreader {
             .addRegex("([^+])効果時間無限", "$1\n効果時間無限")
             .addRegex("([^、ず])敵の遠距離攻撃の対象にならない", "$1\n敵の遠距離攻撃の対象にならない\n")
             .addRegex("(\\d)体までの敵を足止めできる", "$1体までの敵を足止めできる\n")
-            .addRegex("\\)([^\\(で])", ")\n$1");
+            .addRegex("\\)([^\\(がでに])", ")\n$1")
+            .addRegex("、?\\s、?", "\n")
+            .addRegex("\\s+", "\n");
 
     public static String fix(String text, String desc) {
-        text = LINTER.fix(text, desc);
-
-        String z = text.replace("\n、", "\n").replace("、\n", "\n").replaceAll("(\\r\\n|\\r|\\n| )+", "\n").strip();
-
-        return z;
+        return LINTER.fix(text, desc).strip();
     }
 
 }
