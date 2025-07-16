@@ -5,7 +5,8 @@ const root = {
 		"walhalla.open2ch",
 		"walhalla.image",
 		"walhalla",
-		"walhalla.data"
+		"walhalla.data",
+		"walhalla.data.lint"
 	],
 	"types": [
 		{
@@ -124,6 +125,36 @@ const root = {
 			"type": "Enum"
 		},
 		{
+			"name": "LintResult",
+			"packageName": "walhalla.data.lint",
+			"type": "Record"
+		},
+		{
+			"name": "TrieLint",
+			"packageName": "walhalla.data.lint",
+			"type": "Class"
+		},
+		{
+			"name": "Lint",
+			"packageName": "walhalla.data.lint",
+			"type": "Functional"
+		},
+		{
+			"name": "Linter",
+			"packageName": "walhalla.data.lint",
+			"type": "Class"
+		},
+		{
+			"name": "Proofreader",
+			"packageName": "walhalla.data.lint",
+			"type": "Class"
+		},
+		{
+			"name": "RegexLint",
+			"packageName": "walhalla.data.lint",
+			"type": "Class"
+		},
+		{
 			"name": "Unit",
 			"packageName": "walhalla.data",
 			"type": "Class"
@@ -162,11 +193,6 @@ const root = {
 			"name": "Attribute",
 			"packageName": "walhalla.data",
 			"type": "Enum"
-		},
-		{
-			"name": "Proofreader",
-			"packageName": "walhalla.data",
-			"type": "Class"
 		},
 		{
 			"name": "Rarity",

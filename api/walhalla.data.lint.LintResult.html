@@ -44,31 +44,23 @@
 		</header>
 		<nav class="j"></nav>
 		<article class="N" id="Article">
-			<section class="a"><code class="CB">walhalla.data</code>
-				<h2 class="Record S"><code class="p">StepEffect</code></h2>
+			<section class="a"><code class="CB">walhalla.data.lint</code>
+				<h2 class="Record S"><code class="p">LintResult</code></h2>
 				<div class="JB">
 					<ul class="E G">
 						<li><code><a aria-label="java.lang.Record 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/Record.html">Record</a></code></li>
 					</ul>
 				</div>
 			</section>
-			<section class="a" id="StepEffect(java.lang.String,int,int,int)">
-				<h2 class="K"><i class="PUBLIC"></i><code class="p">StepEffect</code><code class="AB">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">desc</code>, <code>int</code><code class="parameterName">start</code>, <code>int</code><code class="parameterName">end</code>, <code>int</code><code class="parameterName">step</code>)</code></h2>
+			<section class="a" id="LintResult(boolean,java.lang.String)">
+				<h2 class="K"><i class="PUBLIC"></i><code class="p">LintResult</code><code class="AB">(<code>boolean</code><code class="parameterName">fixed</code>, <code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">result</code>)</code></h2>
 				<table class="X">
 					<tr class="i">
-						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">desc</code></td>
+						<td><code>boolean</code><code class="parameterName">fixed</code></td>
 						<td></td>
 					</tr>
 					<tr class="i">
-						<td><code>int</code><code class="parameterName">start</code></td>
-						<td></td>
-					</tr>
-					<tr class="i">
-						<td><code>int</code><code class="parameterName">end</code></td>
-						<td></td>
-					</tr>
-					<tr class="i">
-						<td><code>int</code><code class="parameterName">step</code></td>
+						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">result</code></td>
 						<td></td>
 					</tr>
 				</table>
@@ -104,38 +96,20 @@
 					</tr>
 				</table>
 			</section>
-			<section class="a" id="desc()">
-				<h2 class="K"><i class="PUBLIC"></i><code class="p">desc</code><code class="AB">()</code><i class="b"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></i></h2>
+			<section class="a" id="fixed()">
+				<h2 class="K"><i class="PUBLIC"></i><code class="p">fixed</code><code class="AB">()</code><i class="b"><code>boolean</code></i></h2>
+				<table class="X">
+					<tr class="IB">
+						<td><code>boolean</code></td>
+						<td></td>
+					</tr>
+				</table>
+			</section>
+			<section class="a" id="result()">
+				<h2 class="K"><i class="PUBLIC"></i><code class="p">result</code><code class="AB">()</code><i class="b"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></i></h2>
 				<table class="X">
 					<tr class="IB">
 						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></td>
-						<td></td>
-					</tr>
-				</table>
-			</section>
-			<section class="a" id="start()">
-				<h2 class="K"><i class="PUBLIC"></i><code class="p">start</code><code class="AB">()</code><i class="b"><code>int</code></i></h2>
-				<table class="X">
-					<tr class="IB">
-						<td><code>int</code></td>
-						<td></td>
-					</tr>
-				</table>
-			</section>
-			<section class="a" id="end()">
-				<h2 class="K"><i class="PUBLIC"></i><code class="p">end</code><code class="AB">()</code><i class="b"><code>int</code></i></h2>
-				<table class="X">
-					<tr class="IB">
-						<td><code>int</code></td>
-						<td></td>
-					</tr>
-				</table>
-			</section>
-			<section class="a" id="step()">
-				<h2 class="K"><i class="PUBLIC"></i><code class="p">step</code><code class="AB">()</code><i class="b"><code>int</code></i></h2>
-				<table class="X">
-					<tr class="IB">
-						<td><code>int</code></td>
 						<td></td>
 					</tr>
 				</table>
@@ -145,17 +119,15 @@
 			<div class="y">
 				<h5 class="c">Constructors</h5>
 				<ul>
-					<li class="Y"><i class="PUBLIC"></i><code><a href="api/walhalla.data.StepEffect.html#StepEffect(java.lang.String,int,int,int)">StepEffect</a></code><code class="AB">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">desc</code>, <code>int</code><code class="parameterName">start</code>, <code>int</code><code class="parameterName">end</code>, <code>int</code><code class="parameterName">step</code>)</code></li>
+					<li class="Y"><i class="PUBLIC"></i><code><a href="api/walhalla.data.lint.LintResult.html#LintResult(boolean,java.lang.String)">LintResult</a></code><code class="AB">(<code>boolean</code><code class="parameterName">fixed</code>, <code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">result</code>)</code></li>
 				</ul>
 				<h5 class="c">Methods</h5>
 				<ul>
-					<li class="Y"><i class="FINAL"><i class="PUBLIC"></i></i><code><a href="api/walhalla.data.StepEffect.html#toString()">toString</a></code><code class="AB">()</code><i class="M"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></i></li>
-					<li class="Y"><i class="FINAL"><i class="PUBLIC"></i></i><code><a href="api/walhalla.data.StepEffect.html#hashCode()">hashCode</a></code><code class="AB">()</code><i class="M"><code>int</code></i></li>
-					<li class="Y"><i class="FINAL"><i class="PUBLIC"></i></i><code><a href="api/walhalla.data.StepEffect.html#equals(java.lang.Object)">equals</a></code><code class="AB">(<code><a aria-label="java.lang.Object 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/Object.html">Object</a></code><code class="parameterName">o</code>)</code><i class="M"><code>boolean</code></i></li>
-					<li class="Y"><i class="PUBLIC"></i><code><a href="api/walhalla.data.StepEffect.html#desc()">desc</a></code><code class="AB">()</code><i class="M"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></i></li>
-					<li class="Y"><i class="PUBLIC"></i><code><a href="api/walhalla.data.StepEffect.html#start()">start</a></code><code class="AB">()</code><i class="M"><code>int</code></i></li>
-					<li class="Y"><i class="PUBLIC"></i><code><a href="api/walhalla.data.StepEffect.html#end()">end</a></code><code class="AB">()</code><i class="M"><code>int</code></i></li>
-					<li class="Y"><i class="PUBLIC"></i><code><a href="api/walhalla.data.StepEffect.html#step()">step</a></code><code class="AB">()</code><i class="M"><code>int</code></i></li>
+					<li class="Y"><i class="FINAL"><i class="PUBLIC"></i></i><code><a href="api/walhalla.data.lint.LintResult.html#toString()">toString</a></code><code class="AB">()</code><i class="M"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></i></li>
+					<li class="Y"><i class="FINAL"><i class="PUBLIC"></i></i><code><a href="api/walhalla.data.lint.LintResult.html#hashCode()">hashCode</a></code><code class="AB">()</code><i class="M"><code>int</code></i></li>
+					<li class="Y"><i class="FINAL"><i class="PUBLIC"></i></i><code><a href="api/walhalla.data.lint.LintResult.html#equals(java.lang.Object)">equals</a></code><code class="AB">(<code><a aria-label="java.lang.Object 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/Object.html">Object</a></code><code class="parameterName">o</code>)</code><i class="M"><code>boolean</code></i></li>
+					<li class="Y"><i class="PUBLIC"></i><code><a href="api/walhalla.data.lint.LintResult.html#fixed()">fixed</a></code><code class="AB">()</code><i class="M"><code>boolean</code></i></li>
+					<li class="Y"><i class="PUBLIC"></i><code><a href="api/walhalla.data.lint.LintResult.html#result()">result</a></code><code class="AB">()</code><i class="M"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></i></li>
 				</ul>
 			</div>
 		</aside>
