@@ -153,7 +153,7 @@ public class OpenThread implements Storable<OpenThread> {
             String id = name.next().attr("val");
 
             XML dd = dt.next();
-
+            System.out.println(dd);
             // ======================================================
             // Collect embedded content links (YouTube, X, etc.)
             // ======================================================
@@ -179,6 +179,7 @@ public class OpenThread implements Storable<OpenThread> {
             dd.element("b").forEach(b -> b.text("<b>" + b.text() + "</b>"));
             String body = dd.text().trim();
             body = body.replaceAll("(?i)\\bhttps?://[\\w\\-._~:/?#\\[\\]@!$&'()*+,;=%]+", "<a href=\"$0\">$0</a>");
+            body = body.replaceAll("&amp;t=[^&]+\\s*", "");
             body = nick.link(body);
 
             List<ImageSource> images = new ArrayList<>();
