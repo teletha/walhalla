@@ -13,6 +13,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import kiss.I;
+import psychopath.Locator;
 import walhalla.data.Database;
 
 public class LintTestGenerator {
@@ -21,22 +22,19 @@ public class LintTestGenerator {
         Set<String> recorder = new HashSet<>();
         StringBuilder builder = new StringBuilder();
         Linter.INTERCEPTOR = (desc, input, output) -> {
-            if (recorder.add(desc) && !containsNonJapaneseLetters(desc)) {
-                builder.append("    @Test\n");
-                builder.append("    public void ").append(desc).append("() {\n");
-                builder.append("        assertLine(\"").append(input).append("\", \"\"\"\n");
-                for (String line : output.split("\n")) {
-                    builder.append("            ").append(line).append("\n");
-                }
-                builder.append("            \"\"\");\n");
-                builder.append("    }\n\n");
+
+            if (recorder.add(desc) && !containsNonJapaneseLetters(desc) && !desc.contains("モーティマ") && !input.isEmpty()) {
+                builder.append(desc).append("\n");
+                builder.append(input).append("\n");
+                builder.append(output).append("\n");
+                builder.append("===\n");
             }
         };
 
         Database db = I.make(Database.class);
         db.build();
 
-        System.out.println(builder);
+        Locator.file("src/test/resources/descriptions.txt").text(builder.toString());
     }
 
     /**
@@ -47,8 +45,6 @@ public class LintTestGenerator {
      */
     public static boolean containsNonJapaneseLetters(String input) {
         for (int i = 0; i < input.length(); i++) {
-            char ch = input.charAt(i);
-
             // サロゲートペア対応（補助漢字など）
             int codePoint = input.codePointAt(i);
             if (Character.isSupplementaryCodePoint(codePoint)) {
