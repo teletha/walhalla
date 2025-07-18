@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 import kiss.I;
 import psychopath.Directory;
@@ -33,6 +34,10 @@ import walhalla.open2ch.OpenThreadCollector;
  * </p>
  */
 public class Astro {
+
+    public static final Set<String> NOT_IMPLEMENTED = Set.of("無頼の白狼ファオル");
+
+    public static boolean FORCE_UPDATE = false;
 
     static {
         I.load(Astro.class);
@@ -109,6 +114,7 @@ public class Astro {
             thread.analyze();
             thread.linkageCharacter();
             // thread.backupImages();
+
         });
     }
 
@@ -125,6 +131,7 @@ public class Astro {
      */
     public static void main(String[] args) {
         buildUnitJSON();
+        buildUnitIconSprite();
         buildTopics();
     }
 }

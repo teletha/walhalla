@@ -25,6 +25,7 @@ import kiss.Storable;
 import kiss.XML;
 import psychopath.File;
 import psychopath.Locator;
+import walhalla.Astro;
 
 /**
  * Manages the collection and storage of {@link Unit} data.
@@ -38,15 +39,13 @@ import psychopath.Locator;
 @Managed(Singleton.class)
 public class Database extends ArrayList<Unit> implements Storable<Database> {
 
-    private static final Set<String> NOT_IMPLEMENTED = Set.of();
-
     /**
      * Constructs a UnitManager instance. Loads unit data from storage or rebuilds it if outdated.
      */
     private Database() {
         File file = Locator.file(locate());
 
-        if (file.lastModifiedMilli() < System.currentTimeMillis() - 7 * 24 * 60 * 60 * 1000) {
+        if (file.lastModifiedMilli() < System.currentTimeMillis() - 7 * 24 * 60 * 60 * 1000 * (Astro.FORCE_UPDATE ? -1 : 1)) {
             I.info("Unit data is outdated. Rebuilding...");
             build();
             store();
@@ -108,23 +107,25 @@ public class Database extends ArrayList<Unit> implements Storable<Database> {
 
     private void fixNotImplementedUnits() {
         for (Unit unit : this) {
-            if (NOT_IMPLEMENTED.contains(unit.nameJ)) {
+            if (Astro.NOT_IMPLEMENTED.contains(unit.nameJ)) {
                 unit.image = null;
                 unit.imageAW = null;
                 unit.image2A = null;
                 unit.image2B = null;
                 unit.bounus100 = Collections.EMPTY_LIST;
                 unit.bounus150 = Collections.EMPTY_LIST;
-                for (Stats stats : List.of(unit.stats, unit.stats1, unit.stats2A, unit.stats2B)) {
-                    stats.atk = 0;
-                    stats.def = 0;
-                    stats.mr = 0;
-                    stats.hp = 0;
-                    stats.cost = 0;
-                    stats.costMin = 0;
-                    stats.range = 0;
-                    stats.block = 0;
-                    stats.image = null;
+                for (Stats stats : I.list(unit.stats, unit.stats1, unit.stats2A, unit.stats2B)) {
+                    if (stats != null) {
+                        stats.atk = 0;
+                        stats.def = 0;
+                        stats.mr = 0;
+                        stats.hp = 0;
+                        stats.cost = 0;
+                        stats.costMin = 0;
+                        stats.range = 0;
+                        stats.block = 0;
+                        stats.image = null;
+                    }
                 }
             }
         }
@@ -149,8 +150,12 @@ public class Database extends ArrayList<Unit> implements Storable<Database> {
             }
         };
 
-        I.xml(Wiki.source("https://aigis.fandom.com/wiki/Category:Female_Units", 12 * 60 * 60 * 1000)).element("img").forEach(scan);
-        I.xml(Wiki.source("https://aigis.fandom.com/wiki/Category:Male_Units", 12 * 60 * 60 * 1000)).element("img").forEach(scan);
+        I.xml(Wiki.source("https://aigis.fandom.com/wiki/Category:Female_Units", 12 * 60 * 60 * 1000 * (Astro.FORCE_UPDATE ? -1 : 1)))
+                .element("img")
+                .forEach(scan);
+        I.xml(Wiki.source("https://aigis.fandom.com/wiki/Category:Male_Units", 12 * 60 * 60 * 1000 * (Astro.FORCE_UPDATE ? -1 : 1)))
+                .element("img")
+                .forEach(scan);
 
         return names;
     }
