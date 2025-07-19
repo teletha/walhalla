@@ -22,8 +22,11 @@ public class LintTestGenerator {
         Set<String> recorder = new HashSet<>();
         StringBuilder builder = new StringBuilder();
         Linter.INTERCEPTOR = (desc, input, output) -> {
+            if (containsNonJapaneseLetters(desc)) {
+                return;
+            }
 
-            if (recorder.add(desc) && !containsNonJapaneseLetters(desc) && !desc.contains("モーティマ") && !input.isEmpty()) {
+            if (recorder.add(desc) && !desc.contains("モーティマ") && !input.isEmpty()) {
                 builder.append(desc).append("\n");
                 builder.append(input).append("\n");
                 builder.append(output).append("\n");
@@ -63,13 +66,14 @@ public class LintTestGenerator {
     }
 
     /**
-     * 漢字・ひらがな・カタカナかどうかを判定する。
+     * 漢字・ひらがな・カタカナ・空白かどうかを判定する。
      */
     private static boolean isJapaneseChar(int codePoint) {
         return (codePoint >= 0x4E00 && codePoint <= 0x9FFF) // 漢字
                 || (codePoint >= 0x3040 && codePoint <= 0x309F) // ひらがな
                 || (codePoint >= 0x30A0 && codePoint <= 0x30FF) // カタカナ
                 || (codePoint >= 0x31F0 && codePoint <= 0x31FF) // カタカナ拡張
-                || (codePoint >= 0xFF66 && codePoint <= 0xFF9D); // 半角カナ（オプション）
+                || (codePoint >= 0xFF66 && codePoint <= 0xFF9D) // 半角カナ（オプション）
+                || Character.isWhitespace(codePoint); // 空白文字
     }
 }

@@ -131,7 +131,6 @@ public class Astro {
      */
     public static void main(String[] args) {
         buildUnitJSON();
-        buildUnitIconSprite();
         buildTopics();
     }
 }
