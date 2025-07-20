@@ -19,10 +19,10 @@
 		<link href="https://cdn.jsdelivr.net/npm/ress@4.0.0/dist/ress.min.css" rel="stylesheet"/>
 		<link href="main.css" rel="stylesheet"/>
 	</head>
-	<body class="R">
-		<header class="S" date="2025-07-20">
-			<h1 class="g"><a href="index.html"><code>Walhalla</code></a></h1>
-			<nav class="h"><a href="api/main.html" id="API"><svg class="package">
+	<body class="IB">
+		<header class="JB" date="2025-07-20">
+			<h1 class="U"><a href="index.html"><code>Walhalla</code></a></h1>
+			<nav class="R"><a href="api/main.html" id="API"><svg class="package">
 						<use href="main.svg#package"/>
 					</svg>
 				</a><a href="doc/changelog.html" id="Activity"><svg class="activity">
@@ -35,107 +35,107 @@
 						<use href="main.svg#github"/>
 					</svg>
 				</a></nav>
-			<div class="i"><a aria-label="Change color scheme" id="theme"><svg class="sun">
+			<div class="l"><a aria-label="Change color scheme" id="theme"><svg class="sun">
 						<use href="main.svg#sun"/>
 					</svg><svg class="moon">
 						<use href="main.svg#moon"/>
 					</svg>
 				</a></div>
 		</header>
-		<nav class="O"></nav>
-		<article class="M" id="Article">
-			<section class="n"><code class="X">walhalla.data</code>
-				<h2 class="Class IB"><code class="x">WikiText</code></h2>
-				<div class="k"></div><span class="A"><p>A utility class for parsing and manipulating wiki text. This class provides methods to extract
+		<nav class="y"></nav>
+		<article class="BB" id="Article">
+			<section class="LB"><code class="CB">walhalla.data</code>
+				<h2 class="Class b"><code class="HB">WikiText</code></h2>
+				<div class="q"></div><span class="A"><p>A utility class for parsing and manipulating wiki text. This class provides methods to extract
 key-value pairs, sections, and other structured data from a wiki text format.</p></span></section>
-			<section class="n" id="WikiText(java.lang.String)">
-				<h2 class="f"><i class="PUBLIC"></i><code class="x">WikiText</code><code class="W">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">text</code>)</code></h2>
-				<table class="EB">
-					<tr class="b">
+			<section class="LB" id="WikiText(java.lang.String)">
+				<h2 class="S"><i class="PUBLIC"></i><code class="HB">WikiText</code><code class="c">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">text</code>)</code></h2>
+				<table class="j">
+					<tr class="e">
 						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">text</code></td>
 						<td><span><p>The raw wiki text to be parsed.</p></span></td>
 					</tr>
 				</table><span class="A"><p>Constructs a WikiText instance with the given raw text.</p></span></section>
-			<section class="n" id="findKV(java.lang.String,java.util.function.Consumer)">
-				<h2 class="f"><i class="PUBLIC"></i><code class="x">findKV</code><code class="W">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">key</code>, <code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></code></code><code class="parameterName">value</code>)</code><i class="l"><code>void</code></i></h2>
-				<table class="EB">
-					<tr class="b">
+			<section class="LB" id="findKV(java.lang.String,java.util.function.Consumer)">
+				<h2 class="S"><i class="PUBLIC"></i><code class="HB">findKV</code><code class="c">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">key</code>, <code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></code></code><code class="parameterName">value</code>)</code><i class="i"><code>void</code></i></h2>
+				<table class="j">
+					<tr class="e">
 						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">key</code></td>
 						<td><span><p>The key to search for.</p></span></td>
 					</tr>
-					<tr class="b">
+					<tr class="e">
 						<td><code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></code></code><code class="parameterName">value</code></td>
 						<td><span><p>A consumer to process the value associated with the key.</p></span></td>
 					</tr>
 				</table><span class="A"><p>Finds a key-value pair in the wiki text and processes its value.</p></span></section>
-			<section class="n" id="peekKV(java.lang.String,java.util.function.Consumer)">
-				<h2 class="f"><i class="PUBLIC"></i><code class="x">peekKV</code><code class="W">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">key</code>, <code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></code></code><code class="parameterName">value</code>)</code><i class="l"><code>void</code></i></h2>
-				<table class="EB">
-					<tr class="b">
+			<section class="LB" id="peekKV(java.lang.String,java.util.function.Consumer)">
+				<h2 class="S"><i class="PUBLIC"></i><code class="HB">peekKV</code><code class="c">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">key</code>, <code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></code></code><code class="parameterName">value</code>)</code><i class="i"><code>void</code></i></h2>
+				<table class="j">
+					<tr class="e">
 						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">key</code></td>
 						<td><span><p>The key to search for.</p></span></td>
 					</tr>
-					<tr class="b">
+					<tr class="e">
 						<td><code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></code></code><code class="parameterName">value</code></td>
 						<td><span><p>A consumer to process the value associated with the key.</p></span></td>
 					</tr>
 				</table><span class="A"><p>Peeks at a key-value pair in the wiki text without advancing the parsing position.</p></span></section>
-			<section class="n" id="peekSection(java.lang.String,java.lang.Runnable)">
-				<h2 class="f"><i class="PUBLIC"></i><code class="x">peekSection</code><code class="W">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">text</code>, <code><a aria-label="java.lang.Runnable 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">action</code>)</code><i class="l"><code>void</code></i></h2>
-				<table class="EB">
-					<tr class="b">
+			<section class="LB" id="peekSection(java.lang.String,java.lang.Runnable)">
+				<h2 class="S"><i class="PUBLIC"></i><code class="HB">peekSection</code><code class="c">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">text</code>, <code><a aria-label="java.lang.Runnable 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">action</code>)</code><i class="i"><code>void</code></i></h2>
+				<table class="j">
+					<tr class="e">
 						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">text</code></td>
 						<td><span><p>The section title to search for.</p></span></td>
 					</tr>
-					<tr class="b">
+					<tr class="e">
 						<td><code><a aria-label="java.lang.Runnable 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">action</code></td>
 						<td><span><p>A runnable to execute if the section is found.</p></span></td>
 					</tr>
 				</table><span class="A"><p>Peeks at a section in the wiki text without advancing the parsing position.</p></span></section>
-			<section class="n" id="peek(java.lang.String)">
-				<h2 class="f"><i class="PUBLIC"></i><code class="x">peek</code><code class="W">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">value</code>)</code><i class="l"><code>boolean</code></i></h2>
-				<table class="EB">
-					<tr class="b">
+			<section class="LB" id="peek(java.lang.String)">
+				<h2 class="S"><i class="PUBLIC"></i><code class="HB">peek</code><code class="c">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">value</code>)</code><i class="i"><code>boolean</code></i></h2>
+				<table class="j">
+					<tr class="e">
 						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">value</code></td>
 						<td></td>
 					</tr>
-					<tr class="c">
+					<tr class="u">
 						<td><code>boolean</code></td>
 						<td></td>
 					</tr>
 				</table>
 			</section>
-			<section class="n" id="optional(java.lang.String)">
-				<h2 class="f"><i class="PUBLIC"></i><code class="x">optional</code><code class="W">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">value</code>)</code><i class="l"><code>boolean</code></i></h2>
-				<table class="EB">
-					<tr class="b">
+			<section class="LB" id="optional(java.lang.String)">
+				<h2 class="S"><i class="PUBLIC"></i><code class="HB">optional</code><code class="c">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">value</code>)</code><i class="i"><code>boolean</code></i></h2>
+				<table class="j">
+					<tr class="e">
 						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">value</code></td>
 						<td><span><p>The value to search for.</p></span></td>
 					</tr>
-					<tr class="c">
+					<tr class="u">
 						<td><code>boolean</code></td>
 						<td><span><p>True if the value is found, false otherwise.</p></span></td>
 					</tr>
 				</table><span class="A"><p>Optionally checks for the presence of a specific value in the text without throwing an
 exception.</p></span></section>
 		</article>
-		<aside class="N">
-			<div class="AB">
-				<h5 class="KB">Constructors</h5>
+		<aside class="KB">
+			<div class="Z">
+				<h5 class="s">Constructors</h5>
 				<ul>
-					<li class="s"><i class="PUBLIC"></i><code><a href="api/walhalla.data.WikiText.html#WikiText(java.lang.String)">WikiText</a></code><code class="W">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">text</code>)</code></li>
+					<li class="g"><i class="PUBLIC"></i><code><a href="api/walhalla.data.WikiText.html#WikiText(java.lang.String)">WikiText</a></code><code class="c">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">text</code>)</code></li>
 				</ul>
-				<h5 class="KB">Methods</h5>
+				<h5 class="s">Methods</h5>
 				<ul>
-					<li class="s"><i class="PUBLIC"></i><code><a href="api/walhalla.data.WikiText.html#findKV(java.lang.String,java.util.function.Consumer)">findKV</a></code><code class="W">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">key</code>, <code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></code></code><code class="parameterName">value</code>)</code><i class="z"><code>void</code></i></li>
-					<li class="s"><i class="PUBLIC"></i><code><a href="api/walhalla.data.WikiText.html#peekKV(java.lang.String,java.util.function.Consumer)">peekKV</a></code><code class="W">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">key</code>, <code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></code></code><code class="parameterName">value</code>)</code><i class="z"><code>void</code></i></li>
-					<li class="s"><i class="PUBLIC"></i><code><a href="api/walhalla.data.WikiText.html#peekSection(java.lang.String,java.lang.Runnable)">peekSection</a></code><code class="W">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">text</code>, <code><a aria-label="java.lang.Runnable 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">action</code>)</code><i class="z"><code>void</code></i></li>
-					<li class="s"><i class="PUBLIC"></i><code><a href="api/walhalla.data.WikiText.html#peek(java.lang.String)">peek</a></code><code class="W">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">value</code>)</code><i class="z"><code>boolean</code></i></li>
-					<li class="s"><i class="PUBLIC"></i><code><a href="api/walhalla.data.WikiText.html#optional(java.lang.String)">optional</a></code><code class="W">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">value</code>)</code><i class="z"><code>boolean</code></i></li>
+					<li class="g"><i class="PUBLIC"></i><code><a href="api/walhalla.data.WikiText.html#findKV(java.lang.String,java.util.function.Consumer)">findKV</a></code><code class="c">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">key</code>, <code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></code></code><code class="parameterName">value</code>)</code><i class="V"><code>void</code></i></li>
+					<li class="g"><i class="PUBLIC"></i><code><a href="api/walhalla.data.WikiText.html#peekKV(java.lang.String,java.util.function.Consumer)">peekKV</a></code><code class="c">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">key</code>, <code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code></code></code><code class="parameterName">value</code>)</code><i class="V"><code>void</code></i></li>
+					<li class="g"><i class="PUBLIC"></i><code><a href="api/walhalla.data.WikiText.html#peekSection(java.lang.String,java.lang.Runnable)">peekSection</a></code><code class="c">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">text</code>, <code><a aria-label="java.lang.Runnable 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">action</code>)</code><i class="V"><code>void</code></i></li>
+					<li class="g"><i class="PUBLIC"></i><code><a href="api/walhalla.data.WikiText.html#peek(java.lang.String)">peek</a></code><code class="c">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">value</code>)</code><i class="V"><code>boolean</code></i></li>
+					<li class="g"><i class="PUBLIC"></i><code><a href="api/walhalla.data.WikiText.html#optional(java.lang.String)">optional</a></code><code class="c">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">value</code>)</code><i class="V"><code>boolean</code></i></li>
 				</ul>
 			</div>
 		</aside>
-		<footer class="T">
+		<footer class="t">
 			<p>Powered by <a href="https://github.com/teletha/evergarden" target="_">Evergarden</a></p>
 		</footer>
 	</body>

@@ -19,10 +19,10 @@
 		<link href="https://cdn.jsdelivr.net/npm/ress@4.0.0/dist/ress.min.css" rel="stylesheet"/>
 		<link href="main.css" rel="stylesheet"/>
 	</head>
-	<body class="R">
-		<header class="S" date="2025-07-20">
-			<h1 class="g"><a href="index.html"><code>Walhalla</code></a></h1>
-			<nav class="h"><a href="api/main.html" id="API"><svg class="package">
+	<body class="IB">
+		<header class="JB" date="2025-07-20">
+			<h1 class="U"><a href="index.html"><code>Walhalla</code></a></h1>
+			<nav class="R"><a href="api/main.html" id="API"><svg class="package">
 						<use href="main.svg#package"/>
 					</svg>
 				</a><a href="doc/changelog.html" id="Activity"><svg class="activity">
@@ -35,18 +35,18 @@
 						<use href="main.svg#github"/>
 					</svg>
 				</a></nav>
-			<div class="i"><a aria-label="Change color scheme" id="theme"><svg class="sun">
+			<div class="l"><a aria-label="Change color scheme" id="theme"><svg class="sun">
 						<use href="main.svg#sun"/>
 					</svg><svg class="moon">
 						<use href="main.svg#moon"/>
 					</svg>
 				</a></div>
 		</header>
-		<nav class="O"></nav>
-		<article class="M" id="Article">
-			<section class="n"><code class="X">walhalla.image</code>
-				<h2 class="Enum IB"><code class="x">Scalr.Mode</code></h2>
-				<div class="k">
+		<nav class="y"></nav>
+		<article class="BB" id="Article">
+			<section class="LB"><code class="CB">walhalla.image</code>
+				<h2 class="Enum b"><code class="HB">Scalr.Mode</code></h2>
+				<div class="q">
 					<ul class="E G">
 						<li><code><a aria-label="java.lang.Enum 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/Enum.html">Enum</a><code class="parameters"><code><a aria-label="walhalla.image.Scalr.Mode" href="api/walhalla.image.Scalr.Mode.html">Mode</a></code></code></code></li>
 					</ul>
@@ -57,14 +57,14 @@
 					</ul>
 				</div><span class="A"><p>Used to define the different modes of resizing that the algorithm can
 use.</p></span></section>
-			<section class="n" id="AUTOMATIC">
-				<h2 class="f"><i class="FINAL"><i class="STATIC PUBLIC"></i></i><code class="x">AUTOMATIC</code><i class="l"><code class="return"><a aria-label="walhalla.image.Scalr.Mode" href="api/walhalla.image.Scalr.Mode.html">Mode</a></code></i></h2><span class="A"><p>Used to indicate that the scaling implementation should calculate
+			<section class="LB" id="AUTOMATIC">
+				<h2 class="S"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code class="HB">AUTOMATIC</code><i class="i"><code class="return"><a aria-label="walhalla.image.Scalr.Mode" href="api/walhalla.image.Scalr.Mode.html">Mode</a></code></i></h2><span class="A"><p>Used to indicate that the scaling implementation should calculate
 dimensions for the resultant image by looking at the image&apos;s
 orientation and generating proportional dimensions that best fit into
 the target width and height given</p><p>See &quot;Image Proportions&quot; in the <code><a aria-label="walhalla.image.Scalr" href="api/walhalla.image.Scalr.html">Scalr</a></code> class description for
 more detail.</p></span></section>
-			<section class="n" id="FIT_EXACT">
-				<h2 class="f"><i class="FINAL"><i class="STATIC PUBLIC"></i></i><code class="x">FIT_EXACT</code><i class="l"><code class="return"><a aria-label="walhalla.image.Scalr.Mode" href="api/walhalla.image.Scalr.Mode.html">Mode</a></code></i></h2><span class="A"><p>Used to fit the image to the exact dimensions given regardless of the
+			<section class="LB" id="FIT_EXACT">
+				<h2 class="S"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code class="HB">FIT_EXACT</code><i class="i"><code class="return"><a aria-label="walhalla.image.Scalr.Mode" href="api/walhalla.image.Scalr.Mode.html">Mode</a></code></i></h2><span class="A"><p>Used to fit the image to the exact dimensions given regardless of the
 image&apos;s proportions. If the dimensions are not proportionally
 correct, this will introduce vertical or horizontal stretching to the
 image.</p><p/>
@@ -73,59 +73,59 @@ image.</p><p/>
  correct, but if dimension-fitting is the #1 priority regardless of
  how it makes the image look, that is what this mode is for.
 </span></section>
-			<section class="n" id="BEST_FIT_BOTH">
-				<h2 class="f"><i class="FINAL"><i class="STATIC PUBLIC"></i></i><code class="x">BEST_FIT_BOTH</code><i class="l"><code class="return"><a aria-label="walhalla.image.Scalr.Mode" href="api/walhalla.image.Scalr.Mode.html">Mode</a></code></i></h2><span class="A"><p>Used to indicate that the scaling implementation should calculate
+			<section class="LB" id="BEST_FIT_BOTH">
+				<h2 class="S"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code class="HB">BEST_FIT_BOTH</code><i class="i"><code class="return"><a aria-label="walhalla.image.Scalr.Mode" href="api/walhalla.image.Scalr.Mode.html">Mode</a></code></i></h2><span class="A"><p>Used to indicate that the scaling implementation should calculate
 dimensions for the largest image that fit within the bounding box,
 without cropping or distortion, retaining the original proportions.</p></span></section>
-			<section class="n" id="FIT_TO_WIDTH">
-				<h2 class="f"><i class="FINAL"><i class="STATIC PUBLIC"></i></i><code class="x">FIT_TO_WIDTH</code><i class="l"><code class="return"><a aria-label="walhalla.image.Scalr.Mode" href="api/walhalla.image.Scalr.Mode.html">Mode</a></code></i></h2><span class="A"><p>Used to indicate that the scaling implementation should calculate
+			<section class="LB" id="FIT_TO_WIDTH">
+				<h2 class="S"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code class="HB">FIT_TO_WIDTH</code><i class="i"><code class="return"><a aria-label="walhalla.image.Scalr.Mode" href="api/walhalla.image.Scalr.Mode.html">Mode</a></code></i></h2><span class="A"><p>Used to indicate that the scaling implementation should calculate
 dimensions for the resultant image that best-fit within the given
 width, regardless of the orientation of the image.</p></span></section>
-			<section class="n" id="FIT_TO_HEIGHT">
-				<h2 class="f"><i class="FINAL"><i class="STATIC PUBLIC"></i></i><code class="x">FIT_TO_HEIGHT</code><i class="l"><code class="return"><a aria-label="walhalla.image.Scalr.Mode" href="api/walhalla.image.Scalr.Mode.html">Mode</a></code></i></h2><span class="A"><p>Used to indicate that the scaling implementation should calculate
+			<section class="LB" id="FIT_TO_HEIGHT">
+				<h2 class="S"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code class="HB">FIT_TO_HEIGHT</code><i class="i"><code class="return"><a aria-label="walhalla.image.Scalr.Mode" href="api/walhalla.image.Scalr.Mode.html">Mode</a></code></i></h2><span class="A"><p>Used to indicate that the scaling implementation should calculate
 dimensions for the resultant image that best-fit within the given
 height, regardless of the orientation of the image.</p></span></section>
-			<section class="n" id="values()">
-				<h2 class="f"><i class="STATIC PUBLIC"></i><code class="x">values</code><code class="W">()</code><i class="l"><code array="fix"><a aria-label="walhalla.image.Scalr.Mode" href="api/walhalla.image.Scalr.Mode.html">Mode</a></code></i></h2>
-				<table class="EB">
-					<tr class="c">
+			<section class="LB" id="values()">
+				<h2 class="S"><i class="PUBLIC STATIC"></i><code class="HB">values</code><code class="c">()</code><i class="i"><code array="fix"><a aria-label="walhalla.image.Scalr.Mode" href="api/walhalla.image.Scalr.Mode.html">Mode</a></code></i></h2>
+				<table class="j">
+					<tr class="u">
 						<td><code array="fix"><a aria-label="walhalla.image.Scalr.Mode" href="api/walhalla.image.Scalr.Mode.html">Mode</a></code></td>
 						<td></td>
 					</tr>
 				</table>
 			</section>
-			<section class="n" id="valueOf(java.lang.String)">
-				<h2 class="f"><i class="STATIC PUBLIC"></i><code class="x">valueOf</code><code class="W">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>)</code><i class="l"><code><a aria-label="walhalla.image.Scalr.Mode" href="api/walhalla.image.Scalr.Mode.html">Mode</a></code></i></h2>
-				<table class="EB">
-					<tr class="b">
+			<section class="LB" id="valueOf(java.lang.String)">
+				<h2 class="S"><i class="PUBLIC STATIC"></i><code class="HB">valueOf</code><code class="c">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>)</code><i class="i"><code><a aria-label="walhalla.image.Scalr.Mode" href="api/walhalla.image.Scalr.Mode.html">Mode</a></code></i></h2>
+				<table class="j">
+					<tr class="e">
 						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code></td>
 						<td></td>
 					</tr>
-					<tr class="c">
+					<tr class="u">
 						<td><code><a aria-label="walhalla.image.Scalr.Mode" href="api/walhalla.image.Scalr.Mode.html">Mode</a></code></td>
 						<td></td>
 					</tr>
 				</table>
 			</section>
 		</article>
-		<aside class="N">
-			<div class="AB">
-				<h5 class="KB">Static Fields</h5>
+		<aside class="KB">
+			<div class="Z">
+				<h5 class="s">Static Fields</h5>
 				<ul>
-					<li class="s"><i class="FINAL"><i class="STATIC PUBLIC"></i></i><code><a href="api/walhalla.image.Scalr.Mode.html#AUTOMATIC">AUTOMATIC</a></code><i class="z"><code class="return"><a aria-label="walhalla.image.Scalr.Mode" href="api/walhalla.image.Scalr.Mode.html">Mode</a></code></i></li>
-					<li class="s"><i class="FINAL"><i class="STATIC PUBLIC"></i></i><code><a href="api/walhalla.image.Scalr.Mode.html#FIT_EXACT">FIT_EXACT</a></code><i class="z"><code class="return"><a aria-label="walhalla.image.Scalr.Mode" href="api/walhalla.image.Scalr.Mode.html">Mode</a></code></i></li>
-					<li class="s"><i class="FINAL"><i class="STATIC PUBLIC"></i></i><code><a href="api/walhalla.image.Scalr.Mode.html#BEST_FIT_BOTH">BEST_FIT_BOTH</a></code><i class="z"><code class="return"><a aria-label="walhalla.image.Scalr.Mode" href="api/walhalla.image.Scalr.Mode.html">Mode</a></code></i></li>
-					<li class="s"><i class="FINAL"><i class="STATIC PUBLIC"></i></i><code><a href="api/walhalla.image.Scalr.Mode.html#FIT_TO_WIDTH">FIT_TO_WIDTH</a></code><i class="z"><code class="return"><a aria-label="walhalla.image.Scalr.Mode" href="api/walhalla.image.Scalr.Mode.html">Mode</a></code></i></li>
-					<li class="s"><i class="FINAL"><i class="STATIC PUBLIC"></i></i><code><a href="api/walhalla.image.Scalr.Mode.html#FIT_TO_HEIGHT">FIT_TO_HEIGHT</a></code><i class="z"><code class="return"><a aria-label="walhalla.image.Scalr.Mode" href="api/walhalla.image.Scalr.Mode.html">Mode</a></code></i></li>
+					<li class="g"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code><a href="api/walhalla.image.Scalr.Mode.html#AUTOMATIC">AUTOMATIC</a></code><i class="V"><code class="return"><a aria-label="walhalla.image.Scalr.Mode" href="api/walhalla.image.Scalr.Mode.html">Mode</a></code></i></li>
+					<li class="g"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code><a href="api/walhalla.image.Scalr.Mode.html#FIT_EXACT">FIT_EXACT</a></code><i class="V"><code class="return"><a aria-label="walhalla.image.Scalr.Mode" href="api/walhalla.image.Scalr.Mode.html">Mode</a></code></i></li>
+					<li class="g"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code><a href="api/walhalla.image.Scalr.Mode.html#BEST_FIT_BOTH">BEST_FIT_BOTH</a></code><i class="V"><code class="return"><a aria-label="walhalla.image.Scalr.Mode" href="api/walhalla.image.Scalr.Mode.html">Mode</a></code></i></li>
+					<li class="g"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code><a href="api/walhalla.image.Scalr.Mode.html#FIT_TO_WIDTH">FIT_TO_WIDTH</a></code><i class="V"><code class="return"><a aria-label="walhalla.image.Scalr.Mode" href="api/walhalla.image.Scalr.Mode.html">Mode</a></code></i></li>
+					<li class="g"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code><a href="api/walhalla.image.Scalr.Mode.html#FIT_TO_HEIGHT">FIT_TO_HEIGHT</a></code><i class="V"><code class="return"><a aria-label="walhalla.image.Scalr.Mode" href="api/walhalla.image.Scalr.Mode.html">Mode</a></code></i></li>
 				</ul>
-				<h5 class="KB">Static Methods</h5>
+				<h5 class="s">Static Methods</h5>
 				<ul>
-					<li class="s"><i class="STATIC PUBLIC"></i><code><a href="api/walhalla.image.Scalr.Mode.html#values()">values</a></code><code class="W">()</code><i class="z"><code array="fix"><a aria-label="walhalla.image.Scalr.Mode" href="api/walhalla.image.Scalr.Mode.html">Mode</a></code></i></li>
-					<li class="s"><i class="STATIC PUBLIC"></i><code><a href="api/walhalla.image.Scalr.Mode.html#valueOf(java.lang.String)">valueOf</a></code><code class="W">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>)</code><i class="z"><code><a aria-label="walhalla.image.Scalr.Mode" href="api/walhalla.image.Scalr.Mode.html">Mode</a></code></i></li>
+					<li class="g"><i class="PUBLIC STATIC"></i><code><a href="api/walhalla.image.Scalr.Mode.html#values()">values</a></code><code class="c">()</code><i class="V"><code array="fix"><a aria-label="walhalla.image.Scalr.Mode" href="api/walhalla.image.Scalr.Mode.html">Mode</a></code></i></li>
+					<li class="g"><i class="PUBLIC STATIC"></i><code><a href="api/walhalla.image.Scalr.Mode.html#valueOf(java.lang.String)">valueOf</a></code><code class="c">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>)</code><i class="V"><code><a aria-label="walhalla.image.Scalr.Mode" href="api/walhalla.image.Scalr.Mode.html">Mode</a></code></i></li>
 				</ul>
 			</div>
 		</aside>
-		<footer class="T">
+		<footer class="t">
 			<p>Powered by <a href="https://github.com/teletha/evergarden" target="_">Evergarden</a></p>
 		</footer>
 	</body>
