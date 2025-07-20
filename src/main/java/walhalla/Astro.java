@@ -120,12 +120,6 @@ public class Astro {
         });
     }
 
-    public static void linkageCharacter() {
-        OpenThreadCollector.collect().to(thread -> {
-            thread.linkageCharacter();
-        });
-    }
-
     /**
      * Main entry point. Builds the topics database.
      *
