@@ -10,6 +10,8 @@
 package walhalla.data.lint;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 public class Proofreader {
 
@@ -105,15 +107,20 @@ public class Proofreader {
             .addRule("自身が使役するトークンは出撃人数に含まれない", "\n自身が使役するトークンは出撃人数に含まれない\n")
             .addRule("自身が死亡時", "\n自身が死亡時")
             .addRule("自身が撤退した場合", "\n自身が撤退した場合")
+            .addRule("自身が死亡または撤退した場合", "\n自身が死亡または撤退した場合")
             .addRule("自身の毒", "\n自身の毒")
             .addRule("使役可能", "使役可能\n")
             .addRule("物理攻撃を回避する", "物理攻撃を回避する\n")
-            .addRule("敵をブロックしていない時、味方のHPを回復する", "\n敵をブロックしていない時、味方のHPを回復する\n")
             .addRule("ブロックした敵全員を攻撃できる", "ブロックした敵全員を攻撃")
             .addRule("ブロックした敵全員を攻撃", "ブロックした敵全員を攻撃\n")
             .addRule("ブロックした全敵を攻撃", "\nブロックした敵全員を攻撃\n")
             .addRule("ブロック中は", "\nブロック中は")
+            .addRule("敵をブロックしている時は", "\nブロック中は")
+            .addRule("敵をブロックしている時、", "\nブロック中は")
+            .addRule("非ブロック中、", "\n非ブロック中は")
             .addRule("非ブロック時、", "\n非ブロック中は")
+            .addRule("敵をブロックしていない時は", "\n非ブロック中は")
+            .addRule("敵をブロックしていない時、味方のHPを回復する", "\n非ブロック中は味方のHPを回復する\n")
             .addRule("非スキル、非ブロック中は", "\n非スキル非ブロック中は")
             .addRule("出撃コストが徐々に増加", "\n出撃コストが徐々に増加する\n")
             .addRule("スキル中、出撃コストが徐々に増加", "\nスキル中は出撃コストが徐々に増加\n")
@@ -130,7 +137,11 @@ public class Proofreader {
             .addRule("撤退時にコストが80%回復し、", "\n撤退時にコストが80%回復、")
             .addRule("撤退時に出撃コストが80%回復", "\n撤退時にコストが80%回復\n")
             .addRule("撤退時に出撃コストが90%回復", "\n撤退時にコストが90%回復\n")
-            .addRule("一定時間後に再出撃が可能", "一定時間後に再出撃が可能\n")
+            .addRule("敵を倒すと出撃コスト回復", "\n敵を倒すと出撃コスト回復\n")
+            .addRule("一定時間後に再出撃可能", "一定時間後に再出撃可能\n")
+            .addRule("一定時間後に再出撃が可能", "一定時間後に再出撃可能\n")
+            .addRule("一定時間後に再出撃可能化", "一定時間後に再出撃可能にする\n")
+            .addRule("一定時間後に再出撃可能にする", "一定時間後に再出撃可能にする\n")
             .addRule("トークンは出撃数に含まれない", "\nトークンは出撃数に含まれない\n")
             .addRule("風鈴トークンは出撃数に含まれない", "\nトークンは出撃数に含まれない\n") // 浴衣リアナ
             .addRule("トークンを設置したマスに移動し", "\nトークンを設置したマスに移動し")
@@ -140,7 +151,12 @@ public class Proofreader {
             .addRule("攻撃後の待ち時間を少し短縮", "\n攻撃後の待ち時間を少し短縮\n")
             .addRule("攻撃後の待ち時間を少し短縮する", "\n攻撃後の待ち時間を少し短縮\n")
             .addRule("攻撃後の待ち時間を短縮", "\n攻撃後の待ち時間を短縮\n")
+            .addRule("攻撃後の待ち時間を短縮し", "\n攻撃後の待ち時間を短縮\n")
             .addRule("攻撃後の待ち時間を短縮する", "\n攻撃後の待ち時間を短縮\n")
+            .addRule("スキル中、攻撃後の待ち時間を短縮", "\nスキル中は攻撃後の待ち時間を短縮\n")
+            .addRule("スキル中、攻撃後の待ち時間を短縮し", "\nスキル中は攻撃後の待ち時間を短縮\n")
+            .addRule("スキル中、攻撃後の待ち時間を短縮する", "\nスキル中は攻撃後の待ち時間を短縮\n")
+            .addRule("さらに配置中、範囲内の味方の攻撃後の待ち時間を短縮する", "\n配置効果：範囲内の味方の攻撃後の待ち時間を短縮\n")
             .addRule("攻撃の後の待ち時間を少し短縮", "\n攻撃後の待ち時間を少し短縮\n")
             .addRule("攻撃しなくなり、", "\n攻撃しなくなる\n")
             .addRule("他者からHP回復を受けられない", "\n他者からHP回復を受けられない\n")
@@ -149,6 +165,8 @@ public class Proofreader {
             .addRule("死亡時撤退扱い", "\n死亡時は撤退として扱う\n")
             .addRule("死亡時、撤退扱い", "\n死亡時は撤退として扱う\n")
             .addRule("死亡時、撤退扱い。", "\n死亡時は撤退として扱う\n")
+            .addRule("死亡時撤退扱いとなり広範囲の敵に貫通大ダメージを与え一定時間後に再出撃可能", "\n死亡時効果：広範囲の敵に貫通属性の大ダメージを与える\n死亡時は撤退として扱う\n一定時間後に再出撃可能\n")
+            .addRule("死亡時撤退扱いとなり周囲の敵に貫通属性の大ダメージを与え一定時間後に再出撃可能", "\n死亡時効果：周囲の敵に貫通属性の大ダメージを与える\n死亡時は撤退として扱う\n一定時間後に再出撃可能\n")
             .addRule("配置した瞬間", "\n配置時効果：")
             .addRule("ユニットを配置した瞬間", "\n配置時効果：")
             .addRule("ユニットを配置した瞬間、", "\n配置時効果：")
@@ -193,7 +211,9 @@ public class Proofreader {
             .addRule("ブロック中の敵の攻撃に対し、", "\nブロック中の敵の攻撃に対し、")
             .addRule("魔法耐性が上昇", "\n魔法耐性が上昇\n")
             .addRule("魔法耐性が大幅に上昇", "\n魔法耐性が大幅に上昇\n")
-            .addRule("スキルで地上に降りる", "\nスキル使用時は地上に降りる\n")
+            .addRule("スキルで地上に降りる", "\nスキル中は地上に降りる\n")
+            .addRule("スキル使用で飛行", "\nスキル中は飛行\n")
+            .addRule("スキル使用で飛行可能", "\nスキル中は飛行\n")
             .addRule("スキル中HPが0にならず", "\nスキル中はHPが0にならない\n")
             .addRule("HPが0にならない", "\nHPが0にならない\n")
             .addRule("効果終了時ＨＰ半減", "\n効果終了時にHPが半減する\n")
@@ -203,6 +223,7 @@ public class Proofreader {
             .addRule("発射する矢の速度が上昇する", "\n発射する矢の速度が上昇\n")
             .addRule("発射する矢の速度が上昇し", "\n発射する矢の速度が上昇\n")
             .addRule("敵を倒すとまれにゴールドを入手", "\n敵を倒すとまれにゴールドを入手\n")
+            .addRule("敵を倒すとまれにゴールドを入手することができる", "\n敵を倒すとまれにゴールドを入手\n")
             .addRule("敵を倒すとゴールドを確実に入手する", "\n敵を倒すとゴールドを確実に入手する\n")
             .addRule("戦闘中1回しか使えない", "\n戦闘中1回しか使用できない\n")
             .addRule("戦闘中、1回しか使えない", "\n戦闘中1回しか使用できない\n")
@@ -222,7 +243,7 @@ public class Proofreader {
             .addRule("悪天候による射程の影響を受けない", "\n悪天候の影響を受けない\n")
             .addRule("天界と魔界の悪影響を50%軽減", "\n天界の影響を50%軽減\n魔界の影響を50%軽減\n")
             .addRegex("魔界でも?能力が?低下(しない|せず)", "\n魔界の影響を受けない\n")
-            .addRegex("(自身のみ)?(自身と自トークンは)?(天界|魔界|深海|悪天候|吹雪)の?悪?影響を?(無効化?|受けない|受けず)", "\n$2$3の影響を受けない\n")
+            .addRegex("(自身のみ)?(自身と自トークンは)?(天界|魔界|深海|悪天候|吹雪)の?悪?影響を?(無効化?し?|受けない|受けず)", "\n$2$3の影響を受けない\n")
             .addRegex("地形の影響を(\\d+)%軽減", "地形の影響を$1%軽減\n")
             .addRegex("悪天候の時間を(\\d+)%短縮", "悪天候の時間を$1%短縮\n")
             .addRegex("再出撃までの時間を(\\d+)%短縮", "\n再出撃までの時間を$1%短縮\n")
@@ -256,6 +277,33 @@ public class Proofreader {
         // 「するスキル」を無効化させる
         LINTER.addRule("使用回数を回復するスキルに変化", "使用回数を回復するスキルに変化");
         LINTER.addRule("攻撃力が減少するスキルに変化", "攻撃力が減少するスキルに変化");
+
+        Map<String, String> kvs = Map.of("ごくまれに", "(3%)", "まれに", "(10%)", "中確率で", "(30%)", "高確率で", "(80%)", "超高確率で", "(120%)");
+        for (Entry<String, String> entry : kvs.entrySet()) {
+            String word = entry.getKey();
+            String probability = entry.getValue();
+            Map<String, String> prefixes = Map.of("", "", "自身の攻撃で", "", "スキル中、", "スキル中は");
+            for (Entry<String, String> prefixEntry : prefixes.entrySet()) {
+                String prefix = prefixEntry.getKey();
+                String replacer = "\n" + prefixEntry.getValue() + "即死攻撃" + probability + "\n";
+                LINTER.addRule(prefix + word + "即死させる", replacer);
+                LINTER.addRule(prefix + word + "敵を即死させる", replacer);
+                LINTER.addRule(prefix + word + "即死させる攻撃", replacer);
+                LINTER.addRule(prefix + word + "敵を即死させる攻撃", replacer);
+                LINTER.addRule(prefix + word + "即死させる攻撃を行う", replacer);
+                LINTER.addRule(prefix + word + "敵を即死させる攻撃を行う", replacer);
+
+                LINTER.addRule("+" + prefix + word + "即死させる", replacer);
+                LINTER.addRule("+" + prefix + word + "敵を即死させる", replacer);
+                LINTER.addRule("+" + prefix + word + "即死させる", replacer);
+                LINTER.addRule("+" + prefix + word + "敵を即死させる", replacer);
+                LINTER.addRule("+" + prefix + word + "即死させる攻撃", replacer);
+                LINTER.addRule("+" + prefix + word + "即死させる攻撃を行う", replacer);
+                LINTER.addRule("+" + prefix + word + "敵を即死させる攻撃", replacer);
+                LINTER.addRule("+" + prefix + word + "敵を即死させる攻撃を行う", replacer);
+            }
+        }
+        LINTER.addRule("スキル発動時に範囲内の敵を高確率で即死させる", "\nスキル発動時に範囲内の敵を高確率で即死\n");
     }
 
     public static String fix(String text, String desc) {
