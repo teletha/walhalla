@@ -57,8 +57,6 @@ public class OpenThread implements Storable<OpenThread> {
     /** The list of comments (res) contained in this thread. */
     public List<Res> comments = new ArrayList<>();
 
-    public LocalDateTime lastImageBackuped;
-
     /** The list of topics extracted from this thread's comments via LLM analysis. */
     private Topics topics;
 
@@ -238,29 +236,32 @@ public class OpenThread implements Storable<OpenThread> {
     }
 
     public void backupImages() {
-        boolean needUpdate = false;
+        if (comments.getLast().date.plusDays(2).isBefore(LocalDateTime.now())) {
+            boolean needUpdate = false;
 
-        for (Topic topic : getTopics()) {
-            for (int num : topic.comments) {
-                Res res = getCommentBy(num);
-                for (ImageSource source : res.sources) {
-                    if (!source.hasBackup() && source.origin.startsWith("https://i.imgur.com/")) {
-                        Image image = Imgur.download(source.origin);
+            for (Topic topic : getTopics()) {
+                for (int num : topic.comments) {
+                    Res res = getCommentBy(num);
+                    for (ImageSource source : res.sources) {
+                        if (!source.hasBackup() && source.origin.startsWith("https://i.imgur.com/")) {
+                            Image image = Imgur.download(source.origin);
 
-                        JSON huge = Gyazo.upload(image.hugeName(), image.huge());
-                        source.backupH = huge.text("url");
+                            JSON huge = Gyazo.upload(image.hugeName(), image.huge());
+                            source.backupH = huge.text("url");
 
-                        JSON large = Gyazo.upload(image.largeName(), image.large());
-                        source.backupL = large.text("url");
+                            JSON large = Gyazo.upload(image.largeName(), image.large());
+                            source.backupL = large.text("url");
 
-                        needUpdate = true;
+                            needUpdate = true;
+                        }
                     }
                 }
             }
-        }
 
-        if (needUpdate) {
-            store();
+            if (needUpdate) {
+                store();
+            }
+
         }
     }
 

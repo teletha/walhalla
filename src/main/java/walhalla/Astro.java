@@ -111,10 +111,12 @@ public class Astro {
      */
     public static void buildTopics() {
         OpenThreadCollector.collect().to(thread -> {
+            long start = System.currentTimeMillis();
             thread.analyze();
+            thread.backupImages();
             thread.linkageCharacter();
-            // thread.backupImages();
-
+            long end = System.currentTimeMillis();
+            System.out.println("" + thread.title + " processed in " + (end - start) + " ms");
         });
     }
 
