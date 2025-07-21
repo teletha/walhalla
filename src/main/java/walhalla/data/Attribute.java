@@ -9,142 +9,147 @@
  */
 package walhalla.data;
 
+import static walhalla.data.AttributeType.*;
+
 import kiss.Decoder;
 import kiss.Encoder;
 import kiss.I;
 
 public enum Attribute {
-    Angel("天使"),
+    Angel(種族, "天使"),
 
-    Artillery("砲兵"),
+    Artillery(兵種, "砲兵"),
 
-    Beastfolk("獣人"),
+    Beastfolk(種族, "獣人"),
 
-    Birdfolk("鳥人"),
+    Birdfolk(種族, "鳥人"),
 
-    Bowman("弓兵"),
+    Bowman(兵種, "弓兵"),
 
-    Cavalry("騎兵"),
+    Cavalry(兵種, "騎兵"),
 
-    Celestial("天界人"),
+    Celestial(種族, "天界人"),
 
-    Chibi("ちび"),
+    Chibi(その他, "ちび"),
 
-    Christmas("クリスマス", new String[] {"クリ"}),
+    Christmas(季節, "クリスマス", new String[] {"クリ"}),
 
-    Clergy("聖職者"),
+    Clergy(兵種, "聖職者"),
 
-    DarkElf("ダークエルフ"),
+    DarkElf(種族, "ダークエルフ"),
 
-    DeepSea("深海"),
+    DeepSea(所属, "深海"),
 
-    Demon("デーモン"),
+    Demon(種族, "デーモン"),
 
-    DesertCountry("砂漠の国"),
+    DesertCountry(所属, "砂漠の国"),
 
-    Dragon("ドラゴン"),
+    Dragon(種族, "ドラゴン"),
 
-    Dragonfolk("竜人"),
+    Dragonfolk(種族, "竜人"),
 
-    Dwarf("ドワーフ"),
+    Dwarf(種族, "ドワーフ"),
 
-    EasternCountry("東の国"),
+    EasternCountry(所属, "東の国"),
 
-    EggHunt("エッグハント", new String[] {"エッグ", "バニー", "バニ"}),
+    EggHunt(季節, "エッグハント", new String[] {"エッグ", "バニー", "バニ"}),
 
-    Elf("エルフ"),
+    Elf(種族, "エルフ"),
 
-    Festival("大祭"),
+    Festival(季節, "大祭"),
 
-    FlowerCountry("華の国"),
+    FlowerCountry(所属, "華の国"),
 
-    Flying("飛行"),
+    Flying(兵種, "飛行"),
 
-    Giant("巨人"),
+    Giant(種族, "巨人"),
 
-    Goblin("ゴブリン"),
+    Goblin(種族, "ゴブリン"),
 
-    God("神"),
+    God(種族, "神"),
 
-    Gunner("銃士"),
+    Gunner(兵種, "銃士"),
 
-    HalfDarkElf("ハーフダークエルフ"),
+    HalfDarkElf(種族, "ハーフダークエルフ"),
 
-    HalfDemon("ハーフデーモン"),
+    HalfDemon(種族, "ハーフデーモン"),
 
-    HalfElf("ハーフエルフ"),
+    HalfElf(種族, "ハーフエルフ"),
 
-    HalfGod("半神"),
+    HalfGod(種族, "半神"),
 
-    Halloween("ハロウィン", new String[] {"ハロ"}),
+    Halloween(季節, "ハロウィン", new String[] {"ハロ"}),
 
-    Heavy("重装"),
+    Heavy(兵種, "重装"),
 
-    Hermit("仙人"),
+    Hermit(種族, "仙人"),
 
-    Hero("英傑"),
+    Hero(その他, "英傑"),
 
-    HotSprings("温泉", new String[] {"湯"}),
+    HotSprings(季節, "温泉", new String[] {"湯"}),
 
-    Human("人間"),
+    Human(種族, "人間"),
 
-    JuneBride("花嫁", new String[] {"嫁"}),
+    JuneBride(季節, "花嫁", new String[] {"嫁"}),
 
-    Kingdom("王国"),
+    Kingdom(所属, "王国"),
 
-    KingdomofPars("パルス王国"),
+    KingdomofPars(所属, "パルス王国"),
 
-    Machine("機械"),
+    Machine(種族, "機械"),
 
-    Magician("魔術師"),
+    Magician(兵種, "魔術師"),
 
-    Makai("魔界"),
+    Makai(所属, "魔界"),
 
-    Merfolk("魚人"),
+    Merfolk(種族, "魚人"),
 
-    Nendoroid("ねんどろいど"),
+    Nendoroid(種族, "ねんどろいど"),
 
-    NewYears("お正月", new String[] {"晴", "晴着", "着物", "新年", "正月"}),
+    NewYears(季節, "お正月", new String[] {"晴", "晴着", "着物", "新年", "正月"}),
 
-    Noble("高貴"),
+    Noble(その他, "高貴"),
 
-    None("なし"),
+    None(その他, "なし"),
 
-    Orc("オーク"),
+    Orc(種族, "オーク"),
 
-    School("学園", new String[] {"学"}),
+    School(季節, "学園", new String[] {"学"}),
 
-    SevenDeadlySins("七つの大罪"),
+    SevenDeadlySins(所属, "七つの大罪"),
 
-    Spirit("精霊"),
+    Spirit(種族, "精霊"),
 
-    Summer("サマー", new String[] {"夏"}),
+    Summer(季節, "サマー", new String[] {"夏"}),
 
-    Swimsuit("水着", new String[] {"水", "ミズ"}),
+    Swimsuit(季節, "水着", new String[] {"水", "ミズ"}),
 
-    Undead("アンデッド"),
+    Undead(種族, "アンデッド"),
 
-    Underworld("冥界人"),
+    Underworld(種族, "冥界人"),
 
-    ValentinesDay("バレンタイン", new String[] {"バレ", "ヴァレ", "チョコ"}),
+    ValentinesDay(季節, "バレンタイン", new String[] {"バレ", "ヴァレ", "チョコ", "V"}),
 
-    Vampire("ヴァンパイア"),
+    Vampire(種族, "ヴァンパイア"),
 
-    WhiteEmpire("白の帝国"),
+    WhiteEmpire(所属, "白の帝国"),
 
-    Youkai("妖怪"),
+    Youkai(種族, "妖怪"),
 
-    Yukata("浴衣", new String[] {"ゆかた"});
+    Yukata(季節, "浴衣", new String[] {"ゆかた"});
 
     public final String nameJ;
 
     public final String[] seasonPrefix;
 
-    private Attribute(String nameJ) {
-        this(nameJ, new String[0]);
+    public final AttributeType type;
+
+    private Attribute(AttributeType type, String nameJ) {
+        this(type, nameJ, new String[0]);
     }
 
-    private Attribute(String nameJ, String[] seasonalKeyword) {
+    private Attribute(AttributeType type, String nameJ, String[] seasonalKeyword) {
+        this.type = type;
         this.nameJ = nameJ;
         this.seasonPrefix = I.array(seasonalKeyword, nameJ);
     }

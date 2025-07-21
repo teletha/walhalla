@@ -24,6 +24,7 @@ import walhalla.data.Database;
 import walhalla.data.Rarity;
 import walhalla.data.Unit;
 import walhalla.data.UnitMeta;
+import walhalla.data.UnitMetaInfo;
 import walhalla.image.EditableImage;
 import walhalla.open2ch.OpenThreadCollector;
 
@@ -83,6 +84,7 @@ public class Astro {
 
         I.write(full, Astro.PUBLIC.file("characters.json").newBufferedWriter());
         I.write(meta, Astro.PUBLIC.file("meta.json").newBufferedWriter());
+        I.write(new UnitMetaInfo(), Astro.PUBLIC.file("meta-info.json").newBufferedWriter());
     }
 
     /**
