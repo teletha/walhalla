@@ -100,6 +100,11 @@ const root = {
 			"type": "Enum"
 		},
 		{
+			"name": "AttributeType",
+			"packageName": "walhalla.data",
+			"type": "Enum"
+		},
+		{
 			"name": "NickLinkage",
 			"packageName": "walhalla.data",
 			"type": "Class"
@@ -191,6 +196,11 @@ const root = {
 		},
 		{
 			"name": "Effect",
+			"packageName": "walhalla.data",
+			"type": "Class"
+		},
+		{
+			"name": "UnitMetaInfo",
 			"packageName": "walhalla.data",
 			"type": "Class"
 		},
