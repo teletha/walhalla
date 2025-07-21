@@ -587,4 +587,21 @@ public class Unit {
         }
     }
 
+    /**
+     * @return
+     */
+    public UnitMeta asMeta() {
+        UnitMeta meta = new UnitMeta();
+        meta.seq = seq;
+        attributes.forEach(attr -> meta.attrs.add(attr.nameJ));
+        effects.forEach((key, value) -> meta.attrs.add(key));
+        meta.attrs.add(rarity.name());
+        meta.attrs.add(place.name());
+        meta.attrs.add(String.valueOf(year));
+        meta.attrs.add(artist);
+        meta.attrs.add(gender.name());
+
+        return meta;
+    }
+
 }

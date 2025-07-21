@@ -23,6 +23,7 @@ import psychopath.Locator;
 import walhalla.data.Database;
 import walhalla.data.Rarity;
 import walhalla.data.Unit;
+import walhalla.data.UnitMeta;
 import walhalla.image.EditableImage;
 import walhalla.open2ch.OpenThreadCollector;
 
@@ -56,7 +57,14 @@ public class Astro {
      * Internal database class for storing units by name.
      */
     @SuppressWarnings("serial")
-    private static class DB extends HashMap<String, Unit> {
+    private static class FullDB extends HashMap<String, Unit> {
+    }
+
+    /**
+     * Internal database class for storing units by name.
+     */
+    @SuppressWarnings("serial")
+    private static class MetaDB extends HashMap<String, UnitMeta> {
     }
 
     /**
@@ -64,14 +72,17 @@ public class Astro {
      * and writes the result as a JSON file to the public directory.
      */
     public static void buildUnitJSON() {
-        DB db = new DB();
+        FullDB full = new FullDB();
+        MetaDB meta = new MetaDB();
         Database manager = I.make(Database.class);
         manager.build();
         manager.by(Rarity.黒, Rarity.白, Rarity.金, Rarity.銀).forEach(unit -> {
-            db.put(unit.nameJ, unit);
+            full.put(unit.nameJ, unit);
+            meta.put(unit.nameJ, unit.asMeta());
         });
 
-        I.write(db, Astro.PUBLIC.file("characters.json").newBufferedWriter());
+        I.write(full, Astro.PUBLIC.file("characters.json").newBufferedWriter());
+        I.write(meta, Astro.PUBLIC.file("meta.json").newBufferedWriter());
     }
 
     /**
