@@ -185,6 +185,11 @@ const root = {
 			"type": "Class"
 		},
 		{
+			"name": "UnitMeta",
+			"packageName": "walhalla.data",
+			"type": "Class"
+		},
+		{
 			"name": "Effect",
 			"packageName": "walhalla.data",
 			"type": "Class"
