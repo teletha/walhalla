@@ -51,6 +51,7 @@ public class NickLinkage {
         NICKS.put("ラシュマシュ", List.of("ラシュ", "マシュ"));
         NICKS.put("デルフィーナ", List.of("ピザ"));
         NICKS.put("メフィスト", List.of("メッフィー", "めっふぃー"));
+        NICKS.put("テュト", List.of("おばあちゃん", "テュトおばあちゃん"));
         NICKS.put("アブグルント", List.of("アブちゃん"));
         NICKS.put("神野悪五郎", List.of("悪五郎"));
         NICKS.put("オスカー", List.of("手塚"));
@@ -118,8 +119,8 @@ public class NickLinkage {
             builder.addKeyword("ちび" + name, "/character/" + u.nameJ + "/");
         });
 
-        units.stream().filter(u -> u.isSeasonal()).forEach(u -> {
-            for (Attribute season : u.season()) {
+        units.stream().filter(u -> !u.season.isEmpty()).forEach(u -> {
+            for (Attribute season : u.season) {
                 for (String prefix : season.seasonPrefix) {
                     builder.addKeyword(prefix + name, "/character/" + u.nameJ + "/");
                 }

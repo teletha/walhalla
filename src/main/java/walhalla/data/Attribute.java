@@ -32,7 +32,7 @@ public enum Attribute {
 
     Chibi(その他, "ちび"),
 
-    Christmas(季節, "クリスマス", new String[] {"クリ"}),
+    Christmas(季節, "クリスマス", new String[] {"クリ", "サンタ"}),
 
     Clergy(兵種, "聖職者"),
 
@@ -96,7 +96,7 @@ public enum Attribute {
 
     KingdomofPars(所属, "パルス王国"),
 
-    Machine(種族, "機械"),
+    Machine(所属, "機械"),
 
     Magician(兵種, "魔術師"),
 

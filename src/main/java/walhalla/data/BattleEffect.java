@@ -152,7 +152,11 @@ public enum BattleEffect {
             if (emit != null) {
                 Effect effect = emit.getPayload();
                 effects.put(effect.type, effect);
-                result.append("<a href='").append("/type/" + effect.type + "/").append("'>").append(token.getFragment()).append("</a>");
+                result.append("<a href='")
+                        .append("/character/?アビリティ1=" + effect.type)
+                        .append("'>")
+                        .append(token.getFragment())
+                        .append("</a>");
             } else {
                 result.append(token.getFragment());
             }

@@ -77,7 +77,7 @@ public class Astro {
         MetaDB meta = new MetaDB();
         Database manager = I.make(Database.class);
         manager.build();
-        manager.by(Rarity.黒, Rarity.白, Rarity.金, Rarity.銀).forEach(unit -> {
+        manager.by(Rarity.黒, Rarity.白, Rarity.金, Rarity.銀, Rarity.青).forEach(unit -> {
             full.put(unit.nameJ, unit);
             meta.put(unit.nameJ, unit.asMeta());
         });

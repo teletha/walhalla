@@ -101,13 +101,28 @@ public class Unit {
 
     public Map<String, Effect> effects = new HashMap();
 
-    public Attribute season;
+    public List<Attribute> season = new ArrayList();
+
+    public List<Attribute> affiliation = new ArrayList();
+
+    public List<Attribute> race = new ArrayList();
+
+    public List<Attribute> military = new ArrayList();
 
     public List<String> bounus100 = new ArrayList();
 
     public List<String> bounus150 = new ArrayList();
 
     private boolean disableAW;
+
+    public List<Stats> stats() {
+        List<Stats> list = new ArrayList<>();
+        if (stats != null) list.add(stats);
+        if (stats1 != null) list.add(stats1);
+        if (stats2A != null) list.add(stats2A);
+        if (stats2B != null) list.add(stats2B);
+        return list;
+    }
 
     void parseWikiCharacterDataByName(String name) {
         JSON json = I.json(Wiki.sourceByName(name)).find("query", "pages", "*", "revisions", "*", "slots", "main").getFirst();
@@ -294,17 +309,17 @@ public class Unit {
 
     void parseWikiStats(String text) {
         WikiText wiki = new WikiText(text);
-        wiki.peekKV("race", value -> attributes.add(Attribute.of(value)));
-        wiki.peekKV("affiliation", value -> attributes.add(Attribute.of(value)));
-        wiki.peekKV("seasonal", value -> attributes.add(Attribute.of(value)));
-        wiki.peekKV("cat4", value -> attributes.add(Attribute.of(value)));
-        wiki.peekKV("cat5", value -> attributes.add(Attribute.of(value)));
+        wiki.peekKV("race", value -> assign(Attribute.of(value)));
+        wiki.peekKV("affiliation", value -> assign(Attribute.of(value)));
+        wiki.peekKV("seasonal", value -> assign(Attribute.of(value)));
+        wiki.peekKV("cat4", value -> assign(Attribute.of(value)));
+        wiki.peekKV("cat5", value -> assign(Attribute.of(value)));
 
         // 追加属性は実際にはないので特別扱い
         if (name != null) {
-            if (name.endsWith("(Swimsuit)")) attributes.add(Attribute.Swimsuit);
-            if (name.endsWith("(Yukata)")) attributes.add(Attribute.Yukata);
-            if (name.endsWith("(Festival)")) attributes.add(Attribute.Festival);
+            if (name.endsWith("(Swimsuit)")) assign(Attribute.Swimsuit);
+            if (name.endsWith("(Yukata)")) assign(Attribute.Yukata);
+            if (name.endsWith("(Festival)")) assign(Attribute.Festival);
         }
 
         wiki.peekKV("hero", value -> hero = value.equals("y"));
@@ -379,6 +394,28 @@ public class Unit {
                 bounus150.add(bonusParser.apply(bonus));
             }
         });
+    }
+
+    private void assign(Attribute attribute) {
+        if (attribute.type == AttributeType.種族) {
+            if (!race.contains(attribute)) {
+                race.add(attribute);
+            }
+        } else if (attribute.type == AttributeType.兵種) {
+            if (!military.contains(attribute)) {
+                military.add(attribute);
+            }
+        } else if (attribute.type == AttributeType.所属) {
+            if (!affiliation.contains(attribute)) {
+                affiliation.add(attribute);
+            }
+        } else if (attribute.type == AttributeType.季節) {
+            if (!season.contains(attribute)) {
+                season.add(attribute);
+            }
+        } else {
+            attributes.add(attribute);
+        }
     }
 
     private static final Map<String, JSON> DB = I
@@ -506,14 +543,6 @@ public class Unit {
         }
     }
 
-    public List<Attribute> season() {
-        return attributes.stream().filter(Attribute::isSeasonal).toList();
-    }
-
-    public boolean isSeasonal() {
-        return season().size() != 0;
-    }
-
     /**
      * {@inheritDoc}
      */
@@ -594,12 +623,17 @@ public class Unit {
         UnitMeta meta = new UnitMeta();
         meta.seq = seq;
         attributes.forEach(attr -> meta.attrs.add(attr.nameJ));
+        race.forEach(attr -> meta.attrs.add(attr.nameJ));
+        season.forEach(attr -> meta.attrs.add(attr.nameJ));
+        affiliation.forEach(attr -> meta.attrs.add(attr.nameJ));
+        military.forEach(attr -> meta.attrs.add(attr.nameJ));
         effects.forEach((key, value) -> meta.attrs.add(key));
         meta.attrs.add(rarity.name());
         meta.attrs.add(place.name());
         meta.attrs.add(String.valueOf(year));
         meta.attrs.add(artist);
         meta.attrs.add(gender.name());
+        stats().forEach(stats -> meta.attrs.add(stats.profession.nameJ));
 
         return meta;
     }

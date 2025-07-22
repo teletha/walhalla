@@ -11,7 +11,7 @@ package walhalla.data;
 
 public enum Rarity {
 
-    王子, 鉄, 銅, 銀, 金, 白, 青, 黒;
+    王子, 青, 鉄, 銅, 銀, 金, 白, 黒;
 
     public boolean isRare() {
         return this != 鉄 && this != 銅 && this != 銀 && this != 王子;
