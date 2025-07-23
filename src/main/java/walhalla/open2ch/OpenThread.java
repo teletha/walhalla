@@ -176,8 +176,8 @@ public class OpenThread implements Storable<OpenThread> {
             dd.element("br").text("  \r\n");
             dd.element("b").forEach(b -> b.text("<b>" + b.text() + "</b>"));
             String body = dd.text().trim();
-            body = body.replaceAll("(?i)\\bhttps?://[\\w\\-._~:/?#\\[\\]@!$&'()*+,;=%]+", "<a href=\"$0\">$0</a>");
-            body = body.replaceAll("&amp;t=[^&]+\\s*", "");
+            body = body.replaceAll("(?i)\\bhttps?://[\\w\\-._~:/?#\\[\\]@!$&'()*+,;=%]+", "<a class=\"external\" href=\"$0\">$0</a>");
+            body = body.replaceAll("(&amp;|\\?)\\w=\\w+\\s*", "");
             body = nick.link(body);
 
             List<ImageSource> images = new ArrayList<>();
@@ -275,7 +275,7 @@ public class OpenThread implements Storable<OpenThread> {
     }
 
     private String unlink(String text) {
-        return text.replaceAll("<a\\b[^>]*>(.*?)</a>", "$1");
+        return text.replaceAll("<a(?![^>]*class=\"external\")[^>]*>(.*?)</a>", "$1");
     }
 
     /**

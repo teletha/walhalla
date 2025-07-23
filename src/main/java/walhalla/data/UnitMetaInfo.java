@@ -73,7 +73,26 @@ public class UnitMetaInfo {
     public List<String> アビリティ = I.signal(I.make(Database.class)).flatIterable(u -> u.effects.keySet()).distinct().sort(collator).toList();
 
     public List<String> クラス = I.signal(I.make(Database.class))
-            .flatIterable(Unit::stats)
+            .map(u -> u.stats)
+            .skipNull()
+            .map(s -> s.profession.nameJ)
+            .skip(name -> name.startsWith("ちび"))
+            .distinct()
+            .sort(collator)
+            .toList();
+
+    public List<String> クラス覚醒1 = I.signal(I.make(Database.class))
+            .map(u -> u.stats1)
+            .skipNull()
+            .map(s -> s.profession.nameJ)
+            .skip(name -> name.startsWith("ちび"))
+            .distinct()
+            .sort(collator)
+            .toList();
+
+    public List<String> クラス覚醒2 = I.signal(I.make(Database.class))
+            .flatIterable(u -> I.list(u.stats2A, u.stats2B))
+            .skipNull()
             .map(s -> s.profession.nameJ)
             .skip(name -> name.startsWith("ちび"))
             .distinct()

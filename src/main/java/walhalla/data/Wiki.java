@@ -77,6 +77,7 @@ public class Wiki {
         long currentTime = System.currentTimeMillis();
         if (currentTime - lastRequestTime < interval) {
             try {
+                System.out.println("Downloading " + name);
                 Thread.sleep(interval - (currentTime - lastRequestTime));
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();

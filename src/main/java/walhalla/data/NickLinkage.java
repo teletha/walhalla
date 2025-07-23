@@ -143,7 +143,7 @@ public class NickLinkage {
         if (units.size() == 1) {
             builder.addKeyword(name, "/character/" + units.getFirst().nameJ + "/");
         } else {
-            builder.addKeyword(name, "/type/" + units.getFirst().subNameJ + "/");
+            builder.addKeyword(name, "/character/?q=" + units.getFirst().subNameJ);
         }
     }
 
