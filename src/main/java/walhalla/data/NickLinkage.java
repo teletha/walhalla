@@ -58,7 +58,7 @@ public class NickLinkage {
         NICKS.put("清源妙道真君", List.of("妙ちゃん", "清源", "清原"));
         NICKS.put("天墜神星", List.of("アマツちゃん", "アマツ", "天墜ちゃん"));
         NICKS.put("祓剣主神", List.of("フツヌシ"));
-        NICKS.put("山ン本五郎左衛門", List.of("山ン本", "山本"));
+        NICKS.put("山ン本五郎左衛門", List.of("山ン本", "山本", "五郎左衛門"));
         NICKS.put("ヤシマ", List.of("狸", "たぬき", "黒狸"));
         NICKS.put("スズネ", List.of("白狸"));
         NICKS.put("ツァーユ", List.of("ツァ"));
@@ -142,6 +142,16 @@ public class NickLinkage {
 
         if (units.size() == 1) {
             builder.addKeyword(name, "/character/" + units.getFirst().nameJ + "/");
+        } else if (units.size() == 2) {
+            Unit first = units.getFirst();
+            Unit last = units.getLast();
+            if (first.nameJ.startsWith("ちび") || first.nameJ.endsWith("（白）")) {
+                builder.addKeyword(name, "/character/" + last.nameJ + "/");
+            } else if (last.nameJ.startsWith("ちび") || last.nameJ.endsWith("（白）")) {
+                builder.addKeyword(name, "/character/" + first.nameJ + "/");
+            } else {
+                builder.addKeyword(name, "/character/?q=" + first.subNameJ);
+            }
         } else {
             builder.addKeyword(name, "/character/?q=" + units.getFirst().subNameJ);
         }

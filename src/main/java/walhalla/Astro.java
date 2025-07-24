@@ -39,7 +39,8 @@ public class Astro {
 
     public static final Set<String> NOT_IMPLEMENTED = Set.of("無頼の白狼ファオル");
 
-    public static boolean FORCE_UPDATE = false;
+    /** Specify the english name only. */
+    public static final Set<String> FORCE_UPDATE = Set.of();
 
     static {
         I.load(Astro.class);

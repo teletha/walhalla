@@ -11,8 +11,10 @@ package walhalla.data;
 
 import java.text.Collator;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.stream.Stream;
 
 import kiss.I;
@@ -98,4 +100,25 @@ public class UnitMetaInfo {
             .distinct()
             .sort(collator)
             .toList();
+
+    public List<Classes> クラスセット = I.signal(I.make(Database.class)).take(u -> u.rarity.isRare()).map(u -> {
+        Classes classes = classMap.computeIfAbsent(u.stats().getFirst().profession.nameJ, key -> new Classes());
+        if (u.stats != null) classes.normal = u.stats.profession.nameJ;
+        if (u.stats1 != null) classes.awaken1 = u.stats1.profession.nameJ;
+        if (u.stats2A != null) classes.awaken2A = u.stats2A.profession.nameJ;
+        if (u.stats2B != null) classes.awaken2B = u.stats2B.profession.nameJ;
+        return classes;
+    }).skipNull().skip(name -> name.normal.startsWith("ちび")).distinct().toList();
+
+    private static final Map<String, Classes> classMap = new HashMap();
+
+    public static class Classes {
+        public String normal = "";
+
+        public String awaken1 = "";
+
+        public String awaken2A = "";
+
+        public String awaken2B = "";
+    }
 }

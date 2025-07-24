@@ -45,7 +45,7 @@ public class Database extends ArrayList<Unit> implements Storable<Database> {
     private Database() {
         File file = Locator.file(locate());
 
-        if (file.lastModifiedMilli() < System.currentTimeMillis() - 7 * 24 * 60 * 60 * 1000 * (Astro.FORCE_UPDATE ? -1 : 1)) {
+        if (file.lastModifiedMilli() < System.currentTimeMillis() - 7 * 24 * 60 * 60 * 1000 * (Astro.FORCE_UPDATE.isEmpty() ? 1 : -1)) {
             I.info("Unit data is outdated. Rebuilding...");
             build();
             store();
@@ -150,10 +150,10 @@ public class Database extends ArrayList<Unit> implements Storable<Database> {
             }
         };
 
-        I.xml(Wiki.source("https://aigis.fandom.com/wiki/Category:Female_Units", 12 * 60 * 60 * 1000 * (Astro.FORCE_UPDATE ? -1 : 1)))
-                .element("img")
-                .forEach(scan);
-        I.xml(Wiki.source("https://aigis.fandom.com/wiki/Category:Male_Units", 12 * 60 * 60 * 1000 * (Astro.FORCE_UPDATE ? -1 : 1)))
+        I.xml(Wiki.source("https://aigis.fandom.com/wiki/Category:Female_Units", 12 * 60 * 60 * 1000 * (Astro.FORCE_UPDATE.isEmpty() ? 1
+                : -1))).element("img").forEach(scan);
+        I.xml(Wiki
+                .source("https://aigis.fandom.com/wiki/Category:Male_Units", 12 * 60 * 60 * 1000 * (Astro.FORCE_UPDATE.isEmpty() ? 1 : -1)))
                 .element("img")
                 .forEach(scan);
 

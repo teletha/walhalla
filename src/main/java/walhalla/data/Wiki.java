@@ -13,6 +13,7 @@ import kiss.I;
 import psychopath.Directory;
 import psychopath.File;
 import psychopath.Locator;
+import walhalla.Astro;
 
 /**
  * A utility class for caching data retrieved from a server. The cache is stored in a local
@@ -39,18 +40,10 @@ public class Wiki {
      * @return The data as a string.
      */
     public static String sourceByName(String name) {
-        return source("https://aigis.fandom.com/api.php?action=query&prop=revisions&titles=" + name + "&rvslots=main&rvprop=content&format=json");
-    }
-
-    /**
-     * Retrieves data associated with the given name. If a valid cache exists, it returns the cached
-     * data. Otherwise, it fetches the data from the server, saves it to the cache, and returns it.
-     *
-     * @param name The name of the data to retrieve.
-     * @return The data as a string.
-     */
-    public static String source(String name) {
-        return source(name, 14 * 24 * 60 * 60 * 1000);
+        int index = name.indexOf("/");
+        String characterName = index == -1 ? name : name.substring(0, index);
+        long ttl = 14 * 24 * 60 * 60 * 1000 * (Astro.FORCE_UPDATE.contains(characterName) ? -1 : 1);
+        return source("https://aigis.fandom.com/api.php?action=query&prop=revisions&titles=" + name + "&rvslots=main&rvprop=content&format=json", ttl);
     }
 
     /**
