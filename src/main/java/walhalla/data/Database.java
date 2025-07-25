@@ -132,6 +132,7 @@ public class Database extends ArrayList<Unit> implements Storable<Database> {
     }
 
     private static List<String> names() {
+        Set<String> recorder = new HashSet<>();
         List<String> names = new ArrayList();
 
         Consumer<XML> scan = img -> {
@@ -146,14 +147,20 @@ public class Database extends ArrayList<Unit> implements Storable<Database> {
                 if (name.equals("Ranged") || name.equals("Melee") || name.equals("Magic") || name.equals("Support")) {
                     return; // Skip generic unit types
                 }
-                names.add(name.replace("&#39;", "'"));
+
+                if (recorder.add(name)) {
+                    names.add(name.replace("&#39;", "'"));
+                }
             }
         };
 
-        I.xml(Wiki.source("https://aigis.fandom.com/wiki/Category:Female_Units", 12 * 60 * 60 * 1000 * (Astro.FORCE_UPDATE.isEmpty() ? 1
-                : -1))).element("img").forEach(scan);
-        I.xml(Wiki
-                .source("https://aigis.fandom.com/wiki/Category:Male_Units", 12 * 60 * 60 * 1000 * (Astro.FORCE_UPDATE.isEmpty() ? 1 : -1)))
+        long ttl = 12 * 60 * 60 * 1000 * (Astro.FORCE_UPDATE.isEmpty() ? 1 : -1);
+        I.xml(Wiki.source("https://aigis.fandom.com/wiki/Category:Female_Units", ttl)).element("img").forEach(scan);
+        I.xml(Wiki.source("https://aigis.fandom.com/wiki/Category:Male_Units", ttl)).element("img").forEach(scan);
+        I.xml(Wiki.source("https://aigis.fandom.com/wiki/Aigis_Wiki", ttl))
+                .find("#New_Units")
+                .parent()
+                .nextUntil("p")
                 .element("img")
                 .forEach(scan);
 

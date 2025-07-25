@@ -9,6 +9,7 @@
  */
 package walhalla;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -54,6 +55,9 @@ public class Astro {
 
     /** The public directory. */
     public static final Directory PUBLIC = ROOT.directory("public");
+
+    /** The public directory. */
+    public static final Directory ASSETS = ROOT.directory("src/assets");
 
     /**
      * Internal database class for storing units by name.
@@ -116,7 +120,21 @@ public class Astro {
             EditableImage image = new EditableImage(icon.asJavaPath());
             images.add(image.resize(80));
         });
-        container.tile(50, images).write(Locator.file(".data/unit-icons.png").asJavaPath());
+
+        File base = Locator.file(".data/unit-icons.png");
+        container.tile(50, images).write(base.asJavaPath());
+
+        String magick = I.env("IMAGE_MAGICK");
+        File output = ASSETS.file("unit-icons40.avif");
+        ProcessBuilder pb = new ProcessBuilder(magick, base.absolutize()
+                .path(), "-filter", "Catrom", "-resize", "50%", "-define", "heic:encoder=avif", "-define", "heic:effort=3", "-quality", "40", output
+                        .absolutize()
+                        .path());
+        try {
+            pb.inheritIO().start().waitFor();
+        } catch (InterruptedException | IOException e) {
+            throw I.quiet(e);
+        }
     }
 
     /**
@@ -140,7 +158,8 @@ public class Astro {
      * @param args Command line arguments (not used)
      */
     public static void main(String[] args) {
-        buildUnitJSON();
-        buildTopics();
+        // buildUnitJSON();
+        // buildTopics();
+        buildUnitIconSprite();
     }
 }
