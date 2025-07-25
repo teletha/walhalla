@@ -9,16 +9,30 @@
  */
 package walhalla.data;
 
+import java.text.Collator;
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Locale;
 
 import kiss.I;
 import kiss.XML;
 import walhalla.data.lint.Proofreader;
 
-public class Profession {
+public class Profession implements Comparable<Profession> {
+
+    private static final Collator collator = Collator.getInstance(Locale.JAPANESE);
+
+    static final Profession EMPTY = new Profession() {
+
+        {
+            nameJ = "未実装";
+        }
+
+        @Override
+        public String toString() {
+            return "未実装";
+        }
+    };
 
     public String name;
 
@@ -32,20 +46,18 @@ public class Profession {
      * {@inheritDoc}
      */
     @Override
+    public int compareTo(Profession o) {
+        return collator.compare(nameJ, o.nameJ);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public String toString() {
         return I.express("""
                 {nameJ}({name}) \t{description}
                 """, this).trim();
-    }
-
-    private static final Map<String, Profession> CACHE = new HashMap();
-
-    public static Profession of(String name) {
-        return CACHE.computeIfAbsent(name, key -> {
-            Profession profession = new Profession();
-            profession.name = key;
-            return profession;
-        });
     }
 
     void parseWikiProfessionData(Unit unit) {
@@ -112,6 +124,8 @@ public class Profession {
         if (unit.stats1 != null && unit.stats1.profession.description.isEmpty()) {
             unit.stats1.profession.description = unit.stats.profession.description;
         }
+
+        I.make(ProfessionManager.class).registerGroup(unit);
     }
 
     private void set(Stats stats, XML row, String type) {

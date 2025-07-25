@@ -10,15 +10,13 @@
 package walhalla.data;
 
 import java.text.Collator;
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.stream.Stream;
 
 import kiss.I;
+import walhalla.data.ProfessionGroup.ProfessionNameList;
 
 public class UnitMetaInfo {
 
@@ -102,18 +100,10 @@ public class UnitMetaInfo {
             .sort(collator)
             .toList();
 
-    public List<Classes> クラスセット = I.signal(I.make(Database.class)).take(u -> u.rarity.isRare()).map(u -> {
-        Classes classes = classMap.computeIfAbsent(u.stats().getFirst().profession.nameJ, key -> new Classes());
-        for (Stats stats : u.stats()) {
-            if (!classes.contains(stats.profession.nameJ)) {
-                classes.add(stats.profession.nameJ);
-            }
-        }
-        return classes;
-    }).skipNull().skip(classes -> classes.getFirst().startsWith("ちび")).distinct().toList();
-
-    private static final Map<String, Classes> classMap = new HashMap();
-
-    public static class Classes extends ArrayList<String> {
-    }
+    public List<ProfessionNameList> クラスセット = I.make(ProfessionManager.class)
+            .findAllGroups()
+            .stream()
+            .filter(group -> !group.normal.nameJ.startsWith("ちび"))
+            .map(ProfessionGroup::asNameList)
+            .toList();
 }

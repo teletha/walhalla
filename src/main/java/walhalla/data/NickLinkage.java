@@ -57,7 +57,7 @@ public class NickLinkage {
         NICKS.put("オスカー", List.of("手塚"));
         NICKS.put("清源妙道真君", List.of("妙ちゃん", "清源", "清原"));
         NICKS.put("天墜神星", List.of("アマツちゃん", "アマツ", "天墜ちゃん"));
-        NICKS.put("祓剣主神", List.of("フツヌシ"));
+        NICKS.put("祓剣主神", List.of("フツヌシ", "ふつぬし"));
         NICKS.put("山ン本五郎左衛門", List.of("山ン本", "山本", "五郎左衛門"));
         NICKS.put("ヤシマ", List.of("狸", "たぬき", "黒狸"));
         NICKS.put("スズネ", List.of("白狸"));

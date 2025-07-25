@@ -22,6 +22,7 @@ import psychopath.Directory;
 import psychopath.File;
 import psychopath.Locator;
 import walhalla.data.Database;
+import walhalla.data.ProfessionManager;
 import walhalla.data.Rarity;
 import walhalla.data.Unit;
 import walhalla.data.UnitMeta;
@@ -159,6 +160,10 @@ public class Astro {
      */
     public static void main(String[] args) {
         buildUnitJSON();
+
+        I.make(ProfessionManager.class).findAllGroups().forEach(g -> {
+            System.out.println(g);
+        });
         buildTopics();
     }
 }

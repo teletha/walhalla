@@ -98,7 +98,7 @@ public class Stats {
     void parseWikiStats(String prefix, String text) {
         WikiText wiki = new WikiText(text);
 
-        wiki.peekKV(prefix + "Class", value -> profession = Profession.of(value));
+        wiki.peekKV(prefix + "Class", value -> profession = I.make(ProfessionManager.class).findBy(value));
         wiki.peekKV(prefix + "MaxHp", value -> hp = parseInt(value));
         wiki.peekKV(prefix + "MaxAtk", value -> atk = parseInt(value));
         wiki.peekKV(prefix + "MaxDef", value -> def = parseInt(value));
