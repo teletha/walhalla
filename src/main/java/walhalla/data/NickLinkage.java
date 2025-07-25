@@ -68,6 +68,7 @@ public class NickLinkage {
         NICKS.put("白の皇帝", List.of("皇帝"));
         NICKS.put("ヴィラヘルム", List.of("初代皇帝"));
         NICKS.put("アリシア", List.of("アリス"));
+        NICKS.put("オラティル", List.of("お粥"));
         NICKS.put("伏綺", List.of("伏犠"));
         NICKS.put("金糸雀姉妹", List.of("金糸雀"));
         NICKS.put("紫苑姉妹", List.of("紫苑"));
