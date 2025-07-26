@@ -234,7 +234,10 @@ public class Unit {
             parseImage(wiki, name, "AW2v2 Render.png", value -> image2B = value);
 
             // 特例処理
-            if (name.equals("Farangis")) {
+            if (name.equals("Martan")) {
+                image = calculateImagePath("Martan_Render.png");
+                imageAW = calculateImagePath("Martan_AW_Render.png");
+            } else if (name.equals("Farangis")) {
                 icon = calculateImagePath("Farangis_Icon.png");
                 iconAW = calculateImagePath("Farangis_AW_Icon.png");
             } else if (name.equals("Arslan")) {

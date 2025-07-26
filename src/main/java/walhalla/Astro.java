@@ -131,7 +131,10 @@ public class Astro {
                         .absolutize()
                         .path());
         try {
+            I.info("Building unit icon sprite: " + pb.command());
             pb.inheritIO().start().waitFor();
+        } catch (NullPointerException e) {
+            throw new IllegalStateException("IMAGE_MAGICK environment variable is not set. Please set it to the path of ImageMagick executable.", e);
         } catch (InterruptedException | IOException e) {
             throw I.quiet(e);
         }

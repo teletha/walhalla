@@ -81,7 +81,10 @@ public class Database extends ArrayList<Unit> implements Storable<Database> {
 
                 if (unit.name == null) {
                     throw new Error("Failed to parse unit data for: " + name);
+                } else if (Astro.NOT_IMPLEMENTED.contains(unit.nameJ)) {
+                    continue;
                 }
+
                 add(unit);
 
                 if (!recorder.add(unit.nameJ)) {
