@@ -16,6 +16,7 @@ import java.util.Locale;
 
 import kiss.I;
 import kiss.XML;
+import walhalla.Astro;
 import walhalla.data.lint.Proofreader;
 
 public class Profession implements Comparable<Profession> {
@@ -65,7 +66,7 @@ public class Profession implements Comparable<Profession> {
             return; // Already parsed
         }
 
-        if (unit.nameJ == null) {
+        if (unit.nameJ == null || Astro.NOT_IMPLEMENTED.contains(unit.nameJ)) {
             return; // No unit name available
         }
 

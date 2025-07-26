@@ -13,6 +13,9 @@ import java.text.Collator;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import kiss.I;
@@ -73,32 +76,8 @@ public class UnitMetaInfo {
 
     public List<String> アビリティ = I.signal(I.make(Database.class)).flatIterable(u -> u.effects.keySet()).distinct().sort(collator).toList();
 
-    public List<String> クラス = I.signal(I.make(Database.class))
-            .map(u -> u.stats)
-            .skipNull()
-            .map(s -> s.profession.nameJ)
-            .skip(name -> name.startsWith("ちび"))
-            .distinct()
-            .sort(collator)
-            .toList();
-
-    public List<String> クラス覚醒1 = I.signal(I.make(Database.class))
-            .map(u -> u.stats1)
-            .skipNull()
-            .map(s -> s.profession.nameJ)
-            .skip(name -> name.startsWith("ちび"))
-            .distinct()
-            .sort(collator)
-            .toList();
-
-    public List<String> クラス覚醒2 = I.signal(I.make(Database.class))
-            .flatIterable(u -> I.list(u.stats2A, u.stats2B))
-            .skipNull()
-            .map(s -> s.profession.nameJ)
-            .skip(name -> name.startsWith("ちび"))
-            .distinct()
-            .sort(collator)
-            .toList();
+    public Map<BattleEffectType, List<BattleEffect>> 特性 = Stream.of(BattleEffect.values())
+            .collect(Collectors.groupingBy(x -> x.type, () -> new TreeMap(), Collectors.toList()));
 
     public List<ProfessionNameList> クラスセット = I.make(ProfessionManager.class)
             .findAllGroups()

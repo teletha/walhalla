@@ -22,7 +22,6 @@ import psychopath.Directory;
 import psychopath.File;
 import psychopath.Locator;
 import walhalla.data.Database;
-import walhalla.data.ProfessionManager;
 import walhalla.data.Rarity;
 import walhalla.data.Unit;
 import walhalla.data.UnitMeta;
@@ -39,7 +38,7 @@ import walhalla.open2ch.OpenThreadCollector;
  */
 public class Astro {
 
-    public static final Set<String> NOT_IMPLEMENTED = Set.of("無頼の白狼ファオル");
+    public static final Set<String> NOT_IMPLEMENTED = Set.of("無頼の白狼ファオル", "王国ファッションショー");
 
     /** Specify the english name only. */
     public static final Set<String> FORCE_UPDATE = Set.of();
@@ -160,10 +159,6 @@ public class Astro {
      */
     public static void main(String[] args) {
         buildUnitJSON();
-
-        I.make(ProfessionManager.class).findAllGroups().forEach(g -> {
-            System.out.println(g);
-        });
         buildTopics();
     }
 }

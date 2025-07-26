@@ -70,7 +70,6 @@ public class Wiki {
         long currentTime = System.currentTimeMillis();
         if (currentTime - lastRequestTime < interval) {
             try {
-                System.out.println("Downloading " + name);
                 Thread.sleep(interval - (currentTime - lastRequestTime));
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -79,6 +78,7 @@ public class Wiki {
 
         name = name.replace(" ", "%20").replace("(", "%28").replace(")", "%29").replace("'", "%27");
 
+        System.out.println("Downloading " + name);
         String data = I.http(name, String.class).waitForTerminate().to().exact();
 
         file.text(data);
