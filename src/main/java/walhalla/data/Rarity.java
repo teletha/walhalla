@@ -16,4 +16,8 @@ public enum Rarity {
     public boolean isRare() {
         return this != 鉄 && this != 銅 && this != 銀 && this != 王子;
     }
+
+    public boolean isColored() {
+        return this != 鉄 && this != 銅 && this != 王子;
+    }
 }

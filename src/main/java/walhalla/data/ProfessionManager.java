@@ -47,7 +47,7 @@ public class ProfessionManager {
      * @param unit
      */
     public ProfessionGroup registerGroup(Unit unit) {
-        if (!unit.rarity.isRare()) {
+        if (!unit.rarity.isColored()) {
             return null;
         }
 
