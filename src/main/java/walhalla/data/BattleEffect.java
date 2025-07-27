@@ -160,7 +160,7 @@ public enum BattleEffect {
                 Effect effect = emit.getPayload();
                 effects.put(effect.type, effect);
                 result.append("<a href='")
-                        .append("/character/?アビリティ1=" + effect.type)
+                        .append("/character/?アビリティ=" + effect.type)
                         .append("'>")
                         .append(token.getFragment())
                         .append("</a>");
