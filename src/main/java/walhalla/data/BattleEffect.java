@@ -114,9 +114,13 @@ public enum BattleEffect {
 
     味方遠距離ユニットが優先的に攻撃(BattleEffectType.攻撃),
 
-    撤退時にコストが回復(BattleEffectType.コスト, "撤退時にコストが[10-100/5]%回復"),
+    スキル発動時に出撃コストが回復(BattleEffectType.コスト),
 
-    出撃コストを下げる(BattleEffectType.コスト, "出撃コストを[1-10/1]下げる"),
+    敵を倒すと出撃コストが回復(BattleEffectType.コスト),
+
+    撤退時に出撃コストが回復(BattleEffectType.コスト, "撤退時にコストが[10-100/5]%回復"),
+
+    出撃コストが減少する(BattleEffectType.コスト, "出撃コストを[1-10/1]下げる"),
 
     麻痺(BattleEffectType.攻撃);
 

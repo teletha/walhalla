@@ -10,7 +10,10 @@
 package walhalla.data;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 
+@Execution(ExecutionMode.SAME_THREAD)
 public class UnitTest {
 
     @Test
@@ -221,7 +224,7 @@ public class UnitTest {
         unit.parseWikiStats(text);
 
         assert unit.hero == true;
-        assert unit.attributes.contains(Attribute.Human);
+        assert unit.race.contains(Attribute.Human);
         assert unit.stats1.hp == 3645;
         assert unit.stats1.atk == 770;
         assert unit.stats1.def == 364;
@@ -251,8 +254,8 @@ public class UnitTest {
         unit.parseWikiStats(text);
 
         assert unit.hero == false;
-        assert unit.attributes.contains(Attribute.Flying);
-        assert unit.attributes.contains(Attribute.Birdfolk);
+        assert unit.military.contains(Attribute.Flying);
+        assert unit.race.contains(Attribute.Birdfolk);
 
         assert unit.stats2A.hp == 3341;
         assert unit.stats2A.atk == 718;
@@ -289,8 +292,8 @@ public class UnitTest {
         unit.parseWikiStatsByName("Tytto_(Swimsuit)");
 
         assert unit.hero == false;
-        assert unit.attributes.contains(Attribute.Summer);
-        assert unit.attributes.contains(Attribute.Magician);
+        assert unit.season.contains(Attribute.Summer);
+        assert unit.military.contains(Attribute.Magician);
 
         assert unit.stats2A.hp == 1526;
         assert unit.stats2A.atk == 204;
@@ -366,7 +369,7 @@ public class UnitTest {
         unit.parseWikiStats(text);
 
         assert unit.hero == false;
-        assert unit.attributes.contains(Attribute.HalfGod);
+        assert unit.race.contains(Attribute.HalfGod);
 
         assert unit.stats2A.hp == 4860;
         assert unit.stats2A.atk == 975;
