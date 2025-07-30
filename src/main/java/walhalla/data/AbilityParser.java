@@ -9,6 +9,9 @@
  */
 package walhalla.data;
 
-public enum BattleEffectType {
-    攻撃属性, 攻撃種別, 攻撃, 防御, 回復, 無効, 死亡, バフ, デバフ, 編成, 配置, スキル, コスト, その他;
+import org.ahocorasick.trie.PayloadTrie;
+import org.ahocorasick.trie.PayloadTrie.PayloadTrieBuilder;
+
+public class AbilityParser {
+    static final PayloadTrieBuilder<Effect> builder = PayloadTrie.<Effect> builder().ignoreOverlaps();
 }

@@ -599,22 +599,22 @@ public class Unit {
      */
     void analyzeEffect() {
         for (int i = 1; i < skill.size(); i += 2) {
-            skill.set(i, BattleEffect.parse(skill.get(i), effects));
+            skill.set(i, Ability.parse(skill.get(i), effects));
         }
         for (int i = 1; i < skillAW.size(); i += 2) {
-            skillAW.set(i, BattleEffect.parse(skillAW.get(i), effects));
+            skillAW.set(i, Ability.parse(skillAW.get(i), effects));
         }
 
         for (int i = 1; i < ability.size(); i += 2) {
-            ability.set(i, BattleEffect.parse(ability.get(i), effects));
+            ability.set(i, Ability.parse(ability.get(i), effects));
         }
         for (int i = 1; i < abilityAW.size(); i += 2) {
-            abilityAW.set(i, BattleEffect.parse(abilityAW.get(i), effects));
+            abilityAW.set(i, Ability.parse(abilityAW.get(i), effects));
         }
 
         for (Stats stats : I.list(stats, stats1, stats2A, stats2B)) {
             if (stats != null) {
-                stats.profession.description = BattleEffect.parse(stats.profession.description, effects);
+                stats.profession.description = Ability.parse(stats.profession.description, effects);
             }
         }
     }

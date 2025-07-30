@@ -76,7 +76,7 @@ public class UnitMetaInfo {
 
     public List<String> アビリティ = I.signal(I.make(Database.class)).flatIterable(u -> u.effects.keySet()).distinct().sort(collator).toList();
 
-    public Map<BattleEffectType, List<BattleEffect>> 特性 = Stream.of(BattleEffect.values())
+    public Map<AbilityCategory, List<Ability>> 特性 = Stream.of(Ability.values())
             .collect(Collectors.groupingBy(x -> x.type, () -> new TreeMap(), Collectors.toList()));
 
     public List<ProfessionNameList> クラスセット = I.make(ProfessionManager.class)
