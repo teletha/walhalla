@@ -27,15 +27,14 @@ public class RegexLint implements Lint {
      * {@inheritDoc}
      */
     @Override
-    public LintResult fix(String input) {
-        boolean fixed = false;
+    public void fix(LintResult lint) {
         StringBuffer result = new StringBuffer();
-        Matcher matcher = pattern.matcher(input);
+        Matcher matcher = pattern.matcher(lint.text);
         while (matcher.find()) {
-            fixed = true;
             matcher.appendReplacement(result, replacement);
         }
         matcher.appendTail(result);
-        return new LintResult(fixed, result.toString());
+
+        lint.text = result.toString();
     }
 }

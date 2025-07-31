@@ -30,13 +30,13 @@ public class TrieLint implements Lint {
      * {@inheritDoc}
      */
     @Override
-    public LintResult fix(String input) {
+    public void fix(LintResult lint) {
         if (cachedTrie == null) {
             cachedTrie = builder.build();
         }
 
         StringBuilder result = new StringBuilder();
-        Collection<PayloadToken<String>> tokens = cachedTrie.tokenize(input);
+        Collection<PayloadToken<String>> tokens = cachedTrie.tokenize(lint.text);
         boolean fixed = false;
         for (PayloadToken<String> token : tokens) {
             if (token.isMatch()) {
@@ -46,6 +46,7 @@ public class TrieLint implements Lint {
                 result.append(token.getFragment());
             }
         }
-        return new LintResult(fixed, result.toString());
+
+        lint.text = result.toString();
     }
 }

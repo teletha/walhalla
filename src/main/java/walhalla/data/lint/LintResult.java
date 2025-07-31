@@ -9,5 +9,19 @@
  */
 package walhalla.data.lint;
 
-public record LintResult(boolean fixed, String result) {
+import java.util.ArrayList;
+import java.util.List;
+
+public class LintResult {
+
+    public final String original;
+
+    public String text;
+
+    public final List<String> variables = new ArrayList();
+
+    public LintResult(String original) {
+        this.original = original;
+        this.text = original;
+    }
 }

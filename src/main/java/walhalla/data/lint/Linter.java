@@ -48,23 +48,20 @@ public class Linter {
         return this;
     }
 
-    public String fix(String input) {
+    public LintResult fix(String input) {
         return fix(input, null);
     }
 
-    public String fix(String input, String description) {
-        String output = input;
+    public LintResult fix(String input, String description) {
+        LintResult result = new LintResult(input);
 
         for (Lint lint : lints) {
-            LintResult result = lint.fix(output);
-            if (result.fixed()) {
-                output = result.result();
-            }
+            lint.fix(result);
         }
 
         if (description != null && INTERCEPTOR != null) {
-            INTERCEPTOR.accept(description, input, output);
+            INTERCEPTOR.accept(description, result.original, result.text);
         }
-        return output;
+        return result;
     }
 }
