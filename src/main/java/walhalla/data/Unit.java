@@ -226,10 +226,12 @@ public class Unit {
         wiki.peekSection("Gallery", () -> {
             parseImage(wiki, name, "Icon.png", value -> icon = value);
             parseImage(wiki, name, "AW Icon.png", value -> iconAW = value);
+            parseImage(wiki, name, "AW2 Icon.png", value -> icon2A = icon2B = value);
             parseImage(wiki, name, "AW2v1 Icon.png", value -> icon2A = value);
             parseImage(wiki, name, "AW2v2 Icon.png", value -> icon2B = value);
             parseImage(wiki, name, "Render.png", value -> image = value);
             parseImage(wiki, name, "AW Render.png", value -> imageAW = value);
+            parseImage(wiki, name, "AW2 Render.png", value -> image2A = image2B = value);
             parseImage(wiki, name, "AW2v1 Render.png", value -> image2A = value);
             parseImage(wiki, name, "AW2v2 Render.png", value -> image2B = value);
 
