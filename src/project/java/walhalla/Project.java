@@ -22,6 +22,7 @@ public class Project extends bee.api.Project {
         require("com.github.teletha", "evergarden");
         require("com.atilika.kuromoji", "kuromoji-ipadic");
         require("org.ahocorasick", "ahocorasick");
+        require("commons-codec", "commons-codec");
         require("dev.langchain4j", "langchain4j");
         require("dev.langchain4j", "langchain4j-http-client-jdk");
         require("dev.langchain4j", "langchain4j-google-ai-gemini");

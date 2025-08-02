@@ -38,7 +38,7 @@ import walhalla.open2ch.OpenThreadCollector;
  */
 public class Astro {
 
-    public static final Set<String> NOT_IMPLEMENTED = Set.of("無頼の白狼ファオル", "王国ファッションショー");
+    public static final Set<String> NOT_IMPLEMENTED = Set.of("王国ファッションショー");
 
     /** Specify the english name only. */
     public static final Set<String> FORCE_UPDATE = Set.of();
