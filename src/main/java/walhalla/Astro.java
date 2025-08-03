@@ -18,7 +18,6 @@ import java.util.List;
 import java.util.Set;
 
 import kiss.I;
-import kiss.XML;
 import psychopath.Directory;
 import psychopath.File;
 import psychopath.Locator;
@@ -156,28 +155,13 @@ public class Astro {
         });
     }
 
-    public static void tweetArticle() {
-        I.http("https://wannyan.ephtra.workers.dev/rss.xml", XML.class)
-                .flatIterable(xml -> xml.find("item link"))
-                .reverse()
-                .waitForTerminate()
-                .to(link -> {
-                    System.out.println(link.text());
-                });
-
-        I.http("https://x.com/Ephtra_Aigis", XML.class).waitForTerminate().to(xml -> {
-            System.out.println(xml);
-        });
-    }
-
     /**
      * Main entry point. Builds the topics database.
      *
      * @param args Command line arguments (not used)
      */
     public static void main(String[] args) {
-        // buildUnitJSON();
-        // buildTopics();
-        tweetArticle();
+        buildUnitJSON();
+        buildTopics();
     }
 }
