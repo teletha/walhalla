@@ -159,7 +159,8 @@ public class OpenThread implements Storable<OpenThread> {
             I.signal(dd.element("a")).take(e -> {
                 String href = e.attr("href");
                 if (href.startsWith("//")) href = "https:" + href;
-                return href.startsWith("https://youtu.be/") || href.startsWith("https://x.com/");
+                return href.startsWith("https://youtu.be/") || href.startsWith("https://x.com/") || href
+                        .startsWith("https://www.bilibili.com/");
             }).to(link -> {
                 embeds.add(link.attr("href"));
                 link.remove();
