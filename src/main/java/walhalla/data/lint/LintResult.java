@@ -20,8 +20,19 @@ public class LintResult {
 
     public final List<String> variables = new ArrayList();
 
+    public final List<String> tokens = new ArrayList();
+
     public LintResult(String original) {
         this.original = original;
         this.text = original;
+    }
+
+    public LintResult addToken(String... abilities) {
+        for (String ability : abilities) {
+            if (!tokens.contains(ability)) {
+                tokens.add(ability);
+            }
+        }
+        return this;
     }
 }

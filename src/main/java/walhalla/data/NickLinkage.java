@@ -111,6 +111,8 @@ public class NickLinkage {
         builder.addKeyword("ゴブリン", "");
         builder.addKeyword("リンゴ", "");
         builder.addKeyword("セーラー", "");
+        builder.addKeyword("デミウルゴス", "");
+        builder.addKeyword("コマンダー", "");
 
         this.trie = builder.build();
     }

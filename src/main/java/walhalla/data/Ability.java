@@ -32,6 +32,8 @@ public enum Ability {
 
     自動発動スキルの対象外(AbilityCategory.スキル),
 
+    戦闘中1回しか使用できない(AbilityCategory.スキル),
+
     出撃中の全員がスキルを自動使用(AbilityCategory.スキル),
 
     手動でスキル終了(AbilityCategory.スキル, "手動でスキルを終了"),
@@ -79,6 +81,12 @@ public enum Ability {
     所持効果(AbilityCategory.その他),
 
     バリア(AbilityCategory.防御),
+
+    防御に専念する(AbilityCategory.防御),
+
+    回復に専念する(AbilityCategory.回復),
+
+    遠距離攻撃に専念する(AbilityCategory.攻撃),
 
     動きを止める(AbilityCategory.デバフ),
 

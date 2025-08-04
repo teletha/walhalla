@@ -11,6 +11,7 @@ package walhalla.data.lint;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 import kiss.WiseTriConsumer;
 
@@ -45,6 +46,14 @@ public class Linter {
 
     public Linter addRule(String pattern, String replacement) {
         fixer.addKeyword(pattern, replacement);
+        return this;
+    }
+
+    public Linter addTokenRule(String pattern, Consumer<LintResult> action) {
+        fixer.addKeyword(pattern, (match, result) -> {
+            action.accept(result);
+            return "";
+        });
         return this;
     }
 

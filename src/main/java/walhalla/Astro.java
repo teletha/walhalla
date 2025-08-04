@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Set;
 
 import kiss.I;
+import kiss.XML;
 import psychopath.Directory;
 import psychopath.File;
 import psychopath.Locator;
@@ -28,6 +29,7 @@ import walhalla.data.UnitMeta;
 import walhalla.data.UnitMetaInfo;
 import walhalla.image.EditableImage;
 import walhalla.open2ch.OpenThreadCollector;
+import walhalla.twitter.Twitter;
 
 /**
  * Provides utilities and entry point for the Astro project.
@@ -153,6 +155,30 @@ public class Astro {
             long end = System.currentTimeMillis();
             System.out.println("" + thread.title + " processed in " + (end - start) + " ms");
         });
+    }
+
+    public static void tweet() {
+        File file = Locator.file(".tweet");
+        String text = file.text();
+
+        Twitter twitter = new Twitter();
+
+        I.http("https://wannyan.ephtra.workers.dev/rss.xml", XML.class)
+                .flatIterable(xml -> xml.find("item"))
+                .takeUntil(x -> x.element("link").text().equals(text))
+                .reverse()
+                .skip(1)
+                .waitForTerminate()
+                .to(item -> {
+                    String title = item.element("title").text();
+                    String link = item.element("link").text();
+                    String description = item.element("description").text();
+
+                    twitter.tweet(description + "\\n#千年戦争アイギス\\n" + link);
+                    I.info("Tweeted: " + title);
+
+                    file.text(link);
+                });
     }
 
     /**
