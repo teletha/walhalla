@@ -34,4 +34,6 @@ public class Topic {
     public String description;
 
     public int priority;
+
+    public List<String> extra = new ArrayList();
 }

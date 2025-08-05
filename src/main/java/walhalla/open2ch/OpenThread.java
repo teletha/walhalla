@@ -18,16 +18,12 @@ import java.util.Locale;
 import java.util.stream.Collectors;
 
 import kiss.I;
-import kiss.JSON;
 import kiss.Storable;
 import kiss.XML;
 import psychopath.Directory;
 import psychopath.File;
 import walhalla.Astro;
 import walhalla.data.NickLinkage;
-import walhalla.image.Gyazo;
-import walhalla.image.Image;
-import walhalla.image.Imgur;
 
 /**
  * Represents a discussion thread on open2ch, including its metadata and all comments.
@@ -245,15 +241,15 @@ public class OpenThread implements Storable<OpenThread> {
                     Res res = getCommentBy(num);
                     for (ImageSource source : res.sources) {
                         if (!source.hasBackup() && source.origin.startsWith("https://i.imgur.com/")) {
-                            Image image = Imgur.download(source.origin);
-
-                            JSON huge = Gyazo.upload(image.hugeName(), image.huge());
-                            source.backupH = huge.text("url");
-
-                            JSON large = Gyazo.upload(image.largeName(), image.large());
-                            source.backupL = large.text("url");
-
-                            needUpdate = true;
+                            // Image image = Imgur.download(source.origin);
+                            //
+                            // JSON huge = Gyazo.upload(image.hugeName(), image.huge());
+                            // source.backupH = huge.text("url");
+                            //
+                            // JSON large = Gyazo.upload(image.largeName(), image.large());
+                            // source.backupL = large.text("url");
+                            //
+                            // needUpdate = true;
                         }
                     }
                 }
