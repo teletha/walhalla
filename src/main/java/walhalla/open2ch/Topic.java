@@ -69,7 +69,7 @@ public class Topic {
             int index = ((num - id) / 1000) - 1;
 
             OpenThread thread = extraThreads.get(index);
-            Res res = thread.getCommentBy(num);
+            Res res = thread.getCommentBy(id);
             res.thread = thread;
             return res;
         }
