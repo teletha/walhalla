@@ -13,17 +13,23 @@ import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import kiss.I;
+import kiss.JSON;
 import kiss.Storable;
 import kiss.XML;
 import psychopath.Directory;
 import psychopath.File;
 import walhalla.Astro;
 import walhalla.data.NickLinkage;
+import walhalla.image.Gyazo;
+import walhalla.image.Image;
+import walhalla.image.Imgur;
 
 /**
  * Represents a discussion thread on open2ch, including its metadata and all comments.
@@ -101,6 +107,8 @@ public class OpenThread implements Storable<OpenThread> {
             } else {
                 analyze();
             }
+
+            topics.forEach(topic -> topic.thread = this);
         }
         return topics;
     }
@@ -234,29 +242,29 @@ public class OpenThread implements Storable<OpenThread> {
 
     public void backupImages() {
         if (comments.getLast().date.plusDays(2).isBefore(LocalDateTime.now())) {
-            boolean needUpdate = false;
+            Set<OpenThread> modifieds = new HashSet();
 
             for (Topic topic : getTopics()) {
                 for (int num : topic.comments) {
-                    Res res = getCommentBy(num);
+                    Res res = topic.getCommentBy(num);
                     for (ImageSource source : res.sources) {
                         if (!source.hasBackup() && source.origin.startsWith("https://i.imgur.com/")) {
-                            // Image image = Imgur.download(source.origin);
-                            //
-                            // JSON huge = Gyazo.upload(image.hugeName(), image.huge());
-                            // source.backupH = huge.text("url");
-                            //
-                            // JSON large = Gyazo.upload(image.largeName(), image.large());
-                            // source.backupL = large.text("url");
-                            //
-                            // needUpdate = true;
+                            Image image = Imgur.download(source.origin);
+
+                            JSON huge = Gyazo.upload(image.hugeName(), image.huge());
+                            source.backupH = huge.text("url");
+
+                            JSON large = Gyazo.upload(image.largeName(), image.large());
+                            source.backupL = large.text("url");
+
+                            modifieds.add(res.thread);
                         }
                     }
                 }
             }
 
-            if (needUpdate) {
-                store();
+            for (OpenThread thread : modifieds) {
+                thread.store();
             }
 
         }

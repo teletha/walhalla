@@ -59,4 +59,9 @@ public class Res {
      * These are typically identified and parsed separately from the text body.
      */
     public List<String> embeds;
+
+    /**
+     * The thread to which this response belongs.
+     */
+    OpenThread thread;
 }

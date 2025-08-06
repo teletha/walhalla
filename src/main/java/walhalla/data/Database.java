@@ -74,6 +74,11 @@ public class Database extends ArrayList<Unit> implements Storable<Database> {
 
                 Unit unit = new Unit();
                 unit.parseWikiCharacterDataByName(name);
+
+                if (Astro.NOT_IMPLEMENTED.contains(unit.nameJ)) {
+                    continue; // Skip not implemented units
+                }
+
                 unit.parseWikiStatsByName(name);
                 unit.parseAigisLoader();
                 unit.parseAigisTool();
@@ -81,8 +86,6 @@ public class Database extends ArrayList<Unit> implements Storable<Database> {
 
                 if (unit.name == null) {
                     throw new Error("Failed to parse unit data for: " + name);
-                } else if (Astro.NOT_IMPLEMENTED.contains(unit.nameJ)) {
-                    continue;
                 } else if (!unit.rarity.isColored()) {
                     continue; // Skip non-rare units
                 }

@@ -36,4 +36,42 @@ public class Topic {
     public int priority;
 
     public List<String> extra = new ArrayList();
+
+    /** The thread from which this topic was extracted. */
+    OpenThread thread;
+
+    /** Cache for additional threads that may be related to this topic. */
+    List<OpenThread> extraThreads;
+
+    /**
+     * Retrieves a comment by its number. If the number is negative,
+     * it returns the comment counted from the end.
+     *
+     * @param num The comment number (starting from 1).
+     * @return The corresponding {@link Res} comment.
+     */
+    public synchronized Res getCommentBy(int num) {
+        num = Math.abs(num);
+
+        if (num <= 1000 || extra.isEmpty()) {
+            Res res = thread.getCommentBy(num);
+            res.thread = thread;
+            return res;
+        } else {
+            if (extraThreads == null) {
+                extraThreads = new ArrayList();
+                for (String threadId : extra) {
+                    extraThreads.add(OpenThreadCollector.findBy(threadId));
+                }
+            }
+
+            int id = num % 1000;
+            int index = ((num - id) / 1000) - 1;
+
+            OpenThread thread = extraThreads.get(index);
+            Res res = thread.getCommentBy(num);
+            res.thread = thread;
+            return res;
+        }
+    }
 }

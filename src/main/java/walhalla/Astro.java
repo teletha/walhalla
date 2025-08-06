@@ -40,7 +40,7 @@ import walhalla.twitter.Twitter;
  */
 public class Astro {
 
-    public static final Set<String> NOT_IMPLEMENTED = Set.of("王国ファッションショー");
+    public static final Set<String> NOT_IMPLEMENTED = Set.of("王国ファッションショー", "塔の守護人形ファリエ", "統帥の塔", "リリス娘クロミ", "円卓城の異装ティルト");
 
     /** Specify the english name only. */
     public static final Set<String> FORCE_UPDATE = Set.of();
@@ -147,7 +147,7 @@ public class Astro {
      * This method processes each thread and performs analysis.
      */
     public static void buildTopics() {
-        OpenThreadCollector.collect().to(thread -> {
+        OpenThreadCollector.findAll().to(thread -> {
             long start = System.currentTimeMillis();
             thread.analyze();
             thread.backupImages();
