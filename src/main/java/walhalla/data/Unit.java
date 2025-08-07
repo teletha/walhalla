@@ -423,15 +423,19 @@ public class Unit {
         }
     }
 
-    private static final Map<String, JSON> DB = I
-            .json("https://raw.githubusercontent.com/aigis1000secretary/AigisTools/refs/heads/master/AigisLoader/CharaDatabase.json")
-            .find("*")
-            .stream()
-            .collect(Collectors.toMap(x -> x.text("name"), x -> x));
+    private static Map<String, JSON> DB;
 
-    static {
-        fixName(DB);
-        fixStatus(DB);
+    private static synchronized Map<String, JSON> getCharacterDB() {
+        if (DB == null) {
+            DB = I.json("https://raw.githubusercontent.com/aigis1000secretary/AigisTools/refs/heads/master/AigisLoader/CharaDatabase.json")
+                    .find("*")
+                    .stream()
+                    .collect(Collectors.toMap(x -> x.text("name"), x -> x));
+
+            fixName(DB);
+            fixStatus(DB);
+        }
+        return DB;
     }
 
     private static void fixName(Map<String, JSON> DB) {
@@ -493,7 +497,7 @@ public class Unit {
             }
         }
 
-        JSON json = DB.get(name);
+        JSON json = getCharacterDB().get(name);
         if (json != null) {
             subNameJ = json.text("subName").replace("ちび", "");
             ability = parseSkill(json.text("ability"), "▹", nameJ + "のアビリティ");
@@ -524,23 +528,24 @@ public class Unit {
         return skills;
     }
 
-    private static final Map<String, JSON> CARD = new HashMap();;
+    private static Map<String, JSON> CARD;
 
-    static {
-        String js = I
-                .http("https://raw.githubusercontent.com/aigis1000secretary/AigisTools/refs/heads/master/html/script/rawCardsList.js", String.class)
-                .to()
-                .acquire();
+    private static synchronized Map<String, JSON> getCardDB() {
+        if (CARD == null) {
+            CARD = new HashMap();
+            String js = I
+                    .http("https://raw.githubusercontent.com/aigis1000secretary/AigisTools/refs/heads/master/html/script/rawCardsList.js", String.class)
+                    .to()
+                    .acquire();
 
-        I.json(js.substring(js.indexOf("["))).find("*").forEach(json -> CARD.put(json.text("name"), json));
-    }
-
-    static {
-        fixName(CARD);
+            I.json(js.substring(js.indexOf("["))).find("*").forEach(json -> CARD.put(json.text("name"), json));
+            fixName(CARD);
+        }
+        return CARD;
     }
 
     void parseAigisTool() {
-        JSON json = CARD.get(nameJ);
+        JSON json = getCardDB().get(nameJ);
         if (json != null) {
             id = json.get(int.class, "id");
             place = PlaceType.values()[json.get(int.class, "placeType")];
