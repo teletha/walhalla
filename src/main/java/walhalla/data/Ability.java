@@ -88,6 +88,8 @@ public enum Ability {
 
     遠距離攻撃に専念する(AbilityCategory.攻撃),
 
+    敵に止めを刺さない(AbilityCategory.攻撃),
+
     動きを止める(AbilityCategory.デバフ),
 
     発動中はダメージを受けない(AbilityCategory.防御),
@@ -116,9 +118,9 @@ public enum Ability {
 
     編成効果(AbilityCategory.編成),
 
-    撤退扱い(AbilityCategory.死亡),
+    撤退として扱う(AbilityCategory.死亡),
 
-    飛行ユニットを優先攻撃(AbilityCategory.攻撃, "飛行ユニットを優先して攻撃"),
+    飛行ユニットを優先的に攻撃(AbilityCategory.攻撃),
 
     味方遠距離ユニットが優先的に攻撃(AbilityCategory.攻撃),
 
