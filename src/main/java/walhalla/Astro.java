@@ -40,7 +40,7 @@ import walhalla.twitter.Twitter;
  */
 public class Astro {
 
-    public static final Set<String> NOT_IMPLEMENTED = Set.of("王国ファッションショー", "塔の守護人形ファリエ", "統帥の塔", "リリス娘クロミ", "円卓城の異装ティルト");
+    public static final Set<String> NOT_IMPLEMENTED = Set.of("王国ファッションショー", "塔の守護人形ファリエ");
 
     /** Specify the english name only. */
     public static final Set<String> FORCE_UPDATE = Set.of();
@@ -158,7 +158,7 @@ public class Astro {
     }
 
     public static void tweet() {
-        File file = Locator.file(".tweet");
+        File file = Locator.file(".data/tweet.log");
         String text = file.text();
 
         Twitter twitter = new Twitter();
@@ -174,9 +174,11 @@ public class Astro {
                     String link = item.element("link").text();
                     String description = item.element("description").text();
 
-                    twitter.tweet(description + "\\n#千年戦争アイギス\\n" + link);
-                    I.info("Tweeted: " + title);
+                    if (description.length() > 100) {
+                        description = description.substring(0, 100) + "...";
+                    }
 
+                    twitter.tweet(title, description + "\\n#千年戦争アイギス\\n" + link);
                     file.text(link);
                 });
     }

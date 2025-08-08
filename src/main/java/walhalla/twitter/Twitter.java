@@ -47,12 +47,12 @@ public class Twitter {
         return this;
     }
 
-    public Twitter tweet(String message) {
-        post("https://api.twitter.com/2/tweets", "{\"text\":\"" + message + "\"}");
+    public Twitter tweet(String title, String message) {
+        post("https://api.twitter.com/2/tweets", title, "{\"text\":\"" + message + "\"}");
         return this;
     }
 
-    private void post(String endpoint, String body) {
+    private void post(String endpoint, String title, String body) {
         try {
             String oauthNonce = UUID.randomUUID().toString().replaceAll("-", "");
             String oauthTimestamp = String.valueOf(System.currentTimeMillis() / 1000);
@@ -80,7 +80,10 @@ public class Twitter {
                     .POST(HttpRequest.BodyPublishers.ofString(body));
 
             I.http(request, String.class).waitForTerminate().to(x -> {
-                System.out.println(x);
+                I.info("Tweet : " + title);
+            }, e -> {
+                I.error("Failed to tweet : " + title);
+                I.error(e);
             });
         } catch (Exception e) {
             throw I.quiet(e);

@@ -75,8 +75,8 @@ public class Profession implements Comparable<Profession> {
             return; // No unit name available
         }
 
-        if (unitName.equals("英傑の塔")) {
-            unitName = "英傑の塔(ユニット)";
+        if (unitName.endsWith("の塔")) {
+            unitName = unitName + "(ユニット)";
         }
 
         String source = Wiki.source("https://wikiwiki.jp/aigiszuki/" + unitName.replace("婚礼つむじ風 ", "婚礼つむじ風")

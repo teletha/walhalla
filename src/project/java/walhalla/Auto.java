@@ -9,9 +9,13 @@
  */
 package walhalla;
 
-public class Walhalla {
+import bee.Task;
+import bee.api.Command;
 
-    public static void main(String[] args) {
+public interface Auto extends Task {
+
+    @Command("Tweet the latest ariticles automatically.")
+    default void tweet() {
         Astro.tweet();
     }
 }

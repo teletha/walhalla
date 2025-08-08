@@ -264,6 +264,9 @@ public class Unit {
             } else if (name.equals("Hawk-Winged Birdman Soldier")) {
                 icon = calculateImagePath("Hawk-Winged_Birdman_Soldier_Icon.png");
                 image = calculateImagePath("Hawk-Winged_Birdman_Soldier_Render.png");
+            } else if (name.equals("Neve (Okyu Cosplay)")) {
+                image = calculateImagePath("Neve_(Okyu_Cosplay)_Render.png");
+                imageAW = calculateImagePath("Neve_(Okyu_Cosplay)_AW_Render.png");
             }
         });
     }
@@ -325,6 +328,7 @@ public class Unit {
             if (name.endsWith("(Swimsuit)")) assign(Attribute.Swimsuit);
             if (name.endsWith("(Yukata)")) assign(Attribute.Yukata);
             if (name.endsWith("(Festival)")) assign(Attribute.Festival);
+            if (name.endsWith("Cosplay)")) assign(Attribute.Cosplay);
         }
 
         wiki.peekKV("hero", value -> hero = value.equals("y"));
