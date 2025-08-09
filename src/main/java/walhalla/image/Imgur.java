@@ -39,7 +39,7 @@ public class Imgur {
         }
     }
 
-    private static InputStream downloadImage(String image) {
+    public static InputStream downloadImage(String image) {
         HttpRequest.Builder request = HttpRequest.newBuilder()
                 .uri(URI.create(image))
                 .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)")

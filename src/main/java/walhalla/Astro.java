@@ -29,7 +29,8 @@ import walhalla.data.UnitMeta;
 import walhalla.data.UnitMetaInfo;
 import walhalla.image.EditableImage;
 import walhalla.open2ch.OpenThreadCollector;
-import walhalla.twitter.Twitter;
+import walhalla.tweet.BlueSky;
+import walhalla.tweet.Twitter;
 
 /**
  * Provides utilities and entry point for the Astro project.
@@ -162,6 +163,7 @@ public class Astro {
         String text = file.text();
 
         Twitter twitter = new Twitter();
+        BlueSky blue = new BlueSky();
 
         I.http("https://wannyan.ephtra.workers.dev/rss.xml", XML.class)
                 .flatIterable(xml -> xml.find("item"))
@@ -173,12 +175,16 @@ public class Astro {
                     String title = item.element("title").text();
                     String link = item.element("link").text();
                     String description = item.element("description").text();
+                    String image = item.element("media:content").attr("url");
 
-                    if (description.length() > 100) {
-                        description = description.substring(0, 100) + "...";
-                    }
+                    twitter.tweet(title, description, link, image, "#千年戦争アイギス").waitForTerminate().to(json -> {
+                        I.info("Tweet on Twitter: " + title);
+                    });
 
-                    twitter.tweet(title, description + "\\n#千年戦争アイギス\\n" + link);
+                    blue.tweet(title, description, link, image, "#千年戦争アイギス").waitForTerminate().to(json -> {
+                        I.info("Tweet on BlueSky: " + title);
+                    });
+
                     file.text(link);
                 });
     }
