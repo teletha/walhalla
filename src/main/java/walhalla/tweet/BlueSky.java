@@ -29,17 +29,17 @@ import walhalla.image.Imgur;
  * 
  * <p>このクラスは以下の機能を提供します：</p>
  * <ul>
- *   <li>テキスト投稿とハッシュタグの自動検出</li>
- *   <li>ソーシャルカードの埋め込み</li>
- *   <li>画像のアップロードとサムネイル設定</li>
- *   <li>日本語を含むマルチバイト文字の正確な位置計算</li>
+ * <li>テキスト投稿とハッシュタグの自動検出</li>
+ * <li>ソーシャルカードの埋め込み</li>
+ * <li>画像のアップロードとサムネイル設定</li>
+ * <li>日本語を含むマルチバイト文字の正確な位置計算</li>
  * </ul>
  * 
  * <p>環境変数の設定が必要です：</p>
  * <ul>
- *   <li>{@code BlueSkyAPIKey}: BlueSkyのユーザー名またはメールアドレス</li>
- *   <li>{@code BlueSkyAPISecret}: BlueSkyのアプリパスワード</li>
- *   <li>{@code XGDAPIKey}: X.gd短縮URLサービスのAPIキー（オプション）</li>
+ * <li>{@code BlueSkyAPIKey}: BlueSkyのユーザー名またはメールアドレス</li>
+ * <li>{@code BlueSkyAPISecret}: BlueSkyのアプリパスワード</li>
+ * <li>{@code XGDAPIKey}: X.gd短縮URLサービスのAPIキー（オプション）</li>
  * </ul>
  * 
  * @author Nameless Production Committee
@@ -52,9 +52,6 @@ public class BlueSky {
 
     /** BlueSkyのアプリパスワード */
     private final String apiSecret = I.env("BlueSkyAPISecret");
-
-    /** X.gd短縮URLサービスのAPIキー */
-    private final String xgdApiKey = I.env("XGDAPIKey");
 
     /** ハッシュタグを検出する正規表現パターン */
     private static final Pattern HASHTAG_PATTERN = Pattern.compile("#([\\p{L}\\p{N}_]+)");
@@ -72,9 +69,8 @@ public class BlueSky {
      */
     public Signal<JSON> tweet(String title, String description, String url, String image, String hash) {
         validateParameters(title, description, url, hash);
-        
-        return createSession()
-                .flatMap(session -> createPost(session, title, description, url, image, hash));
+
+        return createSession().flatMap(session -> createPost(session, title, description, url, image, hash));
     }
 
     /**
@@ -127,8 +123,7 @@ public class BlueSky {
         String facetsJson = generateFacets(hash);
         String embedJson = generateEmbed(title, description, url, image, accessToken);
 
-        return post("https://bsky.social/xrpc/com.atproto.repo.createRecord", 
-                   Map.of("Authorization", accessToken), """
+        return post("https://bsky.social/xrpc/com.atproto.repo.createRecord", Map.of("Authorization", accessToken), """
                 {
                     "repo": "%s",
                     "collection": "app.bsky.feed.post",
@@ -203,7 +198,7 @@ public class BlueSky {
         byte[] imageBytes = downloadImageBytes(imagePath);
         String mimeType = determineMimeType(imagePath);
 
-        HttpRequest uploadRequest = createUploadRequest(imageBytes, mimeType, accessToken);
+        HttpRequest.Builder uploadRequest = createUploadRequest(imageBytes, mimeType, accessToken);
         JSON uploadResult = I.http(uploadRequest, JSON.class).waitForTerminate().to().exact();
 
         return formatBlobReference(uploadResult);
@@ -228,13 +223,12 @@ public class BlueSky {
      * @param accessToken アクセストークン
      * @return HTTPリクエスト
      */
-    private HttpRequest createUploadRequest(byte[] imageBytes, String mimeType, String accessToken) {
+    private HttpRequest.Builder createUploadRequest(byte[] imageBytes, String mimeType, String accessToken) {
         return HttpRequest.newBuilder()
                 .uri(URI.create("https://bsky.social/xrpc/com.atproto.repo.uploadBlob"))
                 .header("Content-Type", mimeType)
                 .header("Authorization", accessToken)
-                .POST(HttpRequest.BodyPublishers.ofByteArray(imageBytes))
-                .build();
+                .POST(HttpRequest.BodyPublishers.ofByteArray(imageBytes));
     }
 
     /**
@@ -253,10 +247,7 @@ public class BlueSky {
                     },
                     "mimeType": "%s",
                     "size": %d
-                }""".formatted(
-                blob.get("ref").text("$link"),
-                blob.text("mimeType"),
-                Integer.parseInt(blob.text("size")));
+                }""".formatted(blob.get("ref").text("$link"), blob.text("mimeType"), Integer.parseInt(blob.text("size")));
     }
 
     /**
@@ -290,11 +281,7 @@ public class BlueSky {
         if (text == null) {
             return "";
         }
-        return text.replace("\"", "\\\"")
-                  .replace("\\", "\\\\")
-                  .replace("\n", "\\n")
-                  .replace("\r", "\\r")
-                  .replace("\t", "\\t");
+        return text.replace("\"", "\\\"").replace("\\", "\\\\").replace("\n", "\\n").replace("\r", "\\r").replace("\t", "\\t");
     }
 
     /**
@@ -311,7 +298,7 @@ public class BlueSky {
         }
 
         List<String> facets = extractHashtagFacets(message);
-        
+
         if (facets.isEmpty()) {
             return "";
         }
@@ -385,9 +372,7 @@ public class BlueSky {
      * @return バイト位置
      */
     private int calculateBytePosition(String message, int charPosition) {
-        return message.substring(0, charPosition)
-                     .getBytes(java.nio.charset.StandardCharsets.UTF_8)
-                     .length;
+        return message.substring(0, charPosition).getBytes(java.nio.charset.StandardCharsets.UTF_8).length;
     }
 
     /**
