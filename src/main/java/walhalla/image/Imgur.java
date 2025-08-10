@@ -35,7 +35,7 @@ public class Imgur {
         if (ext.equals("gif")) {
             return new Image(name, downloadImage(url + ".gif"), name + "-l", downloadImage(url + "l.webp"));
         } else {
-            return new Image(name + "-h", downloadImage(url + "h.webp"), name + "-l", downloadImage(url + "l.webp"));
+            return new Image(name + "-h", downloadImage(url + "h.webp"), name + "-m", downloadImage(url + "l.webp"));
         }
     }
 
