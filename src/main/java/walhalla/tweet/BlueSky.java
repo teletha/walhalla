@@ -212,7 +212,7 @@ public class BlueSky {
      * @throws Exception ダウンロードに失敗した場合
      */
     private byte[] downloadImageBytes(String imagePath) throws Exception {
-        return Imgur.download(imagePath).large().readAllBytes();
+        return Imgur.downloadImage(imagePath).readAllBytes();
     }
 
     /**
