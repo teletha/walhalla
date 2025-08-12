@@ -253,8 +253,8 @@ public class Astro {
      * @param args Command line arguments (not used)
      */
     public static void main(String[] args) {
-        // buildUnitJSON();
-        // buildTopics();
-        buildArtTopic();
+        buildUnitJSON();
+        buildTopics();
+        // buildArtTopic();
     }
 }

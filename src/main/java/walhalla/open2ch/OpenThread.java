@@ -246,7 +246,7 @@ public class OpenThread implements Storable<OpenThread> {
         if (topicJSON.isAbsent() || topicJSON.size() == 0) {
             I.info("Analyzing topics in thread " + num + " by Gemini.");
             topics = I.json(Editor.topics(composeThreadText()), Topics.class);
-            topics.normalize();
+            topics.normalize(this);
 
             topicJSON.text(I.write(topics)).creationTime(0);
             I.info("Finish analyzing topics and cache it to [" + topicJSON + "].");
@@ -327,15 +327,41 @@ public class OpenThread implements Storable<OpenThread> {
          * for topic titles, especially for use in UI or documentation where full-width symbols are
          * preferred.
          */
-        private void normalize() {
+        private void normalize(OpenThread thread) {
             removeIf(topic -> {
                 int size = topic.comments.size();
-                return size < 15 || 50 < size;
+                return size < 13 || 55 < size;
             });
 
             forEach(topic -> {
                 topic.title = convertHalfToFullSymbols(topic.title);
+                topic.comments = sortReference(thread, topic.comments);
             });
+        }
+
+        /**
+         * @param comments
+         * @return
+         */
+        private List<Integer> sortReference(OpenThread thread, List<Integer> comments) {
+            List<Integer> sorted = new ArrayList();
+            while (!comments.isEmpty()) {
+                Integer item = comments.removeFirst();
+                sorted.add(item);
+
+                sort(sorted, comments, thread, item);
+            }
+            return sorted;
+        }
+
+        private void sort(List<Integer> sorted, List<Integer> origin, OpenThread thread, int num) {
+            Res comment = thread.getCommentBy(num);
+            for (Integer referer : comment.from) {
+                if (origin.remove(referer)) {
+                    sorted.add(referer);
+                    sort(sorted, origin, thread, referer);
+                }
+            }
         }
 
         /**
