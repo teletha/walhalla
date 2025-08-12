@@ -60,6 +60,10 @@ public class Res {
      */
     public List<String> embeds;
 
+    public List<Integer> from;
+
+    public List<Integer> to;
+
     /**
      * The thread to which this response belongs.
      */

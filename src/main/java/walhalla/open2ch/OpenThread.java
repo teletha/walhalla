@@ -17,6 +17,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import kiss.I;
@@ -206,8 +208,32 @@ public class OpenThread implements Storable<OpenThread> {
             this.comments.add(res);
         });
 
+        linkageComments();
+
         store();
         I.info("Parse the thread " + num + " and cache it to [" + parsedJSON + "].");
+    }
+
+    /**
+     * Linkage references between comments.
+     */
+    private void linkageComments() {
+        Pattern pattern = Pattern.compile("&gt;&gt;(\\d+)");
+
+        for (Res res : comments) {
+            res.from = new ArrayList();
+            res.to = new ArrayList();
+
+            Matcher matcher = pattern.matcher(res.body);
+            while (matcher.find()) {
+                String ref = matcher.group(1);
+                Integer num = Integer.valueOf(ref);
+                if (num < res.num) {
+                    res.to.add(num);
+                    comments.get(num - 1).from.add(res.num);
+                }
+            }
+        }
     }
 
     /**
