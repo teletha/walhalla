@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.ahocorasick.trie.PayloadEmit;
 import org.ahocorasick.trie.PayloadToken;
 import org.ahocorasick.trie.PayloadTrie;
 import org.ahocorasick.trie.PayloadTrie.PayloadTrieBuilder;
@@ -77,6 +78,9 @@ public class NickLinkage {
         NICKS.put("太上老君", List.of("老君", "老くん", "ろーくん"));
         NICKS.put("ホルミース", List.of("詩人"));
         NICKS.put("クゥイル", List.of("QIL"));
+        NICKS.put("ハリンヘイム", List.of("ハリン"));
+        NICKS.put("秋山凜子", List.of("凛子", "リンコ"));
+        NICKS.put("スーシェン", List.of("スーチェン"));
 
         // 特殊略称
         // 名前の語尾をだけを取って季節接頭辞と合わせるために使用
@@ -87,8 +91,9 @@ public class NickLinkage {
 
     private final PayloadTrie<String> trie;
 
+    private final Database db = I.make(Database.class);
+
     private NickLinkage() {
-        Database db = I.make(Database.class);
 
         PayloadTrieBuilder builder = PayloadTrie.builder().ignoreOverlaps();
         for (String name : db.uniqueSubNames()) {
@@ -109,11 +114,162 @@ public class NickLinkage {
         builder.addKeyword("バッファー", "");
         builder.addKeyword("レンジ", "");
         builder.addKeyword("ジレンマ", "");
+        builder.addKeyword("チャレンジ", "");
+        builder.addKeyword("ランキング", "");
         builder.addKeyword("ゴブリン", "");
+        builder.addKeyword("リンク", "");
+        builder.addKeyword("直リン", "");
         builder.addKeyword("リンゴ", "");
+        builder.addKeyword("パリン", "");
+        builder.addKeyword("リンカー", "");
+        builder.addKeyword("リンチ", "");
+        builder.addKeyword("リング", "");
+        builder.addKeyword("クリリン", "");
+        builder.addKeyword("マーリン", "");
+        builder.addKeyword("アリーナ", "");
+        builder.addKeyword("タンバリン", "");
+        builder.addKeyword("ダーリン", "");
+        builder.addKeyword("リンパ", "");
+        builder.addKeyword("ガソリン", "");
+        builder.addKeyword("バファリン", "");
+        builder.addKeyword("マリン", "");
+        builder.addKeyword("グリセリン", "");
+        builder.addKeyword("インスリン", "");
+        builder.addKeyword("ガンスリンガー", "");
+        builder.addKeyword("キリン", "");
+        builder.addKeyword("ダージリン", "");
+        builder.addKeyword("リンガーハット", "");
+        builder.addKeyword("リンダ", "");
+        builder.addKeyword("オリンピック", "");
+        builder.addKeyword("プリン", "");
+        builder.addKeyword("アドレナリン", "");
+        builder.addKeyword("ドーンブリンガー", "");
         builder.addKeyword("セーラー", "");
         builder.addKeyword("デミウルゴス", "");
         builder.addKeyword("コマンダー", "");
+        builder.addKeyword("コマンド", "");
+        builder.addKeyword("4コマ", "");
+        builder.addKeyword("3コマ", "");
+        builder.addKeyword("2コマ", "");
+        builder.addKeyword("1コマ", "");
+        builder.addKeyword("４コマ", "");
+        builder.addKeyword("３コマ", "");
+        builder.addKeyword("２コマ", "");
+        builder.addKeyword("１コマ", "");
+        builder.addKeyword("スーパー", "");
+        builder.addKeyword("スーツ", "");
+        builder.addKeyword("スーファミ", "");
+        builder.addKeyword("スープ", "");
+        builder.addKeyword("シレン", "");
+        builder.addKeyword("フリーレン", "");
+        builder.addKeyword("フレンド", "");
+        builder.addKeyword("フレンズ", "");
+        builder.addKeyword("レンチン", "");
+        builder.addKeyword("レンジ", "");
+        builder.addKeyword("レンコン", "");
+        builder.addKeyword("アズレン", "");
+        builder.addKeyword("サイレン", "");
+        builder.addKeyword("スレンダー", "");
+        builder.addKeyword("ブレンド", "");
+        builder.addKeyword("フレンチ", "");
+        builder.addKeyword("トレンド", "");
+        builder.addKeyword("ギレン", "");
+        builder.addKeyword("レンガ", "");
+        builder.addKeyword("レンズ", "");
+        builder.addKeyword("レント", "");
+        builder.addKeyword("レンチ", "");
+        builder.addKeyword("レンタカー", "");
+        builder.addKeyword("カレンダー", "");
+        builder.addKeyword("ハガレン", "");
+        builder.addKeyword("ペアレンツ", "");
+        builder.addKeyword("レンタル", "");
+        builder.addKeyword("バレンタイン", "");
+        builder.addKeyword("バンズ", "");
+        builder.addKeyword("アドバンス", "");
+        builder.addKeyword("バンク", "");
+        builder.addKeyword("バンダイ", "");
+        builder.addKeyword("バンデット", "");
+        builder.addKeyword("バンデッド", "");
+        builder.addKeyword("バンカー", "");
+        builder.addKeyword("バンディット", "");
+        builder.addKeyword("カバン", "");
+        builder.addKeyword("イチバン", "");
+        builder.addKeyword("バンプ", "");
+        builder.addKeyword("アドバンテージ", "");
+        builder.addKeyword("バンダナ", "");
+        builder.addKeyword("ミョウバン", "");
+        builder.addKeyword("バンコク", "");
+        builder.addKeyword("バンド", "");
+        builder.addKeyword("ヘブバン", "");
+        builder.addKeyword("アバン", "");
+        builder.addKeyword("バンバン", "");
+        builder.addKeyword("ビッグバン", "");
+        builder.addKeyword("バンザイ", "");
+        builder.addKeyword("バンジー", "");
+        builder.addKeyword("サバンナ", "");
+        builder.addKeyword("バンされ", "");
+        builder.addKeyword("バンする", "");
+        builder.addKeyword("バンブー", "");
+        builder.addKeyword("バンパー", "");
+        builder.addKeyword("ミニバン", "");
+        builder.addKeyword("ウォーキング", "");
+        builder.addKeyword("バーガーキング", "");
+        builder.addKeyword("バイキング", "");
+        builder.addKeyword("パーキング", "");
+        builder.addKeyword("ストッキング", "");
+        builder.addKeyword("キングゲイナー", "");
+        builder.addKeyword("キングダム", "");
+        builder.addKeyword("キングスライム", "");
+        builder.addKeyword("キングダムハーツ", "");
+        builder.addKeyword("クッキング", "");
+        builder.addKeyword("ムシキング", "");
+        builder.addKeyword("スパンキング", "");
+        builder.addKeyword("マスキング", "");
+        builder.addKeyword("キングギドラ", "");
+        builder.addKeyword("ライオンキング", "");
+        builder.addKeyword("ハッキング", "");
+        builder.addKeyword("コイキング", "");
+        builder.addKeyword("ブレイキング", "");
+        builder.addKeyword("トラッキング", "");
+        builder.addKeyword("キングサイズ", "");
+        builder.addKeyword("シロップ", "");
+        builder.addKeyword("スシロー", "");
+        builder.addKeyword("シロモノ", "");
+        builder.addKeyword("シロクマ", "");
+        builder.addKeyword("ケンシロウ", "");
+        builder.addKeyword("シロアリ", "");
+        builder.addKeyword("シロウ", "");
+        builder.addKeyword("シロッコ", "");
+        builder.addKeyword("アメリカ", "");
+        builder.addKeyword("イギリス", "");
+        builder.addKeyword("フランス", "");
+        builder.addKeyword("ドイツ", "");
+        builder.addKeyword("イタリア", "");
+        builder.addKeyword("スペイン", "");
+        builder.addKeyword("ロシア", "");
+        builder.addKeyword("ポルトガル", "");
+        builder.addKeyword("アジア", "");
+        builder.addKeyword("アフリカ", "");
+        builder.addKeyword("ダンまち", "");
+        builder.addKeyword("ダンジョン", "");
+        builder.addKeyword("ダンボール", "");
+        builder.addKeyword("ダンディ", "");
+        builder.addKeyword("ダンサー", "");
+        builder.addKeyword("ダンシング", "");
+        builder.addKeyword("ダンベル", "");
+        builder.addKeyword("ダンナ", "");
+        builder.addKeyword("ダンス", "");
+        builder.addKeyword("モダン", "");
+        builder.addKeyword("ラスダン", "");
+        builder.addKeyword("ダンガン", "");
+        builder.addKeyword("ダンバイン", "");
+        builder.addKeyword("ダンターグ", "");
+        builder.addKeyword("ダンテ", "");
+        builder.addKeyword("ビダン", "");
+        builder.addKeyword("ダンク", "");
+        builder.addKeyword("ダントツ", "");
+        builder.addKeyword("ダンクーガ", "");
+        builder.addKeyword("サキュバス", "");
 
         this.trie = builder.build();
     }
@@ -179,5 +335,47 @@ public class NickLinkage {
             }
         }
         return result.toString();
+    }
+
+    public void count(Map<String, Freq> counter, String input) {
+        Collection<PayloadEmit<String>> tokens = trie.parseText(input);
+        for (PayloadEmit<String> token : tokens) {
+            String payload = token.getPayload();
+            if (!payload.isEmpty()) {
+                if (payload.startsWith("/character/?q=")) {
+                    payload = payload.substring(14);
+                    if (payload.equals("アンナ")) {
+                        continue;
+                    }
+                    List<Unit> units = db.searchByName(payload);
+                    for (Unit unit : units) {
+                        String name = unit.nameJ;
+                        Freq freq = counter.computeIfAbsent(name, _ -> new Freq());
+                        freq.count++;
+                        freq.words.add(input);
+                    }
+
+                } else if (payload.startsWith("/character/")) {
+                    payload = payload.substring(11, payload.length() - 1);
+                    Freq freq = counter.computeIfAbsent(payload, key -> new Freq());
+                    freq.count++;
+                    freq.words.add(input);
+                }
+            }
+        }
+    }
+
+    public static class Freq implements Comparable<Freq> {
+        public int count;
+
+        public Set<String> words = new HashSet<>();
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public int compareTo(Freq o) {
+            return count - o.count;
+        }
     }
 }

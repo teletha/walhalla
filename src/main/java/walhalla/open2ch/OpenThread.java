@@ -305,7 +305,7 @@ public class OpenThread implements Storable<OpenThread> {
         store();
     }
 
-    private String unlink(String text) {
+    public static String unlink(String text) {
         return text.replaceAll("<a(?![^>]*class=\"external\")[^>]*>(.*?)</a>", "$1");
     }
 
