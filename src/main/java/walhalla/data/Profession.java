@@ -18,6 +18,7 @@ import kiss.I;
 import kiss.XML;
 import walhalla.Astro;
 import walhalla.data.lint.Proofreader;
+import walhalla.util.WebPage;
 
 public class Profession implements Comparable<Profession> {
 
@@ -79,7 +80,7 @@ public class Profession implements Comparable<Profession> {
             unitName = unitName + "(ユニット)";
         }
 
-        String source = Wiki.source("https://wikiwiki.jp/aigiszuki/" + unitName.replace("婚礼つむじ風 ", "婚礼つむじ風")
+        String source = WebPage.fetchText("https://wikiwiki.jp/aigiszuki/" + unitName.replace("婚礼つむじ風 ", "婚礼つむじ風")
                 .replace(" ", "%20"), 28L * 24 * 60 * 60 * 1000);
         XML xml = I.xml(source);
 

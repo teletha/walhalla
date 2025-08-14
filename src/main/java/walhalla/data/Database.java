@@ -15,6 +15,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.Consumer;
 
@@ -26,6 +27,7 @@ import kiss.XML;
 import psychopath.File;
 import psychopath.Locator;
 import walhalla.Astro;
+import walhalla.util.WebPage;
 
 /**
  * Manages the collection and storage of {@link Unit} data.
@@ -163,9 +165,9 @@ public class Database extends ArrayList<Unit> implements Storable<Database> {
         };
 
         long ttl = 12 * 60 * 60 * 1000 * (Astro.FORCE_UPDATE.isEmpty() ? 1 : -1);
-        I.xml(Wiki.source("https://aigis.fandom.com/wiki/Category:Female_Units", ttl)).element("img").forEach(scan);
-        I.xml(Wiki.source("https://aigis.fandom.com/wiki/Category:Male_Units", ttl)).element("img").forEach(scan);
-        I.xml(Wiki.source("https://aigis.fandom.com/wiki/Aigis_Wiki", ttl))
+        I.xml(WebPage.fetchText("https://aigis.fandom.com/wiki/Category:Female_Units", ttl)).element("img").forEach(scan);
+        I.xml(WebPage.fetchText("https://aigis.fandom.com/wiki/Category:Male_Units", ttl)).element("img").forEach(scan);
+        I.xml(WebPage.fetchText("https://aigis.fandom.com/wiki/Aigis_Wiki", ttl))
                 .find("#New_Units")
                 .parent()
                 .nextUntil("p")
@@ -190,8 +192,12 @@ public class Database extends ArrayList<Unit> implements Storable<Database> {
      * @param name The Japanese sub-name to search for
      * @return A list of units with the given sub-name
      */
-    public List<Unit> searchByName(String name) {
+    public List<Unit> searchBySubName(String name) {
         return stream().filter(u -> u.subNameJ.equals(name)).toList();
+    }
+
+    public Optional<Unit> searchByFullName(String name) {
+        return stream().filter(u -> u.nameJ.equals(name)).findFirst();
     }
 
     /**

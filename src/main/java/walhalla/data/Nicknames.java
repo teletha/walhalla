@@ -15,6 +15,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Consumer;
 
 import org.ahocorasick.trie.PayloadEmit;
 import org.ahocorasick.trie.PayloadToken;
@@ -26,7 +27,7 @@ import kiss.Managed;
 import kiss.Singleton;
 
 @Managed(Singleton.class)
-public class NickLinkage {
+public class Nicknames {
 
     private static final Map<String, List<String>> NICKS = new HashMap();
 
@@ -54,7 +55,7 @@ public class NickLinkage {
         NICKS.put("メフィスト", List.of("メッフィー", "めっふぃー"));
         NICKS.put("テュト", List.of("おばあちゃん", "テュトおばあちゃん"));
         NICKS.put("アブグルント", List.of("アブちゃん"));
-        NICKS.put("神野悪五郎", List.of("悪五郎"));
+        NICKS.put("神野悪五郎", List.of("悪五郎", "アクゴロー", "あくごろー"));
         NICKS.put("オスカー", List.of("手塚"));
         NICKS.put("清源妙道真君", List.of("妙ちゃん", "清源", "清原"));
         NICKS.put("天墜神星", List.of("アマツちゃん", "アマツ", "天墜ちゃん"));
@@ -93,11 +94,11 @@ public class NickLinkage {
 
     private final Database db = I.make(Database.class);
 
-    private NickLinkage() {
+    private Nicknames() {
 
         PayloadTrieBuilder builder = PayloadTrie.builder().ignoreOverlaps();
         for (String name : db.uniqueSubNames()) {
-            List<Unit> units = db.searchByName(name);
+            List<Unit> units = db.searchBySubName(name);
 
             register(builder, name, units);
             List<String> nicks = NICKS.get(name);
@@ -337,45 +338,9 @@ public class NickLinkage {
         return result.toString();
     }
 
-    public void count(Map<String, Freq> counter, String input) {
-        Collection<PayloadEmit<String>> tokens = trie.parseText(input);
-        for (PayloadEmit<String> token : tokens) {
-            String payload = token.getPayload();
-            if (!payload.isEmpty()) {
-                if (payload.startsWith("/character/?q=")) {
-                    payload = payload.substring(14);
-                    if (payload.equals("アンナ")) {
-                        continue;
-                    }
-                    List<Unit> units = db.searchByName(payload);
-                    for (Unit unit : units) {
-                        String name = unit.nameJ;
-                        Freq freq = counter.computeIfAbsent(name, _ -> new Freq());
-                        freq.count++;
-                        freq.words.add(input);
-                    }
-
-                } else if (payload.startsWith("/character/")) {
-                    payload = payload.substring(11, payload.length() - 1);
-                    Freq freq = counter.computeIfAbsent(payload, key -> new Freq());
-                    freq.count++;
-                    freq.words.add(input);
-                }
-            }
-        }
-    }
-
-    public static class Freq implements Comparable<Freq> {
-        public int count;
-
-        public Set<String> words = new HashSet<>();
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public int compareTo(Freq o) {
-            return count - o.count;
-        }
+    public void parse(String input, Consumer<PayloadEmit<String>> process) {
+        trie.parseText(input).forEach(emit -> {
+            process.accept(emit);
+        });
     }
 }

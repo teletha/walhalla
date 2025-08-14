@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import kiss.I;
@@ -24,16 +23,14 @@ import psychopath.Directory;
 import psychopath.File;
 import psychopath.Locator;
 import walhalla.data.Database;
-import walhalla.data.NickLinkage;
-import walhalla.data.NickLinkage.Freq;
 import walhalla.data.Rarity;
 import walhalla.data.Unit;
 import walhalla.data.UnitMeta;
 import walhalla.data.UnitMetaInfo;
 import walhalla.image.EditableImage;
-import walhalla.open2ch.OpenThread;
 import walhalla.open2ch.OpenThreadCollector;
 import walhalla.open2ch.Res;
+import walhalla.topics.TierCalculator;
 import walhalla.tweet.BlueSky;
 import walhalla.tweet.Twitter;
 
@@ -252,23 +249,11 @@ public class Astro {
     }
 
     public static void buildTier() {
-        NickLinkage linkage = I.make(NickLinkage.class);
-        Map<String, Freq> counter = new HashMap();
-
-        OpenThreadCollector.findAll().to(thread -> {
-            for (Res res : thread.comments) {
-                linkage.count(counter, OpenThread.unlink(res.body));
-            }
-        });
-
-        // counｔの降順でkeyを表示
-        counter.entrySet().stream().sorted(Map.Entry.<String, Freq> comparingByValue().reversed()).forEach(entry -> {
-            String key = entry.getKey();
-            Freq value = entry.getValue();
-            if (value.count >= 200 && !key.startsWith("ちび") && !key.endsWith("（白）")) {
-                System.out.println(key + " : " + value.count);
-            }
-        });
+        TierCalculator calculator = I.make(TierCalculator.class);
+        calculator.calculateTower();
+        calculator.calculateTrend();
+        calculator.calculateMajin();
+        calculator.show();
     }
 
     /**
@@ -277,10 +262,10 @@ public class Astro {
      * @param args Command line arguments (not used)
      */
     public static void main(String[] args) {
-        buildUnitJSON();
-        buildTopics();
+        // buildUnitJSON();
+        // buildTopics();
         // buildArtTopic();
-        // buildTier();
+        buildTier();
 
     }
 }

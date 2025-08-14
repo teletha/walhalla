@@ -25,7 +25,9 @@ import java.util.stream.Collectors;
 
 import kiss.I;
 import kiss.JSON;
+import walhalla.Astro;
 import walhalla.data.lint.Proofreader;
+import walhalla.util.WebPage;
 
 public class Unit {
 
@@ -124,8 +126,23 @@ public class Unit {
         return list;
     }
 
+    /**
+     * 指定した名前に紐づくデータを取得します。キャッシュが有効な場合はキャッシュを返し、
+     * 期限切れや未取得の場合はサーバーから取得してキャッシュします。
+     *
+     * @param name データ名（例: "キャラクター名/サブページ"）
+     * @return データの文字列
+     */
+    private static String sourceByName(String name) {
+        int index = name.indexOf("/");
+        String characterName = index == -1 ? name : name.substring(0, index);
+        long ttl = 14 * 24 * 60 * 60 * 1000 * (Astro.FORCE_UPDATE.contains(characterName) ? -1 : 1);
+        return WebPage
+                .fetchText("https://aigis.fandom.com/api.php?action=query&prop=revisions&titles=" + name + "&rvslots=main&rvprop=content&format=json", ttl);
+    }
+
     void parseWikiCharacterDataByName(String name) {
-        JSON json = I.json(Wiki.sourceByName(name)).find("query", "pages", "*", "revisions", "*", "slots", "main").getFirst();
+        JSON json = I.json(sourceByName(name)).find("query", "pages", "*", "revisions", "*", "slots", "main").getFirst();
 
         parseWikiCharacterData(name, json.toString());
     }
@@ -310,7 +327,7 @@ public class Unit {
     }
 
     void parseWikiStatsByName(String name) {
-        JSON json = I.json(Wiki.sourceByName(name + "/stats")).find("query", "pages", "*", "revisions", "*", "slots", "main").getFirst();
+        JSON json = I.json(sourceByName(name + "/stats")).find("query", "pages", "*", "revisions", "*", "slots", "main").getFirst();
 
         parseWikiStats(json.toString());
     }

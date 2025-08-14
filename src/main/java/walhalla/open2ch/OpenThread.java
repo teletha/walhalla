@@ -28,7 +28,7 @@ import kiss.XML;
 import psychopath.Directory;
 import psychopath.File;
 import walhalla.Astro;
-import walhalla.data.NickLinkage;
+import walhalla.data.Nicknames;
 import walhalla.image.Gyazo;
 import walhalla.image.Image;
 import walhalla.image.Imgur;
@@ -145,7 +145,7 @@ public class OpenThread implements Storable<OpenThread> {
         this.title = html.element("title").text();
         this.url = html.find("head meta[property='og:url']").attr("content");
 
-        NickLinkage nick = I.make(NickLinkage.class);
+        Nicknames nick = I.make(Nicknames.class);
 
         html.find("div.thread > dl").forEach(dl -> {
             int num = Integer.parseInt(dl.attr("val"));
@@ -297,16 +297,12 @@ public class OpenThread implements Storable<OpenThread> {
     }
 
     public void linkageCharacter() {
-        NickLinkage nick = I.make(NickLinkage.class);
+        Nicknames nick = I.make(Nicknames.class);
 
         for (Res res : comments) {
-            res.body = nick.link(unlink(res.body));
+            res.body = nick.link(res.decodedBody());
         }
         store();
-    }
-
-    public static String unlink(String text) {
-        return text.replaceAll("<a(?![^>]*class=\"external\")[^>]*>(.*?)</a>", "$1");
     }
 
     /**

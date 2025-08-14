@@ -68,4 +68,8 @@ public class Res {
      * The thread to which this response belongs.
      */
     OpenThread thread;
+
+    public String decodedBody() {
+        return body.replaceAll("<a(?![^>]*class=\"external\")[^>]*>(.*?)</a>", "$1");
+    }
 }
