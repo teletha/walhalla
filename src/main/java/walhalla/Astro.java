@@ -92,7 +92,7 @@ public class Astro {
             meta.put(unit.nameJ, unit.asMeta());
         });
 
-        I.make(TierCalculator.class).calculate();;
+        I.make(TierCalculator.class).calculate();
 
         I.write(full, Astro.PUBLIC.file("characters.json").newBufferedWriter());
         I.write(meta, Astro.PUBLIC.file("meta.json").newBufferedWriter());
@@ -240,10 +240,14 @@ public class Astro {
 
                     twitter.tweet(title, description, link, image, "#千年戦争アイギス").waitForTerminate().to(json -> {
                         I.info("Tweet on Twitter: " + title);
+                    }, e -> {
+                        I.error(e);
                     });
 
                     blue.tweet(title, description, link, image, "#千年戦争アイギス").waitForTerminate().to(json -> {
                         I.info("Tweet on BlueSky: " + title);
+                    }, e -> {
+                        I.error(e);
                     });
 
                     file.text(link);
@@ -263,7 +267,6 @@ public class Astro {
         buildUnitJSON();
         buildTopics();
         // buildArtTopic();
-        // buildTier();
 
     }
 }

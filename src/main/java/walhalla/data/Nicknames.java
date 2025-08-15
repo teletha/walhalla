@@ -82,6 +82,7 @@ public class Nicknames {
         NICKS.put("ハリンヘイム", List.of("ハリン"));
         NICKS.put("秋山凜子", List.of("凛子", "リンコ"));
         NICKS.put("スーシェン", List.of("スーチェン"));
+        NICKS.put("ツグミ", List.of("鵺"));
 
         // 特殊略称
         // 名前の語尾をだけを取って季節接頭辞と合わせるために使用

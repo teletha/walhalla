@@ -23,8 +23,10 @@ import kiss.I;
 import kiss.Managed;
 import kiss.Singleton;
 import kiss.XML;
+import walhalla.data.Attribute;
 import walhalla.data.Database;
 import walhalla.data.Nicknames;
+import walhalla.data.Rarity;
 import walhalla.data.Unit;
 import walhalla.open2ch.OpenThreadCollector;
 import walhalla.open2ch.Res;
@@ -75,6 +77,7 @@ public class TierCalculator {
      */
     public void calculateTrend() {
         Nicknames nicknames = I.make(Nicknames.class);
+        Set<String> ignoreSeasons = Set.of("コマ", "鬼刃姫", "エフネ", "エフトラ");
 
         OpenThreadCollector.findAll().to(thread -> {
             for (Res res : thread.comments) {
@@ -87,9 +90,22 @@ public class TierCalculator {
                             name = name.substring(14);
 
                             List<Unit> units = db.searchBySubName(name);
-                            for (Unit unit : units) {
-                                byName(unit.nameJ).addWord(input);
+                            if (ignoreSeasons.contains(name)) {
+                                byName(units.getFirst().nameJ).addWord(input);
+                            } else {
+                                for (Unit unit : units) {
+                                    if (unit.nameJ.endsWith("（白）") || (unit.hero && unit.rarity == Rarity.白)) {
+                                        continue; // 白金英傑は除外
+                                    }
+
+                                    if (unit.season.contains(Attribute.Festival)) {
+                                        continue; // 祭りユニットは除外
+                                    }
+
+                                    byName(unit.nameJ).addWord(input);
+                                }
                             }
+
                         } else if (name.startsWith("/character/")) {
                             name = name.substring(11, name.length() - 1);
 
@@ -234,7 +250,7 @@ public class TierCalculator {
                 }
 
                 if (!used.isEmpty()) {
-                    int point = (int) (score / (Math.pow(used.size(), 2) * 6));
+                    int point = (int) (score / (Math.pow(used.size(), 2) * 4));
                     for (String name : used) {
                         byName(name).tower += point / 1000;
                     }
