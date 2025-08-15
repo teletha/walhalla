@@ -115,6 +115,8 @@ public class Unit {
 
     public List<String> bounus150 = new ArrayList();
 
+    public List<Integer> tier = new ArrayList();
+
     private boolean disableAW;
 
     public List<Stats> stats() {

@@ -11,6 +11,7 @@ package walhalla.topics;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -33,10 +34,10 @@ import walhalla.util.WebPage;
  * TierCalculatorは、各種データソースからユニットのトレンドやスコアを集計し、
  * ユニットごとのTier（評価）を計算・表示するクラスです。
  * <ul>
- *   <li>calculateTrend(): オープンスレッドからユニット名の出現頻度を集計します。</li>
- *   <li>calculateMajin(): 魔神イベントの集計データを取得し、ユニットごとのスコアに反映します。</li>
- *   <li>calculateTower(): 各種塔イベントのスコアを集計し、ユニットごとのスコアに反映します。</li>
- *   <li>show(): 集計結果をスコア順に表示します。</li>
+ * <li>calculateTrend(): オープンスレッドからユニット名の出現頻度を集計します。</li>
+ * <li>calculateMajin(): 魔神イベントの集計データを取得し、ユニットごとのスコアに反映します。</li>
+ * <li>calculateTower(): 各種塔イベントのスコアを集計し、ユニットごとのスコアに反映します。</li>
+ * <li>show(): 集計結果をスコア順に表示します。</li>
  * </ul>
  * 本クラスはSingletonとして管理されます。
  */
@@ -51,6 +52,23 @@ public class TierCalculator {
      * ユニット情報を取得するためのデータベースインスタンス。
      */
     private Database db = I.make(Database.class);
+
+    public TierCalculator calculate() {
+        calculateTrend();
+        calculateMajin();
+        calculateTower();
+
+        for (Unit unit : db) {
+            Tier tier = tiers.get(unit.nameJ);
+            if (tier != null) {
+                unit.tier.add(tier.trend);
+                unit.tier.add(tier.tower);
+                unit.tier.add(tier.majin);
+            }
+        }
+
+        return this;
+    }
 
     /**
      * オープンスレッドからユニット名の出現頻度を集計し、Tier情報に反映します。
@@ -117,10 +135,33 @@ public class TierCalculator {
         String date = root.find("div.majin_summary-item:nth-child(4)").text().trim();
         date = date.substring(0, 10);
         if (date.endsWith("～")) date = date.substring(0, date.length() - 2) + "01";
-        LocalDate local = DateTimeFormatter.ofPattern("yyyy/MM/dd").parse(date, LocalDate::from);
 
-        if (local.isBefore(LocalDate.now().minusYears(3))) {
+        LocalDate now = LocalDate.now();
+        LocalDate eventDate = DateTimeFormatter.ofPattern("yyyy/MM/dd").parse(date, LocalDate::from);
+
+        if (eventDate.isBefore(now.minusYears(3))) {
             return;
+        }
+
+        // Calculate decay factor based on event age
+        long daysSinceEvent = eventDate.until(now, ChronoUnit.DAYS);
+        double decayFactor = 1.0; // Default: no decay for events between 1 to 1.5 years
+
+        if (daysSinceEvent <= 365) { // Recent events within 1 year: boost by 20%
+            decayFactor = 1.2;
+        } else if (daysSinceEvent > 547) { // More than 1.5 years old: apply decay
+            // Linear decay from 100% (at 1.5 years) to 60% (at 3 years)
+            long maxDecayDays = 365 * 3; // 3 years (1095 days)
+            long decayStartDays = 547; // 1.5 years
+            long decayRangeDays = maxDecayDays - decayStartDays; // Range from 1.5 years to 3 years
+
+            if (daysSinceEvent >= maxDecayDays) {
+                decayFactor = 0.3; // Minimum 60% for 3+ year old events
+            } else {
+                // Linear interpolation: 1.0 at 1.5 years, 0.6 at 3 years
+                long excessDays = daysSinceEvent - decayStartDays;
+                decayFactor = 1.0 - (0.7 * excessDays / decayRangeDays);
+            }
         }
 
         for (XML unit : root.find("div.unit_display_box")) {
@@ -133,7 +174,9 @@ public class TierCalculator {
             } else if (name.endsWith("P")) {
                 name = name.substring(0, name.length() - 1) + "(白)"; // 白金英傑
             }
-            byName(name).majin += count;
+
+            // Apply decay factor to the count before adding to majin score
+            byName(name).majin += Math.max(1, Math.floor(count * decayFactor));
         }
     }
 
@@ -153,50 +196,51 @@ public class TierCalculator {
      * @param minimumScore 集計対象とする最小スコア
      */
     private void calculateTower(String url, int minimumScore) {
-        I.http(url, XML.class).waitForTerminate().to(xml -> {
-            for (XML row : xml.find("tr")) {
-                List<XML> columns = I.signal(row.find("td")).toList();
-                int size = columns.size();
-                if (4 < size) {
-                    int score = Integer.parseInt(columns.get(1).text().trim());
-                    if (score <= minimumScore) {
-                        continue;
-                    }
+        XML xml = WebPage.fetchXML(url);
+        for (XML row : xml.find("tr")) {
+            List<XML> columns = I.signal(row.find("td")).toList();
+            int size = columns.size();
+            if (4 < size) {
+                int score = Integer.parseInt(columns.get(1).text().trim());
+                if (score <= minimumScore) {
+                    continue;
+                }
 
-                    List<String> used = new ArrayList();
-                    for (int i = 3; i < size - 1; i++) {
-                        String name = columns.get(i).text().trim();
-                        if (!name.isEmpty() && !name.equals("-")) {
-                            if (name.endsWith("(黒)")) {
-                                name = name.substring(0, name.length() - 3);
-                            } else if (name.endsWith("(白)")) {
-                                // do nothing
+                List<String> used = new ArrayList();
+                for (int i = 3; i < size - 1; i++) {
+                    String name = columns.get(i).text().trim();
+                    if (!name.isEmpty() && !name.equals("-")) {
+                        if (name.endsWith("(黒)")) {
+                            name = name.substring(0, name.length() - 3);
+                        } else if (name.endsWith("(プラチナ)")) {
+                            name = name.substring(0, name.length() - 6) + "(白)";
+                        } else if (name.endsWith("(白)")) {
+                            // do nothing
+                        } else {
+                            int index = name.indexOf("(");
+                            if (index != -1) {
+                                name = name.substring(0, index);
                             } else {
-                                int index = name.indexOf("(");
+                                index = name.indexOf("（");
                                 if (index != -1) {
                                     name = name.substring(0, index);
                                 } else {
-                                    index = name.indexOf("（");
-                                    if (index != -1) {
-                                        name = name.substring(0, index);
-                                    } else {
-                                        // do nothing
-                                    }
+                                    // do nothing
                                 }
                             }
-                            used.add(name);
                         }
+                        used.add(name);
                     }
+                }
 
-                    if (!used.isEmpty()) {
-                        int point = (int) (score / (Math.pow(used.size(), 2) * 6));
-                        for (String name : used) {
-                            byName(name).tower += point / 1000;
-                        }
+                if (!used.isEmpty()) {
+                    int point = (int) (score / (Math.pow(used.size(), 2) * 6));
+                    for (String name : used) {
+                        byName(name).tower += point / 1000;
                     }
                 }
             }
-        });
+        }
     }
 
     /**
@@ -217,9 +261,9 @@ public class TierCalculator {
                 return; // Skip chibi units
             }
 
-            if (key.endsWith("（白）")) {
-                return; // Skip 白金英傑
-            }
+            // if (key.endsWith("（白）")) {
+            // return; // Skip 白金英傑
+            // }
 
             if (key.endsWith("アンナ") || key.startsWith("アンナ")) {
                 return; // Skip アンナ

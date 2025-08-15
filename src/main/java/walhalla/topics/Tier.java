@@ -14,11 +14,11 @@ import java.util.Set;
 
 public class Tier implements Comparable<Tier> {
 
-    public String name;
+    String name;
 
     public int trend;
 
-    public Set<String> trendWords = new HashSet<>();
+    Set<String> trendWords = new HashSet<>();
 
     public int tower;
 

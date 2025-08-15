@@ -92,6 +92,8 @@ public class Astro {
             meta.put(unit.nameJ, unit.asMeta());
         });
 
+        I.make(TierCalculator.class).calculate();;
+
         I.write(full, Astro.PUBLIC.file("characters.json").newBufferedWriter());
         I.write(meta, Astro.PUBLIC.file("meta.json").newBufferedWriter());
         I.write(new UnitMetaInfo(), Astro.PUBLIC.file("meta-info.json").newBufferedWriter());
@@ -249,11 +251,7 @@ public class Astro {
     }
 
     public static void buildTier() {
-        TierCalculator calculator = I.make(TierCalculator.class);
-        calculator.calculateTower();
-        calculator.calculateTrend();
-        calculator.calculateMajin();
-        calculator.show();
+        I.make(TierCalculator.class).calculate().show();;
     }
 
     /**
@@ -262,10 +260,10 @@ public class Astro {
      * @param args Command line arguments (not used)
      */
     public static void main(String[] args) {
-        // buildUnitJSON();
-        // buildTopics();
+        buildUnitJSON();
+        buildTopics();
         // buildArtTopic();
-        buildTier();
+        // buildTier();
 
     }
 }

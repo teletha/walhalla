@@ -130,7 +130,7 @@ public enum Attribute {
 
     Underworld(種族, "冥界人"),
 
-    ValentinesDay(季節, "バレンタイン", new String[] {"バレ", "ヴァレ", "チョコ", "V"}),
+    ValentinesDay(季節, "バレンタイン", new String[] {"バレ", "ヴァレ", "チョコ", "V", "Vt"}),
 
     Vampire(種族, "ヴァンパイア"),
 
