@@ -272,6 +272,12 @@ public class Nicknames {
         builder.addKeyword("ダントツ", "");
         builder.addKeyword("ダンクーガ", "");
         builder.addKeyword("サキュバス", "");
+        builder.addKeyword("ウルトラ", "");
+        builder.addKeyword("デミウル", "");
+        builder.addKeyword("ウルゴス", "");
+        builder.addKeyword("ウルフ", "");
+        builder.addKeyword("ウルティマ", "");
+        builder.addKeyword("ソウル", "");
 
         this.trie = builder.build();
     }

@@ -77,7 +77,7 @@ public class TierCalculator {
      */
     public void calculateTrend() {
         Nicknames nicknames = I.make(Nicknames.class);
-        Set<String> ignoreSeasons = Set.of("コマ", "鬼刃姫", "エフネ", "エフトラ");
+        Set<String> ignoreSeasons = Set.of("コマ", "鬼刃姫", "エフネ", "エフトラ", "ルチア", "コウメ", "クゥイル", "メーア", "ミネット", "レギーナ", "コレット", "モーティマ");
 
         OpenThreadCollector.findAll().to(thread -> {
             for (Res res : thread.comments) {
