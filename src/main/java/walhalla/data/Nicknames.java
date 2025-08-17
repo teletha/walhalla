@@ -83,6 +83,7 @@ public class Nicknames {
         NICKS.put("秋山凜子", List.of("凛子", "リンコ"));
         NICKS.put("スーシェン", List.of("スーチェン"));
         NICKS.put("ツグミ", List.of("鵺"));
+        NICKS.put("ヨユキ", List.of("夜行さん", "夜行さん現当主ヨユキ"));
 
         // 特殊略称
         // 名前の語尾をだけを取って季節接頭辞と合わせるために使用
@@ -278,6 +279,8 @@ public class Nicknames {
         builder.addKeyword("ウルフ", "");
         builder.addKeyword("ウルティマ", "");
         builder.addKeyword("ソウル", "");
+        builder.addKeyword("ベラート", "");
+        builder.addKeyword("バイドース", "");
 
         this.trie = builder.build();
     }

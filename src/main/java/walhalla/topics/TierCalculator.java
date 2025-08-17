@@ -250,7 +250,7 @@ public class TierCalculator {
                 }
 
                 if (!used.isEmpty()) {
-                    int point = (int) (score / (Math.pow(used.size(), 2) * 4));
+                    int point = (int) (score / (Math.pow(used.size(), 2) + 4));
                     for (String name : used) {
                         byName(name).tower += point / 1000;
                     }
