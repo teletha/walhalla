@@ -125,14 +125,14 @@ public class Astro {
             }
 
             EditableImage image = new EditableImage(icon.asJavaPath());
-            images.add(image.resize(80));
+            images.add(image.resize(100));
         });
 
         File base = Locator.file(".data/unit-icons.png");
         container.tile(50, images).write(base.asJavaPath());
 
         String magick = I.env("IMAGE_MAGICK");
-        File output = ASSETS.file("unit-icons40.avif");
+        File output = ASSETS.file("unit-icons50.avif");
         ProcessBuilder pb = new ProcessBuilder(magick, base.absolutize()
                 .path(), "-filter", "Catrom", "-resize", "50%", "-define", "heic:encoder=avif", "-define", "heic:effort=3", "-quality", "40", output
                         .absolutize()
@@ -267,6 +267,5 @@ public class Astro {
         buildUnitJSON();
         buildTopics();
         // buildArtTopic();
-
     }
 }
