@@ -60,7 +60,7 @@ public class Nicknames {
         NICKS.put("清源妙道真君", List.of("妙ちゃん", "清源", "清原"));
         NICKS.put("天墜神星", List.of("アマツちゃん", "アマツ", "天墜ちゃん"));
         NICKS.put("祓剣主神", List.of("フツヌシ", "ふつぬし"));
-        NICKS.put("山ン本五郎左衛門", List.of("山ン本", "山本", "五郎左衛門"));
+        NICKS.put("山ン本五郎左衛門", List.of("山ン本", "山本", "五郎左衛門", "ザエモン", "ざえもん"));
         NICKS.put("ヤシマ", List.of("狸", "たぬき", "黒狸"));
         NICKS.put("スズネ", List.of("白狸"));
         NICKS.put("ツァーユ", List.of("ツァ"));
@@ -71,12 +71,12 @@ public class Nicknames {
         NICKS.put("ヴィラヘルム", List.of("初代皇帝"));
         NICKS.put("アリシア", List.of("アリス"));
         NICKS.put("オラティル", List.of("お粥"));
-        NICKS.put("伏綺", List.of("伏犠"));
+        NICKS.put("伏綺", List.of("伏犠", "ふっき", "フッキ"));
         NICKS.put("金糸雀姉妹", List.of("金糸雀"));
         NICKS.put("紫苑姉妹", List.of("紫苑"));
         NICKS.put("群青姉妹", List.of("みけいたち", "群青"));
         NICKS.put("金光聖菩", List.of("金ちゃん"));
-        NICKS.put("太上老君", List.of("老君", "老くん", "ろーくん"));
+        NICKS.put("太上老君", List.of("老君", "老くん", "ろーくん", "ロークン"));
         NICKS.put("ホルミース", List.of("詩人"));
         NICKS.put("クゥイル", List.of("QIL"));
         NICKS.put("ハリンヘイム", List.of("ハリン"));
@@ -84,6 +84,7 @@ public class Nicknames {
         NICKS.put("スーシェン", List.of("スーチェン"));
         NICKS.put("ツグミ", List.of("鵺"));
         NICKS.put("ヨユキ", List.of("夜行さん", "夜行さん現当主ヨユキ"));
+        NICKS.put("ロイジィ", List.of("ロイ爺", "ロイジー", "ろいじー", "ろいじい", "ロイジイ"));
 
         // 特殊略称
         // 名前の語尾をだけを取って季節接頭辞と合わせるために使用

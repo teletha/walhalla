@@ -254,10 +254,6 @@ public class Astro {
                 });
     }
 
-    public static void buildTier() {
-        I.make(TierCalculator.class).calculate().show();;
-    }
-
     /**
      * Main entry point. Builds the topics database.
      *
