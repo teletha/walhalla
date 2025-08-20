@@ -49,7 +49,7 @@ public class Nicknames {
         NICKS.put("アスバール", List.of("お嬢", "総帥"));
         NICKS.put("アンナ", List.of("ンナァ"));
         NICKS.put("聞忠", List.of("んちゅ", "聞仲"));
-        NICKS.put("ズィズィー", List.of("ZZ", "ズィズィ", "ズィ"));
+        NICKS.put("ズィズィー", List.of("ZZ", "ＺZ", "ｚｚ", "ズィズィ", "ズィ", "ズイズイ"));
         NICKS.put("ラシュマシュ", List.of("ラシュ", "マシュ"));
         NICKS.put("デルフィーナ", List.of("ピザ"));
         NICKS.put("メフィスト", List.of("メッフィー", "めっふぃー"));

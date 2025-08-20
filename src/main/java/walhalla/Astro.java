@@ -43,7 +43,7 @@ import walhalla.tweet.Twitter;
  */
 public class Astro {
 
-    public static final Set<String> NOT_IMPLEMENTED = Set.of("王国ファッションショー", "塔の守護人形ファリエ");
+    public static final Set<String> NOT_IMPLEMENTED = Set.of("夏夜の紫編クローシェ", "祭夜の凶銃デステリカ", "魔界式夏祭チャムチャム");
 
     /** Specify the english name only. */
     public static final Set<String> FORCE_UPDATE = Set.of();

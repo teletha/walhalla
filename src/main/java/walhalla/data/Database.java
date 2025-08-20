@@ -154,7 +154,7 @@ public class Database extends ArrayList<Unit> implements Storable<Database> {
                 }
                 name = name.trim();
 
-                if (name.equals("Ranged") || name.equals("Melee") || name.equals("Magic") || name.equals("Support")) {
+                if (name.equals("Ranged") || name.equals("Melee") || name.equals("Magic") || name.equals("Support") || name.equals("No")) {
                     return; // Skip generic unit types
                 }
 
