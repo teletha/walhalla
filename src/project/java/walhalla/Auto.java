@@ -11,11 +11,17 @@ package walhalla;
 
 import bee.Task;
 import bee.api.Command;
+import kiss.I;
 
 public interface Auto extends Task {
 
     @Command("Tweet the latest ariticles automatically.")
     default void tweet() {
         Astro.tweet();
+    }
+
+    default void commit() {
+        System.out.println("Hook commit is not implemented yet.");
+        I.info("Hook commit is not implemented yet.");
     }
 }
