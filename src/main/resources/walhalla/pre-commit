@@ -1,0 +1,43 @@
+#!/bin/sh
+
+# ステージングされているファイルリストを取得し、
+# 末尾が 'topic.json' または 'thread.json' のファイルがあるかチェックする。
+if git diff --cached --name-only | grep -qE "(topic|thread)\.json$"; then
+    echo "[pre-commit] 'topic.json'または'thread.json'の変更を検出しました。"
+
+    # ★ 1. OSに応じて実行するコマンドを決定する
+    BEE_EXECUTABLE=""
+    case "$(uname -s)" in
+        # MINGW, CYGWIN, MSYS は Git for Windows 環境を示す
+        *MINGW*|*CYGWIN*|*MSYS*)
+            echo "[pre-commit] Windows環境を検出。'bee.bat'を使用します。"
+            BEE_EXECUTABLE="bee.bat"
+            ;;
+        *)
+            echo "[pre-commit] 非Windows環境(Linux/macOS等)を検出。'bee'を使用します。"
+            BEE_EXECUTABLE="bee"
+            ;;
+    esac
+
+    echo "[pre-commit] 実行コンテキストを'../walhalla'に変更してカスタムコマンドを実行します..."
+
+    # ★ 3. サブシェルを使い、決定したコマンドを正しいコンテキストで実行する
+    (cd ../walhalla && "$BEE_EXECUTABLE" auto:hook-commit -e)
+
+    EXIT_CODE=$?
+
+    if [ $EXIT_CODE -ne 0 ]; then
+        echo "[pre-commit] エラー: カスタムコマンドが失敗しました。コミットを中止します。"
+        exit 1
+    fi
+
+    echo "[pre-commit] カスタムコマンドが正常に完了しました。"
+    echo "[pre-commit] コマンドによって変更されたファイルをステージングします..."
+    git diff --cached --name-only | grep -E "(topic|thread)\.json$" | xargs git add
+    echo "[pre-commit] ファイルの再ステージングが完了しました。"
+
+else
+    echo "[pre-commit] 対象ファイルは含まれていないため、カスタムコマンドをスキップします。"
+fi
+
+exit 0

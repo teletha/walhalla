@@ -255,6 +255,14 @@ public class Astro {
     }
 
     /**
+     * 
+     */
+    public static void backupImages() {
+        System.out.println("OK");
+        System.out.println(I.env("IMAGE_MAGICK"));
+    }
+
+    /**
      * Main entry point. Builds the topics database.
      *
      * @param args Command line arguments (not used)

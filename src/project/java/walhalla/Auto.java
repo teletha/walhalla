@@ -11,7 +11,6 @@ package walhalla;
 
 import bee.Task;
 import bee.api.Command;
-import kiss.I;
 
 public interface Auto extends Task {
 
@@ -20,8 +19,8 @@ public interface Auto extends Task {
         Astro.tweet();
     }
 
-    default void commit() {
-        System.out.println("Hook commit is not implemented yet.");
-        I.info("Hook commit is not implemented yet.");
+    @Command("Hook commit.")
+    default void hookCommit() {
+        Astro.backupImages();
     }
 }
