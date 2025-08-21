@@ -34,6 +34,8 @@ public class Twitter {
 
     private String accessTokenSecret = I.env("TwitterAccessTokenSecret");
 
+    private String bearerToken = I.env("TwitterBearerToken");
+
     public Twitter() {
     }
 
@@ -49,6 +51,20 @@ public class Twitter {
         return this;
     }
 
+    public void fetch() {
+        try {
+            get("https://api.twitter.com/2/tweets/1958119280467476537", "").waitForTerminate().to(json -> {
+                System.out.println(json);
+            });
+        } catch (Exception e) {
+            throw I.quiet(e);
+        }
+    }
+
+    public static void main(String[] args) {
+        new Twitter().fetch();
+    }
+
     public Signal<JSON> tweet(String title, String description, String url, String image, String hash) {
         if (description.length() > 100) {
             description = description.substring(0, 100) + "...";
@@ -59,6 +75,16 @@ public class Twitter {
         } catch (Exception e) {
             throw I.quiet(e);
         }
+    }
+
+    private Signal<JSON> get(String endpoint, String body) throws Exception {
+        HttpRequest.Builder request = HttpRequest.newBuilder()
+                .uri(URI.create(endpoint))
+                .header("Authorization", "Bearer " + bearerToken)
+                .header("Accept", "*/*")
+                .GET();
+
+        return I.http(request, JSON.class);
     }
 
     private Signal<JSON> post(String endpoint, String body) throws Exception {
