@@ -331,8 +331,24 @@ public class OpenThread implements Storable<OpenThread> {
 
             forEach(topic -> {
                 topic.title = convertHalfToFullSymbols(topic.title);
+                topic.comments = complementReference(thread, topic.comments);
                 topic.comments = sortReference(thread, topic.comments);
             });
+        }
+
+        private List<Integer> complementReference(OpenThread thread, List<Integer> comments) {
+            Set<Integer> used = new HashSet(comments);
+            List<Integer> complements = new ArrayList();
+            for (Integer num : comments) {
+                Res comment = thread.getCommentBy(num);
+                for (Integer referer : comment.to) {
+                    if (used.add(referer)) {
+                        complements.add(referer);
+                    }
+                }
+                complements.add(num);
+            }
+            return complements;
         }
 
         /**

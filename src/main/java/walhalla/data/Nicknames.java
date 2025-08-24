@@ -85,6 +85,9 @@ public class Nicknames {
         NICKS.put("ツグミ", List.of("鵺"));
         NICKS.put("ヨユキ", List.of("夜行さん", "夜行さん現当主ヨユキ"));
         NICKS.put("ロイジィ", List.of("ロイ爺", "ロイジー", "ろいじー", "ろいじい", "ロイジイ"));
+        NICKS.put("アイギス神殿", List.of("神殿ちゃん", "ギス神殿"));
+        NICKS.put("マーガレット", List.of("マガレ"));
+        NICKS.put("徐華", List.of("ジョカ"));
 
         // 特殊略称
         // 名前の語尾をだけを取って季節接頭辞と合わせるために使用
