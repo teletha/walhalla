@@ -337,7 +337,7 @@ public class OpenThread implements Storable<OpenThread> {
         }
 
         private List<Integer> complementReference(OpenThread thread, List<Integer> comments) {
-            Set<Integer> used = new HashSet(comments);
+            Set<Integer> used = new HashSet(comments.stream().map(x -> Math.abs(x)).toList());
             List<Integer> complements = new ArrayList();
             for (Integer num : comments) {
                 Res comment = thread.getCommentBy(num);
