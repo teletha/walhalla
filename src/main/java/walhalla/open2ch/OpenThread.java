@@ -333,7 +333,13 @@ public class OpenThread implements Storable<OpenThread> {
                 topic.title = convertHalfToFullSymbols(topic.title);
                 topic.comments = complementReference(thread, topic.comments);
                 topic.comments = sortReference(thread, topic.comments);
+                topic.comments = normalizeComment(topic.comments);
             });
+        }
+
+        private List<Integer> normalizeComment(List<Integer> comments) {
+            comments.removeIf(x -> x == 1 || 1000 <= x);
+            return comments;
         }
 
         private List<Integer> complementReference(OpenThread thread, List<Integer> comments) {
