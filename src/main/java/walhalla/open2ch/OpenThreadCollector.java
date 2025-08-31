@@ -92,15 +92,16 @@ public class OpenThreadCollector {
                     int size = Integer.parseInt(title.substring(start + 1, end));
                     title = title.substring(0, start).trim();
                     String num = computeThreadNumber(title);
-                    LocalDateTime date = LocalDateTime.parse(link.parent().parent().next().firstChild().lastChild().text(), formatter);
+                    if (num != null) {
+                        LocalDateTime date = LocalDateTime.parse(link.parent().parent().next().firstChild().lastChild().text(), formatter);
+                        OpenThread thread = new OpenThread(num, id);
+                        if (975 <= size && thread.parsedJSON.lastModifiedDateTime().toLocalDateTime().plusHours(1).isBefore(date)) {
+                            server.pending = new CompletableFuture();
+                            Desktop.getDesktop().browse(new URI(uri + "#audit"));
+                            thread.parse(server.pending.get(30, TimeUnit.SECONDS));
 
-                    OpenThread thread = new OpenThread(num, id);
-                    if (975 <= size && thread.parsedJSON.lastModifiedDateTime().toLocalDateTime().plusHours(1).isBefore(date)) {
-                        server.pending = new CompletableFuture();
-                        Desktop.getDesktop().browse(new URI(uri + "#audit"));
-                        thread.parse(server.pending.get(30, TimeUnit.SECONDS));
-
-                        Thread.sleep(1000);
+                            Thread.sleep(1000);
+                        }
                     }
                 });
 

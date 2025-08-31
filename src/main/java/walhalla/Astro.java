@@ -105,7 +105,6 @@ public class Astro {
      * The resulting sprite is saved as ".data/unit-icons.png".
      */
     public static void buildUnitIconSprite() {
-        EditableImage container = new EditableImage();
         List<EditableImage> images = new ArrayList<>();
 
         Database db = I.make(Database.class);
@@ -128,11 +127,17 @@ public class Astro {
             images.add(image.resize(100));
         });
 
-        File base = Locator.file(".data/unit-icons.png");
-        container.tile(50, images).write(base.asJavaPath());
+        writeImage("unit-icons", 50, images);
+        writeImage("unit-icons-latest", 15, images.subList(images.size() - 15, images.size()));
+    }
+
+    private static void writeImage(String name, int width, List<EditableImage> images) {
+        File base = Locator.file(".data/" + name + ".png");
+        EditableImage container = new EditableImage();
+        container.tile(width, images).write(base.asJavaPath());
 
         String magick = I.env("IMAGE_MAGICK");
-        File output = ASSETS.file("unit-icons50.avif");
+        File output = ASSETS.file(name + "50.avif");
         ProcessBuilder pb = new ProcessBuilder(magick, base.absolutize()
                 .path(), "-filter", "Catrom", "-resize", "50%", "-define", "heic:encoder=avif", "-define", "heic:effort=3", "-quality", "40", output
                         .absolutize()
