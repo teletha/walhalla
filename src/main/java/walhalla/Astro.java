@@ -139,7 +139,7 @@ public class Astro {
         String magick = I.env("IMAGE_MAGICK");
         File output = ASSETS.file(name + "50.avif");
         ProcessBuilder pb = new ProcessBuilder(magick, base.absolutize()
-                .path(), "-filter", "Catrom", "-resize", "50%", "-define", "heic:encoder=avif", "-define", "heic:effort=3", "-quality", "40", output
+                .path(), "-filter", "Catrom", "-resize", "50%", "-define", "heic:encoder=avif", "-define", "heic:effort=3", "-quality", "35", output
                         .absolutize()
                         .path());
         try {
