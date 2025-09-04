@@ -9,16 +9,18 @@
  */
 package walhalla.open2ch;
 
+import java.util.List;
+
 public class ImageSource {
 
     public String origin;
 
-    public String backupL;
+    public List<String> large;
 
-    public String backupH;
+    public List<String> huge;
 
     public boolean hasBackup() {
-        return backupL != null || backupH != null;
+        return large != null || huge != null;
     }
 
     /**
@@ -26,6 +28,6 @@ public class ImageSource {
      */
     @Override
     public String toString() {
-        return "ImageSource [origin=" + origin + ", backupL=" + backupL + ", backupH=" + backupH + "]";
+        return "ImageSource [origin=" + origin + ", backupLarge=" + large + ", backupHuge=" + huge + "]";
     }
 }

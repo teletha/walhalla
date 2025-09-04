@@ -23,6 +23,10 @@ import psychopath.File;
 
 public class Gyazo {
 
+    public static JSON meta(String imageURL) {
+        return I.http("https://api.gyazo.com/api/oembed?url=" + imageURL, JSON.class).waitForTerminate().to().exact();
+    }
+
     public static JSON upload(File image) {
         return upload(image.name(), image.newInputStream());
     }

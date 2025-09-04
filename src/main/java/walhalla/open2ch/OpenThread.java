@@ -267,7 +267,7 @@ public class OpenThread implements Storable<OpenThread> {
     }
 
     public void backupImages() {
-        if (comments.getLast().date.plusDays(2).isBefore(LocalDateTime.now())) {
+        if (comments.getLast().date.plusHours(36).isBefore(LocalDateTime.now())) {
             Set<OpenThread> modifieds = new HashSet();
 
             for (Topic topic : getTopics()) {
@@ -278,10 +278,14 @@ public class OpenThread implements Storable<OpenThread> {
                             Image image = Imgur.download(source.origin);
 
                             JSON huge = Gyazo.upload(image.hugeName(), image.huge());
-                            source.backupH = huge.text("url");
+                            String hugeURL = huge.text("url");
+                            JSON hugeMeta = Gyazo.meta(hugeURL);
+                            source.huge = List.of(hugeURL, hugeMeta.text("width"), hugeMeta.text("height"));
 
                             JSON large = Gyazo.upload(image.largeName(), image.large());
-                            source.backupL = large.text("url");
+                            String largetURL = large.text("url");
+                            JSON largeMeta = Gyazo.meta(largetURL);
+                            source.large = List.of(largetURL, largeMeta.text("width"), largeMeta.text("height"));
 
                             modifieds.add(res.thread);
                         }
@@ -292,7 +296,6 @@ public class OpenThread implements Storable<OpenThread> {
             for (OpenThread thread : modifieds) {
                 thread.store();
             }
-
         }
     }
 
