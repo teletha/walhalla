@@ -9,6 +9,7 @@
  */
 package walhalla.open2ch;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +37,8 @@ public class Topic {
     public int priority;
 
     public List<String> extra = new ArrayList();
+
+    public LocalDateTime published;
 
     /** The thread from which this topic was extracted. */
     OpenThread thread;
