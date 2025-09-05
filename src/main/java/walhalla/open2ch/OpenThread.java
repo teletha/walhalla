@@ -183,6 +183,8 @@ public class OpenThread implements Storable<OpenThread> {
             dd.element("br").text("  \r\n");
             dd.element("b").forEach(b -> b.text("<b>" + b.text() + "</b>"));
             String body = dd.text().trim();
+
+            body = body.replaceAll("&gt;&gt;(\\d+)", "<i>&gt;&gt;$1</i>");
             body = body.replaceAll("(?i)\\bhttps?://[\\w\\-._~:/?#\\[\\]@!$&'()*+,;=%]+", "<a class=\"external\" href=\"$0\">$0</a>");
             body = body.replaceAll("(&amp;|\\?)\\w=[\\w\\-]+\\s*", "");
             body = nick.link(body);
