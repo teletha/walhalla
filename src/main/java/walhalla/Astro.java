@@ -29,6 +29,7 @@ import walhalla.data.UnitMeta;
 import walhalla.data.UnitMetaInfo;
 import walhalla.image.EditableImage;
 import walhalla.open2ch.OpenThreadCollector;
+import walhalla.topics.AccessRanking;
 import walhalla.topics.TierCalculator;
 import walhalla.tweet.BlueSky;
 import walhalla.tweet.Twitter;
@@ -164,6 +165,7 @@ public class Astro {
             long end = System.currentTimeMillis();
             System.out.println("" + thread.title + " processed in " + (end - start) + " ms");
         });
+        AccessRanking.build();
     }
 
     public static void tweet() {

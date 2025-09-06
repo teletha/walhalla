@@ -285,6 +285,8 @@ public class Nicknames {
         builder.addKeyword("ソウル", "");
         builder.addKeyword("ベラート", "");
         builder.addKeyword("バイドース", "");
+        builder.addKeyword("クルスタ", "");
+        builder.addKeyword("シノギ", "");
 
         this.trie = builder.build();
     }
