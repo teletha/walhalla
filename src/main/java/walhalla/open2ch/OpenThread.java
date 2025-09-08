@@ -279,15 +279,16 @@ public class OpenThread implements Storable<OpenThread> {
                         if (!source.hasBackup() && source.origin.startsWith("https://i.imgur.com/")) {
                             Image image = Imgur.download(source.origin);
 
-                            JSON huge = Gyazo.upload(image.hugeName(), image.huge());
-                            String hugeURL = huge.text("url");
-                            JSON hugeMeta = Gyazo.meta(hugeURL);
-                            source.huge = List.of(hugeURL, hugeMeta.text("width"), hugeMeta.text("height"));
+                            JSON origin = Gyazo.upload(image.originName(), image.origin());
+                            String originURL = origin.text("url");
+                            JSON originMeta = Gyazo.meta(originURL);
+                            source.backup = List.of(originURL, originMeta.text("width"), originMeta.text("height"));
 
-                            JSON large = Gyazo.upload(image.largeName(), image.large());
-                            String largetURL = large.text("url");
-                            JSON largeMeta = Gyazo.meta(largetURL);
-                            source.large = List.of(largetURL, largeMeta.text("width"), largeMeta.text("height"));
+                            // JSON large = Gyazo.upload(image.largeName(), image.large());
+                            // String largetURL = large.text("url");
+                            // JSON largeMeta = Gyazo.meta(largetURL);
+                            // source.large = List.of(largetURL, largeMeta.text("width"),
+                            // largeMeta.text("height"));
 
                             modifieds.add(res.thread);
                         }

@@ -19,8 +19,10 @@ public class ImageSource {
 
     public List<String> huge;
 
+    public List<String> backup;
+
     public boolean hasBackup() {
-        return large != null || huge != null;
+        return backup != null;
     }
 
     /**

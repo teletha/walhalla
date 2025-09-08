@@ -33,9 +33,9 @@ public class Imgur {
         String name = url.substring(20);
 
         if (ext.equals("gif")) {
-            return new Image(name, downloadImage(url + ".gif"), name + "-l", downloadImage(url + "l.webp"));
+            return new Image(name, downloadImage(url + ".gif"));
         } else {
-            return new Image(name + "-h", downloadImage(url + "h.webp"), name + "-l", downloadImage(url + "l.webp"));
+            return new Image(name, downloadImage(url + ".webp"));
         }
     }
 

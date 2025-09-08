@@ -11,9 +11,5 @@ package walhalla.image;
 
 import java.io.InputStream;
 
-public record Image(String hugeName, InputStream huge, String largeName, InputStream large) {
-
-    public Image(String name, InputStream huge) {
-        this(name, huge, name, huge);
-    }
+public record Image(String originName, InputStream origin) {
 }
