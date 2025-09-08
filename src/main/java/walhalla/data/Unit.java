@@ -477,6 +477,16 @@ public class Unit {
         json = DB.get("聖なる技工兵ドリー");
         json.set("name", "聖なる技巧兵ドリー");
         DB.put("聖なる技巧兵ドリー", json);
+
+        // 3. 「華の四神」の名前を修正
+        // 何故か名前の最後に娘が入っているので取り除く
+        json = DB.get("華の四神 白虎");
+        json.set("subName", "白虎");
+        DB.put("華の四神 白虎", json);
+        json = DB.get("華の四神 青龍");
+        json.set("subName", "青龍");
+        DB.put("華の四神 青龍", json);
+
     }
 
     private static void fixStatus(Map<String, JSON> CARD) {
