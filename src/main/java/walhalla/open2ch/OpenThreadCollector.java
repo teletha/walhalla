@@ -54,6 +54,22 @@ public class OpenThreadCollector {
         return new OpenThread(Astro.ARTICLE.directory(id));
     }
 
+    public static synchronized void crawlByURL(String uri, String num, int id) {
+        try {
+            Server server = new Server();
+            OpenThread thread = new OpenThread(num, id);
+            server.pending = new CompletableFuture();
+            Desktop.getDesktop().browse(new URI(uri + "#audit"));
+            thread.parse(server.pending.get(30, TimeUnit.SECONDS));
+
+            Thread.sleep(1000);
+
+            server.shutdown();
+        } catch (Exception e) {
+            throw I.quiet(e);
+        }
+    }
+
     /**
      * Returns a signal (reactive stream) of all parsed thread data.
      * If this is the first call, it triggers the update process.
