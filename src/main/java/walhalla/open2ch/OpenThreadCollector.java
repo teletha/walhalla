@@ -54,12 +54,16 @@ public class OpenThreadCollector {
         return new OpenThread(Astro.ARTICLE.directory(id));
     }
 
-    public static synchronized void crawlByURL(String uri, String num, int id) {
+    public static void main(String[] args) {
+        crawlByURL(15608, 1757589359);
+    }
+
+    public static synchronized void crawlByURL(int num, int id) {
         try {
             Server server = new Server();
-            OpenThread thread = new OpenThread(num, id);
+            OpenThread thread = new OpenThread(String.valueOf(num), id);
             server.pending = new CompletableFuture();
-            Desktop.getDesktop().browse(new URI(uri + "#audit"));
+            Desktop.getDesktop().browse(new URI("https://uni.open2ch.net/test/read.cgi/gameswf/" + id + "/#audit"));
             thread.parse(server.pending.get(30, TimeUnit.SECONDS));
 
             Thread.sleep(1000);

@@ -184,7 +184,7 @@ public class OpenThread implements Storable<OpenThread> {
             dd.element("b").forEach(b -> b.text("<b>" + b.text() + "</b>"));
             String body = dd.text().trim();
 
-            body = body.replaceAll("&gt;&gt;(\\d+)", "<i>&gt;&gt;$1</i>");
+            body = body.replaceAll("&gt;&gt;(\\d+)\\s+", "<i>$1</i>");
             body = body.replaceAll("(?i)\\bhttps?://[\\w\\-._~:/?#\\[\\]@!$&'()*+,;=%]+", "<a class=\"external\" href=\"$0\">$0</a>");
             body = body.replaceAll("(&amp;|\\?)\\w=[\\w\\-]+\\s*", "");
             body = nick.link(body);
@@ -260,12 +260,18 @@ public class OpenThread implements Storable<OpenThread> {
         for (Res res : comments) {
             text.append("#").append(res.num).append(EOL);
             text.append(res.date.format(FORMATTER)).append(EOL);
-            text.append(res.body).append("\n");
+            text.append(res.body.replaceAll("<i>(\\d+)</i>", ">> $1\n")).append("\n");
             text.append(res.sources.stream().map(s -> s.origin).collect(Collectors.joining(EOL)));
             text.append(res.embeds.stream().collect(Collectors.joining(EOL)));
             text.append("\n\n");
         }
         return text.toString();
+    }
+
+    public void sss() {
+        for (Res res : comments) {
+        }
+        store();
     }
 
     public void backupImages() {
