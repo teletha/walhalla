@@ -286,6 +286,9 @@ public class Unit {
             } else if (name.equals("Neve (Okyu Cosplay)")) {
                 image = calculateImagePath("Neve_(Okyu_Cosplay)_Render.png");
                 imageAW = calculateImagePath("Neve_(Okyu_Cosplay)_AW_Render.png");
+            } else if (name.equals("Jabberwock")) {
+                icon = calculateImagePath("Jabberwock_Icon.png");
+                image = calculateImagePath("Jabberwock_Render.png");
             }
         });
     }
@@ -487,6 +490,13 @@ public class Unit {
         json.set("subName", "青龍");
         DB.put("華の四神 青龍", json);
 
+        // 4. 「メルカバー」の名前を修正
+        // 「メルカバ―」（ダッシュ記号）を「メルカバー」（長音符）に変更
+        json = DB.get("メルカバ―");
+        json.set("name", "メルカバー");
+        json.set("subName", "メルカバー");
+        DB.put("メルカバー", json);
+
     }
 
     private static void fixStatus(Map<String, JSON> CARD) {
@@ -533,6 +543,10 @@ public class Unit {
         JSON json = getCharacterDB().get(name);
         if (json != null) {
             subNameJ = json.text("subName").replace("ちび", "");
+            if (json.text("class").endsWith("【恋姫】")) {
+                int index = subNameJ.indexOf(" ");
+                if (index != -1) subNameJ = subNameJ.substring(0, index);
+            }
             ability = parseSkill(json.text("ability"), "▹", nameJ + "のアビリティ");
             abilityAW = parseSkill(json.text("ability_aw"), "▸", nameJ + "の覚醒アビリティ");
 

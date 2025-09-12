@@ -157,7 +157,20 @@ public class OpenThread implements Storable<OpenThread> {
             String id = name.next().attr("val");
 
             XML dd = dt.next();
-            System.out.println(dd);
+
+            // ======================================================
+            // Collect images (usually Imgur links)
+            // ======================================================
+            List<ImageSource> images = new ArrayList<>();
+            I.signal(dd.element("a")).take(e -> !e.attr("data-lightbox").isEmpty()).to(e -> {
+                String href = e.attr("href");
+                if (href.startsWith("//")) href = "https:" + href;
+                ImageSource source = new ImageSource();
+                source.origin = href;
+                images.add(source);
+                e.remove();
+            });
+
             // ======================================================
             // Collect embedded content links (YouTube, X, etc.)
             // ======================================================
@@ -165,8 +178,7 @@ public class OpenThread implements Storable<OpenThread> {
             I.signal(dd.element("a")).take(e -> {
                 String href = e.attr("href");
                 if (href.startsWith("//")) href = "https:" + href;
-                return href.startsWith("https://youtu.be/") || href.startsWith("https://x.com/") || href
-                        .startsWith("https://www.bilibili.com/");
+                return href.startsWith("http") && !href.contains("open2ch");
             }).to(link -> {
                 embeds.add(link.attr("href"));
                 link.remove();
@@ -188,15 +200,6 @@ public class OpenThread implements Storable<OpenThread> {
             body = body.replaceAll("(?i)\\bhttps?://[\\w\\-._~:/?#\\[\\]@!$&'()*+,;=%]+", "<a class=\"external\" href=\"$0\">$0</a>");
             body = body.replaceAll("(&amp;|\\?)\\w=[\\w\\-]+\\s*", "");
             body = nick.link(body);
-
-            List<ImageSource> images = new ArrayList<>();
-            I.signal(dd.element("a")).take(e -> !e.attr("data-lightbox").isEmpty()).to(e -> {
-                String href = e.attr("href");
-                if (href.startsWith("//")) href = "https:" + href;
-                ImageSource source = new ImageSource();
-                source.origin = href;
-                images.add(source);
-            });
 
             Res res = new Res();
             res.num = num;

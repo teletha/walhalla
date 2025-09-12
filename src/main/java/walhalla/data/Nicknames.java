@@ -88,6 +88,7 @@ public class Nicknames {
         NICKS.put("アイギス神殿", List.of("神殿ちゃん", "ギス神殿"));
         NICKS.put("マーガレット", List.of("マガレ"));
         NICKS.put("徐華", List.of("ジョカ"));
+        NICKS.put("曹操", List.of("華林", "かりん", "カリンちゃん", "カリン様"));
 
         // 特殊略称
         // 名前の語尾をだけを取って季節接頭辞と合わせるために使用
@@ -287,6 +288,7 @@ public class Nicknames {
         builder.addKeyword("バイドース", "");
         builder.addKeyword("クルスタ", "");
         builder.addKeyword("シノギ", "");
+        builder.addKeyword("フトモモ", "");
 
         this.trie = builder.build();
     }
@@ -318,7 +320,12 @@ public class Nicknames {
         });
 
         if (units.size() == 1) {
-            builder.addKeyword(name, "/character/" + units.getFirst().nameJ + "/");
+            Unit unit = units.getFirst();
+            if (unit.nameJ.equals(unit.subNameJ)) {
+                builder.addKeyword(name, "/character/?q=" + unit.nameJ + "/");
+            } else {
+                builder.addKeyword(name, "/character/" + unit.nameJ + "/");
+            }
         } else if (units.size() == 2) {
             Unit first = units.getFirst();
             Unit last = units.getLast();

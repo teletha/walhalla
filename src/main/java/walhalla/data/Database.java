@@ -167,6 +167,7 @@ public class Database extends ArrayList<Unit> implements Storable<Database> {
         long ttl = 12 * 60 * 60 * 1000 * (Astro.FORCE_UPDATE.isEmpty() ? 1 : -1);
         I.xml(WebPage.fetchText("https://aigis.fandom.com/wiki/Category:Female_Units", ttl)).element("img").forEach(scan);
         I.xml(WebPage.fetchText("https://aigis.fandom.com/wiki/Category:Male_Units", ttl)).element("img").forEach(scan);
+        I.xml(WebPage.fetchText("https://aigis.fandom.com/wiki/Category:Support_Units", ttl)).find("a > img").forEach(scan);
         I.xml(WebPage.fetchText("https://aigis.fandom.com/wiki/Aigis_Wiki", ttl))
                 .find("#New_Units")
                 .parent()
