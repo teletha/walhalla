@@ -99,7 +99,7 @@ public class Nicknames {
 
     private final PayloadTrie<String> trie;
 
-    private final Database db = I.make(Database.class);
+    private static final Database db = I.make(Database.class);
 
     private Nicknames() {
 
@@ -289,6 +289,8 @@ public class Nicknames {
         builder.addKeyword("クルスタ", "");
         builder.addKeyword("シノギ", "");
         builder.addKeyword("フトモモ", "");
+        builder.addKeyword("ヘプバン", "");
+        builder.addKeyword("マーキング", "");
 
         this.trie = builder.build();
     }
@@ -321,8 +323,8 @@ public class Nicknames {
 
         if (units.size() == 1) {
             Unit unit = units.getFirst();
-            if (unit.nameJ.equals(unit.subNameJ)) {
-                builder.addKeyword(name, "/character/?q=" + unit.nameJ + "/");
+            if (unit.nameJ.equals(unit.subNameJ) && db.searchBySubName(unit.subNameJ).size() > 1) {
+                builder.addKeyword(name, "/character/?q=" + unit.nameJ);
             } else {
                 builder.addKeyword(name, "/character/" + unit.nameJ + "/");
             }
