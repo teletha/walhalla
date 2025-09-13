@@ -64,7 +64,6 @@ public class Nicknames {
         NICKS.put("ヤシマ", List.of("狸", "たぬき", "黒狸"));
         NICKS.put("スズネ", List.of("白狸"));
         NICKS.put("ツァーユ", List.of("ツァ"));
-        NICKS.put("徐華", List.of("女媧"));
         NICKS.put("ラタトスク", List.of("ラタ様", "ラタちゃん"));
         NICKS.put("ウルカノ", List.of("カノ"));
         NICKS.put("白の皇帝", List.of("皇帝"));
@@ -87,7 +86,7 @@ public class Nicknames {
         NICKS.put("ロイジィ", List.of("ロイ爺", "ロイジー", "ろいじー", "ろいじい", "ロイジイ"));
         NICKS.put("アイギス神殿", List.of("神殿ちゃん", "ギス神殿"));
         NICKS.put("マーガレット", List.of("マガレ"));
-        NICKS.put("徐華", List.of("ジョカ"));
+        NICKS.put("徐華", List.of("ジョカ", "女媧", "徐媧"));
         NICKS.put("曹操", List.of("華林", "かりん", "カリンちゃん", "カリン様"));
 
         // 特殊略称
