@@ -14,6 +14,7 @@ import java.net.URI;
 import java.net.http.HttpRequest;
 
 import kiss.I;
+import kiss.XML;
 
 public class Imgur {
 
@@ -47,5 +48,18 @@ public class Imgur {
 
         I.info("Downloading image from Imgur: " + image);
         return I.http(request, InputStream.class).waitForTerminate().to().exact();
+    }
+
+    public static String extractDirectImageURL(String url) {
+        HttpRequest.Builder request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)")
+                .header("Referer", "https://imgur.com/");
+
+        return I.http(request, XML.class).waitForTerminate().map(xml -> {
+            String image = xml.find("[property=og:image]").attr("content");
+            int index = image.lastIndexOf("?");
+            return index == -1 ? image : image.substring(0, index);
+        }).to().exact();
     }
 }

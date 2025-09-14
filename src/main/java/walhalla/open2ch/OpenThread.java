@@ -180,7 +180,22 @@ public class OpenThread implements Storable<OpenThread> {
                 if (href.startsWith("//")) href = "https:" + href;
                 return href.startsWith("http") && !href.contains("open2ch");
             }).to(link -> {
-                embeds.add(link.attr("href"));
+                String href = link.attr("href");
+                if (href.startsWith("https://imgur.com/")) {
+                    if (href.endsWith(".jpeg") || href.endsWith(".jpg") || href.endsWith(".png") || href.endsWith(".gif") || href
+                            .endsWith(".webp")) {
+                        // Missed direct image link
+                        ImageSource source = new ImageSource();
+                        source.origin = href.replace("https://imgur.com/", "https://i.imgur.com/");
+                        images.add(source);
+                    } else {
+                        ImageSource source = new ImageSource();
+                        source.origin = Imgur.extractDirectImageURL(href);
+                        images.add(source);
+                    }
+                } else {
+                    embeds.add(href);
+                }
                 link.remove();
             });
             I.signal(dd.element("div")).take(div -> div.hasClass("nico")).to(div -> {

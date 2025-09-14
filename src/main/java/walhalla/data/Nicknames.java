@@ -48,7 +48,8 @@ public class Nicknames {
         NICKS.put("リヴン", List.of("村娘"));
         NICKS.put("アスバール", List.of("お嬢", "総帥"));
         NICKS.put("アンナ", List.of("ンナァ"));
-        NICKS.put("聞忠", List.of("んちゅ", "聞仲"));
+        NICKS.put("聞忠", List.of("んちゅ", "ぶんちゅー", "もんちゅー", "聞仲"));
+        NICKS.put("誅子", List.of("ちゅーこ", "ちゅーし"));
         NICKS.put("ズィズィー", List.of("ZZ", "ＺZ", "ｚｚ", "ズィズィ", "ズィ", "ズイズイ"));
         NICKS.put("ラシュマシュ", List.of("ラシュ", "マシュ"));
         NICKS.put("デルフィーナ", List.of("ピザ"));
@@ -60,6 +61,7 @@ public class Nicknames {
         NICKS.put("清源妙道真君", List.of("妙ちゃん", "清源", "清原"));
         NICKS.put("天墜神星", List.of("アマツちゃん", "アマツ", "天墜ちゃん"));
         NICKS.put("祓剣主神", List.of("フツヌシ", "ふつぬし"));
+        NICKS.put("元始天尊", List.of("天尊"));
         NICKS.put("山ン本五郎左衛門", List.of("山ン本", "山本", "五郎左衛門", "ザエモン", "ざえもん"));
         NICKS.put("ヤシマ", List.of("狸", "たぬき", "黒狸"));
         NICKS.put("スズネ", List.of("白狸"));
@@ -88,6 +90,8 @@ public class Nicknames {
         NICKS.put("マーガレット", List.of("マガレ"));
         NICKS.put("徐華", List.of("ジョカ", "女媧", "徐媧"));
         NICKS.put("曹操", List.of("華林", "かりん", "カリンちゃん", "カリン様"));
+        NICKS.put("ムルーア", List.of("赤魚"));
+        NICKS.put("ピュレスカ", List.of("青魚"));
 
         // 特殊略称
         // 名前の語尾をだけを取って季節接頭辞と合わせるために使用
@@ -290,6 +294,8 @@ public class Nicknames {
         builder.addKeyword("フトモモ", "");
         builder.addKeyword("ヘプバン", "");
         builder.addKeyword("マーキング", "");
+        builder.addKeyword("バッファ", "");
+        builder.addKeyword("バファー", "");
 
         this.trie = builder.build();
     }
