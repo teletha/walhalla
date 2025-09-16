@@ -92,6 +92,7 @@ public class Nicknames {
         NICKS.put("曹操", List.of("華林", "かりん", "カリンちゃん", "カリン様"));
         NICKS.put("ムルーア", List.of("赤魚"));
         NICKS.put("ピュレスカ", List.of("青魚"));
+        NICKS.put("エスネア", List.of("ぽんちゃん", "ポンちゃん"));
 
         // 特殊略称
         // 名前の語尾をだけを取って季節接頭辞と合わせるために使用
