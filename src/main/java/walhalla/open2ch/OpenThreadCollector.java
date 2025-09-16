@@ -55,7 +55,7 @@ public class OpenThreadCollector {
     }
 
     public static void main(String[] args) {
-        crawlByURL(15618, 1757872041);
+        crawlByURL(15619, 1757922672);
     }
 
     public static synchronized void crawlByURL(int num, int id) {

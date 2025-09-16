@@ -220,6 +220,5 @@ public class Astro {
         buildUnitJSON();
         buildTopics();
         // ArtTopicBuilder.buildArtTopic(2025, 8);
-        buildUnitIconSprite();
     }
 }

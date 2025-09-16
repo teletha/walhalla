@@ -115,6 +115,15 @@ public class TierCalculator {
                 });
             }
         });
+
+        // トップのポイントが2200を超えている場合、全ユニットのポイントを減少させて調整
+        int maxTrend = tiers.values().stream().mapToInt(t -> t.trend).max().orElse(0);
+        if (maxTrend > 2200) {
+            double ratio = (2200d / (maxTrend - 37));
+            for (Tier tier : tiers.values()) {
+                tier.trend = (int) Math.round(tier.trend * ratio);
+            }
+        }
     }
 
     /**
