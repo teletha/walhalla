@@ -154,7 +154,8 @@ public class Unit {
 
         WikiText wiki = new WikiText(text);
         wiki.peekSection("Unit infobox", () -> {
-            wiki.peekKV("gender", value -> gender = value.toUpperCase().equals("MALE") ? Gender.男性 : Gender.女性);
+            wiki.peekKV("gender", value -> gender = value.toUpperCase().equals("MALE") ? Gender.男性
+                    : value.toUpperCase().equals("FEMALE") ? Gender.女性 : Gender.サポート);
             wiki.peekKV("rank", value -> {
                 rarity = switch (value) {
                 case "Iron" -> Rarity.鉄;

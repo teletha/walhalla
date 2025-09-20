@@ -55,7 +55,7 @@ public class OpenThreadCollector {
     }
 
     public static void main(String[] args) {
-        crawlByURL(15630, 1758213437);
+        crawlByURL(15633, 1758334482);
     }
 
     public static synchronized void crawlByURL(int num, int id) {
@@ -97,6 +97,7 @@ public class OpenThreadCollector {
      * This method is automatically invoked once before the first call to {@link #findAll()}.
      */
     private static void crawl() {
+        if (true) return;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         Server server = new Server();
 

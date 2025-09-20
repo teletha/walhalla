@@ -10,5 +10,5 @@
 package walhalla.data;
 
 public enum Gender {
-    男性, 女性;
+    男性, 女性, サポート;
 }
