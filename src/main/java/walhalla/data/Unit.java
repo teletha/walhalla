@@ -498,6 +498,11 @@ public class Unit {
         json.set("subName", "メルカバー");
         DB.put("メルカバー", json);
 
+        // 5. 「蒼紅の女教師レティシア」の名前を修正
+        // サブネームが何故か「ロヴィニア」になっているので修整
+        json = DB.get("蒼紅の女教師レティシア");
+        json.set("subName", "レティシア");
+        DB.put("蒼紅の女教師レティシア", json);
     }
 
     private static void fixStatus(Map<String, JSON> CARD) {

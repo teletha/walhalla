@@ -10,5 +10,5 @@
 package walhalla.data;
 
 public enum PlaceType {
-    未定, 近距離, 遠距離, 遠近, トークン
+    未定, 近接, 遠距離, 遠近両用, トークン
 }

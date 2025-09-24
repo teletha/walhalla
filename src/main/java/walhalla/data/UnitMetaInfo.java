@@ -25,7 +25,7 @@ public class UnitMetaInfo {
 
     private static final Collator collator = Collator.getInstance(Locale.JAPANESE);
 
-    public List<PlaceType> 配置型 = List.of(PlaceType.近距離, PlaceType.遠距離, PlaceType.遠近);
+    public List<PlaceType> 配置型 = List.of(PlaceType.近接, PlaceType.遠距離, PlaceType.遠近両用);
 
     public List<Gender> 性別 = List.of(Gender.values());
 
