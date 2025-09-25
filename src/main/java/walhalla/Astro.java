@@ -43,7 +43,7 @@ import walhalla.tweet.Twitter;
  */
 public class Astro {
 
-    public static final Set<String> NOT_IMPLEMENTED = Set.of("荀彧 文若");
+    public static final Set<String> NOT_IMPLEMENTED = Set.of();
 
     /** Specify the english name only. */
     public static final Set<String> FORCE_UPDATE = Set.of();
