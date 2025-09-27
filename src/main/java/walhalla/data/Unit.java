@@ -403,6 +403,7 @@ public class Unit {
             }
 
             return value.replace("'", "")
+                    .replace("ATK Delay", "攻撃硬直")
                     .replace("ATK", "攻撃力")
                     .replace("DEF", "防御力")
                     .replace("MR", "魔法耐性")

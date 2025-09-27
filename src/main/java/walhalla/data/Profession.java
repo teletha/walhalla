@@ -62,6 +62,11 @@ public class Profession implements Comparable<Profession> {
                 """, this).trim();
     }
 
+    public static void main(String[] args) {
+        Profession p = new Profession();
+        p.parseWikiProfessionData(I.make(Database.class).searchByFullName("華の四神 青龍").get());
+    }
+
     void parseWikiProfessionData(Unit unit) {
         if (nameJ != null) {
             return; // Already parsed
@@ -93,7 +98,10 @@ public class Profession implements Comparable<Profession> {
         columns.element("tbody").element("tr").forEach(tr -> {
             XML row = tr.element("td");
             if (row.attr("colspan").isEmpty()) {
-                rows.add(row);
+                String text = row.text();
+                if (!text.contains("(第二覚醒A)") && !text.contains("(第二覚醒B)")) {
+                    rows.add(row);
+                }
             }
         });
 
