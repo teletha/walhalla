@@ -345,7 +345,7 @@ public class OpenThread implements Storable<OpenThread> {
 
     public Variable<String> searchNextURL() {
         Pattern pattern = Pattern.compile("https://uni.open2ch.net/test/read.cgi/gameswf/(\\d+)");
-        for (int i = Math.min(comments.size(), 1000); 100 < i; i--) {
+        for (int i = Math.min(comments.size() - 1, 1000); 100 < i; i--) {
             Res res = comments.get(i);
             Matcher matcher = pattern.matcher(res.body);
             if (matcher.find()) {
