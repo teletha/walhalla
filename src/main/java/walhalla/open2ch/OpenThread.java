@@ -24,6 +24,7 @@ import java.util.stream.Collectors;
 import kiss.I;
 import kiss.JSON;
 import kiss.Storable;
+import kiss.Variable;
 import kiss.XML;
 import psychopath.Directory;
 import psychopath.File;
@@ -64,9 +65,8 @@ public class OpenThread implements Storable<OpenThread> {
     /** The list of topics extracted from this thread's comments via LLM analysis. */
     private Topics topics;
 
-    final File parsedJSON;
-
-    private final File topicJSON;
+    public OpenThread() {
+    }
 
     /**
      * Private constructor to prevent direct instantiation.
@@ -76,14 +76,20 @@ public class OpenThread implements Storable<OpenThread> {
         int index = name.indexOf("-");
         this.num = Integer.parseInt(name.substring(0, index));
         this.id = Integer.parseInt(name.substring(index + 1));
-        this.parsedJSON = root.file("thread.json");
-        this.topicJSON = root.file("topic.json");
 
         restore();
     }
 
     OpenThread(String num, int id) {
         this(Astro.ARTICLE.directory(num + "-" + id));
+    }
+
+    public File parsedJSON() {
+        return Astro.ARTICLE.directory(num + "-" + id).file("thread.json");
+    }
+
+    public File topicJSON() {
+        return Astro.ARTICLE.directory(num + "-" + id).file("topic.json");
     }
 
     /**
@@ -104,8 +110,8 @@ public class OpenThread implements Storable<OpenThread> {
      */
     public List<Topic> getTopics() {
         if (topics == null) {
-            if (topicJSON.isPresent()) {
-                topics = I.json(topicJSON.text(), Topics.class);
+            if (topicJSON().isPresent()) {
+                topics = I.json(topicJSON().text(), Topics.class);
             } else {
                 analyze();
             }
@@ -122,7 +128,11 @@ public class OpenThread implements Storable<OpenThread> {
      */
     @Override
     public Path locate() {
-        return parsedJSON.asJavaPath();
+        return parsedJSON().asJavaPath();
+    }
+
+    private int exaxtNumber(String text) {
+        return Integer.parseInt(text.replaceAll("\\D", ""));
     }
 
     /**
@@ -143,7 +153,9 @@ public class OpenThread implements Storable<OpenThread> {
         XML html = I.xml("<!DOCTYPE html>" + data);
 
         this.title = html.element("title").text();
+        this.num = exaxtNumber(this.title);
         this.url = html.find("head meta[property='og:url']").attr("content");
+        this.id = exaxtNumber(this.url.substring(28));
 
         Nicknames nick = I.make(Nicknames.class);
 
@@ -231,7 +243,7 @@ public class OpenThread implements Storable<OpenThread> {
         linkageComments();
 
         store();
-        I.info("Parse the thread " + num + " and cache it to [" + parsedJSON + "].");
+        I.info("Parse the thread " + num + " and cache it to [" + parsedJSON() + "].");
     }
 
     /**
@@ -263,7 +275,9 @@ public class OpenThread implements Storable<OpenThread> {
      * and media links, then sends it to a language model to extract high-level discussion topics.
      */
     public void analyze() {
-        if (topicJSON.isAbsent() || topicJSON.size() == 0) {
+        File topicJSON = topicJSON();
+
+        if ((topicJSON.isAbsent() || topicJSON.size() == 0) && comments.size() >= 985) {
             I.info("Analyzing topics in thread " + num + " by Gemini.");
             topics = I.json(Editor.topics(composeThreadText()), Topics.class);
             topics.normalize(this);
@@ -284,12 +298,6 @@ public class OpenThread implements Storable<OpenThread> {
             text.append("\n\n");
         }
         return text.toString();
-    }
-
-    public void sss() {
-        for (Res res : comments) {
-        }
-        store();
     }
 
     public void backupImages() {
@@ -333,5 +341,17 @@ public class OpenThread implements Storable<OpenThread> {
             res.body = nick.link(res.decodedBody());
         }
         store();
+    }
+
+    public Variable<String> searchNextURL() {
+        Pattern pattern = Pattern.compile("https://uni.open2ch.net/test/read.cgi/gameswf/(\\d+)");
+        for (int i = Math.min(comments.size(), 1000); 100 < i; i--) {
+            Res res = comments.get(i);
+            Matcher matcher = pattern.matcher(res.body);
+            if (matcher.find()) {
+                return Variable.of(matcher.group(0));
+            }
+        }
+        return Variable.empty();
     }
 }

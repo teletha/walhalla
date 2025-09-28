@@ -54,10 +54,6 @@ public class OpenThreadCollector {
         return new OpenThread(Astro.ARTICLE.directory(id));
     }
 
-    public static void main(String[] args) {
-        crawlByURL(15654, 1758976165);
-    }
-
     public static synchronized void crawlByURL(int num, int id) {
         try {
             Server server = new Server();
@@ -83,10 +79,44 @@ public class OpenThreadCollector {
     public static synchronized Signal<OpenThread> findAll() {
         if (initialized == false) {
             initialized = true;
-            crawl();
+            trail();
         }
 
         return Astro.ARTICLE.walkDirectory("*").map(OpenThread::new);
+    }
+
+    private static final void trail() {
+        Server server = new Server();
+        OpenThread latest = Astro.ARTICLE.walkFile("**/thread.json").last().map(file -> new OpenThread(file.parent())).to().exact();
+
+        if (latest.comments.size() < 985) {
+            try {
+                OpenThread thread = new OpenThread();
+                server.pending = new CompletableFuture();
+                Desktop.getDesktop().browse(new URI(latest.url + "#audit"));
+                thread.parse(server.pending.get(30, TimeUnit.SECONDS));
+
+                Thread.sleep(1000);
+            } catch (Exception e) {
+                throw I.quiet(e);
+            }
+        }
+
+        while (985 <= latest.comments.size()) {
+            try {
+                OpenThread thread = new OpenThread();
+                server.pending = new CompletableFuture();
+                Desktop.getDesktop().browse(new URI(latest.searchNextURL() + "#audit"));
+                thread.parse(server.pending.get(30, TimeUnit.SECONDS));
+
+                Thread.sleep(1000);
+
+                latest = thread;
+            } catch (Exception e) {
+                throw I.quiet(e);
+            }
+        }
+        server.shutdown();
     }
 
     /**
@@ -101,11 +131,12 @@ public class OpenThreadCollector {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         Server server = new Server();
 
-        I.http("https://find.open2ch.net/?q=アイギス", XML.class)
+        I.http("https://uni.open2ch.net/headline.cgi?bbs=gameswf", XML.class)
                 .waitForTerminate()
-                .flatIterable(html -> html.find("div.subject a"))
+                .flatIterable(html -> html.find("div.item > div > a"))
                 .to((WiseConsumer<XML>) link -> {
                     String uri = link.attr("href").substring(0, link.attr("href").length() - 3);
+                    System.out.println(link);
                     int id = Integer.parseInt(uri.substring(uri.lastIndexOf("/", uri.length() - 2) + 1, uri.length() - 1));
                     String title = link.text();
                     int end = title.lastIndexOf(')');
@@ -116,7 +147,7 @@ public class OpenThreadCollector {
                     if (num != null) {
                         LocalDateTime date = LocalDateTime.parse(link.parent().parent().next().firstChild().lastChild().text(), formatter);
                         OpenThread thread = new OpenThread(num, id);
-                        if (975 <= size && thread.parsedJSON.lastModifiedDateTime().toLocalDateTime().plusHours(1).isBefore(date)) {
+                        if (975 <= size && thread.parsedJSON().lastModifiedDateTime().toLocalDateTime().plusHours(1).isBefore(date)) {
                             server.pending = new CompletableFuture();
                             Desktop.getDesktop().browse(new URI(uri + "#audit"));
                             thread.parse(server.pending.get(30, TimeUnit.SECONDS));

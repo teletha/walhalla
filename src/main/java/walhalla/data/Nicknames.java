@@ -50,7 +50,7 @@ public class Nicknames {
         NICKS.put("アンナ", List.of("ンナァ"));
         NICKS.put("聞忠", List.of("んちゅ", "ぶんちゅー", "もんちゅー", "聞仲"));
         NICKS.put("誅子", List.of("ちゅーこ", "ちゅーし"));
-        NICKS.put("ズィズィー", List.of("ZZ", "ＺZ", "ｚｚ", "ズィズィ", "ズィ", "ズイズイ"));
+        NICKS.put("ズィズィー", List.of("ZZ", "ＺZ", "ｚｚ", "ズィズィ", "ズィ", "ズイズイ", "ずいずい"));
         NICKS.put("ラシュマシュ", List.of("ラシュ", "マシュ"));
         NICKS.put("デルフィーナ", List.of("ピザ"));
         NICKS.put("メフィスト", List.of("メッフィー", "めっふぃー"));
@@ -93,6 +93,7 @@ public class Nicknames {
         NICKS.put("ムルーア", List.of("赤魚"));
         NICKS.put("ピュレスカ", List.of("青魚"));
         NICKS.put("エスネア", List.of("ぽんちゃん", "ポンちゃん"));
+        NICKS.put("ラクサーシャ", List.of("麻宮"));
 
         // 特殊略称
         // 名前の語尾をだけを取って季節接頭辞と合わせるために使用
