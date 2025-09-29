@@ -127,21 +127,20 @@ public class Astro {
             images.add(image.resize(100));
         });
 
-        writeImage("unit-icons", 50, images);
-        writeImage("unit-icons-latest", 15, images.subList(images.size() - 15, images.size()));
+        writeImage("unit-icons", 50, 50, 50, images);
+        writeImage("unit-icons-latest", 15, 50, 35, images.subList(images.size() - 15, images.size()));
     }
 
-    private static void writeImage(String name, int width, List<EditableImage> images) {
+    private static void writeImage(String name, int num, int shrink, int quality, List<EditableImage> images) {
         File base = Locator.file(".data/" + name + ".png");
         EditableImage container = new EditableImage();
-        container.tile(width, images).write(base.asJavaPath());
+        container.tile(num, images).write(base.asJavaPath());
 
         String magick = I.env("IMAGE_MAGICK");
-        File output = ASSETS.file(name + "50.avif");
+        File output = ASSETS.file(name + shrink + ".avif");
         ProcessBuilder pb = new ProcessBuilder(magick, base.absolutize()
-                .path(), "-filter", "Catrom", "-resize", "50%", "-define", "heic:encoder=avif", "-define", "heic:effort=3", "-quality", "35", output
-                        .absolutize()
-                        .path());
+                .path(), "-filter", "Catrom", "-resize", shrink + "%", "-define", "heic:encoder=avif", "-define", "heic:effort=3", "-quality", String
+                        .valueOf(quality), output.absolutize().path());
         try {
             I.info("Building unit icon sprite: " + pb.command());
             pb.inheritIO().start().waitFor();
