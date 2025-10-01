@@ -28,6 +28,7 @@ import walhalla.data.Unit;
 import walhalla.data.UnitMeta;
 import walhalla.data.UnitMetaInfo;
 import walhalla.image.EditableImage;
+import walhalla.open2ch.Instruction;
 import walhalla.open2ch.OpenThreadCollector;
 import walhalla.topics.AccessRanking;
 import walhalla.topics.TierCalculator;
@@ -43,7 +44,7 @@ import walhalla.tweet.Twitter;
  */
 public class Astro {
 
-    public static final Set<String> NOT_IMPLEMENTED = Set.of();
+    public static final Set<String> NOT_IMPLEMENTED = Set.of("桃色の夢スウィーティア", "旗艦乙女ドーンブリンガー", "ベルゼブブ娘アゼプ", "冥府館の異装テュト");
 
     /** Specify the english name only. */
     public static final Set<String> FORCE_UPDATE = Set.of();
@@ -127,7 +128,8 @@ public class Astro {
             images.add(image.resize(100));
         });
 
-        writeImage("unit-icons", 50, 50, 50, images);
+        writeImage("unit-icons", 50, 50, 35, images);
+        writeImage("unit-icons", 50, 60, 35, images);
         writeImage("unit-icons-latest", 15, 50, 35, images.subList(images.size() - 15, images.size()));
     }
 
@@ -155,10 +157,10 @@ public class Astro {
      * Collects and analyzes topics from open threads using OpenThreadCollector.
      * This method processes each thread and performs analysis.
      */
-    public static void buildTopics() {
+    public static void buildTopics(Instruction... instructions) {
         OpenThreadCollector.findAll().to(thread -> {
             long start = System.currentTimeMillis();
-            thread.analyze();
+            thread.analyze(instructions);
             thread.backupImages();
             thread.linkageCharacter();
             long end = System.currentTimeMillis();

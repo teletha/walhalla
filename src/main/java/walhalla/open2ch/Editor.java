@@ -11,6 +11,8 @@ package walhalla.open2ch;
 
 import java.io.InputStream;
 import java.time.Duration;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
 import dev.langchain4j.model.chat.request.ResponseFormat;
@@ -29,19 +31,29 @@ public interface Editor {
 
     String selectTopics(String text);
 
-    static String topics(CharSequence input) {
+    static String topics(CharSequence input, Instruction... instructions) {
         return AiServices.builder(Editor.class)
                 .chatModel(MODEL)
                 .chatMemory(MessageWindowChatMemory.withMaxMessages(10))
-                .systemMessageProvider(id -> prompt("topic"))
+                .systemMessageProvider(id -> prompt("topic", instructions))
                 .build()
                 .selectTopics(input.toString());
     }
 
-    private static String prompt(String name) {
+    private static String prompt(String name, Instruction... instructions) {
         InputStream input = ClassLoader.getSystemResourceAsStream("walhalla/prompt/" + name + ".md");
         try (input) {
-            return new String(input.readAllBytes(), java.nio.charset.StandardCharsets.UTF_8);
+            String prompt = new String(input.readAllBytes(), java.nio.charset.StandardCharsets.UTF_8);
+            String keyword;
+            if (instructions.length == 0) {
+                keyword = "**ゲームの話題・キャラ・システムに関する話題**";
+            } else {
+                keyword = Stream.of(instructions)
+                        .flatMap(i -> Stream.of(i.keywords()))
+                        .map(word -> "**" + word + "**")
+                        .collect(Collectors.joining(", ", "", "に関する話題"));
+            }
+            return String.format(prompt, keyword);
         } catch (Exception e) {
             throw I.quiet(e);
         }

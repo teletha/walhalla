@@ -20,6 +20,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import kiss.I;
 import kiss.JSON;
@@ -274,16 +275,29 @@ public class OpenThread implements Storable<OpenThread> {
      * This method constructs a single prompt string by concatenating all comment bodies
      * and media links, then sends it to a language model to extract high-level discussion topics.
      */
-    public void analyze() {
+    public void analyze(Instruction... instructions) {
         File topicJSON = topicJSON();
 
-        if ((topicJSON.isAbsent() || topicJSON.size() == 0) && comments.size() >= 985) {
+        if ((topicJSON.isAbsent() || topicJSON.size() == 0) && comments.size() >= 975) {
             I.info("Analyzing topics in thread " + num + " by Gemini.");
             topics = I.json(Editor.topics(composeThreadText()), Topics.class);
             topics.normalize(this);
 
             topicJSON.text(I.write(topics)).creationTime(0);
             I.info("Finish analyzing topics and cache it to [" + topicJSON + "].");
+        }
+
+        instructions = Stream.of(instructions).filter(i -> i.id() == id).toArray(Instruction[]::new);
+        if (instructions.length != 0) {
+            I.info("Analyzing additional topics " + I.signal(instructions)
+                    .flatArray(x -> x.keywords())
+                    .toList() + " in thread " + num + " by Gemini.");
+
+            Topics addtional = I.json(Editor.topics(composeThreadText(), instructions), Topics.class);
+            addtional.normalize(this);
+
+            topicJSON.text(I.write(((Topics) getTopics()).merge(addtional))).creationTime(0);
+            I.info("Finish analyzing addtional topics and cache it to [" + topicJSON + "].");
         }
     }
 

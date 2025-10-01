@@ -118,4 +118,17 @@ public class Topics extends ArrayList<Topic> {
         }
         return sb.toString();
     }
+
+    /**
+     * Merges the current list of topics with an additional list,
+     * 
+     * @param addtional
+     * @return
+     */
+    Topics merge(Topics addtional) {
+        Topics merged = new Topics();
+        merged.addAll(this);
+        merged.addAll(addtional);
+        return merged;
+    }
 }
