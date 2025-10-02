@@ -31,7 +31,6 @@ import walhalla.image.EditableImage;
 import walhalla.open2ch.Instruction;
 import walhalla.open2ch.OpenThreadCollector;
 import walhalla.topics.AccessRanking;
-import walhalla.topics.ArtTopicBuilder;
 import walhalla.topics.TierCalculator;
 import walhalla.tweet.BlueSky;
 import walhalla.tweet.Twitter;
@@ -213,6 +212,5 @@ public class Astro {
     public static void main(String[] args) {
         buildUnitJSON();
         buildTopics();
-        ArtTopicBuilder.buildArtTopic(2025, 9);
     }
 }
