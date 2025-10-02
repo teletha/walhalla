@@ -251,7 +251,7 @@ public class OpenThread implements Storable<OpenThread> {
      * Linkage references between comments.
      */
     private void linkageComments() {
-        Pattern pattern = Pattern.compile("&gt;&gt;(\\d+)");
+        Pattern pattern = Pattern.compile("<i>(\\d+)</i>");
 
         for (Res res : comments) {
             res.from = new ArrayList();

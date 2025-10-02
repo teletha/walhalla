@@ -21,6 +21,5 @@ public interface Auto extends Task {
 
     @Command("Hook commit.")
     default void hookCommit() {
-        Astro.backupImages();
     }
 }

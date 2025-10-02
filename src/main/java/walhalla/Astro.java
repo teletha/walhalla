@@ -31,6 +31,7 @@ import walhalla.image.EditableImage;
 import walhalla.open2ch.Instruction;
 import walhalla.open2ch.OpenThreadCollector;
 import walhalla.topics.AccessRanking;
+import walhalla.topics.ArtTopicBuilder;
 import walhalla.topics.TierCalculator;
 import walhalla.tweet.BlueSky;
 import walhalla.tweet.Twitter;
@@ -44,7 +45,7 @@ import walhalla.tweet.Twitter;
  */
 public class Astro {
 
-    public static final Set<String> NOT_IMPLEMENTED = Set.of("桃色の夢スウィーティア", "旗艦乙女ドーンブリンガー", "ベルゼブブ娘アゼプ", "冥府館の異装テュト");
+    public static final Set<String> NOT_IMPLEMENTED = Set.of("桃色の夢スウィーティア", "旗艦乙女ドーンブリンガー", "ベルゼブブ娘アゼプ", "冥府館の異装テュト", "九尾娘の異装しづり");
 
     /** Specify the english name only. */
     public static final Set<String> FORCE_UPDATE = Set.of();
@@ -205,14 +206,6 @@ public class Astro {
     }
 
     /**
-     * 
-     */
-    public static void backupImages() {
-        System.out.println("OK");
-        System.out.println(I.env("IMAGE_MAGICK"));
-    }
-
-    /**
      * Main entry point. Builds the topics database.
      *
      * @param args Command line arguments (not used)
@@ -220,6 +213,6 @@ public class Astro {
     public static void main(String[] args) {
         buildUnitJSON();
         buildTopics();
-        // ArtTopicBuilder.buildArtTopic(2025, 8);
+        ArtTopicBuilder.buildArtTopic(2025, 9);
     }
 }
