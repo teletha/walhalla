@@ -36,7 +36,7 @@ public enum Attribute {
 
     Clergy(兵種, "聖職者"),
 
-    Cosplay(季節, "コスプレ", new String[] {"蛸", "タコ", "たこ", "城", "キャメ"}),
+    Cosplay(季節, "コスプレ", new String[] {"蛸", "タコ", "たこ", "城", "キャメ", "狐", "九尾"}),
 
     DarkElf(種族, "ダークエルフ"),
 

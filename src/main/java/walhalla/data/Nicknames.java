@@ -31,6 +31,8 @@ public class Nicknames {
 
     private static final Map<String, List<String>> NICKS = new HashMap();
 
+    private static final Map<String, List<String>> FULL_NICKS = new HashMap();
+
     static {
         NICKS.put("エレオノーラ", List.of("Yさん"));
         NICKS.put("セリア", List.of("ズッ友"));
@@ -95,6 +97,8 @@ public class Nicknames {
         NICKS.put("エスネア", List.of("ぽんちゃん", "ポンちゃん"));
         NICKS.put("ラクサーシャ", List.of("麻宮"));
 
+        FULL_NICKS.put("旗艦乙女ドーンブリンガー", List.of("どんぶり", "ドンブリ", "あかつき", "アカツキ", "暁"));
+
         // 特殊略称
         // 名前の語尾をだけを取って季節接頭辞と合わせるために使用
         NICKS.put("オーガスタ", List.of("カレー", "ガスタ"));
@@ -120,6 +124,16 @@ public class Nicknames {
                 }
             }
         }
+
+        FULL_NICKS.entrySet().forEach(e -> {
+            String name = e.getKey();
+            db.searchByFullName(name).ifPresent(unit -> {
+                for (String nick : e.getValue()) {
+                    register(builder, nick, List.of(unit));
+                }
+            });
+        });
+
         builder.addKeyword("もりたん", "https://kuromojiya.sakura.ne.jp/aigis.htm");
 
         // 一般名詞の一部にキャラ名が含まれている場合にリンクを無効にするために
@@ -326,6 +340,7 @@ public class Nicknames {
             builder.addKeyword("素" + name, "/character/" + u.nameJ + "/");
             builder.addKeyword("通常" + name, "/character/" + u.nameJ + "/");
             builder.addKeyword("ノーマル" + name, "/character/" + u.nameJ + "/");
+            builder.addKeyword("無印" + name, "/character/" + u.nameJ + "/");
         });
 
         if (units.size() == 1) {
