@@ -54,7 +54,7 @@ public enum Attribute {
 
     EasternCountry(所属, "東の国"),
 
-    EggHunt(季節, "エッグハント", new String[] {"エッグ", "バニー", "バニ"}),
+    EggHunt(季節, "エッグハント", new String[] {"エッグ", "バニー", "バニ", "卵"}),
 
     Elf(種族, "エルフ"),
 
