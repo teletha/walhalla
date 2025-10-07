@@ -27,7 +27,6 @@ import kiss.JSON;
 import kiss.Storable;
 import kiss.Variable;
 import kiss.XML;
-import psychopath.Directory;
 import psychopath.File;
 import walhalla.Astro;
 import walhalla.data.Nicknames;
@@ -69,28 +68,26 @@ public class OpenThread implements Storable<OpenThread> {
     public OpenThread() {
     }
 
-    /**
-     * Private constructor to prevent direct instantiation.
-     */
-    OpenThread(Directory root) {
-        String name = root.name();
-        int index = name.indexOf("-");
-        this.num = Integer.parseInt(name.substring(0, index));
-        this.id = Integer.parseInt(name.substring(index + 1));
+    public OpenThread(int num, int id) {
+        this.num = num;
+        this.id = id;
 
         restore();
     }
 
-    OpenThread(String num, int id) {
-        this(Astro.ARTICLE.directory(num + "-" + id));
-    }
-
     public File parsedJSON() {
-        return Astro.ARTICLE.directory(num + "-" + id).file("thread.json");
+        return Astro.ARTICLE.directory(range(num)).directory(num + "-" + id).file("thread.json");
     }
 
     public File topicJSON() {
-        return Astro.ARTICLE.directory(num + "-" + id).file("topic.json");
+        return Astro.ARTICLE.directory(range(num)).directory(num + "-" + id).file("topic.json");
+    }
+
+    private static String range(int num) {
+        int remaining = num % 100;
+        int start = num - remaining;
+        int end = start + 99;
+        return start + "-" + end;
     }
 
     /**

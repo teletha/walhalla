@@ -30,6 +30,6 @@ public class ArtTopics extends Topics implements Storable<ArtTopics> {
      */
     @Override
     public Path locate() {
-        return Astro.ARTICLE.file("15171-1748591399/topic.json").asJavaPath();
+        return Astro.ARTICLE.file("15100-15199/15171-1748591399/topic.json").asJavaPath();
     }
 }

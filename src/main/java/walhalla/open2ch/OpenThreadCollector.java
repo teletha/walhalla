@@ -51,13 +51,17 @@ public class OpenThreadCollector {
     private static boolean initialized;
 
     public static synchronized OpenThread findBy(String id) {
-        return new OpenThread(Astro.ARTICLE.directory(id));
+        int index = id.indexOf("-");
+        int num = Integer.parseInt(id.substring(0, index));
+        int threadId = Integer.parseInt(id.substring(index + 1));
+
+        return new OpenThread(num, threadId);
     }
 
     public static synchronized void crawlByURL(int num, int id) {
         try {
             Server server = new Server();
-            OpenThread thread = new OpenThread(String.valueOf(num), id);
+            OpenThread thread = new OpenThread(num, id);
             server.pending = new CompletableFuture();
             Desktop.getDesktop().browse(new URI("https://uni.open2ch.net/test/read.cgi/gameswf/" + id + "/#audit"));
             thread.parse(server.pending.get(30, TimeUnit.SECONDS));
@@ -82,12 +86,12 @@ public class OpenThreadCollector {
             trail();
         }
 
-        return Astro.ARTICLE.walkDirectory("*").map(OpenThread::new);
+        return Astro.ARTICLE.walkDirectory("*/*").map(dir -> findBy(dir.name()));
     }
 
     private static final void trail() {
         Server server = new Server();
-        OpenThread latest = Astro.ARTICLE.walkFile("**/thread.json").last().map(file -> new OpenThread(file.parent())).to().exact();
+        OpenThread latest = Astro.ARTICLE.walkFile("**/thread.json").last().map(file -> findBy(file.parent().name())).to().exact();
 
         if (latest.comments.size() < 985) {
             try {
@@ -146,7 +150,7 @@ public class OpenThreadCollector {
                     String num = computeThreadNumber(title);
                     if (num != null) {
                         LocalDateTime date = LocalDateTime.parse(link.parent().parent().next().firstChild().lastChild().text(), formatter);
-                        OpenThread thread = new OpenThread(num, id);
+                        OpenThread thread = new OpenThread(Integer.parseInt(num), id);
                         if (975 <= size && thread.parsedJSON().lastModifiedDateTime().toLocalDateTime().plusHours(1).isBefore(date)) {
                             server.pending = new CompletableFuture();
                             Desktop.getDesktop().browse(new URI(uri + "#audit"));

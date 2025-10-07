@@ -46,7 +46,7 @@ public class WebPage {
      * @return データの文字列
      */
     public static String fetchText(String uri) {
-        return fetchText(uri, 14 * 24 * 60 * 60 * 1000);
+        return fetchText(uri, 21 * 24 * 60 * 60 * 1000);
     }
 
     /**
@@ -109,7 +109,7 @@ public class WebPage {
      * @return XMLデータ
      */
     public static XML fetchXML(String uri) {
-        return fetchXML(uri, 14 * 24 * 60 * 60 * 1000);
+        return fetchXML(uri, 21 * 24 * 60 * 60 * 1000);
     }
 
     /**
