@@ -60,7 +60,7 @@ public class Nicknames {
         NICKS.put("アブグルント", List.of("アブちゃん"));
         NICKS.put("神野悪五郎", List.of("悪五郎", "アクゴロー", "あくごろー"));
         NICKS.put("オスカー", List.of("手塚"));
-        NICKS.put("清源妙道真君", List.of("妙ちゃん", "清源", "清原"));
+        NICKS.put("清源妙道真君", List.of("妙ちゃん", "清源", "清原", "妙道"));
         NICKS.put("天墜神星", List.of("アマツちゃん", "アマツ", "天墜ちゃん"));
         NICKS.put("祓剣主神", List.of("フツヌシ", "ふつぬし"));
         NICKS.put("元始天尊", List.of("天尊"));
@@ -71,9 +71,9 @@ public class Nicknames {
         NICKS.put("ラタトスク", List.of("ラタ様", "ラタちゃん"));
         NICKS.put("ウルカノ", List.of("カノ"));
         NICKS.put("白の皇帝", List.of("皇帝"));
-        NICKS.put("ヴィラヘルム", List.of("初代皇帝"));
+        NICKS.put("ヴィラヘルム", List.of("初代皇帝", "初代様"));
         NICKS.put("アリシア", List.of("アリス"));
-        NICKS.put("オラティル", List.of("お粥"));
+        NICKS.put("オラティル", List.of("お粥", "おかゆ"));
         NICKS.put("伏綺", List.of("伏犠", "ふっき", "フッキ"));
         NICKS.put("金糸雀姉妹", List.of("金糸雀"));
         NICKS.put("紫苑姉妹", List.of("紫苑"));
@@ -97,8 +97,11 @@ public class Nicknames {
         NICKS.put("エスネア", List.of("ぽんちゃん", "ポンちゃん"));
         NICKS.put("ラクサーシャ", List.of("麻宮"));
         NICKS.put("ロウユ", List.of("娘々仮面"));
+        NICKS.put("ツキコ★トゥーダ", List.of("トゥキコ"));
+        NICKS.put("エス★エフ", List.of("エスエフ"));
 
         FULL_NICKS.put("旗艦乙女ドーンブリンガー", List.of("どんぶり", "ドンブリ", "あかつき", "アカツキ", "暁"));
+        FULL_NICKS.put("賢仙の授業 清源妙道真君", List.of("妙道先生"));
 
         // 特殊略称
         // 名前の語尾をだけを取って季節接頭辞と合わせるために使用
