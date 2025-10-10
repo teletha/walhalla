@@ -118,6 +118,8 @@ public enum Ability {
 
     編成効果(AbilityCategory.編成),
 
+    主人の性能を強化する(AbilityCategory.編成),
+
     撤退として扱う(AbilityCategory.死亡),
 
     飛行ユニットを優先的に攻撃(AbilityCategory.攻撃),
