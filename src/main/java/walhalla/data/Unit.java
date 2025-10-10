@@ -360,7 +360,7 @@ public class Unit {
 
         stats = new Stats();
         stats.parseWikiStats("c1", text);
-        stats.icon = icon;;
+        stats.icon = icon;
         stats.image = image;
 
         wiki.peekKV("awaken", value -> {
@@ -387,7 +387,9 @@ public class Unit {
                 stats2B.image = image2B == null ? imageAW : image2B;
             }
         });
-        if (hero) stats = null;
+        if (hero) stats = null; // 英雄ユニットは覚醒済み
+        if (stats != null && stats.hp == 0) stats = null; // アイドルユニットは覚醒済み
+
         if (stats != null) stats.profession.parseWikiProfessionData(this);
         if (stats1 != null) stats1.profession.parseWikiProfessionData(this);
         if (stats2A != null) stats2A.profession.parseWikiProfessionData(this);

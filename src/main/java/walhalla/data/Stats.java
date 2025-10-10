@@ -100,6 +100,7 @@ public class Stats {
 
         wiki.peekKV(prefix + "Class", value -> profession = I.make(ProfessionManager.class).findBy(value));
         wiki.peekKV(prefix + "MaxHp", value -> hp = parseInt(value));
+        wiki.peekKV(prefix + "MaxHP", value -> hp = parseInt(value));
         wiki.peekKV(prefix + "MaxAtk", value -> atk = parseInt(value));
         wiki.peekKV(prefix + "MaxDef", value -> def = parseInt(value));
         wiki.peekKV(prefix + "MinCost", value -> costMin = parseInt(value));
