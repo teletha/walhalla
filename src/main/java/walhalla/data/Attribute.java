@@ -120,7 +120,7 @@ public enum Attribute {
 
     SevenDeadlySins(所属, "七つの大罪"),
 
-    Spirit(種族, "精霊"),
+    Spirit(種族, "聖霊"),
 
     Summer(季節, "サマー", new String[] {"夏"}),
 
