@@ -99,6 +99,7 @@ public class Nicknames {
         NICKS.put("ロウユ", List.of("娘々仮面"));
         NICKS.put("ツキコ★トゥーダ", List.of("トゥキコ"));
         NICKS.put("エス★エフ", List.of("エスエフ"));
+        NICKS.put("イングリッド", List.of("イング"));
 
         FULL_NICKS.put("旗艦乙女ドーンブリンガー", List.of("どんぶり", "ドンブリ", "あかつき", "アカツキ", "暁"));
         FULL_NICKS.put("賢仙の授業 清源妙道真君", List.of("妙道先生"));
@@ -319,6 +320,19 @@ public class Nicknames {
         builder.addKeyword("アヴェンジャー", "");
         builder.addKeyword("アヴァル", "");
         builder.addKeyword("ポーランド", "");
+        builder.addKeyword("スイミング", "");
+        builder.addKeyword("スイング", "");
+        builder.addKeyword("イングランド", "");
+        builder.addKeyword("ダイイング", "");
+        builder.addKeyword("ウイング", "");
+        builder.addKeyword("フライング", "");
+        builder.addKeyword("プレイング", "");
+        builder.addKeyword("プレーイング", "");
+        builder.addKeyword("ビーイング", "");
+        builder.addKeyword("ワイングラス", "");
+        builder.addKeyword("ライングループ", "");
+        builder.addKeyword("イングリッシュ", "");
+        builder.addKeyword("ドローイング", "");
 
         this.trie = builder.build();
     }
