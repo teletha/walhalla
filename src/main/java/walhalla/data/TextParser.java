@@ -9,15 +9,22 @@
  */
 package walhalla.data;
 
+import java.util.List;
+
+import com.atilika.kuromoji.ipadic.Token;
+import com.atilika.kuromoji.ipadic.Tokenizer;
+
 /**
- * Utility class for parsing text related to artist names and extracting clean artist names from various formats.
+ * Utility class for parsing text related to artist names and extracting clean artist names from
+ * various formats.
  */
 public class TextParser {
 
     /**
      * Extracts a clean artist name from a given text string.
      * <p>
-     * Handles various formats such as [URL name], comments, special prefixes, and removes unnecessary parts like links, comments, and extra symbols.
+     * Handles various formats such as [URL name], comments, special prefixes, and removes
+     * unnecessary parts like links, comments, and extra symbols.
      * </p>
      *
      * @param text The input text containing the artist name and possibly extra information
@@ -95,5 +102,47 @@ public class TextParser {
         // yaman** → yaman＊＊
         candidate = candidate.replace("**", "＊＊");
         return candidate;
+    }
+
+    private static final Tokenizer TOKENIZER = new Tokenizer();
+
+    public static String getFullReading(String text) {
+        List<Token> tokens = TOKENIZER.tokenize(text);
+
+        StringBuilder sb = new StringBuilder();
+        for (Token token : tokens) {
+            String surface = token.getSurface();
+
+            // カタカナまたはローマ字（ASCII文字）ならそのまま使用
+            if (isKatakanaOrRomaji(surface)) {
+                sb.append(surface);
+            } else {
+                // それ以外は読み方を取得
+                String reading = token.getReading();
+                sb.append(reading != null ? reading : token.getSurface());
+            }
+        }
+        return sb.toString().replaceAll("\\*", "");
+    }
+
+    private static boolean isKatakanaOrRomaji(String str) {
+        if (str == null || str.isEmpty()) {
+            return false;
+        }
+
+        for (char c : str.toCharArray()) {
+            // カタカナ（全角・半角）、ひらがな、ローマ字（ASCII）、記号をチェック
+            boolean isKatakana = (c >= '\u30A0' && c <= '\u30FF') || // 全角カタカナ
+                    (c >= '\uFF65' && c <= '\uFF9F'); // 半角カタカナ
+            boolean isHiragana = (c >= '\u3040' && c <= '\u309F'); // ひらがな
+            boolean isRomaji = (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z');
+            boolean isNumber = (c >= '0' && c <= '9');
+            boolean isSymbol = (c == '-' || c == '・' || c == ' ');
+
+            if (!isKatakana && !isHiragana && !isRomaji && !isNumber && !isSymbol) {
+                return false;
+            }
+        }
+        return true;
     }
 }
