@@ -69,8 +69,6 @@ public class Unit {
 
     public String artist;
 
-    public String artistRead;
-
     public String body;
 
     public List<String> ability;
@@ -193,7 +191,6 @@ public class Unit {
             });
             wiki.peekKV("artist", value -> {
                 artist = TextParser.extractArtistName(value);
-                artistRead = TextParser.getFullReading(artist);
             });
             wiki.peekKV("body", value -> body = value);
         });

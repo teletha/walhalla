@@ -69,6 +69,7 @@ public class UnitMetaInfo {
             .skipNull()
             .skip(a -> a.isEmpty())
             .distinct()
+            .map(a -> a + ">>" + TextParser.getFullReading(a))
             .sort(collator)
             .toList();
 
