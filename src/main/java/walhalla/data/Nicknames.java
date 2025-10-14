@@ -101,6 +101,7 @@ public class Nicknames {
         NICKS.put("エス★エフ", List.of("エスエフ"));
         NICKS.put("イングリッド", List.of("イング"));
         NICKS.put("ミネルバ", List.of("伝説さん"));
+        NICKS.put("デスピア", List.of("ピャー"));
 
         FULL_NICKS.put("旗艦乙女ドーンブリンガー", List.of("どんぶり", "ドンブリ", "あかつき", "アカツキ", "暁"));
         FULL_NICKS.put("賢仙の授業 清源妙道真君", List.of("妙道先生"));
