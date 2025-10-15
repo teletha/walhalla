@@ -11,6 +11,8 @@ package walhalla;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -172,21 +174,22 @@ public class Astro {
     public static void tweet() {
         File file = Locator.file(".data/tweet.log");
         String text = file.text();
+        ZonedDateTime last = text.isEmpty() ? ZonedDateTime.now().minusYears(30) : date(text);
 
         Twitter twitter = new Twitter();
         BlueSky blue = new BlueSky();
 
         I.http("https://wannyan.ephtra.workers.dev/rss.xml", XML.class)
                 .flatIterable(xml -> xml.find("item"))
-                .takeUntil(x -> x.element("link").text().equals(text))
+                .takeWhile(x -> date(x.element("pubDate").text()).isAfter(last))
                 .reverse()
-                .skip(1)
                 .waitForTerminate()
                 .to(item -> {
                     String title = item.element("title").text();
                     String link = item.element("link").text();
                     String description = item.element("description").text();
                     String image = item.element("media:content").attr("url");
+                    String pubDate = item.element("pubDate").text();
 
                     twitter.tweet(title, description, link, image, "#千年戦争アイギス").waitForTerminate().to(json -> {
                         I.info("Tweet on Twitter: " + title);
@@ -200,8 +203,12 @@ public class Astro {
                         I.error(e);
                     });
 
-                    file.text(link);
+                    file.text(pubDate);
                 });
+    }
+
+    private static ZonedDateTime date(String pubDate) {
+        return ZonedDateTime.parse(pubDate, DateTimeFormatter.RFC_1123_DATE_TIME);
     }
 
     /**
@@ -210,7 +217,8 @@ public class Astro {
      * @param args Command line arguments (not used)
      */
     public static void main(String[] args) {
-        buildUnitJSON();
-        buildTopics();
+        // buildUnitJSON();
+        // buildTopics();
+        tweet();
     }
 }
