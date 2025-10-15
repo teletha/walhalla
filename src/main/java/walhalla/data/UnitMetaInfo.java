@@ -75,6 +75,8 @@ public class UnitMetaInfo {
 
     public List<String> 実装年 = I.signal(I.make(Database.class)).map(u -> String.valueOf(u.year)).distinct().reverse().toList();
 
+    public List<String> 取得 = List.of("ガチャ", "配布");
+
     public List<String> アビリティ = I.signal(I.make(Database.class)).flatIterable(u -> u.effects.keySet()).distinct().sort(collator).toList();
 
     public Map<AbilityCategory, List<Ability>> 特性 = Stream.of(Ability.values())

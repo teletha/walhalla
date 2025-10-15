@@ -67,6 +67,8 @@ public class Unit {
 
     public int year;
 
+    public boolean event;
+
     public String artist;
 
     public String body;
@@ -606,6 +608,7 @@ public class Unit {
             id = json.get(int.class, "id");
             place = PlaceType.values()[json.get(int.class, "placeType")];
             year = json.get(int.class, "year");
+            event = json.get(int.class, "isEvent") == 1;
         }
     }
 
@@ -699,6 +702,7 @@ public class Unit {
         meta.attrs.add(String.valueOf(year));
         meta.attrs.add(artist);
         meta.attrs.add(gender.name());
+        meta.attrs.add(event ? "配布" : "ガチャ");
         stats().forEach(stats -> meta.attrs.add(stats.profession.nameJ));
 
         return meta;
