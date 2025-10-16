@@ -114,8 +114,12 @@ public class EditableImage {
      * @param size The target size for resizing.
      */
     public EditableImage resize(int size) {
-        image = Scalr.resize(image, QUALITY, Scalr.Mode.AUTOMATIC, size, size);
-        return this;
+        try {
+            image = Scalr.resize(image, QUALITY, Scalr.Mode.AUTOMATIC, size, size);
+            return this;
+        } catch (Exception e) {
+            throw new Error("failed to resize image: " + file, e);
+        }
     }
 
     /**
