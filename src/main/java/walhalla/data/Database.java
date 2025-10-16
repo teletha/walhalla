@@ -97,6 +97,7 @@ public class Database extends ArrayList<Unit> implements Storable<Database> {
                 if (!recorder.add(unit.nameJ)) {
                     // 英傑（白）は名前が被っているので少し弄る
                     unit.nameJ = unit.nameJ + "（白）";
+                    unit.event = true;
                 }
             } catch (Exception e) {
                 I.error("Failed to parse unit data for: " + name, e);

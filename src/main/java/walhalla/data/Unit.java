@@ -596,7 +596,10 @@ public class Unit {
                     .to()
                     .acquire();
 
-            I.json(js.substring(js.indexOf("["))).find("*").forEach(json -> CARD.put(json.text("name"), json));
+            I.json(js.substring(js.indexOf("["))).find("*").forEach(json -> {
+                String name = json.text("name");
+                CARD.put(name, json);
+            });
             fixName(CARD);
         }
         return CARD;
@@ -608,7 +611,7 @@ public class Unit {
             id = json.get(int.class, "id");
             place = PlaceType.values()[json.get(int.class, "placeType")];
             year = json.get(int.class, "year");
-            event = json.get(int.class, "isEvent") == 1;
+            event = hero ? false : json.get(int.class, "isEvent") == 1;
         }
     }
 
