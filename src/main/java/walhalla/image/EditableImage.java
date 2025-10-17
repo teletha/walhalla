@@ -118,7 +118,23 @@ public class EditableImage {
             image = Scalr.resize(image, QUALITY, Scalr.Mode.AUTOMATIC, size, size);
             return this;
         } catch (Exception e) {
-            throw new Error("failed to resize image: " + file, e);
+            remake();
+            image = Scalr.resize(image, QUALITY, Scalr.Mode.AUTOMATIC, size, size);
+            return this;
+        }
+    }
+
+    private void remake() {
+        String magick = I.env("IMAGE_MAGICK");
+        String path = file.toAbsolutePath().toString();
+        ProcessBuilder pb = new ProcessBuilder(magick, path, "-strip", "-define", "png:format=png32", path);
+        try {
+            I.info("Remake image : " + pb.command());
+            pb.inheritIO().start().waitFor();
+
+            image = ImageIO.read(file.toFile());
+        } catch (Exception ex) {
+            throw I.quiet(ex);
         }
     }
 

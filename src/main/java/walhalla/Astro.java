@@ -46,7 +46,7 @@ import walhalla.tweet.Twitter;
  */
 public class Astro {
 
-    public static final Set<String> NOT_IMPLEMENTED = Set.of("桃色の夢スウィーティア", "南瓜の偵察兵ミリアム");
+    public static final Set<String> NOT_IMPLEMENTED = Set.of();
 
     /** Specify the english name only. */
     public static final Set<String> FORCE_UPDATE = Set.of();
@@ -217,8 +217,8 @@ public class Astro {
      * @param args Command line arguments (not used)
      */
     public static void main(String[] args) {
-        // buildUnitJSON();
-        // buildTopics();
+        buildUnitJSON();
+        buildTopics();
         buildUnitIconSprite();
     }
 }
