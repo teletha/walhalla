@@ -122,6 +122,8 @@ public enum Attribute {
 
     Spirit(種族, "聖霊"),
 
+    Succubus(種族, "サキュバス"),
+
     Summer(季節, "サマー", new String[] {"夏"}),
 
     Swimsuit(季節, "水着", new String[] {"水", "ミズ"}),
