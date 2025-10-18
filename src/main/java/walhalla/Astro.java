@@ -17,9 +17,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import kiss.I;
 import kiss.XML;
@@ -27,7 +25,6 @@ import psychopath.Directory;
 import psychopath.File;
 import psychopath.Locator;
 import walhalla.data.Database;
-import walhalla.data.Gender;
 import walhalla.data.Rarity;
 import walhalla.data.Unit;
 import walhalla.data.UnitMeta;
@@ -220,29 +217,30 @@ public class Astro {
      * @param args Command line arguments (not used)
      */
     public static void main(String[] args) {
-        // buildUnitJSON();
-        // buildTopics();
+        buildUnitJSON();
+        buildTopics();
 
-        Map<Integer, List<String>> collect = I.make(Database.class)
-                .stream()
-                .filter(x -> x.gender != Gender.サポート)
-                .map(x -> x.subNameJ)
-                .distinct()
-                .filter(x -> !x.startsWith("ちび"))
-                .filter(x -> {
-                    // xはひらがな、カタカナのみ
-                    for (int i = 0; i < x.length(); i++) {
-                        char c = x.charAt(i);
-                        if (!((c >= 'ぁ' && c <= 'ん') || (c >= 'ァ' && c <= 'ン') || c == 'ー')) {
-                            return false;
-                        }
-                    }
-                    return true;
-                })
-                .collect(Collectors.groupingBy(x -> x.length()));
-
-        for (Map.Entry<Integer, List<String>> entry : collect.entrySet()) {
-            System.out.println(entry.getKey() + " : " + entry.getValue().size() + " : " + entry.getValue());
-        }
+        // Map<Integer, List<String>> collect = I.make(Database.class)
+        // .stream()
+        // .filter(x -> x.gender != Gender.サポート)
+        // .map(x -> x.subNameJ)
+        // .distinct()
+        // .filter(x -> !x.startsWith("ちび"))
+        // .filter(x -> {
+        // // xはひらがな、カタカナのみ
+        // for (int i = 0; i < x.length(); i++) {
+        // char c = x.charAt(i);
+        // if (!((c >= 'ぁ' && c <= 'ん') || (c >= 'ァ' && c <= 'ン') || c == 'ー')) {
+        // return false;
+        // }
+        // }
+        // return true;
+        // })
+        // .collect(Collectors.groupingBy(x -> x.length()));
+        //
+        // for (Map.Entry<Integer, List<String>> entry : collect.entrySet()) {
+        // System.out.println(entry.getKey() + " : " + entry.getValue().size() + " : " +
+        // entry.getValue());
+        // }
     }
 }
