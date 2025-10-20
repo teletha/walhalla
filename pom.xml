@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.teletha</groupId>
 	<artifactId>walhalla</artifactId>
-	<version/>
+	<version>0.1</version>
 	<packaging>jar</packaging>
 	<name>walhalla</name>
 	<description/>
@@ -120,7 +120,7 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.14.0</version>
 				<configuration>
-					<release>24</release>
+					<release>17</release>
 					<encoding>UTF-8</encoding>
 					<compilerId>javac</compilerId>
 					<compilerArgs>
