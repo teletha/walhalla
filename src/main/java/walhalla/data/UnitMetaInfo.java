@@ -80,7 +80,7 @@ public class UnitMetaInfo {
     public List<String> アビリティ = I.signal(I.make(Database.class)).flatIterable(u -> u.effects.keySet()).distinct().sort(collator).toList();
 
     public Map<AbilityCategory, List<Ability>> 特性 = Stream.of(Ability.values())
-            .collect(Collectors.groupingBy(x -> x.type, () -> new TreeMap(), Collectors.toList()));
+            .collect(Collectors.groupingBy(x -> x.type, TreeMap::new, Collectors.toList()));
 
     public List<ProfessionNameList> クラスセット = I.make(ProfessionManager.class)
             .findAllGroups()

@@ -368,15 +368,15 @@ public class Nicknames {
         });
 
         if (units.size() == 1) {
-            Unit unit = units.getFirst();
+            Unit unit = units.get(0);
             if (unit.nameJ.equals(unit.subNameJ) && db.searchBySubName(unit.subNameJ).size() > 1) {
                 builder.addKeyword(name, "/character/?q=" + unit.nameJ);
             } else {
                 builder.addKeyword(name, "/character/" + unit.nameJ + "/");
             }
         } else if (units.size() == 2) {
-            Unit first = units.getFirst();
-            Unit last = units.getLast();
+            Unit first = units.get(0);
+            Unit last = units.get(units.size() - 1);
             if (first.nameJ.startsWith("ちび") || first.nameJ.endsWith("（白）")) {
                 builder.addKeyword(name, "/character/" + last.nameJ + "/");
             } else if (last.nameJ.startsWith("ちび") || last.nameJ.endsWith("（白）")) {
@@ -385,7 +385,7 @@ public class Nicknames {
                 builder.addKeyword(name, "/character/?q=" + first.subNameJ);
             }
         } else {
-            builder.addKeyword(name, "/character/?q=" + units.getFirst().subNameJ);
+            builder.addKeyword(name, "/character/?q=" + units.get(0).subNameJ);
         }
     }
 

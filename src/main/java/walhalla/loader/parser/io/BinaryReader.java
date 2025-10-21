@@ -21,6 +21,10 @@ public class BinaryReader {
         buffer.position(newPosition);
     }
 
+    public int capacity() {
+        return buffer.capacity();
+    }
+
     public short readWord() {
         return buffer.getShort();
     }
@@ -63,7 +67,7 @@ public class BinaryReader {
     }
 
     public void align(int alignment, int n) {
-        while (true) {
+        while (buffer.position() < buffer.capacity()) {
             int currentAlign = buffer.position() % alignment;
             if (currentAlign == n) {
                 return;

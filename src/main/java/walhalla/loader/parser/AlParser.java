@@ -1,15 +1,26 @@
 package walhalla.loader.parser;
 
-import walhalla.loader.parser.data.*;
-import walhalla.loader.parser.io.BinaryReader;
-
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
+import walhalla.loader.parser.data.AlObject;
+import walhalla.loader.parser.data.All4;
+import walhalla.loader.parser.data.Alar;
+import walhalla.loader.parser.data.Alig;
+import walhalla.loader.parser.data.Allz;
+import walhalla.loader.parser.data.Almt;
+import walhalla.loader.parser.data.Alod;
+import walhalla.loader.parser.data.Alrd;
+import walhalla.loader.parser.data.Altb;
+import walhalla.loader.parser.data.Altx;
+import walhalla.loader.parser.data.TextObject;
+import walhalla.loader.parser.io.BinaryReader;
+
 public class AlParser {
 
     private BinaryReader reader;
+
     private boolean decompressOnly;
 
     public AlObject parse(byte[] data) {
@@ -33,24 +44,26 @@ public class AlParser {
         reader.position(startPosition); // Reset position to be read by specific parsers
 
         switch (objectType) {
-            case "ALAR":
-                 return parseAlar();
-            case "ALTB":
-                return parseAltb();
-            case "ALRD":
-                return parseAlrd();
-             case "ALTX":
-                 return parseAltx();
-             case "ALIG":
-                 return parseAlig();
-             case "ALMT":
-                 return parseAlmt();
-             case "ALOD":
-                 return parseAlod();
-            case "ALLZ":
-                 return parseAllz();
-            default:
-                throw new UnsupportedOperationException("Unknown object type: " + objectType + " at " + startPosition);
+        case "ALAR":
+            return parseAlar();
+        case "ALL4":
+            return parseAll4();
+        case "ALTB":
+            return parseAltb();
+        case "ALRD":
+            return parseAlrd();
+        case "ALTX":
+            return parseAltx();
+        case "ALIG":
+            return parseAlig();
+        case "ALMT":
+            return parseAlmt();
+        case "ALOD":
+            return parseAlod();
+        case "ALLZ":
+            return parseAllz();
+        default:
+            throw new UnsupportedOperationException("Unknown object type: " + objectType + " at " + startPosition);
         }
     }
 
@@ -116,6 +129,42 @@ public class AlParser {
         return alar;
     }
 
+    private All4 parseAll4() {
+        All4 all4 = new All4();
+        all4.type = "ALL4";
+        int startOffset = reader.position();
+        
+        reader.position(startOffset + 4);
+        all4.version = reader.readUByte();
+        reader.position(startOffset + 6);
+        all4.count = reader.readWord();
+        
+        // Read entry headers
+        reader.position(startOffset + 0x10);
+        for (int i = 0; i < all4.count; i++) {
+            All4.All4Entry entry = new All4.All4Entry();
+            entry.offset = reader.readDword();
+            entry.size = reader.readDword();
+            reader.readDword(); // reserved/padding
+            all4.entries.add(entry);
+        }
+        
+        // Read entry names and data
+        for (All4.All4Entry entry : all4.entries) {
+            int entryPos = startOffset + entry.offset;
+            reader.position(entryPos);
+            
+            // Try to read name (assuming null-terminated string)
+            entry.name = reader.readString();
+            
+            // Read the actual data
+            int dataStart = reader.position();
+            entry.data = reader.getBytes(entry.size - (dataStart - entryPos));
+        }
+        
+        return all4;
+    }
+
     private Altb parseAltb() {
         Altb altb = new Altb();
         altb.type = "ALTB";
@@ -132,7 +181,8 @@ public class AlParser {
         int stringsStart = 0, stringsSize = 0;
         if (form == 0x14 || form == 0x1e) {
             stringsSize = reader.readDword();
-            stringsStart = startOffset + reader.readDword();
+            int stringsOffset = reader.readDword();
+            stringsStart = startOffset + stringsOffset;
         }
 
         if (form == 0x1e) {
@@ -157,21 +207,32 @@ public class AlParser {
                 dataEntry.key = headerEntry;
 
                 int valueOffset = rowStartOffset + headerEntry.offset;
+                if (valueOffset >= reader.capacity()) {
+                    // Skip invalid offset
+                    dataEntry.value = null;
+                    row.add(dataEntry);
+                    continue;
+                }
                 reader.position(valueOffset);
 
                 Object value = null;
-                if (headerEntry.type == 1 || headerEntry.type == 0x20) {
+                if (headerEntry.type == 1) {
                     value = reader.readSDword();
+                } else if (headerEntry.type == 0x20) {
+                    int offset = reader.readSDword();
+                    if (stringsStart != 0 && offset >= 0 && offset < stringsSize) {
+                        int stringOffset = stringsStart + offset;
+                        int savedPos = reader.position();
+                        reader.position(stringOffset);
+                        value = reader.readString();
+                        reader.position(savedPos);
+                    } else {
+                        value = offset;
+                    }
                 } else if (headerEntry.type == 4) {
                     value = reader.readFloat();
                 } else if (headerEntry.type == 5) {
                     value = reader.readUByte();
-                }
-
-                if (headerEntry.type == 0x20 && stringsStart != 0) {
-                    int stringOffset = stringsStart + (int) value;
-                    reader.position(stringOffset);
-                    value = reader.readString();
                 }
                 dataEntry.value = value;
                 row.add(dataEntry);
@@ -420,49 +481,51 @@ public class AlParser {
 
     private java.util.function.Supplier<Object> getAlmtFieldParser(String fieldName) {
         switch (fieldName) {
-            case "PatternNo":
-            case "BlendMode":
-            case "Disp":
-            case "HFlip":
-            case "VFlip":
-                return () -> reader.readWord();
-            case "Texture0ID":
-                return () -> {
-                    java.util.Map<String, Integer> t = new java.util.HashMap<>();
-                    t.put("id1", reader.readWord());
-                    t.put("id2", reader.readWord());
-                    return t;
-                };
-            case "Alpha":
-            case "DrawPrioOffset":
-                return () -> reader.readFloat();
-            case "Pos":
-                return () -> {
-                    int[] t = new int[3];
-                    for(int i = 0; i < 3; i++) t[i] = reader.readDword();
-                    return t;
-                };
-            case "ParentNodeID":
-                return () -> reader.readString(4);
-            case "Rot":
-                return () -> reader.readDword();
-            case "Scale":
-            case "Center":
-                return () -> {
-                    java.util.Map<String, Float> t = new java.util.HashMap<>();
-                    t.put("x", reader.readFloat());
-                    t.put("y", reader.readFloat());
-                    t.put("z", reader.readFloat());
-                    return t;
-                };
-            case "Color3":
-                 return () -> {
-                    float[] t = new float[3];
-                    for(int i = 0; i < 3; i++) t[i] = reader.readFloat();
-                    return t;
-                };
-            default:
-                throw new UnsupportedOperationException("Unsupported ALMT field: " + fieldName);
+        case "PatternNo":
+        case "BlendMode":
+        case "Disp":
+        case "HFlip":
+        case "VFlip":
+            return () -> reader.readWord();
+        case "Texture0ID":
+            return () -> {
+                java.util.Map<String, Short> t = new java.util.HashMap<>();
+                t.put("id1", reader.readWord());
+                t.put("id2", reader.readWord());
+                return t;
+            };
+        case "Alpha":
+        case "DrawPrioOffset":
+            return () -> reader.readFloat();
+        case "Pos":
+            return () -> {
+                int[] t = new int[3];
+                for (int i = 0; i < 3; i++)
+                    t[i] = reader.readDword();
+                return t;
+            };
+        case "ParentNodeID":
+            return () -> reader.readString(4);
+        case "Rot":
+            return () -> reader.readDword();
+        case "Scale":
+        case "Center":
+            return () -> {
+                java.util.Map<String, Float> t = new java.util.HashMap<>();
+                t.put("x", reader.readFloat());
+                t.put("y", reader.readFloat());
+                t.put("z", reader.readFloat());
+                return t;
+            };
+        case "Color3":
+            return () -> {
+                float[] t = new float[3];
+                for (int i = 0; i < 3; i++)
+                    t[i] = reader.readFloat();
+                return t;
+            };
+        default:
+            throw new UnsupportedOperationException("Unsupported ALMT field: " + fieldName);
         }
     }
 
@@ -523,7 +586,7 @@ public class AlParser {
                 Object value = null;
                 if (field.equals("Texture0ID")) {
                     // Not a real map, just a struct
-                    java.util.Map<String, Integer> val = new java.util.HashMap<>();
+                    java.util.Map<String, Short> val = new java.util.HashMap<>();
                     val.put("id1", reader.readWord());
                     val.put("id2", reader.readWord());
                     value = val;
@@ -563,7 +626,7 @@ public class AlParser {
         int dstSize = reader.readDword();
 
         byte[] dst = new byte[dstSize];
-        int dstPtr = 0;
+        int[] dstPtr = {0};
 
         int bits = 0;
         int bitsCount = 0;
@@ -586,14 +649,14 @@ public class AlParser {
 
         java.util.function.Consumer<Integer> copyLiteral = (control) -> {
             for (int i = 0; i < control; i++) {
-                dst[dstPtr++] = reader.readByte();
+                dst[dstPtr[0]++] = reader.readByte();
             }
         };
 
         java.util.function.BiConsumer<Integer, Integer> copyWord = (offset, length) -> {
-            for(int i = 0; i < length; i++) {
-                dst[dstPtr] = dst[dstPtr + offset];
-                dstPtr++;
+            for (int i = 0; i < length; i++) {
+                dst[dstPtr[0]] = dst[dstPtr[0] + offset];
+                dstPtr[0]++;
             }
         };
 
@@ -602,17 +665,17 @@ public class AlParser {
         int wordOff = readControlOffset.get();
         int wordLen = readControlLength.get();
 
-        while (dstPtr < dstSize) {
-            if (dstPtr + wordLen >= dstSize) {
-                copyWord.accept(wordOff, dstSize - dstPtr);
+        while (dstPtr[0] < dstSize) {
+            if (dstPtr[0] + wordLen >= dstSize) {
+                copyWord.accept(wordOff, dstSize - dstPtr[0]);
                 break;
             }
 
             if (bitReader.readBit() == 0) {
                 int literal = readControlLiteral.get();
-                if(dstPtr + wordLen + literal >= dstSize) {
+                if (dstPtr[0] + wordLen + literal >= dstSize) {
                     copyWord.accept(wordOff, wordLen);
-                    copyLiteral.accept(dstSize - dstPtr);
+                    copyLiteral.accept(dstSize - dstPtr[0]);
                     break;
                 }
 

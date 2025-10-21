@@ -312,7 +312,7 @@ public class OpenThread implements Storable<OpenThread> {
     }
 
     public void backupImages() {
-        if (comments.getLast().date.plusHours(36).isBefore(LocalDateTime.now())) {
+        if (comments.get(comments.size() - 1).date.plusHours(36).isBefore(LocalDateTime.now())) {
             Set<OpenThread> modifieds = new HashSet();
 
             for (Topic topic : getTopics()) {

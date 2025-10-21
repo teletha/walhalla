@@ -91,7 +91,7 @@ public class TierCalculator {
 
                             List<Unit> units = db.searchBySubName(name);
                             if (ignoreSeasons.contains(name)) {
-                                byName(units.getFirst().nameJ).addWord(input);
+                                byName(units.get(0).nameJ).addWord(input);
                             } else {
                                 for (Unit unit : units) {
                                     if (unit.nameJ.endsWith("（白）") || (unit.hero && unit.rarity == Rarity.白)) {

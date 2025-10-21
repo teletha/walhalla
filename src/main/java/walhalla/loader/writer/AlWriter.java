@@ -1,13 +1,19 @@
 package walhalla.loader.writer;
 
-import walhalla.loader.parser.data.*;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import walhalla.loader.parser.data.AlObject;
+import walhalla.loader.parser.data.Alar;
+import walhalla.loader.parser.data.Almt;
+import walhalla.loader.parser.data.Alrd;
+import walhalla.loader.parser.data.Altb;
+import walhalla.loader.parser.data.TextObject;
 
 public class AlWriter {
 
@@ -24,26 +30,26 @@ public class AlWriter {
 
     private void writeObject(AlObject obj, Path currentDir) throws IOException {
         switch (obj.type) {
-            case "ALAR":
-                writeAlar((Alar) obj, currentDir);
-                break;
-            case "ALTB":
-                writeAltb((Altb) obj, currentDir);
-                break;
-            case "ALRD":
-                writeAlrd((Alrd) obj, currentDir);
-                break;
-            case "ALMT":
-                writeAlmt((Almt) obj, currentDir);
-                break;
-            case "TEXT":
-                 writeText((TextObject) obj, currentDir);
-                 break;
-            // ALTX, ALIG, ALOD are not written as per requirement (image related)
-            default:
-                // Create a .nul file for unhandled types
-                Files.createFile(currentDir.resolve(obj.type + ".nul"));
-                break;
+        case "ALAR":
+            writeAlar((Alar) obj, currentDir);
+            break;
+        case "ALTB":
+            writeAltb((Altb) obj, currentDir);
+            break;
+        case "ALRD":
+            writeAlrd((Alrd) obj, currentDir);
+            break;
+        case "ALMT":
+            writeAlmt((Almt) obj, currentDir);
+            break;
+        case "TEXT":
+            writeText((TextObject) obj, currentDir);
+            break;
+        // ALTX, ALIG, ALOD are not written as per requirement (image related)
+        default:
+            // Create a .nul file for unhandled types
+            Files.createFile(currentDir.resolve(obj.type + ".nul"));
+            break;
         }
     }
 
@@ -113,19 +119,17 @@ public class AlWriter {
 
         for (Almt.AlmtEntry entry : almt.entries) {
             sb.append("entry: ").append(entry.name).append("\n");
-            entry.data.entrySet().stream()
-                .sorted(Map.Entry.comparingByKey())
-                .forEach(fieldEntry -> {
-                    sb.append("  ").append(fieldEntry.getKey()).append("\n");
-                    List<Almt.StreamFrame> stream = fieldEntry.getValue();
-                    for (int i = 0; i < stream.size(); i++) {
-                        Almt.StreamFrame frame = stream.get(i);
-                        String timeString = (frame.time == null) ? "N/A" : String.format("%03d", frame.time);
-                        String dataString = streamFrameDataToString(fieldEntry.getKey(), frame.data);
-                        sb.append(String.format("    %2d @%s: %s\n", i, timeString, dataString));
-                    }
-                    sb.append("\n");
-                });
+            entry.data.entrySet().stream().sorted(Map.Entry.comparingByKey()).forEach(fieldEntry -> {
+                sb.append("  ").append(fieldEntry.getKey()).append("\n");
+                List<Almt.StreamFrame> stream = fieldEntry.getValue();
+                for (int i = 0; i < stream.size(); i++) {
+                    Almt.StreamFrame frame = stream.get(i);
+                    String timeString = (frame.time == null) ? "N/A" : String.format("%03d", frame.time);
+                    String dataString = streamFrameDataToString(fieldEntry.getKey(), frame.data);
+                    sb.append(String.format("    %2d @%s: %s\n", i, timeString, dataString));
+                }
+                sb.append("\n");
+            });
             sb.append("\n");
         }
         Files.write(filePath, sb.toString().getBytes());
@@ -137,9 +141,11 @@ public class AlWriter {
         StringBuilder sb = new StringBuilder();
         if (left) {
             sb.append(str);
-            for (int i = 0; i < padLen; i++) sb.append(" ");
+            for (int i = 0; i < padLen; i++)
+                sb.append(" ");
         } else {
-            for (int i = 0; i < padLen; i++) sb.append(" ");
+            for (int i = 0; i < padLen; i++)
+                sb.append(" ");
             sb.append(str);
         }
         return sb.toString();
@@ -152,8 +158,8 @@ public class AlWriter {
         if (value instanceof Boolean) {
             return (Boolean) value ? "true" : "false";
         }
-        if(key.equals("PatternID")) {
-            return String.format("0x%08x", (int)value);
+        if (key.equals("PatternID")) {
+            return String.format("0x%08x", (int) value);
         }
         return String.valueOf(value);
     }

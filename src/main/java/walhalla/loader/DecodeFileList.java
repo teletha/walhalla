@@ -21,7 +21,7 @@ public class DecodeFileList {
 
     public static void main(String[] args) throws IOException {
         List<String> excludePrefixes = List
-                .of("Texture", "Skin", "Reward", "Stamp", "Shop", "Recommend", "Quest", "Promotion", "PrivateRoom", "PlayerDot", "Payment", "Overlay", "OnCommnad", "Message", "Map", "Sound", "Battle", "EnemyDot", "HarlemCG");
+                .of("Texture", "Skin", "Reward", "Stamp", "Shop", "Recommend", "Quest", "Promotion", "PrivateRoom", "PlayerDot", "Payment", "Overlay", "OnCommnad", "Message", "Map", "Sound", "Battle", "EnemyDot", "HarlemCG", "EvtCard");
 
         File file = Locator.file("src/main/resources/1fp32igvpoxnb521p9dqypak5cal0xv0");
         byte[] data = file.bytes();
@@ -32,14 +32,20 @@ public class DecodeFileList {
             String url = "http://drc1bk94f7rq8.cloudfront.net/" + split[0] + "/" + split[1];
             String name = split[4];
 
-            if (name.endsWith(".aar") || name.endsWith(".atb")) {
+            if (name.endsWith(".atb")) {
                 for (String prefix : excludePrefixes) {
                     if (name.startsWith(prefix)) {
                         continue root;
                     }
                 }
 
-                System.out.println(url + " => " + name);
+                // I.http(url, InputStream.class).waitForTerminate().to(input -> {
+                // Locator.file(".data/raw/" + name).writeFrom(input);
+                // });
+                //
+                // System.out.println(url + " " + name);
+            } else {
+                System.out.println(url +"   "+ name);
             }
         }
     }

@@ -146,7 +146,7 @@ public class Unit {
     }
 
     void parseWikiCharacterDataByName(String name) {
-        JSON json = I.json(sourceByName(name)).find("query", "pages", "*", "revisions", "*", "slots", "main").getFirst();
+        JSON json = I.json(sourceByName(name)).find("query", "pages", "*", "revisions", "*", "slots", "main").get(0);
 
         parseWikiCharacterData(name, json.toString());
     }
@@ -335,7 +335,7 @@ public class Unit {
     }
 
     void parseWikiStatsByName(String name) {
-        JSON json = I.json(sourceByName(name + "/stats")).find("query", "pages", "*", "revisions", "*", "slots", "main").getFirst();
+        JSON json = I.json(sourceByName(name + "/stats")).find("query", "pages", "*", "revisions", "*", "slots", "main").get(0);
 
         parseWikiStats(json.toString());
     }

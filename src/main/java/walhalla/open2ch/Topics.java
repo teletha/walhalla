@@ -73,7 +73,7 @@ public class Topics extends ArrayList<Topic> {
     private List<Integer> sortReference(OpenThread thread, List<Integer> comments) {
         List<Integer> sorted = new ArrayList();
         while (!comments.isEmpty()) {
-            Integer item = comments.removeFirst();
+            Integer item = comments.remove(0);
             sorted.add(item);
 
             sort(sorted, comments, thread, item);
