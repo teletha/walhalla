@@ -11,7 +11,7 @@ import psychopath.Locator;
  */
 public class ALExample {
     public static void main(String[] args) {
-        Locator.directory(".data/raw").walkFile("*.aar").to(file -> {
+        Locator.directory(".data/raw").walkFile("**.atx").to(file -> {
             parse(file.path());
         });
     }
