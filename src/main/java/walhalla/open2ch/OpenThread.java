@@ -33,6 +33,7 @@ import walhalla.data.Nicknames;
 import walhalla.image.Gyazo;
 import walhalla.image.Image;
 import walhalla.image.Imgur;
+import walhalla.tweet.Tweets;
 
 /**
  * Represents a discussion thread on open2ch, including its metadata and all comments.
@@ -114,7 +115,9 @@ public class OpenThread implements Storable<OpenThread> {
                 analyze();
             }
 
-            topics.forEach(topic -> topic.thread = this);
+            if (topics != null) {
+                topics.forEach(topic -> topic.thread = this);
+            }
         }
         return topics;
     }
@@ -364,5 +367,35 @@ public class OpenThread implements Storable<OpenThread> {
             }
         }
         return Variable.empty();
+    }
+
+    /**
+     * 
+     */
+    public void analyzeTweet() {
+        Tweets tweets = I.make(Tweets.class);
+        List<Topic> topics = getTopics();
+
+        if (topics != null) {
+            for (Topic topic : topics) {
+                for (Integer id : topic.comments) {
+                    Res res = topic.getCommentBy(id);
+
+                    for (String url : res.embeds) {
+                        if (url.startsWith("https://x.com/")) {
+                            int index = url.lastIndexOf("/");
+                            String tweetId = url.substring(index + 1);
+
+                            try {
+                                Long.parseLong(tweetId);
+                                tweets.add(tweetId);
+                            } catch (NumberFormatException e) {
+                                // ignore
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

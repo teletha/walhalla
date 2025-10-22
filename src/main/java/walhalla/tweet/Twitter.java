@@ -15,7 +15,9 @@ import java.net.URLEncoder;
 import java.net.http.HttpRequest;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -51,18 +53,17 @@ public class Twitter {
         return this;
     }
 
-    public void fetch() {
+    public JSON fetch(List<String> ids) {
         try {
-            get("https://api.twitter.com/2/tweets/1958119280467476537", "").waitForTerminate().to(json -> {
-                System.out.println(json);
-            });
+            return get("https://api.twitter.com/2/tweets?ids=" + ids.stream()
+                    .collect(Collectors
+                            .joining(",")) + "&expansions=author_id,attachments.media_keys&tweet.fields=created_at,entities&user.fields=id,name,username,profile_image_url&media.fields=preview_image_url,url,type", "")
+                                    .waitForTerminate()
+                                    .to()
+                                    .exact();
         } catch (Exception e) {
             throw I.quiet(e);
         }
-    }
-
-    public static void main(String[] args) {
-        new Twitter().fetch();
     }
 
     public Signal<JSON> tweet(String title, String description, String url, String image, String hash) {
