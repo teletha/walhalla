@@ -115,9 +115,8 @@ public class OpenThread implements Storable<OpenThread> {
                 analyze();
             }
 
-            if (topics != null) {
-                topics.forEach(topic -> topic.thread = this);
-            }
+            if (topics == null) topics = new Topics();
+            topics.forEach(topic -> topic.thread = this);
         }
         return topics;
     }
@@ -374,24 +373,21 @@ public class OpenThread implements Storable<OpenThread> {
      */
     public void analyzeTweet() {
         Tweets tweets = I.make(Tweets.class);
-        List<Topic> topics = getTopics();
 
-        if (topics != null) {
-            for (Topic topic : topics) {
-                for (Integer id : topic.comments) {
-                    Res res = topic.getCommentBy(id);
+        for (Topic topic : getTopics()) {
+            for (Integer id : topic.comments) {
+                Res res = topic.getCommentBy(id);
 
-                    for (String url : res.embeds) {
-                        if (url.startsWith("https://x.com/")) {
-                            int index = url.lastIndexOf("/");
-                            String tweetId = url.substring(index + 1);
+                for (String url : res.embeds) {
+                    if (url.startsWith("https://x.com/")) {
+                        int index = url.lastIndexOf("/");
+                        String tweetId = url.substring(index + 1);
 
-                            try {
-                                Long.parseLong(tweetId);
-                                tweets.add(tweetId);
-                            } catch (NumberFormatException e) {
-                                // ignore
-                            }
+                        try {
+                            Long.parseLong(tweetId);
+                            tweets.add(url);
+                        } catch (NumberFormatException e) {
+                            // ignore
                         }
                     }
                 }

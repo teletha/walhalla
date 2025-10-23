@@ -18,4 +18,12 @@ public class Author {
     public String userName;
 
     public String icon;
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return "Author [id=" + id + ", name=" + name + ", userName=" + userName + ", icon=" + icon + "]";
+    }
 }

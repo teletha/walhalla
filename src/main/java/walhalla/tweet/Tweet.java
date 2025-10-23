@@ -15,8 +15,6 @@ import java.util.List;
 
 public class Tweet {
 
-    public String id;
-
     public String author;
 
     public String text;
@@ -24,4 +22,12 @@ public class Tweet {
     public ZonedDateTime date;
 
     public List<String> media = new ArrayList();
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return "Tweet [author=" + author + ", text=" + text + ", date=" + date + ", media=" + media + "]";
+    }
 }
