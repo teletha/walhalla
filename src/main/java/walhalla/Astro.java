@@ -35,7 +35,6 @@ import walhalla.open2ch.OpenThreadCollector;
 import walhalla.topics.AccessRanking;
 import walhalla.topics.TierCalculator;
 import walhalla.tweet.BlueSky;
-import walhalla.tweet.Tweets;
 import walhalla.tweet.Twitter;
 
 /**
@@ -171,7 +170,7 @@ public class Astro {
             System.out.println("" + thread.title + " processed in " + (end - start) + " ms");
         });
         AccessRanking.build();
-        I.make(Tweets.class).fetch();
+        // I.make(Tweets.class).fetch();
     }
 
     public static void tweet() {
