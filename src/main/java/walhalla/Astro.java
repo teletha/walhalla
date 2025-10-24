@@ -46,7 +46,8 @@ import walhalla.tweet.Twitter;
  */
 public class Astro {
 
-    public static final Set<String> NOT_IMPLEMENTED = Set.of("伯爵令嬢ベラドンナ", "帝国大元帥レオラ", "帝国参謀総長レオナ", "帝国妖狸ギョウブ");
+    public static final Set<String> NOT_IMPLEMENTED = Set
+            .of("伯爵令嬢ベラドンナ", "帝国大元帥レオラ", "帝国参謀総長レオナ", "帝国妖狸ギョウブ", "白の断罪者カルラ", "帝国補給兵オルドネッタ", "帝国生贄術士ベネー", "ベラートの黄金戦車");
 
     /** Specify the english name only. */
     public static final Set<String> FORCE_UPDATE = Set.of();
