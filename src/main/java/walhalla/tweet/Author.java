@@ -11,8 +11,6 @@ package walhalla.tweet;
 
 public class Author {
 
-    public String id;
-
     public String name;
 
     public String userName;
@@ -24,6 +22,6 @@ public class Author {
      */
     @Override
     public String toString() {
-        return "Author [id=" + id + ", name=" + name + ", userName=" + userName + ", icon=" + icon + "]";
+        return "Author [name=" + name + ", userName=" + userName + ", icon=" + icon + "]";
     }
 }

@@ -13,7 +13,11 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import kiss.I;
+
 public class Tweet {
+
+    public String id;
 
     public String author;
 
@@ -23,11 +27,15 @@ public class Tweet {
 
     public List<String> media = new ArrayList();
 
+    public Author author() {
+        return I.make(Tweets.class).authors.get(author);
+    }
+
     /**
      * {@inheritDoc}
      */
     @Override
     public String toString() {
-        return "Tweet [author=" + author + ", text=" + text + ", date=" + date + ", media=" + media + "]";
+        return "Tweet [id=" + id + ", author=" + author + ", text=" + text + ", date=" + date + ", media=" + media + "]";
     }
 }
