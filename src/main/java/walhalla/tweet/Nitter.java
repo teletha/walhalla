@@ -17,7 +17,6 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.util.Locale;
-import java.util.concurrent.TimeUnit;
 
 import kiss.I;
 import kiss.XML;
@@ -75,8 +74,10 @@ public class Nitter {
                     .header("Priority", "u=0, i")
                     .header("TE", "trailers");
 
+            Thread.sleep(1000 * 10);
+
             System.out.println("Fetch tweet " + uri);
-            return I.http(builder, XML.class).delay(10000, TimeUnit.MILLISECONDS).waitForTerminate().skipError().to().get();
+            return I.http(builder, XML.class).waitForTerminate().skipError().to().get();
         } catch (Exception e) {
             throw I.quiet(e);
         }

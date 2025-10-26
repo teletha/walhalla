@@ -47,8 +47,7 @@ import walhalla.tweet.Twitter;
  */
 public class Astro {
 
-    public static final Set<String> NOT_IMPLEMENTED = Set
-            .of("伯爵令嬢ベラドンナ", "帝国大元帥レオラ", "帝国参謀総長レオナ", "帝国妖狸ギョウブ", "白の断罪者カルラ", "帝国補給兵オルドネッタ", "帝国生贄術士ベネー", "ベラートの黄金戦車");
+    public static final Set<String> NOT_IMPLEMENTED = Set.of();
 
     /** Specify the english name only. */
     public static final Set<String> FORCE_UPDATE = Set.of();
@@ -167,7 +166,7 @@ public class Astro {
             thread.analyze(instructions);
             thread.backupImages();
             thread.linkageCharacter();
-            // thread.analyzeTweet();
+            thread.analyzeTweet();
             long end = System.currentTimeMillis();
             System.out.println("" + thread.title + " processed in " + (end - start) + " ms");
         });
@@ -223,28 +222,5 @@ public class Astro {
     public static void main(String[] args) {
         buildUnitJSON();
         buildTopics();
-
-        // Map<Integer, List<String>> collect = I.make(Database.class)
-        // .stream()
-        // .filter(x -> x.gender != Gender.サポート)
-        // .map(x -> x.subNameJ)
-        // .distinct()
-        // .filter(x -> !x.startsWith("ちび"))
-        // .filter(x -> {
-        // // xはひらがな、カタカナのみ
-        // for (int i = 0; i < x.length(); i++) {
-        // char c = x.charAt(i);
-        // if (!((c >= 'ぁ' && c <= 'ん') || (c >= 'ァ' && c <= 'ン') || c == 'ー')) {
-        // return false;
-        // }
-        // }
-        // return true;
-        // })
-        // .collect(Collectors.groupingBy(x -> x.length()));
-        //
-        // for (Map.Entry<Integer, List<String>> entry : collect.entrySet()) {
-        // System.out.println(entry.getKey() + " : " + entry.getValue().size() + " : " +
-        // entry.getValue());
-        // }
     }
 }

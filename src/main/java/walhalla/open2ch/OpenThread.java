@@ -33,6 +33,7 @@ import walhalla.data.Nicknames;
 import walhalla.image.Gyazo;
 import walhalla.image.Image;
 import walhalla.image.Imgur;
+import walhalla.image.General;
 import walhalla.tweet.Tweets;
 
 /**
@@ -314,26 +315,30 @@ public class OpenThread implements Storable<OpenThread> {
     }
 
     public void backupImages() {
-        if (comments.get(comments.size() - 1).date.plusHours(36).isBefore(LocalDateTime.now())) {
+        if (comments.get(comments.size() - 1).date.plusHours(3).isBefore(LocalDateTime.now())) {
             Set<OpenThread> modifieds = new HashSet();
 
             for (Topic topic : getTopics()) {
                 for (int num : topic.comments) {
                     Res res = topic.getCommentBy(num);
                     for (ImageSource source : res.sources) {
-                        if (!source.hasBackup() && source.origin.startsWith("https://i.imgur.com/")) {
-                            Image image = Imgur.download(source.origin);
+                        if (!source.hasBackup()) {
+                            Image image = null;
+
+                            try {
+                                if (source.origin.startsWith("https://i.imgur.com/")) {
+                                    image = Imgur.download(source.origin);
+                                } else {
+                                    image = General.download(source.origin);
+                                }
+                            } catch (Throwable e) {
+                                continue;
+                            }
 
                             JSON origin = Gyazo.upload(image.originName(), image.origin());
                             String originURL = origin.text("url");
                             JSON originMeta = Gyazo.meta(originURL);
                             source.backup = List.of(originURL, originMeta.text("width"), originMeta.text("height"));
-
-                            // JSON large = Gyazo.upload(image.largeName(), image.large());
-                            // String largetURL = large.text("url");
-                            // JSON largeMeta = Gyazo.meta(largetURL);
-                            // source.large = List.of(largetURL, largeMeta.text("width"),
-                            // largeMeta.text("height"));
 
                             modifieds.add(res.thread);
                         }

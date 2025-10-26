@@ -292,6 +292,8 @@ public class Unit {
             } else if (name.equals("Jabberwock")) {
                 icon = calculateImagePath("Jabberwock_Icon.png");
                 image = calculateImagePath("Jabberwock_Render.png");
+            } else if (name.equals("Belladonna")) {
+                iconAW = calculateImagePath("Belladonna_AW_Icon.png");
             }
         });
     }
@@ -508,6 +510,34 @@ public class Unit {
         json = DB.get("蒼紅の女教師レティシア");
         json.set("subName", "レティシア");
         DB.put("蒼紅の女教師レティシア", json);
+
+        json = DB.get("帝国妖狸ギョウブ");
+        json.set("subName", "ギョウブ");
+        DB.put("帝国妖狸ギョウブ", json);
+
+        json = DB.get("伯爵令嬢ベラドンナ");
+        json.set("subName", "ベラドンナ");
+        DB.put("伯爵令嬢ベラドンナ", json);
+
+        json = DB.get("帝国参謀総長レオナ");
+        json.set("subName", "レオナ");
+        DB.put("帝国参謀総長レオナ", json);
+
+        json = DB.get("帝国大元帥レオラ");
+        json.set("subName", "レオラ");
+        DB.put("帝国大元帥レオラ", json);
+
+        json = DB.get("帝国補給兵オルドネッタ");
+        json.set("subName", "オルドネッタ");
+        DB.put("帝国補給兵オルドネッタ", json);
+
+        json = DB.get("白の断罪者カルラ");
+        json.set("subName", "カルラ");
+        DB.put("白の断罪者カルラ", json);
+
+        json = DB.get("帝国生贄術士ベネー");
+        json.set("subName", "ベネー");
+        DB.put("帝国生贄術士ベネー", json);
     }
 
     private static void fixStatus(Map<String, JSON> CARD) {

@@ -102,10 +102,14 @@ public class Nicknames {
         NICKS.put("イングリッド", List.of("イング"));
         NICKS.put("ミネルバ", List.of("伝説さん"));
         NICKS.put("デスピア", List.of("ピャー"));
+        NICKS.put("オルフィー", List.of("おりゅふぃー", "オリュフィー"));
+        NICKS.put("ヘリューズ", List.of("へリューズ")); // 「へ」だけ平仮名になってる
+        NICKS.put("ギョウブ", List.of("刑部"));
 
         FULL_NICKS.put("旗艦乙女ドーンブリンガー", List.of("どんぶり", "ドンブリ", "あかつき", "アカツキ", "暁"));
         FULL_NICKS.put("賢仙の授業 清源妙道真君", List.of("妙道先生"));
         FULL_NICKS.put("最終決戦仕様エフトラ", List.of("ちぃトラ", "ちぃとら", "ちいトラ", "ちいとら"));
+        FULL_NICKS.put("ベラートの黄金戦車", List.of("ベラート"));
 
         // 特殊略称
         // 名前の語尾をだけを取って季節接頭辞と合わせるために使用
