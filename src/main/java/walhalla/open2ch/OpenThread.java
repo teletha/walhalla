@@ -30,10 +30,10 @@ import kiss.XML;
 import psychopath.File;
 import walhalla.Astro;
 import walhalla.data.Nicknames;
+import walhalla.image.General;
 import walhalla.image.Gyazo;
 import walhalla.image.Image;
 import walhalla.image.Imgur;
-import walhalla.image.General;
 import walhalla.tweet.Tweets;
 
 /**
@@ -315,40 +315,44 @@ public class OpenThread implements Storable<OpenThread> {
     }
 
     public void backupImages() {
-        if (comments.get(comments.size() - 1).date.plusHours(3).isBefore(LocalDateTime.now())) {
-            Set<OpenThread> modifieds = new HashSet();
+        Set<OpenThread> modifieds = new HashSet();
+        LocalDateTime point = LocalDateTime.now().minusHours(36);
 
-            for (Topic topic : getTopics()) {
-                for (int num : topic.comments) {
-                    Res res = topic.getCommentBy(num);
-                    for (ImageSource source : res.sources) {
-                        if (!source.hasBackup()) {
-                            Image image = null;
+        for (Topic topic : getTopics()) {
+            for (Res res : topic.getComments()) {
+                for (ImageSource source : res.sources) {
+                    if (!source.hasBackup()) {
+                        Image image = null;
 
-                            try {
-                                if (source.origin.startsWith("https://i.imgur.com/")) {
+                        try {
+                            if (source.origin.startsWith("https://imgr.open2ch.net")) {
+                                // open2ch uploaderは即座にバックアップをとる（24時間以内に消えるため）
+                                image = General.download(source.origin);
+                            } else {
+                                // 36時間経過していたらバックアップをとる
+                                if (res.date.isBefore(point)) {
                                     image = Imgur.download(source.origin);
                                 } else {
-                                    image = General.download(source.origin);
+                                    continue;
                                 }
-                            } catch (Throwable e) {
-                                continue;
                             }
-
-                            JSON origin = Gyazo.upload(image.originName(), image.origin());
-                            String originURL = origin.text("url");
-                            JSON originMeta = Gyazo.meta(originURL);
-                            source.backup = List.of(originURL, originMeta.text("width"), originMeta.text("height"));
-
-                            modifieds.add(res.thread);
+                        } catch (Throwable e) {
+                            continue;
                         }
+
+                        JSON origin = Gyazo.upload(image.originName(), image.origin());
+                        String originURL = origin.text("url");
+                        JSON originMeta = Gyazo.meta(originURL);
+                        source.backup = List.of(originURL, originMeta.text("width"), originMeta.text("height"));
+
+                        modifieds.add(res.thread);
                     }
                 }
             }
+        }
 
-            for (OpenThread thread : modifieds) {
-                thread.store();
-            }
+        for (OpenThread thread : modifieds) {
+            thread.store();
         }
     }
 

@@ -47,6 +47,15 @@ public class Topic {
     List<OpenThread> extraThreads;
 
     /**
+     * Retrieves all comments.
+     * 
+     * @return
+     */
+    public List<Res> getComments() {
+        return comments.stream().map(i -> getCommentBy(i)).toList();
+    }
+
+    /**
      * Retrieves a comment by its number. If the number is negative,
      * it returns the comment counted from the end.
      *

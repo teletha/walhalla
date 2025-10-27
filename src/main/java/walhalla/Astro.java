@@ -166,7 +166,7 @@ public class Astro {
             thread.analyze(instructions);
             thread.backupImages();
             thread.linkageCharacter();
-            thread.analyzeTweet();
+            // thread.analyzeTweet();
             long end = System.currentTimeMillis();
             System.out.println("" + thread.title + " processed in " + (end - start) + " ms");
         });
