@@ -362,6 +362,7 @@ public class Nicknames {
         });
         units.stream().filter(u -> u.rarity == Rarity.黒).findFirst().ifPresent(u -> {
             builder.addKeyword("黒" + name, "/character/" + u.nameJ + "/");
+            builder.addKeyword("新" + name, "/character/" + u.nameJ + "/");
             builder.addKeyword("新装" + name, "/character/" + u.nameJ + "/");
         });
         units.stream().findFirst().ifPresent(u -> {
