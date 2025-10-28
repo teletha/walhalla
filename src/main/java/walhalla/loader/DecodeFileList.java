@@ -45,12 +45,6 @@ public class DecodeFileList {
                 //
                 // System.out.println(url + " " + name);
             } else {
-                if (name.endsWith("mp3") || name.endsWith("ogg") || name.endsWith("png") || name.startsWith("Texture") || name
-                        .startsWith("Promo") || name.startsWith("PrivateRoom") || name.startsWith("PlayerDot") || name
-                                .startsWith("Map") || name
-                                        .startsWith("Harlem") || name.startsWith("EnemyDot") || name.startsWith("BattleTalk")) {
-                    continue root;
-                }
                 System.out.println(url + "   " + name);
             }
         }
