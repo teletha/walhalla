@@ -9,7 +9,7 @@
  */
 package walhalla.tweet;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class Tweet {
 
     public String text;
 
-    public ZonedDateTime date;
+    public LocalDateTime date;
 
     public List<String> media = new ArrayList();
 

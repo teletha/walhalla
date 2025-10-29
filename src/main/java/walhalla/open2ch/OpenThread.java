@@ -325,7 +325,7 @@ public class OpenThread implements Storable<OpenThread> {
                         Image image = null;
 
                         try {
-                            if (source.origin.startsWith("https://imgr.open2ch.net")) {
+                            if (source.origin.startsWith("https://imgr.open2ch.net") || source.origin.startsWith("https://imgu.jp")) {
                                 // open2ch uploaderは即座にバックアップをとる（24時間以内に消えるため）
                                 image = General.download(source.origin);
                             } else {

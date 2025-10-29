@@ -42,7 +42,9 @@ public class Nitter {
         Tweet tweet = new Tweet();
         tweet.id = uri.substring(uri.lastIndexOf("/") + 1);
         tweet.author = author.userName;
-        tweet.date = ZonedDateTime.parse(main.find(".tweet-date a").attr("title"), FORMATTER).withZoneSameInstant(ZoneId.systemDefault());
+        tweet.date = ZonedDateTime.parse(main.find(".tweet-date a").attr("title"), FORMATTER)
+                .withZoneSameInstant(ZoneId.systemDefault())
+                .toLocalDateTime();
         tweet.text = main.find(".tweet-content").text();
         main.find(".attachment img").forEach(item -> {
             tweet.media.add("https://nitter.net" + item.attr("src"));
