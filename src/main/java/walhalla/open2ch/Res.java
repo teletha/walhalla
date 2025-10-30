@@ -18,7 +18,7 @@ import java.util.List;
  * A response includes metadata such as poster name, posting time,
  * identifier, message body, and optionally attached media.
  */
-public class Res {
+public class Res implements Comparable<Res> {
 
     /**
      * The sequential number of this response in the thread.
@@ -71,5 +71,34 @@ public class Res {
 
     public String decodedBody() {
         return body.replaceAll("<a(?![^>]*class=\"external\")[^>]*>(.*?)</a>", "$1");
+    }
+
+    /**
+     * @param keywords
+     * @return
+     */
+    public boolean contains(String... keywords) {
+        for (String word : keywords) {
+            if (body.contains(word)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int compareTo(Res o) {
+        return date.compareTo(o.date);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return "Res [" + thread.num + "#" + num + "  " + body + "]";
     }
 }

@@ -35,17 +35,10 @@ public class Tweets implements Storable<Tweets> {
         restore();
     }
 
-    static int all;
-
-    static int count;
-
     public void add(String uri, String id) {
-        all++;
         if (!tweets.containsKey(id)) {
             requests.add(uri);
-            count++;
         }
-        System.out.println(count + "/" + all);
     }
 
     public void fetch() {

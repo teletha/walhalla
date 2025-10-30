@@ -17,6 +17,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -100,7 +101,9 @@ public class OpenThread implements Storable<OpenThread> {
      * @return The corresponding {@link Res} comment.
      */
     public Res getCommentBy(int num) {
-        return comments.get(Math.abs(num) - 1);
+        Res res = comments.get(Math.abs(num) - 1);
+        res.thread = this;
+        return res;
     }
 
     /**
@@ -299,6 +302,8 @@ public class OpenThread implements Storable<OpenThread> {
             topicJSON.text(I.write(((Topics) getTopics()).merge(addtional))).creationTime(0);
             I.info("Finish analyzing addtional topics and cache it to [" + topicJSON + "].");
         }
+
+        if (topics != null) topics.forEach(topic -> topic.thread = this);
     }
 
     private String composeThreadText() {
@@ -404,5 +409,50 @@ public class OpenThread implements Storable<OpenThread> {
                 }
             }
         }
+    }
+
+    /**
+     * @param keywords
+     * @return
+     */
+    public Set<Res> collectCommentsBy(String... keywords) {
+        return collectCommentsBy(0, keywords);
+    }
+
+    /**
+     * @param keywords
+     * @return
+     */
+    public Set<Res> collectCommentsBy(int fuzzy, String... keywords) {
+        Set<Res> set = new TreeSet();
+
+        for (Res res : comments) {
+            if (res.contains(keywords)) {
+                res.thread = this;
+                set.addAll(scrapeComments(res.num, fuzzy));
+
+                for (int n : res.to) {
+                    set.addAll(scrapeComments(n, fuzzy / 2));
+                }
+                for (int n : res.from) {
+                    set.addAll(scrapeComments(n, fuzzy / 2));
+                }
+            }
+        }
+        return set;
+    }
+
+    private List<Res> scrapeComments(int num, int range) {
+        List<Res> list = new ArrayList();
+
+        for (int n = num; n < Math.min(Math.min(1000, comments.size()), num + range * 2); n++) {
+            list.add(getCommentBy(n));
+        }
+
+        for (int n = num; n > Math.max(1, num - range); n--) {
+            list.add(getCommentBy(n));
+        }
+
+        return list;
     }
 }

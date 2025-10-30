@@ -9,6 +9,7 @@
  */
 package walhalla.open2ch;
 
+import java.util.ArrayDeque;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -70,8 +71,17 @@ public class OpenThreadCollector {
             initialized = true;
             trail();
         }
-
         return Astro.ARTICLE.walkDirectory("*/*").map(dir -> findBy(dir.name()));
+    }
+
+    public static Signal<OpenThread> findLast(int size) {
+        return findAll().scan(() -> new ArrayDeque(), (queue, thread) -> {
+            if (queue.size() == size) {
+                queue.pollFirst();
+            }
+            queue.addLast(thread);
+            return queue;
+        }).last().flatIterable(x -> x);
     }
 
     private static final void trail() {

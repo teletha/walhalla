@@ -174,7 +174,7 @@ public class Unit {
 
             wiki.peekKV("disableaw", value -> disableAW = value.equals("y") || value.equals("yes") || value.equals("1"));
             wiki.peekKV("jpname", value -> {
-                int start = value.indexOf("<br"); // support <br> and <br />
+                int start = value.toLowerCase().indexOf("<br"); // support <br> and <br /> and <Br>
                 if (start == -1) {
                     nameJ = value.strip();
                 } else {

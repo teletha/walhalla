@@ -11,6 +11,7 @@ package walhalla;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -30,8 +31,12 @@ import walhalla.data.Unit;
 import walhalla.data.UnitMeta;
 import walhalla.data.UnitMetaInfo;
 import walhalla.image.EditableImage;
+import walhalla.open2ch.EditedText;
+import walhalla.open2ch.Editor;
 import walhalla.open2ch.Instruction;
 import walhalla.open2ch.OpenThreadCollector;
+import walhalla.open2ch.Topic;
+import walhalla.open2ch.Topics;
 import walhalla.topics.AccessRanking;
 import walhalla.topics.TierCalculator;
 import walhalla.tweet.BlueSky;
@@ -222,5 +227,29 @@ public class Astro {
     public static void main(String[] args) {
         buildUnitJSON();
         buildTopics();
+
+        // buildTopic("レオラ");
+    }
+
+    public static void buildTopic(String... keywords) {
+        EditedText text = new EditedText(1);
+
+        OpenThreadCollector.findLast(35).flatIterable(thread -> thread.collectCommentsBy(10, keywords)).to(res -> {
+            text.add(res);
+        });
+
+        System.out.println(text.count);
+
+        Topics topics = I.json(Editor.topics(text.toString(), new Instruction(0, keywords)), Topics.class);
+        for (Topic topic : topics) {
+            // for (int id : topic.comments) {
+            // id = Math.abs(id);
+            // int remainds = id % 1000;
+            // int prefix = (id - remainds) / 1000;
+            // }
+            topic.extra.addAll(text.threads());
+            topic.published = LocalDateTime.now();
+        }
+        System.out.println(I.write(topics));
     }
 }
