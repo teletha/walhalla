@@ -24,7 +24,7 @@ public class Topic {
     public String title;
 
     /** The list of comment numbers (1-based) that are relevant to this topic. */
-    public List<Integer> comments = new ArrayList();
+    public List<CommentId> comments = new ArrayList();
 
     /** Optional category label for the topic (used in publishing). */
     public String category;
@@ -84,6 +84,38 @@ public class Topic {
             Res res = thread.getCommentBy(id);
             res.thread = thread;
             return res;
+        }
+    }
+
+    /**
+     * Retrieves a comment by its number. If the number is negative,
+     * it returns the comment counted from the end.
+     *
+     * @param num The comment number (starting from 1).
+     * @return The corresponding {@link Res} comment.
+     */
+    public synchronized Res getCommentBy(CommentId num) {
+        if (num.thread == 0 || extra.isEmpty()) {
+            System.out.println(num + "  " + num.id);
+            Res res = thread.getCommentBy(num.id);
+            res.thread = thread;
+            return res;
+        } else {
+            if (extraThreads == null) {
+                extraThreads = new ArrayList();
+                for (String threadId : extra) {
+                    extraThreads.add(OpenThreadCollector.findBy(threadId));
+                }
+            }
+
+            if (num.isExternalThreadIndex()) {
+                OpenThread thread = extraThreads.get(num.thread - 1);
+                Res res = thread.getCommentBy(num.id);
+                res.thread = thread;
+                return res;
+            } else {
+                throw new Error("IMPL " + num + "  " + num.id + "  " + num.thread);
+            }
         }
     }
 }

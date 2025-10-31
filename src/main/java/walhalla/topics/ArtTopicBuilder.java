@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import kiss.I;
+import walhalla.open2ch.CommentId;
 import walhalla.open2ch.OpenThreadCollector;
 import walhalla.open2ch.Res;
 import walhalla.open2ch.Topic;
@@ -56,9 +57,9 @@ public class ArtTopicBuilder {
                     continue; // Skip if there are praise references in the replies
                 }
 
-                topic.comments.add((res.num + count.get() * 1000) * -1);
+                topic.comments.add(new CommentId(count.get(), res.num, true));
                 for (int comment : res.from) {
-                    topic.comments.add(comment + count.get() * 1000);
+                    topic.comments.add(new CommentId(count.get(), comment, false));
                 }
                 topic.extra.add(thread.num + "-" + thread.id);
                 count.incrementAndGet();

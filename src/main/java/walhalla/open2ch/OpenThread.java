@@ -390,7 +390,7 @@ public class OpenThread implements Storable<OpenThread> {
 
         for (Topic topic : getTopics()) {
             if (topic.thread != null) {
-                for (Integer id : topic.comments) {
+                for (CommentId id : topic.comments) {
                     Res res = topic.getCommentBy(id);
 
                     for (String url : res.embeds) {

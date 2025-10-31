@@ -40,25 +40,26 @@ public class Topics extends ArrayList<Topic> {
 
         forEach(topic -> {
             topic.title = convertHalfToFullSymbols(topic.title);
-            topic.comments = complementReference(thread, topic.comments);
-            topic.comments = sortReference(thread, topic.comments);
+            // topic.comments = complementReference(thread, topic.comments);
+            // topic.comments = sortReference(thread, topic.comments);
             topic.comments = normalizeComment(topic.comments);
         });
     }
 
-    private List<Integer> normalizeComment(List<Integer> comments) {
-        comments.removeIf(x -> x == 1 || 1000 <= x);
+    private List<CommentId> normalizeComment(List<CommentId> comments) {
+        comments.removeIf(x -> x.id == 1 || 1000 <= x.id);
         return comments;
     }
 
-    private List<Integer> complementReference(OpenThread thread, List<Integer> comments) {
-        Set<Integer> used = new HashSet(comments.stream().map(x -> Math.abs(x)).toList());
-        List<Integer> complements = new ArrayList();
-        for (Integer num : comments) {
-            Res comment = thread.getCommentBy(num);
+    private List<CommentId> complementReference(OpenThread thread, List<CommentId> comments) {
+        Set<CommentId> used = new HashSet(comments);
+        List<CommentId> complements = new ArrayList();
+        for (CommentId num : comments) {
+            Res comment = thread.getCommentBy(num.id);
             for (Integer referer : comment.to) {
-                if (used.add(referer)) {
-                    complements.add(referer);
+                CommentId id = new CommentId(thread.id, referer, false);
+                if (used.add(id)) {
+                    complements.add(id);
                 }
             }
             complements.add(num);
@@ -66,30 +67,32 @@ public class Topics extends ArrayList<Topic> {
         return complements;
     }
 
-    /**
-     * @param comments
-     * @return
-     */
-    private List<Integer> sortReference(OpenThread thread, List<Integer> comments) {
-        List<Integer> sorted = new ArrayList();
-        while (!comments.isEmpty()) {
-            Integer item = comments.remove(0);
-            sorted.add(item);
-
-            sort(sorted, comments, thread, item);
-        }
-        return sorted;
-    }
-
-    private void sort(List<Integer> sorted, List<Integer> origin, OpenThread thread, int num) {
-        Res comment = thread.getCommentBy(num);
-        for (Integer referer : comment.from) {
-            if (origin.remove(referer)) {
-                sorted.add(referer);
-                sort(sorted, origin, thread, referer);
-            }
-        }
-    }
+    // /**
+    // * @param comments
+    // * @return
+    // */
+    // private List<CommentId> sortReference(OpenThread thread, List<CommentId> comments) {
+    // List<CommentId> sorted = new ArrayList();
+    // while (!comments.isEmpty()) {
+    // CommentId item = comments.remove(0);
+    // sorted.add(item);
+    //
+    // sort(sorted, comments, thread, item);
+    // }
+    // return sorted;
+    // }
+    //
+    // private void sort(List<CommentId> sorted, List<CommentId> origin, OpenThread thread,
+    // CommentId num) {
+    // Res comment = thread.getCommentBy(num.id);
+    // for (Integer referer : comment.from) {
+    //
+    // if (origin.remove(referer)) {
+    // sorted.add(referer);
+    // sort(sorted, origin, thread, referer);
+    // }
+    // }
+    // }
 
     /**
      * Converts half-width ASCII symbols in the input string to their full-width equivalents.
