@@ -96,7 +96,6 @@ public class Topic {
      */
     public synchronized Res getCommentBy(CommentId num) {
         if (num.thread == 0 || extra.isEmpty()) {
-            System.out.println(num + "  " + num.id);
             Res res = thread.getCommentBy(num.id);
             res.thread = thread;
             return res;
