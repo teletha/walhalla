@@ -27,6 +27,7 @@ public class Project extends bee.api.Project {
         require("dev.langchain4j", "langchain4j-http-client-jdk");
         require("dev.langchain4j", "langchain4j-google-ai-gemini");
         require("org.lz4", "lz4-java");
+        require("com.github.scribejava", "scribejava-httpclient-okhttp");
         require("com.github.teletha", "antibug").atTest();
 
         versionControlSystem("https://github.com/teletha/walhalla");

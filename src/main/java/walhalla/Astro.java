@@ -30,6 +30,7 @@ import walhalla.data.Rarity;
 import walhalla.data.Unit;
 import walhalla.data.UnitMeta;
 import walhalla.data.UnitMetaInfo;
+import walhalla.hatena.HatenaBookmarkClient;
 import walhalla.image.EditableImage;
 import walhalla.open2ch.EditedText;
 import walhalla.open2ch.Editor;
@@ -186,6 +187,7 @@ public class Astro {
 
         Twitter twitter = new Twitter();
         BlueSky blue = new BlueSky();
+        HatenaBookmarkClient hatebu = new HatenaBookmarkClient();
 
         I.http("https://wannyan.ephtra.workers.dev/rss.xml", XML.class)
                 .flatIterable(xml -> xml.find("item"))
@@ -207,6 +209,12 @@ public class Astro {
 
                     blue.tweet(title, description, link, image, "#千年戦争アイギス").waitForTerminate().to(json -> {
                         I.info("Tweet on BlueSky: " + title);
+                    }, e -> {
+                        I.error(e);
+                    });
+
+                    hatebu.postBookmark(link, description, "千年戦争アイギス", "まとめ", "ゲーム").waitForTerminate().to(response -> {
+                        I.info("Bookmark on Hatena: " + title);
                     }, e -> {
                         I.error(e);
                     });
