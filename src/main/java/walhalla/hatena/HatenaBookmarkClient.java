@@ -3,7 +3,6 @@ package walhalla.hatena;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
 
@@ -66,9 +65,7 @@ public class HatenaBookmarkClient {
      * デフォルトのトークンキャッシュファイルパスを取得
      */
     private static Path getDefaultTokenCacheFile() {
-        String userHome = System.getProperty("user.home");
-        System.out.println(userHome);
-        return Paths.get(userHome, ".hatena_bookmark_token");
+        return Path.of(".hatena");
     }
 
     /**
