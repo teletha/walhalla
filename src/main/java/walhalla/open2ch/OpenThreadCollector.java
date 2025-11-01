@@ -85,13 +85,16 @@ public class OpenThreadCollector {
     }
 
     private static final void trail() {
-        Server server = new Server();
-        OpenThread latest = Astro.ARTICLE.walkFile("**/thread.json").last().map(file -> findBy(file.parent().name())).to().exact();
+        trail(Astro.ARTICLE.walkFile("**/thread.json").last().map(file -> findBy(file.parent().name())).to().exact());
+    }
 
-        if (latest.comments.size() < 985) {
+    private static final void trail(OpenThread current) {
+        Server server = new Server();
+
+        if (current.comments.size() < 985) {
             try {
                 OpenThread thread = new OpenThread();
-                thread.parse(server.fetchSource(latest.url));
+                thread.parse(server.fetchSource(current.url));
 
                 Thread.sleep(1000);
             } catch (Exception e) {
@@ -99,14 +102,14 @@ public class OpenThreadCollector {
             }
         }
 
-        while (985 <= latest.comments.size()) {
+        while (985 <= current.comments.size()) {
             try {
                 OpenThread thread = new OpenThread();
-                thread.parse(server.fetchSource(latest.searchNextURL().v));
+                thread.parse(server.fetchSource(current.searchNextURL().v));
 
                 Thread.sleep(1000);
 
-                latest = thread;
+                current = thread;
             } catch (Exception e) {
                 throw I.quiet(e);
             }
@@ -121,5 +124,14 @@ public class OpenThreadCollector {
             last = matcher.group();
         }
         return last;
+    }
+
+    public static void main(String[] args) {
+        Server server = new Server();
+        OpenThread thread = new OpenThread();
+        thread.parse(server.fetchSource("https://uni.open2ch.net/test/read.cgi/gameswf/1730457064/"));
+        server.shutdown();
+
+        trail(thread);
     }
 }

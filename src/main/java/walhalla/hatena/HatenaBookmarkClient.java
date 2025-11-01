@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 import com.github.scribejava.core.builder.ServiceBuilder;
 import com.github.scribejava.core.model.OAuth1AccessToken;
@@ -282,7 +283,15 @@ public class HatenaBookmarkClient {
         service.signRequest(accessToken, request);
 
         return new Signal<Response>((observer, disposer) -> {
-            return disposer.add(service.executeAsync(request));
+            Future<Response> future = service.executeAsync(request);
+            try {
+                Response response = future.get();
+                observer.accept(response);
+                observer.complete();
+            } catch (Exception e) {
+                observer.error(e);
+            }
+            return disposer.add(future);
         });
     }
 
